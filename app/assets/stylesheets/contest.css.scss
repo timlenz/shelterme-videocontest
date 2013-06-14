@@ -269,7 +269,7 @@ footer {
 }
 
 .option-one {
-	background: url(bkgTexture1.jpg) no-repeat center center fixed;
+	background: url("bkgTexture1.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -345,7 +345,7 @@ footer {
 #camera {
 	position: absolute;
 	min-height: 565px;
-	background: url(optionOneHands.png) no-repeat center center;
+	background: url("optionOneHands.png") no-repeat center center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
