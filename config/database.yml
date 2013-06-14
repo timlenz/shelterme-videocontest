@@ -1,0 +1,19 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: smvc_development
+  host: localhost
+  pool: 5
+  timeout: 5000
+  username: tjl
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: smvc_test
+  host: localhost
+  pool: 5
+  timeout: 5000
+  username: tjl
+  password:
