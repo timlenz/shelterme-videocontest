@@ -1,4 +1,13 @@
 VideoContest::Application.routes.draw do
+  
+  get "static_pages/new"
+
+  root to: 'static_pages#home'
+  
+  match '/faq',               to: 'static_pages#faq'
+  match '/terms',             to: 'static_pages#terms'
+  match '/privacy',           to: 'static_pages#privacy'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

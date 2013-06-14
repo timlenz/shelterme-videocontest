@@ -1,0 +1,342 @@
+@import "bootstrap";
+
+/* MIXINS & VARIABLES */
+
+$grayDark: #333333;
+$grayLightDark: #5e6465;
+$grayDarkish: #999999;
+$grayMediumDark: #c7c7c7;
+$grayMediumLight: #eaeaea;
+$grayMedium: #d9d7d6;
+$grayLight: #f5f3f2;
+$grayLighter: #f1efee;
+$offWhite: #fdfdfd;
+
+$aqua: #19a3b1;
+$lightAqua: #71e6f1;
+$blueSteel: #388cb2;
+
+$burntUmber: #8E190E;
+
+$footer: 60px;
+$stickyOffset: 70px;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
+}
+
+@mixin tiny_border_radius {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+@mixin small_border_radius {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+@mixin border_radius {
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+}
+
+/* CROSS-BROWSER RESET */
+
+* { 
+  margin:0;
+  padding:0;
+}
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+fieldset,img { 
+  border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+  font-style:normal;
+  font-weight:normal;
+}
+ol,ul {
+  list-style:none;
+}
+caption,th {
+  text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-size:100%;
+  font-weight:normal;
+	margin: 0;
+}
+q:before,q:after {
+  content:'';
+}
+abbr,acronym { border:0;
+}
+
+/* UNIVERSAL */
+
+* {
+  margin:0;
+  padding:0;
+}
+
+html {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+body {
+  /*margin-top: 40px;*/
+  height: 100%;
+  font-size: 13px;
+	line-height: 18px;
+  background-color: white;
+}
+
+#sm {
+  width: 100%;
+  min-height: 100%;
+  height: auto !important; 
+  margin-bottom: -$stickyOffset; /* Bottom margin is negative of footer height */
+  background-color: white;
+}
+
+.content {
+  margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* TYPOGRAPHY */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 10px;
+  text-align: left;
+  display: inline;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  margin-left: 0;
+  margin-top: 10px;
+  text-align: left;
+  font-weight: bold;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: orange;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+.static-header {
+  background-color: $grayMediumLight;
+  padding: 6px 0 6px 10px;
+  border: 1px solid $grayLight;
+}
+
+a {
+  color: $blueSteel;
+  font-weight: bold;
+  &:hover {
+    text-decoration: none;
+    color: $burntUmber;
+  }
+}
+
+.unlink {
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
+
+/* FOOTER */
+
+footer {
+  color: $grayLight;
+  background-color: $aqua;
+  height: $footer;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  margin-top: 10px;
+	-webkit-box-shadow: 0px -3px 3px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow:    0px -3px 3px rgba(0, 0, 0, 0.25);
+	box-shadow:         0px -3px 3px rgba(0, 0, 0, 0.25);
+  a {
+    color: $lightAqua;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+  }
+  small {
+    float: left;
+    font-size: 11px;
+    color: $gray;
+  }
+  ul {
+    float: left;
+    list-style: none;
+    margin-top: 20px;
+    margin-left: 0;
+    li {
+      float: left;
+      margin-right: 24px;
+    }
+  }
+	.pull-left {
+		width: 300px;
+		float: left;
+		margin-right: 70px;
+	}
+  .pull-right {
+    width: 300px;
+		float: right;
+		margin-top: 14px;
+	  .social {
+			float: right;
+	    height: 32px;
+	    width: 32px;
+	    margin-right: 20px;
+	  }
+	  .logo {
+			float: right;
+			height: 31px;
+			width: 163px;
+	  }
+  }
+}
+
+.sponsor-box {
+	float: left;
+  width: 200px;
+  height: 75px;
+	margin: -15px 70px 0 0;
+  background: white url(petSafeLogoSmall.png) center no-repeat;
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+  -moz-border-radius-topleft: 8px;
+  -moz-border-radius-topright: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+	-webkit-box-shadow: 0px -3px 3px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow:    0px -3px 3px rgba(0, 0, 0, 0.25);
+	box-shadow:         0px -3px 3px rgba(0, 0, 0, 0.25);
+  .logo {
+		height: 25px;
+		width: 100px;
+    margin-top: 15px;
+  }
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.push {
+  height: $stickyOffset;
+}
+
+/* MAIN PAGE */
+
+.contentBox {
+	padding: 20px 0;
+	min-height: 500px;
+	height: auto;
+}
+
+.option-one {
+	background: url(bkgTexture1.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+#petsafe {
+	position: relative;
+	float: left;
+	height: 118px;
+	width: 220px;
+	background: url(petSafeLogoBig.png) no-repeat;
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+#presents {
+	margin-top: 20px;
+	height: 142px;
+	width: 222px;
+	background: url(presentsVideoContest.png) no-repeat;
+}
+
+#bottom {
+	position: absolute;
+	width: 940px;
+	bottom: 150px;
+}
+
+#create {
+	position: relative;
+	float: left;
+	height: 117px;
+	width: 315px;
+	background: url(createShortVideo.png) no-repeat;
+}
+
+#helpGive {
+	position: relative;
+	margin-top: 20px;
+	float: right;
+	height: 17px;
+	width: 384px;
+	background: url(helpGiveShelterPets.png) no-repeat;
+}
+
+#buttons {
+	position: relative;
+	float: right;
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+	li {
+		margin-bottom: 5px;
+		padding: 10px;
+		width: 182px;
+		background-color: rgba(255, 255, 255, 0.5);
+		border: 1px solid rgba(255, 255, 255, 0.25);
+		&:hover {
+			background-color: rgba(25, 163, 177, 0.25);
+		}
+	}
+	.listIcon {
+		margin-right: 10px;
+	}
+}

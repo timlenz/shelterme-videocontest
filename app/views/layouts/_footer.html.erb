@@ -1,0 +1,19 @@
+<footer>  
+  <div class="container">
+    <div class="pull-left">
+      <ul>
+        <li><%= link_to "FAQ", faq_path %></li>
+        <li><%= link_to "Privacy", privacy_path %></li>
+        <li><%= link_to "Terms", terms_path %></li>
+      </ul>
+    </div>
+    <div class="sponsor-box">
+    	<%= link_to "", "http://www.petsafe.net", target: "_blank" %>
+    </div>
+    <div class="pull-right">
+      <%= link_to image_tag("shelterMeLogoSmall.png", mouseover: "shelterMeLogoSmallHover.png", class: "logo", alt: "ShelterMe.com"), "http://www.shelterme.com" %>
+	    <%= link_to image_tag("facebook.png", mouseover: "facebookHover.png", class: "social", alt: "Facebook"), "https://www.facebook.com/ShelterMeTV", target: "_blank" %>
+	    <%= link_to image_tag("twitter.png", mouseover: "twitterHover.png", class: "social", alt: "Twitter"), "http://www.twitter.com/ShelterMeTV", target: "_blank" %>
+    </div>
+  </div>
+</footer>
