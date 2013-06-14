@@ -269,7 +269,7 @@ footer {
 }
 
 .option-one {
-	background: url(bkgTexture1.png) no-repeat center center fixed;
+	background: url(bkgTexture1.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -315,7 +315,7 @@ footer {
 	margin-top: 20px;
 	float: right;
 	height: 17px;
-	width: 384px;
+	width: 380px;
 	background: url(helpGiveShelterPets.png) no-repeat;
 }
 
@@ -334,9 +334,20 @@ footer {
 		border: 1px solid rgba(255, 255, 255, 0.25);
 		&:hover {
 			background-color: rgba(25, 163, 177, 0.25);
+			border: 1px solid rgba(25, 163, 177, 0.25);
 		}
 	}
 	.listIcon {
 		margin-right: 10px;
 	}
+}
+
+#camera {
+	position: absolute;
+	min-height: 565px;
+	background: url(optionOneHands.png) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
