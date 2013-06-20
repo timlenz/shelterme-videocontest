@@ -7,13 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="sm" class="option-one">
+	<% if params[:controller] == 'static_pages' and params[:action] == 'home' %>
+	  <%= yield %>
+	<% else %>
+  <div id="sm">
   <%= render 'layouts/header' %>   
   <%= render 'layouts/errors' %>
   <%= yield %>
     <div class="push"></div>
   </div>
   <%= render 'layouts/footer' %> 
+  <% end %>
   <%= javascript_include_tag "application" %>
 </body>
 </html>

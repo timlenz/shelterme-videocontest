@@ -1,19 +1,38 @@
-<div id="videoSubject"></div>
-<div id="camera"></div>
-<div class="container contentBox">
-	<div id="petsafe">
-		<%= link_to "", "http://www.petsafe.net", target: "_blank" %>
+<div id="landing">
+	<div id="subject"></div>
+	<div id="camera">
+		<div id="video">
+		</div>
 	</div>
-	<div id="helpGive"></div>
-	<div class="clearfix"></div>
-	<div id="presents"></div>
-	<div id="bottom">
+	<div id="content">
+		<div id="topLeft">
+			<div id="petsafe">
+				<%= link_to "", "http://www.petsafe.net", target: "_blank" %>
+			</div>
+			<div id="presents"></div>
+		</div>
+		<div id="helpGive"></div>
 		<div id="create"></div>
 		<div id="buttons">
 			<ul>
-				<li><%= image_tag("learnMoreIcon.png", class: "listIcon") %><%= image_tag("learnMore.png") %></li>
-			  <li><%= image_tag("signInIcon.png", class: "listIcon") %><%= image_tag("signIn.png") %></li>
-				<li><%= image_tag("signInIcon.png", class: "listIcon") %><%= image_tag("signUp.png") %></li>
+				<li>
+					<a href="<%= survey_path %>">
+						<%= image_tag("learnMoreIcon.png", class: "listIcon") %>
+					  <%= image_tag("learnMore.png", class: "listLabel") %>
+					</a>
+				</li>
+			  <li>
+					<a href="#">
+						<%= image_tag("signInIcon.png", class: "listIcon") %>
+					  <%= image_tag("signIn.png", class: "listLabel") %>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<%= image_tag("signInIcon.png", class: "listIcon") %>
+					  <%= image_tag("signUp.png", class: "listLabel") %>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>

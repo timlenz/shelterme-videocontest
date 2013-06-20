@@ -94,6 +94,7 @@ html {
 body {
   /*margin-top: 40px;*/
   height: 100%;
+	min-height: 600px;
   font-size: 13px;
 	line-height: 18px;
   background-color: white;
@@ -117,6 +118,10 @@ body {
   h1 {
     margin-bottom: 10px;
   }
+}
+
+.hideScroll {
+	overflow: hidden;
 }
 
 /* TYPOGRAPHY */
@@ -262,23 +267,30 @@ footer {
 
 /* MAIN PAGE */
 
-.contentBox {
-	padding: 20px 0;
-	min-height: 500px;
-	height: auto;
-}
-
-.option-one {
-	background: url("bkgTexture1.jpg") no-repeat center center fixed;
+#landing {
+	width: 100%;
+	/*min-height: 100%;*/
+	overflow: hidden;
+	height: auto !important;
+	background: url(bkgTexture1.png) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
 }
 
-#petsafe {
+#content {
 	position: relative;
-	float: left;
+	width: 100%;
+}
+
+#topLeft {
+	position: fixed;
+	top: 40px;
+	left: 100px;
+}
+
+#petsafe {
 	height: 118px;
 	width: 220px;
 	background: url(petSafeLogoBig.png) no-repeat;
@@ -296,58 +308,84 @@ footer {
 	background: url(presentsVideoContest.png) no-repeat;
 }
 
-#bottom {
-	position: absolute;
-	width: 940px;
-	bottom: 150px;
-}
-
 #create {
-	position: relative;
-	float: left;
+	position: absolute;
+	bottom: 140px;
+	left: 100px;
 	height: 117px;
 	width: 315px;
 	background: url(createShortVideo.png) no-repeat;
 }
 
 #helpGive {
-	position: relative;
-	margin-top: 20px;
-	float: right;
+	position: fixed;
+	top: 60px;
+	right: 100px;
 	height: 17px;
 	width: 380px;
 	background: url(helpGiveShelterPets.png) no-repeat;
 }
 
 #buttons {
-	position: relative;
-	float: right;
+	position: absolute;
+	bottom: 100px;
+	right: 100px;
 	ul {
 		list-style: none;
 		padding: 0;
-	}
-	li {
-		margin-bottom: 5px;
-		padding: 10px;
-		width: 182px;
-		background-color: rgba(255, 255, 255, 0.5);
-		border: 1px solid rgba(255, 255, 255, 0.25);
-		&:hover {
-			background-color: rgba(25, 163, 177, 0.25);
-			border: 1px solid rgba(25, 163, 177, 0.25);
+		margin: 0;
+		li {
+			margin-bottom: 5px;
+			width: 204px;
+			height: 44px;
+			background-color: rgba(255, 255, 255, 0.5);
+			border: 1px solid rgba(255, 255, 255, 0.25);
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.75);
+			}
 		}
 	}
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
 	.listIcon {
-		margin-right: 10px;
+		margin: 10px;
+	}
+	.listLabel {
+		margin: 0;
+		padding: 16px 0 15px;
 	}
 }
 
-#camera {
+#subject {
 	position: absolute;
-	min-height: 565px;
-	background: url("optionOneHands.png") no-repeat center center;
+	bottom: 0;
+	min-height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	background: url(testBkg.png) no-repeat center bottom;
+	-webkit-background-size: constrain;
+	-moz-background-size: constrain;
+	-o-background-size: constrain;
+	background-size: constrain;
+}
+
+#camera {
+	position: fixed;
+	bottom: 0;
+	width: 110%;
+	min-height: 80%;
+	background: url(handsNewMobile.png) no-repeat center top;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+}
+
+#video {
+	background-color: $grayDarkish;
+	position: relative;
+	margin: 0 auto;
 }
