@@ -2,9 +2,9 @@ $(function(){
 	
 	// Get dimensions of window and resize #content div
 	if ( $('#landing').length ) {
-		set_dimensions();
+		set_camera();
 		$(window).resize(function() {
-			set_dimensions();
+			set_camera();
 		});
 	};
 	
@@ -12,20 +12,31 @@ $(function(){
 	$('html').mousemove(function(e){
 		var movementStrength = 15;
 
-		var height = movementStrength / $(window).height();
 		var width = movementStrength / $(window).width();
+		var height = movementStrength / $(window).height();
 
 	  var pageX = e.pageX - ($(window).width() / 2);
 	  var pageY = e.pageY - ($(window).height() / 2);
-
+	
 	  var newvalueX = width * pageX * -1;
-	  var newvalueY = height * pageY * -1;
+		var newvalueY = height * pageY * -1;
 
 	  $('#camera').css('left', newvalueX);
 		$('#subject').css('left', -newvalueX);
+		$('#landing').css('left', newvalueX * 10);
+		$('html').addClass('hideScroll');
+		set_subject(newvalueY);
 	});
 	
-	function set_dimensions(){
+	function set_subject(moveY){
+		var window_h = $(window).height();
+		var native_subject_h = $('#subject').height();
+		var new_subject_h = native_subject_h * moveY / window_h * -1;
+		
+		$('#subject').css('top', new_subject_h);
+	};
+	
+	function set_camera(){
 		var native_image_h = 717;
 		var native_image_w = 1432;
 		var native_vid_h = 226;

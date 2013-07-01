@@ -14,12 +14,13 @@ $offWhite: #fdfdfd;
 
 $aqua: #19a3b1;
 $lightAqua: #71e6f1;
+$darkAqua: #0e5a61;
 $blueSteel: #388cb2;
 
 $burntUmber: #8E190E;
 
 $footer: 60px;
-$stickyOffset: 70px;
+$stickyOffset: 108px;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
@@ -92,7 +93,6 @@ html {
 }
 
 body {
-  /*margin-top: 40px;*/
   height: 100%;
 	min-height: 600px;
   font-size: 13px;
@@ -104,7 +104,7 @@ body {
   width: 100%;
   min-height: 100%;
   height: auto !important; 
-  margin-bottom: -$stickyOffset; /* Bottom margin is negative of footer height */
+  margin-bottom: -$stickyOffset; /* Bottom margin is negative of footer height: */
   background-color: white;
 }
 
@@ -122,6 +122,46 @@ body {
 
 .hideScroll {
 	overflow: hidden;
+}
+
+#mainContent {
+	margin: 25px 25px 25px 250px;
+	width: 665px;
+}
+
+#floater {
+  position: fixed;
+  bottom: 0;
+  left: 45px;
+  width: 80px;
+  height: 20px;
+  margin: 0;
+  padding: 5px 0;
+  text-align: center;
+  font-size: 12px;
+  color: white;
+  z-index: 999;
+  display: none;
+  cursor: pointer;
+  background-color: $darkAqua;
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+  -moz-border-radius-topleft: 8px;
+  -moz-border-radius-topright: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  p {
+    margin:0;
+  }
+}
+
+.bullets {
+	list-style: disc;
+  font-size: 14px;
+  line-height: 20px;
+	li {
+		margin-bottom: 12px;
+	}
 }
 
 /* TYPOGRAPHY */
@@ -151,8 +191,8 @@ h2 {
 }
 
 p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .static-header {
@@ -166,7 +206,7 @@ a {
   font-weight: bold;
   &:hover {
     text-decoration: none;
-    color: $burntUmber;
+    color: $darkAqua;
   }
 }
 
@@ -182,19 +222,20 @@ a {
 footer {
   color: $grayLight;
   background-color: $aqua;
+	background: url(footer_bkg.png) repeat-x center bottom;
   height: $footer;
   right: 0;
   left: 0;
   z-index: 1030;
   margin-top: 10px;
-	-webkit-box-shadow: 0px -3px 3px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow:    0px -3px 3px rgba(0, 0, 0, 0.25);
-	box-shadow:         0px -3px 3px rgba(0, 0, 0, 0.25);
   a {
-    color: $lightAqua;
+    color: $darkAqua;
     text-transform: uppercase;
     font-size: 11px;
     font-weight: bold;
+		&:hover {
+			color: $lightAqua;
+		}
   }
   small {
     float: left;
@@ -234,7 +275,7 @@ footer {
   }
 }
 
-.sponsor-box {
+.sponsorFooter {
 	float: left;
   width: 200px;
   height: 75px;
@@ -272,7 +313,7 @@ footer {
 	/*min-height: 100%;*/
 	overflow: hidden;
 	height: auto !important;
-	background: url(bkgTexture1.png) no-repeat center center fixed;
+	background: url(bkgTexture1.png) no-repeat center center; /* fixed */
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -388,4 +429,356 @@ footer {
 	background-color: $grayDarkish;
 	position: relative;
 	margin: 0 auto;
+}
+
+/* HEADER */
+
+.navbar-inner {
+	min-height: 38px;
+	background: url(header_bkg.png) repeat-x center top;
+}
+
+.vertDivide {
+  position: relative;
+  background-color: white;
+  opacity:0.27;
+  filter:alpha(opacity=27);
+  width: 1px;
+  height: 19px;
+  top: 10px;
+}
+
+.navMain {
+	background-image: url(nav.png);
+	background-color: transparent;
+	background-repeat: no-repeat;
+}
+
+.navMainOn {
+	background-color: $darkAqua;
+	background-image: url(nav.png);
+}
+
+.navCategories { 
+	width: 139px; 
+	height: 35px; 
+	margin-top: 3px;
+	background-position: 0 -100px; 
+	&:hover {
+		background-position: 0 0;
+	}
+}
+
+.navCategoriesOn {
+	width: 139px; 
+	height: 35px;
+	margin-top: 3px;
+	background-position: 0 -100px; 
+}
+
+.navOverview { 
+	width: 126px; 
+	height: 35px; 
+	margin-top: 3px;
+	background-position: 0 -36px; 
+	&:hover {
+		background-position: -229px -111px;
+	}
+}
+
+.navOverviewOn {
+	width: 126px; 
+	height: 35px;
+	margin-top: 3px;
+	background-position: 0 -36px;
+}
+
+.navRules { 
+	width: 88px; 
+	height: 35px; 
+	margin-top: 3px;
+	background-position: -140px -100px; 
+	&:hover {
+		background-position: -140px 0; 
+	}
+}
+
+.navRulesOn {
+	width: 88px; 
+	height: 35px;
+	margin-top: 3px;
+	background-position: -140px -100px; 
+}
+
+.navVideos { 
+	width: 99px; 
+	height: 35px;
+	margin-top: 3px; 
+	background-position: -258px -75px; 
+	&:hover {
+		background-position: -158px -64px;
+	}
+}
+
+.navVideosOn {
+	width: 99px; 
+	height: 35px;
+	margin-top: 3px;
+	background-position: -258px -75px;
+}
+
+.profileIcon { 
+	width: 63px; 
+	height: 20px; 
+	margin-top: 10px;
+	background-position: -285px -54px; 
+	&:hover {
+		background-position: -285px -33px; 
+	}
+}
+
+.navLogo { 
+	width: 205px; 
+	height: 10px; 
+  float: left;
+  margin-right: 80px;
+	margin-top: 15px;
+	background-position: 0 -136px; 
+}
+
+.shelterMeLogo { 
+	width: 157px; 
+	height: 27px; 
+	margin-top: 3px;
+	display: block;
+	float: right;
+	background-position: 0 -72px; 
+	&:hover {
+		background-position: -127px -36px;
+	}
+}
+
+.twitter { 
+	background-position: -229px 0; 
+	&:hover {
+		background-position: -295px 0;
+	}
+}
+
+.facebook { 
+	background-position: -262px 0; 
+	&:hover {
+		background-position: -328px 0;
+	}
+}
+
+/* SPONSOR SIDEBAR */
+
+#sidebar {
+	position: fixed;
+	z-index:0;
+	width: 205px;
+	height: 630px;
+	margin: 15px 0;
+	border-right: 2px solid #f0ebe7;
+	background: transparent url(petSafeLogoSidebar.png) no-repeat center top;
+	.logo {
+		display: block;
+		width: 168px;
+		height: 142px;
+		margin: 0 auto;
+	}
+	#tallAd {
+		position: relative;
+		width: 170px;
+		height: 440px;
+		margin: 15px auto 0;
+		background-color: #f0ebe7;
+	}
+}
+
+/* CATEGORIES */
+
+#categories {
+	li {
+		width: 130px;
+		height: 50px;
+		background-image: url(categoriesNav.png);
+		background-color: transparent;
+		background-repeat: no-repeat;
+	}
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+	}
+	li > a:hover, li > a:focus, .active a, .active a:hover {
+		background-color: transparent;
+	}
+	li.active.volunteerPill {
+		background-position: -262px 0;
+		&:hover {
+			background-position: -262px 0;
+		}
+	}
+	li.active.adoptPill {
+		background-position: 0 0;
+		&:hover {
+			background-position: 0 0;
+		}
+	}
+	li.active.donatePill {
+		background-position: -131px 0;
+		&:hover {
+			background-position: -131px 0;
+		}
+	}
+	li.active.fosterPill {
+		background-position: -262px -204px;
+		&:hover {
+			background-position: -262px -204px;
+		}
+	}
+	li.active.spayNeuterPill {
+		background-position: 0 -204px; 
+		&:hover {
+			background-position: 0 -204px; 
+		}
+	}
+	.adoptPill {
+		background-position: 0 -153px;
+		&:hover {
+			background-position: -131px -204px;
+		}
+	}
+	.donatePill {
+		background-position: -262px -153px;
+		&:hover {
+			background-position: -262px -51px;
+		}
+	}
+	.fosterPill { 
+		background-position: -131px -102px;
+		&:hover {
+			background-position: 0 -102px;
+		}
+	}
+	.spayNeuterPill { 
+		background-position: 0 -51px; 
+		&:hover {
+			background-position: -131px -153px;
+		}
+	}
+	.volunteerPill { 
+		background-position: -262px -102px; 
+		&:hover {
+			background-position: -131px -51px;
+		}
+	}
+}
+
+/* VIDEOS */
+
+#videos {
+	li {
+		width: 110px;
+		height: 50px;
+		background-image: url(videosNav.png);
+		background-color: transparent;
+		background-repeat: no-repeat;
+	}
+	li > a:hover, li > a:focus, .active a, .active a:hover {
+		background-color: transparent;
+	}
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+	}
+	li.active.winnersPill {
+		background-position: -111px -51px;
+		&:hover {
+			background-position: -111px -51px;
+		}
+	}
+	li.active.allVideosPill {
+		background-position: -222px -102px;
+		&:hover {
+			background-position: -222px -102px;
+		}
+	}
+	li.active.newVideosPill {
+		background-position: 0 -51px;
+		&:hover {
+			background-position: 0 -51px;
+		}
+	}
+	li.active.mostViewsPill {
+		background-position: -222px -153px;
+		&:hover {
+			background-position: -222px -153px;
+		}
+	}
+	li.active.mostVotesPill {
+		background-position: -222px 0;
+		&:hover {
+			background-position: -222px 0;
+		}
+	}
+	li.active.mostSharesPill {
+		background-position: 0 -306px;
+		&:hover {
+			background-position: 0 -306px;
+		}
+	}
+	li.active.bestRatedPill {
+		background-position: -111px -153px;
+		&:hover {
+			background-position: -111px -153px;
+		}
+	}
+	.winnersPill {
+		background-position: -111px -102px;
+		&:hover {
+			background-position: -111px -204px;
+		}
+	}
+	.allVideosPill {
+		background-position: 0 0;
+		&:hover {
+			background-position: -111px -255px;
+		}
+	}
+	.newVideosPill {
+		background-position: -111px -306px;
+		&:hover {
+			background-position: 0 -102px;
+		}
+	}
+	.mostViewsPill {
+		background-position: 0 -255px;
+		&:hover {
+			background-position: -111px 0;
+		}
+	}
+	.mostVotesPill {
+		background-position: -222px -306px;
+		&:hover {
+			background-position: -222px -255px;
+		}
+	}
+	.mostSharesPill {
+		background-position: 0 -153px;
+		&:hover {
+			background-position: 0 -204px;
+		}
+	}
+	.bestRatedPill {
+		background-position: -222px -204px;
+		&:hover {
+			background-position: -222px -51px;
+		}
+	}
 }

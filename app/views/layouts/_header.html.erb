@@ -1,0 +1,45 @@
+<header class="navbar navbar-fixed-top noPrint">
+  <div class="navbar-inner">
+    <div class="container">
+       <%= link_to "", root_path, class: "navLogo navMain" %>
+	     <ul class="nav pull-left">
+		     <% if params[:action] == 'overview' %>
+		     <li class="navOverviewOn navMainOn">
+				 <% else %>
+				 <li class="navOverview navMain">
+				   <%= link_to "", overview_path %>
+				 <% end %>
+				 </li>
+         <li class="vertDivide"> </li>
+		     <% if params[:action] == 'categories' %>
+		     <li class="navCategoriesOn navMainOn">
+				 <% else %>
+			   <li class="navCategories navMain">
+			     <%= link_to "", categories_path %>
+			   <% end %>
+			   </li>
+         <li class="vertDivide"> </li>
+		     <% if params[:action] == 'rules' %>
+		     <li class="navRulesOn navMainOn">
+				 <% else %>
+			   <li class="navRules navMain">
+			     <%= link_to "", rules_path %>
+			   <% end %>
+			   </li>
+         <li class="vertDivide"> </li>
+		     <% if params[:action] == 'videos' %>
+		     <li class="navVideosOn navMainOn">
+				 <% else %>
+			   <li class="navVideos navMain">
+			     <%= link_to "", videos_path %>
+			   <% end %>
+			   </li>
+       </ul>
+       <%= render "layouts/nav_menu" %>
+    </div>
+  </div>
+</header>
+<div class="clearfix noPrint"></div>
+<div id="floater">
+  <p>More <i class="icon-arrow-down icon-white"></i></p>
+</div>
