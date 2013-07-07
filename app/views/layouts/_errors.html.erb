@@ -1,0 +1,20 @@
+<div id="mainError" class="noPrint">
+  <% flash.each do |key, value| %>
+    <div class="errorBox">
+      <button class="close" data-dismiss="alert">&times;</button>
+      <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+    </div>
+  <% end %>
+	<noscript class="noPrint">
+		<div class="errorBox">
+		  <div class="alert alert-error">
+		  	Please enable Javascript to view this page properly.
+		  </div>
+		</div>
+	</noscript>
+  <div class="errorBox cookieCheck">
+    <div class="alert alert-error">
+      Please enable cookies or the site will not work properly.
+    </div>
+  </div>
+</div>

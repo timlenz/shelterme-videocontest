@@ -7,6 +7,10 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'jquery-rails', '~> 2.1'
 gem 'pg'
 gem 'thin'
+gem 'simple_form', '2.0.2'
+gem 'obscenity'
+gem 'faker', '1.0.1'
+gem 'will_paginate', '3.0.3'
 # gem 'unicorn'
 
 group :development do

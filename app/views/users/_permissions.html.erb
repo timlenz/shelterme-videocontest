@@ -1,0 +1,10 @@
+<% if !@user.admin? || current_user.name == "Tim Lenz" %>
+  <%= simple_form_for(@user, html: {class: 'form-horizontal' }) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.input :admin, as: :boolean, label: "Admin", style: "width:150px;" %>
+  <h2 style="text-align:center;">This cannot be undone</h2>
+  <br><br>
+  <%= f.button :submit, "Save", class: "formBtn", style: "width:145px;", confirm: "#{@user.name} will have admin access to the entire ShelterMe site. Are you certain this is what you want? " %>
+  <%= link_to("Back to user profile", @user, style: "float:right;padding-top:4px;")%>
+  <% end %>
+<% end %>

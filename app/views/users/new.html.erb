@@ -1,0 +1,39 @@
+<%= provide(:title, 'Enter') %>
+<div id="mainContent">
+	<div class="signinDialog">
+    <div class="center">
+      <%= image_tag("enterContest.png", alt: "Enter the contest by creating an account.", width: "494", height: "27", class: "formHeader") %>
+    </div>
+    <br>
+    <div class="span6 offset1 center">
+        <%= simple_form_for(@user, html: {class: 'form-horizontal' }) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <%= f.input :name, label: "Your Name", hint: "Sets your account URL, so choose wisely" %>
+          <%= f.input :location, label: "Your Location", hint: "Used to localize results. Enter as City, State." %>
+          <%= f.input :email, label: "Your Email", hint: "Used to sign in and to contact winners" %>
+          <%= f.input :password, required: true, label: "Choose Password", hint: "Must be at least six characters" %>
+          <%= f.input :password_confirmation, label: "Re-enter Password" %>
+          <%= f.submit "Enter", class: "btn btn-header", style: "width:120px;" %>
+        <% end %>
+      </div>
+      <div class="clearfix"></div>
+      <br><br>
+      <div class="staticContent">
+        <p>When you enter the Shelter Me Video Contest, you can make a difference for shelter pets in your area and throughout the country. You are also eligible to win a prize!</p>
+				<p>With your account, you will be able to:</p>
+        <ul>
+          <li>Access audio, video and photo assets for use in creating your video</li>
+          <li>Submit a video for a chance to be seen on national programming</li>
+          <li>Earn prizes even if you do not submit a video by sharing and voting for your favorite videos</li>
+        </ul>
+        <p>You are not eligible to win and not all site features are available unless you create an account. As this site uses cookies for both functionality and analytics, it will not work properly if cookies are disabled. By creating an account here, you agree to our <%= link_to "terms of use", terms_path %> and <%= link_to "privacy policy", privacy_path %>.</p>
+				<br><br>
+		    <p class="center">Have you already entered the contest? Please <%= link_to "sign in", signin_path %>.</p>
+		    <div class="row">
+		      <div class="cornerLogo">
+		        <%= image_tag("logoSmall.png", alt: "Shelter Me", width: "100", height: "64") %>
+		      </div>
+		    </div>
+      </div>
+  </div>
+</div>

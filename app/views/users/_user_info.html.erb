@@ -1,0 +1,12 @@
+<div class="headerInfo">
+	<span class="ranking rank1"></span> <!-- Add code to change # in rank class depending upon user ranking -->
+  <h1>
+  <% if signed_in? && current_user.admin? && current_user != @user %>
+    <%= link_to @user.name, "mailto:#{@user.email}", target: "_blank", style: "font-weight:normal;color:#333;" %>
+  <% else %>
+    <%= @user.name %>
+  <% end %>
+  </h1>
+  <br>
+  <p><%= @user.location %></p>
+</div>

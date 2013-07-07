@@ -1,0 +1,16 @@
+<% provide(:title, @user.slug) %>
+<div id="mainContent">
+	<div class="pageHeader">
+		<div class="headerLogo">
+      <%= avatar_for @user, size: 63 %>
+    </div>
+    <%= render "user_info" %>
+    <%= render "header_buttons" %>
+	</div>
+	<% if !@user.bio.blank? %>
+	<div class="staticContent">
+		<%= @user.bio %>
+	</div>
+	<% end %>
+	<%= render "user_content" %>
+</div>

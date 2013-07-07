@@ -1,0 +1,10 @@
+<div class="editForm">
+  <%= simple_form_for(@user, html: {class: 'form-horizontal' }) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.input :email %>
+    <%= f.input :password, label: "New Password" %>
+    <%= f.input :password_confirmation, label: 'Re-enter Password'  %>
+    <%= f.button :submit, "Save", class: "formBtn", style: "width:145px;", id: "saveUserAccount" %>
+    <%= link_to("Back to user profile", @user, style: "float:right;padding-top:4px;")%>
+  <% end %>
+</div>

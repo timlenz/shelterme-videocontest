@@ -1,16 +1,37 @@
 VideoContest::Application.routes.draw do
   
-  get "static_pages/new"
+  get "password_resets/new"
+  get "videos/new"
 
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets
+  resources :videos
+  
   root to: 'static_pages#home'
+  
+  match '/addvideo',          to: 'videos#addvideo'
+  match '/newvideo',          to: 'videos#new'
+  match '/av',                to: 'videos#index'
+  match '/watch',             to: 'videos#watch'
+  
+  match '/signin',            to: 'sessions#new'
+  match '/signout',           to: 'sessions#destroy', via: :delete
+  
+  match '/enter',             to: 'users#new'
+  match '/u',                 to: 'users#index'
+  match '/users',             to: 'users#index'
+  match '/u/:id',             to: 'users#show'
+  match '/myvideos',          to: 'users#videos'
+  match '/mv',                to: 'users#videos'
   
   match '/faq',               to: 'static_pages#faq'
   match '/terms',             to: 'static_pages#terms'
   match '/privacy',           to: 'static_pages#privacy'
-  match '/overview',          to: 'static_pages#overview'
-  match '/categories',        to: 'static_pages#categories'
   match '/rules',             to: 'static_pages#rules'
-  match '/videos',            to: 'static_pages#videos'
+  match '/information',       to: 'static_pages#information'
+  match '/assets',            to: 'static_pages#assets'
+  match '/statistics',        to: 'static_pages#statistics'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

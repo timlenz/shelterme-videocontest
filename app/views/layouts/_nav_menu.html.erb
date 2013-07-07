@@ -1,5 +1,40 @@
 <ul class="nav pull-right">
+<% if signed_in? %>
   <li id="fat-menu" class="dropdown">
     <a href="#" class="dropdown-toggle navMain profileIcon" data-toggle="dropdown" style="padding:0;"></a>
+		<ul class="dropdown-menu">
+      <li class="menu-photo">
+        <%= avatar_for current_user, size: 40 %>
+        <div class="menu-name"><%= current_user.name %></div>
+      </li>
+      <li class="divider"></li>
+      <li><%= link_to "My Profile", current_user %></li>
+      <li><%= link_to "Edit My Profile", edit_user_path(current_user) %></li>
+      <li class="divider"></li>
+      <li><%= link_to "My Videos", myvideos_path %></li>
+      <li><%= link_to "Video Assets", assets_path %></li>
+      <li class="divider"></li>
+      <% if current_user.admin? %>
+      <li class="admin"><%= link_to "Statistics", statistics_path %></li>
+      <li class="admin"><%= link_to "All Users", u_path %></li>
+      <li class="admin"><%= link_to "All Videos", av_path %></li>
+      <li class="divider"></li>
+      <% end %>
+      <li style="text-align:left;">
+        <%= link_to "Sign Out", signout_path, method: "Delete" %>
+      </li>
+    </ul>
   </li>
+<% else %>
+ <% if params[:controller] == 'users' and params[:action] == 'new' %>
+  <li class="signInOn">Enter</li>
+ <% else %>  
+  <li class="signInit"><%= link_to "Enter", enter_path %></li>
+ <% end %>
+ <% if params[:controller] == 'sessions' and params[:action] == 'new' %>
+  <li class="signInOn">Sign In</li>
+ <% else %> 
+  <li class="signInit"><%= link_to "Sign In", signin_path %></li>
+ <% end %>
+<% end %>
 </ul>

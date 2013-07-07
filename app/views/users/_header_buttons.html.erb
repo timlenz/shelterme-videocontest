@@ -1,0 +1,11 @@
+<div class="headerButtons">
+  <div class="headerEdit">
+    <% if signed_in? && @user == current_user %>
+      <%= link_to "Edit profile", edit_user_path(current_user), class: "btn btn-header btn-admin" %>
+    <% elsif signed_in? && @user.admin? && current_user.name != "Tim Lenz" %>
+      <p>System admin</p>
+    <% elsif signed_in? && current_user.admin? %>
+      <%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-header btn-admin" %>
+    <% end %>
+  </div>
+</div>

@@ -15,24 +15,18 @@
 		<div id="create"></div>
 		<div id="buttons">
 			<ul>
-				<li>
-					<a href="<%= overview_path %>">
-						<%= image_tag("learnMoreIcon.png", class: "listIcon") %>
-					  <%= image_tag("learnMore.png", class: "listLabel") %>
-					</a>
+				<% if signed_in? %>
+				<li class="welcomeNav">
+					<%= link_to "", current_user %>
 				</li>
-			  <li>
-					<a href="#">
-						<%= image_tag("signInIcon.png", class: "listIcon") %>
-					  <%= image_tag("signIn.png", class: "listLabel") %>
-					</a>
+				<% else %>
+				<li class="learnNav">
+					<%= link_to "", information_path %>
 				</li>
-				<li>
-					<a href="#">
-						<%= image_tag("signInIcon.png", class: "listIcon") %>
-					  <%= image_tag("signUp.png", class: "listLabel") %>
-					</a>
+			  <li class="signInNav">
+					<%= link_to "", signin_path %>
 				</li>
+				<% end %>
 			</ul>
 		</div>
 	</div>

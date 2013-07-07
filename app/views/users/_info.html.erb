@@ -1,0 +1,53 @@
+<div class="editAvatar">
+  <%= avatar_for @user, size: 150 %>
+  <a data-toggle="modal" href="#addAvatar" data-backdrop="static" data-keyboard="false" >Change</a><br><br>
+</div>
+<div class="editForm">
+  <%= simple_form_for(@user, html: {class: 'form-horizontal' }) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.input :name %> 
+    <%= f.input :location, hint: "Enter as City, State" %>
+    <%= f.input :bio, as: :text %>
+    <div id="char_count" class="editUser"></div>
+		<div class="clearfix"></div>
+    <%= f.button :submit, "Save", class: "formBtn", style: "width:145px;", id: "saveUser" %>
+    <%= link_to("Back to user profile", @user, style: "float:right;padding-top:4px;")%>
+  <% end %>
+</div>
+
+<div id="addAvatar" class="modal hide">
+  <div class="modal-inner mediaModal">
+    <div class="pageHeader">
+      <div class="headerLogo">
+        <%= avatar_for @user, size: 63 %>
+      </div>
+      <div class="headerInfo" style="width:385px;">
+        <h1>Change Your Avatar</h1><br>
+	      <p></p>
+      </div>
+      <button class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="form">
+      <div class="handhold" style="display:none;text-align:center;margin-bottom:20px;">
+        This page will refresh once your upload is complete. Do not close the browser window.
+      </div>
+			<%= simple_form_for @user do |f| %>
+			  <div class="row filedrop">
+          <div>
+            <span class="btn formBtn fileinput-button" style="width:145px;margin-left:20px;">
+              <span>Choose Photo</span>
+              <!-- %= f.cl_image_upload(:avatar)  %-->
+            </span>
+            <p>Or drop file here</p>
+            <%= f.button :submit, "Upload", style: "width:1px;" %>
+          </div>
+        </div>
+			<% end %>
+			<div id="loadingPhoto" class="hide">
+			  <div class="progress progress-striped active">
+			  	<div class="bar" style="width: 0%"></div>
+			  </div>
+			</div>
+    </div>
+  </div>
+</div>

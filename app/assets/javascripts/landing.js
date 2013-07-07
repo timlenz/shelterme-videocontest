@@ -11,16 +11,16 @@ $(function(){
 	// Start the parallax effect by moving camera div
 	$('html').mousemove(function(e){
 		var movementStrength = 15;
-
+	
 		var width = movementStrength / $(window).width();
 		var height = movementStrength / $(window).height();
-
+	
 	  var pageX = e.pageX - ($(window).width() / 2);
 	  var pageY = e.pageY - ($(window).height() / 2);
 	
 	  var newvalueX = width * pageX * -1;
 		var newvalueY = height * pageY * -1;
-
+	
 	  $('#camera').css('left', newvalueX);
 		$('#subject').css('left', -newvalueX);
 		$('#landing').css('left', newvalueX * 10);
