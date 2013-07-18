@@ -871,112 +871,6 @@ footer {
 	}
 }
 
-/* VIDEOS */
-
-#videos {
-	li {
-		width: 110px;
-		height: 50px;
-		margin-right: 6px;
-		background-image: url(videosNav.png);
-		background-color: transparent;
-		background-repeat: no-repeat;
-	}
-	li > a:hover, li > a:focus, .active a, .active a:hover {
-		background-color: transparent;
-	}
-	a {
-		display: block;
-		width: 100%;
-		height: 100%;
-		padding: 0;
-	}
-	li.active.winnersPill {
-		background-position: -111px -306px;
-		&:hover {
-			background-position: -111px -306px;
-		}
-	}
-	li.active.allVideosPill {
-		background-position: -222px -102px;
-		&:hover {
-			background-position: -222px -102px;
-		}
-	}
-	li.active.newVideosPill {
-		background-position: 0 -306px;
-		&:hover {
-			background-position: 0 -306px;
-		}
-	}
-	li.active.mostViewsPill {
-		background-position: 0 0;
-		&:hover {
-			background-position: 0 0;
-		}
-	}
-	li.active.mostVotesPill {
-		background-position: 0 -204px;
-		&:hover {
-			background-position: 0 -204px;
-		}
-	}
-	li.active.mostSharesPill {
-		background-position: -222px -51px;
-		&:hover {
-			background-position: -222px -51px;
-		}
-	}
-	li.active.bestRatedPill {
-		background-position: -111px 0;
-		&:hover {
-			background-position: -111px 0;
-		}
-	}
-	.winnersPill {
-		background-position: -222px 0;
-		&:hover {
-			background-position: -222px -204px;
-		}
-	}
-	.allVideosPill {
-		background-position: -222px -153px;
-		&:hover {
-			background-position: 0 -255px;
-		}
-	}
-	.newVideosPill {
-		background-position: 0 -51px;
-		&:hover {
-			background-position: -111px -255px;
-		}
-	}
-	.mostViewsPill {
-		background-position: 0 -153px;
-		&:hover {
-			background-position: -111px -51px;
-		}
-	}
-	.mostVotesPill {
-		background-position: -222px -306px;
-		&:hover {
-			background-position: -111px -204px;
-		}
-	}
-	.mostSharesPill {
-		background-position: -111px -153px;
-		&:hover {
-			background-position: 0 -102px;
-		}
-	}
-	.bestRatedPill {
-		background-position: -111px -102px;
-		&:hover {
-			background-position: -222px -255px;
-		}
-	}
-}
-
 /* FORMS */
 
 input, textarea, select, .uneditable-input {
@@ -1853,4 +1747,32 @@ input[type="checkbox"] {
 		  background-color: none;
 		}
 	}
+}
+
+.mediaButtons {
+  margin: 0 auto;
+  width: 200px;
+  .button_to {
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .btn {
+    float: right;
+    width: 180px; 
+    color: $darkAqua;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.7;
+    text-transform: uppercase;
+    border: 1px solid $grayMediumDark;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-bottom-radius: 12px;
+    &:hover {
+      color: $orange;
+    }
+  }
+  form {
+    margin:0 10px;
+  }
 }

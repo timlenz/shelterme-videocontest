@@ -24,13 +24,13 @@ VideoContest::Application.routes.draw do
   match '/u/:id',             to: 'users#show'
   match '/myvideos',          to: 'users#videos'
   match '/mv',                to: 'users#videos'
+  match '/myassets',          to: 'users#assets'
   
   match '/faq',               to: 'static_pages#faq'
   match '/terms',             to: 'static_pages#terms'
   match '/privacy',           to: 'static_pages#privacy'
   match '/rules',             to: 'static_pages#rules'
   match '/information',       to: 'static_pages#information'
-  match '/assets',            to: 'static_pages#assets'
   match '/statistics',        to: 'static_pages#statistics'
   
   # The priority is based upon order of creation:

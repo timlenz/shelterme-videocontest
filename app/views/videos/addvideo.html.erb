@@ -1,8 +1,27 @@
 <%= provide(:title, 'Add Video') %>
 <div id="mainContent">
 	<div class="staticContent">
-		<h3>Add Video</h3>
+		<div class="center">
+			<%= image_tag("downloadAssets.png", alt: "Download assets, create your video and upload it", width: "631", height: "27", class: "formHeader") %>
+		</div>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<div class="mediaButtons">
+			<%= button_to('Upload Video', newvideo_path, remote: true, class: "btn", id: "videoClick") %>
+		</div>
 	</div>
+	<div id="addVideos" class="tabbable">
+     <ul class="nav nav-pills">
+       <li class="active videoClipsPill"><a href="#videoClipsNav" data-toggle="tab"></a></li>
+       <li class="audioTracksPill"><a href="#audio" data-toggle="tab"></a></li>
+       <li class="photosPill"><a href="#photos" data-toggle="tab"></a></li>
+       <li class="graphicsPill"><a href="#graphics" data-toggle="tab"></a></li>
+     </ul>
+     <div class="tab-content">
+       <%= render 'video_clips' %>
+	     <%= render 'audio_tracks' %>
+		   <%= render 'photos' %>
+			 <%= render 'graphics' %>
+     </div>
+   </div>
 </div>
+<div id="modalTarget"></div>

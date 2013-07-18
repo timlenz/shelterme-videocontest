@@ -1,3 +1,227 @@
-// Place all the styles related to the Videos controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* WATCH VIDEOS */
+
+#watchVideos {
+	li {
+		width: 110px;
+		height: 50px;
+		margin-right: 6px;
+		background-image: url(videosNav.png);
+		background-color: transparent;
+		background-repeat: no-repeat;
+	}
+	li > a:hover, li > a:focus, .active a, .active a:hover {
+		background-color: transparent;
+	}
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+	}
+	li.active.winnersPill {
+		background-position: -111px -306px;
+		&:hover {
+			background-position: -111px -306px;
+		}
+	}
+	li.active.allVideosPill {
+		background-position: -222px -102px;
+		&:hover {
+			background-position: -222px -102px;
+		}
+	}
+	li.active.newVideosPill {
+		background-position: 0 -306px;
+		&:hover {
+			background-position: 0 -306px;
+		}
+	}
+	li.active.mostViewsPill {
+		background-position: 0 0;
+		&:hover {
+			background-position: 0 0;
+		}
+	}
+	li.active.mostVotesPill {
+		background-position: 0 -204px;
+		&:hover {
+			background-position: 0 -204px;
+		}
+	}
+	li.active.mostSharesPill {
+		background-position: -222px -51px;
+		&:hover {
+			background-position: -222px -51px;
+		}
+	}
+	li.active.bestRatedPill {
+		background-position: -111px 0;
+		&:hover {
+			background-position: -111px 0;
+		}
+	}
+	.winnersPill {
+		background-position: -222px 0;
+		&:hover {
+			background-position: -222px -204px;
+		}
+	}
+	.allVideosPill {
+		background-position: -222px -153px;
+		&:hover {
+			background-position: 0 -255px;
+		}
+	}
+	.newVideosPill {
+		background-position: 0 -51px;
+		&:hover {
+			background-position: -111px -255px;
+		}
+	}
+	.mostViewsPill {
+		background-position: 0 -153px;
+		&:hover {
+			background-position: -111px -51px;
+		}
+	}
+	.mostVotesPill {
+		background-position: -222px -306px;
+		&:hover {
+			background-position: -111px -204px;
+		}
+	}
+	.mostSharesPill {
+		background-position: -111px -153px;
+		&:hover {
+			background-position: 0 -102px;
+		}
+	}
+	.bestRatedPill {
+		background-position: -111px -102px;
+		&:hover {
+			background-position: -222px -255px;
+		}
+	}
+}
+
+/* ADD VIDEOS */
+
+#addVideos {
+	li {
+		width: 110px;
+		height: 50px;
+		margin: 0 32px;
+		background-image: url(addVideoNav.png);
+		background-color: transparent;
+		background-repeat: no-repeat;
+	}
+	li > a:hover, li > a:focus, .active a, .active a:hover {
+		background-color: transparent;
+	}
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+	}
+	li.active.videoClipsPill {
+		background-position: -111px -51px;
+		&:hover {
+			background-position: -111px -51px;
+		}
+	}
+	li.active.audioTracksPill {
+		background-position: 0 -102px;
+		&:hover {
+			background-position: 0 -102px;
+		}
+	}
+	li.active.photosPill {
+		background-position: -222px -102px;
+		&:hover {
+			background-position: -222px -102px;
+		}
+	}
+	li.active.graphicsPill {
+		background-position: 0 -153px;
+		&:hover {
+			background-position: 0 -153px;
+		}
+	}
+	.videoClipsPill {
+		background-position: 0 -51px;
+		&:hover {
+			background-position: -222px 0;
+		}
+	}
+	.audioTracksPill {
+		background-position: -111px 0;
+		&:hover {
+			background-position: 0 0;
+		}
+	}
+	.photosPill {
+		background-position: -222px -153px;
+		&:hover {
+			background-position: -111px -102px;
+		}
+	}
+	.graphicsPill {
+		background-position: -111px -153px;
+		&:hover {
+			background-position: -222px -51px;
+		}
+	}
+}
+
+#videoClipsNav, #photosNav, #audioTracksNav {
+	li {
+		width: 120px;
+		height: auto;
+		margin-right: 6px;
+		background-image: none;
+		text-align: center;
+	}
+	.nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus {
+		color: white;
+		background-color: #0088cc;
+	}
+	.nav-pills > li > a {
+		padding-top: 8px;
+		padding-bottom: 8px;
+		margin-top: 2px;
+		margin-bottom: 2px;
+		padding-right: 12px;
+		padding-left: 12px;
+		margin-right: 2px;
+		line-height: 14px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		display: block;
+	}
+}
+
+.videoClip {
+	position: relative;
+	width:170px;
+	margin-right:5px;
+	margin-top:10px;
+	float:left;
+	a {
+		text-align: center;
+		font-size: 11px;
+	}
+	.previewLink {
+		position: absolute;
+		top: 20px;
+		left: 35px;
+		display:none;
+	}
+	a.downloadLink {
+		position: absolute;
+		bottom: 20px;
+		left: 35px;
+		display:none;
+	}
+}

@@ -1,8 +1,14 @@
 class VideosController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :edit]
+  before_filter :signed_in_user, only: [:create, :edit, :new]
+  
+  respond_to :html, :js
   
   def new
-    
+    @user = current_user
+    @video = Video.new(user_id: @user.id)
+  rescue
+    flash[:error] = "Unable to add video."
+    redirect_to :back
   end
   
   def addvideo

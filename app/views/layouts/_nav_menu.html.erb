@@ -12,7 +12,7 @@
       <li><%= link_to "Edit My Profile", edit_user_path(current_user) %></li>
       <li class="divider"></li>
       <li><%= link_to "My Videos", myvideos_path %></li>
-      <li><%= link_to "Video Assets", assets_path %></li>
+      <li><%= link_to "Selected Assets", myassets_path %></li>
       <li class="divider"></li>
       <% if current_user.admin? %>
       <li class="admin"><%= link_to "Statistics", statistics_path %></li>

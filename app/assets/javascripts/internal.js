@@ -46,4 +46,14 @@ $(function(){
     };
   };
 
+	// Show links on mouse-over of assets
+	$('.videoClip').mouseover(function(){
+		$(this).find('.previewLink, .downloadLink').show();
+	});
+	
+	$('.videoClip').mouseout(function(){
+		$(this).find('.previewLink, .downloadLink').hide();
+	});
+	
+
 });
