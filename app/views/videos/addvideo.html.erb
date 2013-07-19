@@ -9,12 +9,12 @@
 			<%= button_to('Upload Video', newvideo_path, remote: true, class: "btn", id: "videoClick") %>
 		</div>
 	</div>
-	<div id="addVideos" class="tabbable">
+	<div class="tabbable">
      <ul class="nav nav-pills">
-       <li class="active videoClipsPill"><a href="#videoClipsNav" data-toggle="tab"></a></li>
-       <li class="audioTracksPill"><a href="#audio" data-toggle="tab"></a></li>
-       <li class="photosPill"><a href="#photos" data-toggle="tab"></a></li>
-       <li class="graphicsPill"><a href="#graphics" data-toggle="tab"></a></li>
+       <li class="active addVideoNav videoClipsPill"><a href="#videoClipsNav" data-toggle="tab"></a></li>
+       <li class="addVideoNav audioTracksPill"><a href="#audio" data-toggle="tab"></a></li>
+       <li class="addVideoNav photosPill"><a href="#photos" data-toggle="tab"></a></li>
+       <li class="addVideoNav graphicsPill"><a href="#graphics" data-toggle="tab"></a></li>
      </ul>
      <div class="tab-content">
        <%= render 'video_clips' %>

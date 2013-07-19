@@ -2,10 +2,16 @@
 #
 # Table name: videos
 #
-#  id         :integer         not null, primary key
-#  user_id    :integer
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
+#  id           :integer         not null, primary key
+#  user_id      :integer
+#  created_at   :datetime        not null
+#  updated_at   :datetime        not null
+#  category_id  :integer
+#  approved     :boolean         default(FALSE)
+#  length       :float
+#  views_count  :integer         default(0), not null
+#  shares_count :integer         default(0), not null
+#  votes_count  :integer         default(0), not null
 #
 
 class Video < ActiveRecord::Base
@@ -14,6 +20,8 @@ class Video < ActiveRecord::Base
   belongs_to :user
   
   validates :user_id, presence: true
+  validates :category_id, presence: true
+  validates :length, presence: true
   
   default_scope order: 'videos.created_at DESC'
 end

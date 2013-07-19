@@ -55,5 +55,28 @@ $(function(){
 		$(this).find('.previewLink, .downloadLink').hide();
 	});
 	
+	// Connect graphic buttons with hidden input elements
+	$('div.btn-group[data-toggle-name]').each(function(){
+	  var group   = $(this);
+	  var form    = group.parents('form').eq(0);
+	  var name    = group.attr('data-toggle-name');
+	  var hidden  = $('input[name="' + name + '"]', form);
+	  var current_value;
+	  $('button', group).each(function(){
+	    var button = $(this);
+	    button.on('click', function(){
+	      current_value = hidden.val();
+				hidden.val($(this).val());
+				if ( $('#file-drop').length ) {
+					$('.intro').hide();
+					$('#file-drop').show();
+				};
+	    });
+	    if(button.val() == hidden.val()) {
+	      // Set clicked button to active
+	      button.addClass('active');
+	    };
+	  });
+	});
 
 });

@@ -1,35 +1,16 @@
-<div class="tab-pane active" id="videoClipsNav">
-  150 - 200 clips of varying lengths... general categories:  dogs, cats, close ups, family shots, etc.<br><br>
-  <div class="videoClip">
-    <div style="width:170px;height:96px;background-color:#eeeeee;">
-      <%= image_tag("tempVideoClip.png", width: "170", height: "96")%>
-    </div>
-    <%= link_to "Preview", "#", class: "previewLink", style: "background-color:#eeeeee;width:100px;height:20px;display:none;" %>
-    <%= link_to "Download", "#", class: "downloadLink", style: "background-color:#eeeeee;width:100px;height:20px;display:none;" %>         	
-  </div>
-  <div class="videoClip">
-    <div style="width:170px;height:96px;background-color:#eeeeee;"></div>       	
-    <%= link_to "Preview", "#", class: "previewLink", style: "background-color:#eeeeee;width:100px;height:20px;display:none;" %>
-    <%= link_to "Download", "#", class: "downloadLink", style: "background-color:#eeeeee;width:100px;height:20px;display:none;" %>
-  </div>
-  <div class="videoClip">
-    <div style="width:170px;height:96px;background-color:#eeeeee;"></div>
-    <%= link_to "Preview", "#", class: "previewLink", style: "background-color:#eeeeee;width:100px;height:20px;display:none;" %>
-    <%= link_to "Download", "#", class: "downloadLink", style: "background-color:#eeeeee;width:100px;height:20px;display:none;" %>       	
-  </div>
-  <div class="videoClip">
-    <div style="width:170px;height:96px;background-color:#eeeeee;"></div>
-    <%= link_to "Preview", "#", class: "previewLink", style: "background-color:#eeeeee;width:100px;height:20px;display:none;" %>
-    <%= link_to "Download", "#", class: "downloadLink", style: "background-color:#eeeeee;width:100px;height:20px;display:none;" %>       	
-  </div>
-  <div class="videoClip">
-    <div style="width:170px;height:96px;background-color:#eeeeee;"></div>
-    <%= link_to "Preview", "#", class: "previewLink", style: "background-color:#eeeeee;width:100px;height:20px;display:none;" %>
-    <%= link_to "Download", "#", class: "downloadLink", style: "background-color:#eeeeee;width:100px;height:20px;display:none;" %>        	
-  </div>
-  <div class="videoClip">
-    <div style="width:170px;height:96px;background-color:#eeeeee;"></div>
-    <%= link_to "Preview", "#", class: "previewLink", style: "background-color:#eeeeee;width:100px;height:20px;display:none;" %>
-    <%= link_to "Download", "#", class: "downloadLink", style: "background-color:#eeeeee;width:100px;height:20px;display:none;" %>        	
-  </div>
+<div id="videoClipsNav" class="tab-pane active">
+	<div class="tabbable">
+	  <ul class="nav nav-pills">
+	    <li class="active"><a href="#dogClips" data-toggle="tab">Dogs</a></li>
+	    <li class=""><a href="#catClips" data-toggle="tab">Cats</a></li>
+	    <li class=""><a href="#closeupClips" data-toggle="tab">Close-ups</a></li>
+	    <li class=""><a href="#familyClips" data-toggle="tab">Families</a></li>
+	  </ul>
+	  <div class="tab-content" style="border-bottom:none;">
+	    <%= render 'videos/video_clips/dog_clips' %>
+	    <%= render 'videos/video_clips/cat_clips' %>
+	    <%= render 'videos/video_clips/closeup_clips' %>
+	    <%= render 'videos/video_clips/family_clips' %>			
+	  </div>
+	</div>
 </div>

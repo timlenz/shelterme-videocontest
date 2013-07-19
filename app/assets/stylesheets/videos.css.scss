@@ -106,67 +106,72 @@
 
 /* ADD VIDEOS */
 
-#addVideos {
-	li {
-		width: 110px;
-		height: 50px;
-		margin: 0 32px;
-		background-image: url(addVideoNav.png);
-		background-color: transparent;
-		background-repeat: no-repeat;
-	}
-	li > a:hover, li > a:focus, .active a, .active a:hover {
-		background-color: transparent;
-	}
+li.addVideoNav  {
+	width: 110px;
+	height: 50px;
+	margin: 0 32px;
+	background-image: url(addVideoNav.png);
+	background-color: transparent;
+	background-repeat: no-repeat;
 	a {
-		display: block;
 		width: 100%;
 		height: 100%;
-		padding: 0;
+		display: block;
+		&:hover, &:focus {
+			background-color: transparent;
+		}
 	}
-	li.active.videoClipsPill {
-		background-position: -111px -51px;
-		&:hover {
+	&.active {
+		a {
+			background-color: transparent;
+			&:hover {
+				background-color: transparent;
+			}
+		}
+		&.videoClipsPill {
 			background-position: -111px -51px;
+			&:hover {
+				background-position: -111px -51px;
+			}
 		}
-	}
-	li.active.audioTracksPill {
-		background-position: 0 -102px;
-		&:hover {
+		&.audioTracksPill {
 			background-position: 0 -102px;
+			&:hover {
+				background-position: 0 -102px;
+			}
 		}
-	}
-	li.active.photosPill {
-		background-position: -222px -102px;
-		&:hover {
+		&.photosPill {
 			background-position: -222px -102px;
+			&:hover {
+				background-position: -222px -102px;
+			}
 		}
-	}
-	li.active.graphicsPill {
-		background-position: 0 -153px;
-		&:hover {
+		&.graphicsPill {
 			background-position: 0 -153px;
+			&:hover {
+				background-position: 0 -153px;
+			}
 		}
 	}
-	.videoClipsPill {
+	&.videoClipsPill {
 		background-position: 0 -51px;
 		&:hover {
 			background-position: -222px 0;
 		}
 	}
-	.audioTracksPill {
+	&.audioTracksPill {
 		background-position: -111px 0;
 		&:hover {
 			background-position: 0 0;
 		}
 	}
-	.photosPill {
+	&.photosPill {
 		background-position: -222px -153px;
 		&:hover {
 			background-position: -111px -102px;
 		}
 	}
-	.graphicsPill {
+	&.graphicsPill {
 		background-position: -111px -153px;
 		&:hover {
 			background-position: -222px -51px;
@@ -174,54 +179,55 @@
 	}
 }
 
-#videoClipsNav, #photosNav, #audioTracksNav {
-	li {
-		width: 120px;
-		height: auto;
-		margin-right: 6px;
-		background-image: none;
-		text-align: center;
+#videoClipsNav {
+	.tabbable {
+		margin:0;
 	}
 	.nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus {
 		color: white;
-		background-color: #0088cc;
+		background-color: #0e5a61;
 	}
-	.nav-pills > li > a {
-		padding-top: 8px;
-		padding-bottom: 8px;
-		margin-top: 2px;
-		margin-bottom: 2px;
-		padding-right: 12px;
-		padding-left: 12px;
-		margin-right: 2px;
-		line-height: 14px;
-		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-		border-radius: 5px;
-		display: block;
+	.nav-pills a {
+		font-size: 12px;
+		color: #0e5a61;
+		&:hover {
+			color: #19a3b1;
+		}
 	}
 }
 
 .videoClip {
 	position: relative;
-	width:170px;
+	width: 170px;
+	height: 96px;
 	margin-right:5px;
-	margin-top:10px;
+	margin-top:5px;
 	float:left;
+	background-color: #eeeeee;
 	a {
 		text-align: center;
 		font-size: 11px;
+		position: absolute;
+		width: 100px;
+		height: 20px;
+		text-transform: lowercase;
+		color: #0e5a61;
+		background-color: rgba(255,255,255,0.50);
+		display:none;
+		-webkit-border-radius: 4px;
+	  -moz-border-radius: 4px;
+	  border-radius: 4px;
+		&:hover {
+			background-color: rgba(14,90,97,0.50);
+			color: #ffffff;
+		}
 	}
 	.previewLink {
-		position: absolute;
 		top: 20px;
 		left: 35px;
-		display:none;
 	}
-	a.downloadLink {
-		position: absolute;
+	.downloadLink {
 		bottom: 20px;
 		left: 35px;
-		display:none;
 	}
 }

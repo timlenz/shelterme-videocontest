@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   require 'obscenity/active_model'
   
   has_secure_password
-  # has_many :videos
+  has_many :videos
   before_save { |user| user.email = email.downcase }
   before_save { generate_token(:remember_token) }
     
