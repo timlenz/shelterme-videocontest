@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719032528) do
+ActiveRecord::Schema.define(:version => 20130725044342) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130719032528) do
     t.integer  "views_count",  :default => 0,     :null => false
     t.integer  "shares_count", :default => 0,     :null => false
     t.integer  "votes_count",  :default => 0,     :null => false
+    t.string   "title"
   end
 
   create_table "views", :force => true do |t|

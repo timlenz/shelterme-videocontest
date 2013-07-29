@@ -1,3 +1,14 @@
-<div class="tab-pane" id="photos">
-  50-100 (including some of the shots from ShelterMe.com)
+<div id="photosNav" class="tab-pane">
+	<div class="tabbable">
+	  <ul class="nav nav-pills">
+	    <li class="active"><a href="#tvshowNav" data-toggle="tab">ShelterMe TV Show</a></li>
+	    <li><a href="#websiteDogNav" data-toggle="tab">ShelterMe.com Dogs</a></li>
+	    <li><a href="#websiteCatNav" data-toggle="tab">ShelterMe.com Cats</a></li>
+	  </ul>
+	  <div class="tab-content" style="border-bottom:none;">
+	    <%= render 'assets/photos/website_dogs' %>
+	    <%= render 'assets/photos/website_cats' %>
+	    <%= render 'assets/photos/tvshow' %>
+	  </div>
+	</div>
 </div>

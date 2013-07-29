@@ -1,0 +1,109 @@
+$blueLight: #e4f1f3;
+
+/* CUSTOMIZATION */
+
+.video-js {
+	background-color: transparent;
+}
+
+.vjs-fade-out {
+  -webkit-transition: visibility 0.1s, opacity 0.1s;
+     -moz-transition: visibility 0.1s, opacity 0.1s;
+      -ms-transition: visibility 0.1s, opacity 0.1s;
+       -o-transition: visibility 0.1s, opacity 0.1s;
+          transition: visibility 0.1s, opacity 0.1s;
+
+  /* Wait a moment before fading out the control bar */
+  -webkit-transition-delay: 0;
+     -moz-transition-delay: 0;
+      -ms-transition-delay: 0;
+       -o-transition-delay: 0;
+          transition-delay: 0;
+}
+
+.vjs-default-skin .vjs-big-play-button {
+	border-radius: 54px;
+	width: 100px;
+	height: 100px;
+	top: 50%;
+	left: 50%;
+	margin: -5em auto auto -5.5em;
+	
+	-webkit-transition: border 0.1s, -webkit-box-shadow 0.1s, -webkit-transform 0.1s;
+     -moz-transition: border 0.1s,    -moz-box-shadow 0.1s,    -moz-transform 0.1s;
+       -o-transition: border 0.1s,      -o-box-shadow 0.1s,      -o-transform 0.1s;
+          transition: border 0.1s,         box-shadow 0.1s,         transform 0.1s;
+}
+
+.vjs-default-skin .vjs-big-play-button:before {
+	font-size: 6em;
+	line-height: 1.7em;
+	text-indent: 10px;
+}
+
+.vjs-default-skin .vjs-duration, .vjs-time-divider {
+	display: none;
+}
+
+.vjs-default-skin .vjs-remaining-time { 
+	display: inline;
+	position: absolute;
+	right: 128px;
+}
+
+.vjs-default-skin .vjs-progress-control {
+	font-size: 0.9em;
+	left: 90px;
+	right: 168px;
+	top: 1.1em;
+}
+
+.vjs-default-skin .vjs-progress-holder, .vjs-default-skin .vjs-progress-holder .vjs-load-progress, .vjs-default-skin .vjs-progress-holder .vjs-play-progress {
+	-moz-border-radius: 0.6em;
+	-webkit-border-radius: 0.6em;
+	border-radius: 0.6em;
+}
+
+#intro {
+	.vjs-lock-showing {
+		visibility: hidden;
+	}
+}
+
+#videoModal {
+	display: none;
+	padding: 25px 25px 20px 25px;
+	height: 460px;
+	background-color: #ffffff;
+	.close {
+		position: absolute;
+		top: 4px;
+		right: 7px;
+		background-color: #ffffff;
+		background: none;
+		font-size: 16px;
+	}
+}
+
+.ui-widget-overlay {
+	background-color: $blueLight;
+	background-image: none;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+}
+
+.ui-dialog .ui-dialog-titlebar {
+	display:none;
+}
+
+.ui-dialog {
+  -webkit-box-shadow: 4px 4px 10px rgba(50, 50, 50, 0.30);
+	-moz-box-shadow:    4px 4px 10px rgba(50, 50, 50, 0.30);
+	box-shadow:         4px 4px 10px rgba(50, 50, 50, 0.30);
+  background-color: #ffffff;
+  border: 1px solid rgb(85, 85, 85);
+	padding: 0;
+	&:focus {
+		outline: none;
+	}
+}

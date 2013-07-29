@@ -10,7 +10,7 @@ $(function(){
 	
 	// Start the parallax effect by moving camera div
 	$('html').mousemove(function(e){
-		var movementStrength = 15;
+		var movementStrength = 12;
 	
 		var width = movementStrength / $(window).width();
 		var height = movementStrength / $(window).height();
@@ -20,11 +20,15 @@ $(function(){
 	
 	  var newvalueX = width * pageX * -1;
 		var newvalueY = height * pageY * -1;
+		
+		var subject_width = $(window).width() + newvalueX;
 	
 	  $('#camera').css('left', newvalueX);
-		$('#subject').css('left', -newvalueX);
+		$('#subject').css('left', -newvalueX).css('width', subject_width);
 		$('#landing').css('left', newvalueX * 10);
-		$('html').addClass('hideScroll');
+		if ( $('#landing').length ) {
+			$('html').addClass('hideScroll');
+		};
 		set_subject(newvalueY);
 	});
 	
@@ -76,6 +80,7 @@ $(function(){
 		};	
 
 		$('#video').height(new_vid_h).width(new_vid_w).css('top',new_offset);
+		$('#intro').height(new_vid_h).width(new_vid_w);
 		
 		// Update text values
 		/*$('.window').text(window_w + " " + window_h + " " + Math.round(window_h / window_w * 100));

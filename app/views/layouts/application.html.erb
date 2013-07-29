@@ -3,8 +3,10 @@
 <head>
   <title><%= full_title(yield(:title)) %></title>
   <%= canonical_link_tag %>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <link href="http://vjs.zencdn.net/4.0/video-js.css" rel="stylesheet">
+	<script src="http://vjs.zencdn.net/4.0/video.js"></script>
 </head>
 	<% if params[:controller] == 'static_pages' and params[:action] == 'home' %>
 <body>

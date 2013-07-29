@@ -19,6 +19,9 @@ group :development do
   gem 'guard-rspec', '0.5.5'
   gem 'letter_opener'
   gem 'debugger'
+  # gem 'bullet'
+  # gem 'rack-mini-profiler'
+  # gem "meta_request", "~> 0.2.0"
 end
 
 # Gems used only for assets and not required
@@ -28,6 +31,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.2.3'
   gem 'jquery-ui-rails', '0.4.0'
-  #gem 'asset_sync'
+  gem 'asset_sync'
 end
 

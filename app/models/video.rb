@@ -12,6 +12,7 @@
 #  views_count  :integer         default(0), not null
 #  shares_count :integer         default(0), not null
 #  votes_count  :integer         default(0), not null
+#  title        :string(255)
 #
 
 class Video < ActiveRecord::Base
@@ -22,6 +23,7 @@ class Video < ActiveRecord::Base
   validates :user_id, presence: true
   validates :category_id, presence: true
   validates :length, presence: true
+  validates :title, presence: true
   
   default_scope order: 'videos.created_at DESC'
 end

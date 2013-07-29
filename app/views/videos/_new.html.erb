@@ -9,14 +9,18 @@
 				<p></p>
       </div>
 	    <button class="close" data-dismiss="modal">&times;</button>
+	    <ul id="categories" style="display:none;margin:0;">
+	    	<li class="active adoptPill" style="position:absolute;right:50px;top:10px;"></li>
+	    </ul>
     </div>
     <div class="form">
       <div class="handhold" style="display:none;text-align:center;margin-bottom:20px;">
         This page will refresh once your upload is complete. Do not close the browser window.
       </div>
-      <%= simple_form_for @video do |f| %>
+      <%= simple_form_for @video, html: {class: 'form-horizontal' } do |f| %>
        <%= render 'shared/error_messages', object: f.object %>
        <%= f.hidden_field :user_id, value: current_user.id %>
+       <%= f.input :title, label: "Video Title" %>
        <div class="btn-group btn-graphic btn-add-video" data-toggle="buttons-radio" data-toggle-name="video[category_id]">
          <button type="button" data-toggle="button" class="btn" value="1">Adopt</button>
          <button type="button" data-toggle="button" class="btn" value="2">Volunteer</button>
@@ -27,7 +31,9 @@
        </div>
        <%= f.hidden_field :category_id, label: false %>
        <div class="intro center">
-         Please select the category for which your video should be considered.
+         Please enter a title for your video and<br> select the category for which it should be considered.<br><br>
+         Make sure you have included the sponsor clip at the end of your video.<br><br>
+         All uploaded videos are subject to the <%= link_to "contest rules", rules_path %>.
        </div>
        <div id="file-drop" class="row filedrop" style="display:none;">
 			  <span class="btn formBtn fileinput-button" style="width:145px;margin-left:-5px;">
@@ -57,7 +63,10 @@ $(function(){
 	    button.on('click', function(){
 	      current_value = hidden.val();
 				hidden.val($(this).val());
-				if ( $('#file-drop').length ) {
+				
+				// Show elements on video upload modal
+				show_category($(this).val());
+				if ( $('#file-drop').length && $('#video_title').val().length ) {
 					$('.intro').hide();
 					$('#file-drop').show();
 				};
@@ -68,5 +77,37 @@ $(function(){
 	    };
 	  });
 	});
+	
+	$('#video_title').keypress(function(){
+		if ( $('#new_video button.active').length ) {
+			$('.intro').hide();
+			$('#file-drop').show();
+		};
+	});
+	
+	function show_category(category) {
+		$('#categories').show();
+		switch(category) {
+      case "1":
+        var icon = "adopt";
+        break;
+      case "2":
+        var icon = "volunteer";
+        break;
+      case "3":
+        var icon = "donate";
+        break;
+      case "4":
+        var icon = "spayNeuter";
+        break;
+      case "5":
+        var icon = "foster";
+        break;
+      case "6":
+        var icon = "wildcard";
+        break;
+    };
+		$('#categories li:first').removeClass().addClass(icon + "Pill").addClass("active");
+	};
 });
 </script>

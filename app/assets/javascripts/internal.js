@@ -1,5 +1,10 @@
 $(function(){
 	
+  // Hover tooltip for video tile icons
+  $('[rel=tooltip]').tooltip({
+		container: 'body'
+	});	
+	
   // Dynamic Floating content indicator
   var min_height = 730; // For monitors with 800 px of vertical resolution, must account for menu bars & such
   // Show floater for short browser windows (onload)
@@ -47,11 +52,11 @@ $(function(){
   };
 
 	// Show links on mouse-over of assets
-	$('.videoClip').mouseover(function(){
+	$('.videoClip, .photoAsset').mouseover(function(){
 		$(this).find('.previewLink, .downloadLink').show();
 	});
 	
-	$('.videoClip').mouseout(function(){
+	$('.videoClip, .photoAsset').mouseout(function(){
 		$(this).find('.previewLink, .downloadLink').hide();
 	});
 	
@@ -67,16 +72,34 @@ $(function(){
 	    button.on('click', function(){
 	      current_value = hidden.val();
 				hidden.val($(this).val());
-				if ( $('#file-drop').length ) {
-					$('.intro').hide();
-					$('#file-drop').show();
-				};
 	    });
 	    if(button.val() == hidden.val()) {
 	      // Set clicked button to active
 	      button.addClass('active');
 	    };
 	  });
+	});
+
+	// Show video player modal
+	$('a.previewLink').click(function(){
+		$('#videoModal').dialog('open');
+		var video = $.trim($(this).attr("href"));
+		$('video').attr('src', video);
+		return false;
+	});
+	
+	$('#videoModal').dialog({
+		autoOpen: false,
+    resizable: false,
+    draggable: false,
+		width: 770,
+		height: 460,
+		closeOnEscape: true,
+    modal: true
+	});
+	
+	$('#videoModal .close').click(function(){
+		$('#videoModal').dialog('close');
 	});
 
 });

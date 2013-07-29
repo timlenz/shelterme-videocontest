@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       sign_in user
       flash[:notice] = "You are now signed in as #{user.name}."
-      redirect_back_or user
+      redirect_to user
     else
       flash[:error] = 'Invalid email or password'
       redirect_to signin_path

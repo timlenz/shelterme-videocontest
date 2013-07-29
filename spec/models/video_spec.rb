@@ -12,6 +12,7 @@
 #  views_count  :integer         default(0), not null
 #  shares_count :integer         default(0), not null
 #  votes_count  :integer         default(0), not null
+#  title        :string(255)
 #
 
 require 'spec_helper'

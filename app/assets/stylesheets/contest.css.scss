@@ -40,7 +40,7 @@ $blueSteel: #388cb2;
 $burntUmber: #8E190E;
 
 $footer: 60px;
-$stickyOffset: 108px;
+$stickyOffset: 40px;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
@@ -211,6 +211,60 @@ body {
 	}
 }
 
+.staticContent {
+  .staticEntry {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $grayMedium;
+    clear: both;
+  }
+  .last {
+    border-bottom: none;
+  }
+	h2 {
+		color: #515151;
+	}
+  h3 {
+    margin-bottom: 15px;
+  }
+  .staticImage {
+    display: inline;
+    float: left;
+    margin-top: 5px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  img {
+    @include small_border_radius;
+		margin-bottom: 4px;
+  }
+  .staticBlurb {
+    display: inline;
+    p {
+      font-size: 13px;
+      line-height: 18px;
+    }
+		ul {
+			list-style: disc;
+		}
+  }
+  .answer {
+    float: left;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
+    color: $orangeDark;
+    font-size: 26px;
+    background-color: $blueLight;
+    border: 1px solid $grayMedium;
+    @include tiny_border_radius;
+  }	
+  h4 {
+    font-weight: bold;
+		line-height: 28px;
+		padding-left: 4px;
+  }
+}
+
 /* TYPOGRAPHY */
 
 h1, h2, h3, h4, h5, h6 {
@@ -367,6 +421,16 @@ footer {
 	background-size: cover;
 }
 
+#leftEdge {
+	position: absolute;
+	left: 0;
+	top: -5px;
+	width: 33px;
+	height: 101%;
+	-webkit-box-shadow: inset 17px 0px 25px 0px rgba(222, 219, 214, 1);
+	box-shadow: inset 17px 0px 25px 0px rgba(222, 219, 214, 1);
+}
+
 #content {
 	position: relative;
 	width: 100%;
@@ -472,11 +536,12 @@ footer {
 	min-height: 100%;
 	width: 100%;
 	margin: 0 auto;
-	background: url(testBkg.png) no-repeat center bottom;
-	-webkit-background-size: constrain;
+	background: url(introBkg.png) no-repeat center bottom;
+	background-size: 100% auto;
+	/*-webkit-background-size: constrain;
 	-moz-background-size: constrain;
 	-o-background-size: constrain;
-	background-size: constrain;
+	background-size: constrain;*/
 }
 
 #camera {
@@ -484,7 +549,7 @@ footer {
 	bottom: 0;
 	width: 110%;
 	min-height: 80%;
-	background: url(handsNewMobile.png) no-repeat center top;
+	background: url(handsMobile.png) no-repeat center top;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -810,63 +875,75 @@ footer {
 		background-color: transparent;
 	}
 	li.active.volunteerPill {
-		background-position: -262px 0;
+		background-position: -262px -51px;
 		&:hover {
-			background-position: -262px 0;
+			background-position: -262px -51px;
 		}
 	}
 	li.active.adoptPill {
+		background-position: 0 -51px;
+		&:hover {
+			background-position: 0 -51px;
+		}
+	}
+	li.active.donatePill {
+		background-position: -131px -102px;
+		&:hover {
+			background-position: -131px -102px;
+		}
+	}
+	li.active.fosterPill {
+		background-position: -262px -102px;
+		&:hover {
+			background-position: -262px -102px;
+		}
+	}
+	li.active.spayNeuterPill {
+		background-position: -262px -255px;
+		&:hover {
+			background-position: -262px -255px;
+		}
+	}
+	li.active.wildcardPill {
 		background-position: 0 0;
 		&:hover {
 			background-position: 0 0;
 		}
 	}
-	li.active.donatePill {
-		background-position: -131px 0;
+	.adoptPill {
+		background-position: 0 -102px;
 		&:hover {
-			background-position: -131px 0;
+			background-position: 0 -255px;
 		}
 	}
-	li.active.fosterPill {
+	.donatePill {
 		background-position: -262px -204px;
 		&:hover {
-			background-position: -262px -204px;
+			background-position: 0 -153px;
 		}
 	}
-	li.active.spayNeuterPill {
-		background-position: 0 -204px; 
+	.fosterPill { 
+		background-position: -131px -51px;
 		&:hover {
-			background-position: 0 -204px; 
+			background-position: 0 -204px;
 		}
 	}
-	.adoptPill {
-		background-position: 0 -153px;
+	.spayNeuterPill { 
+		background-position: -131px -255px;
+		&:hover {
+			background-position: -262px -153px;
+		}
+	}
+	.volunteerPill { 
+		background-position: -262px 0;
 		&:hover {
 			background-position: -131px -204px;
 		}
 	}
-	.donatePill {
-		background-position: -262px -153px;
+	.wildcardPill { 
+		background-position: -131px -153px;
 		&:hover {
-			background-position: -262px -51px;
-		}
-	}
-	.fosterPill { 
-		background-position: -131px -102px;
-		&:hover {
-			background-position: 0 -102px;
-		}
-	}
-	.spayNeuterPill { 
-		background-position: 0 -51px; 
-		&:hover {
-			background-position: -131px -153px;
-		}
-	}
-	.volunteerPill { 
-		background-position: -262px -102px; 
-		&:hover {
-			background-position: -131px -51px;
+			background-position: -131px 0;
 		}
 	}
 }
@@ -1612,7 +1689,7 @@ input[type="checkbox"] {
 /* MODAL DIALOG */
 
 .modal-backdrop {
-  background-color: $offWhite;
+  background-color: $blueLight;
 }
 
 .modal-inner {
@@ -1624,13 +1701,12 @@ input[type="checkbox"] {
 .modal {
 	top: 50%;
 	margin: -250px 0 0 -280px;
-  @include border-radius;
-  -webkit-box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.12);
-  -moz-box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.12);
-  box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.12);
+  @include small-border-radius;
+  -webkit-box-shadow: 4px 4px 10px rgba(50, 50, 50, 0.30);
+	-moz-box-shadow:    4px 4px 10px rgba(50, 50, 50, 0.30);
+	box-shadow:         4px 4px 10px rgba(50, 50, 50, 0.30);
   background-color: #ffffff;
-  border: 10px solid rgb(85, 85, 85);
-  border: 10px solid rgba(0, 0, 0, .2);
+  border: 1px solid rgb(85, 85, 85);
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
@@ -1751,7 +1827,7 @@ input[type="checkbox"] {
 }
 
 .mediaButtons {
-  margin: 0 auto;
+  margin: 30px auto 10px;
   width: 200px;
   .button_to {
     display: inline-block;

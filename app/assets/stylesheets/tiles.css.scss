@@ -1,0 +1,106 @@
+.videoTile {
+	background-image: url(tiles.png); 
+	background-color: transparent; 
+	background-repeat: no-repeat;
+	height: 45px;
+	width: 45px;
+	display: block;
+}
+
+.adoptIcon {
+	background-position: -46px -230px;
+}
+
+.donateIcon {
+	background-position: -46px -276px;
+}
+
+.fosterIcon {
+	background-position: 0 -184px;
+}
+
+.newIcon {
+	background-position: 0 0;
+}
+
+.rank1Icon {
+	background-position: 0 -322px;
+}
+
+.rank2Icon {
+	background-position: -92px -276px;
+}
+
+.rank3Icon {
+	background-position: -92px -138px;
+}
+
+.rank4Icon {
+	background-position: 0 -276px;
+}
+
+.sharesIcon {
+	background-position: -92px -230px;
+}
+
+.spayneuterIcon {
+	background-position: -46px 0;
+}
+
+.time15Icon {
+	background-position: -46px -92px;
+}
+
+.time30Icon {
+	background-position: -46px -184px;
+}
+
+.time45Icon {
+	background-position: -92px -184px;
+}
+
+.time60Icon {
+	background-position: -46px -46px;
+}
+
+.viewsIcon {
+	background-position: -46px -138px;
+}
+
+.volunteerIcon {
+	background-position: -92px -92px;
+}
+
+.vote0Icon {
+	background-position: 0 -92px;
+}
+
+.vote1Icon {
+	background-position: -46px -322px;
+}
+
+.vote2Icon {
+	background-position: -92px -46px;
+}
+
+.vote3Icon {
+	background-position: -92px 0;
+}
+
+.vote4Icon {
+	background-position: 0 -230px;
+}
+
+.vote5Icon {
+	background-position: 0 -138px;
+}
+
+.wildcardIcon {
+	background-position: 0 -46px;
+}
+
+.tooltip-inner {
+	white-space:pre;
+	max-width:none;
+	font-weight: bold;
+}

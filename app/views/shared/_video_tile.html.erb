@@ -1,0 +1,22 @@
+<div class="video-tile">
+  <div class="tile-photo">
+    <%= image_tag("video.jpg") %>
+  </div>
+  <div class="video-icons">
+    <ul>
+      <li><%= render 'shared/icons/category' %></li>
+      <li><%= render 'shared/icons/rank' %></li>
+      <li><%= render 'shared/icons/time' %></li>
+      <li><%= render 'shared/icons/vote' %></li>
+      <li><%= render 'shared/icons/view' %></li>
+      <li><%= render 'shared/icons/share' %></li>
+    </ul>
+  </div> 
+  <div class="video-name">
+  	<h1>Video Title</h1>
+  </div>
+  <div class="video-info">
+	  <%= link_to "User Name", "#", class: "user_name" %>
+    <span class="user_location">Location</span>
+  </div>
+</div>
