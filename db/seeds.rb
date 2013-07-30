@@ -13,7 +13,10 @@ User.create!(name:    "Steven Latham",
             email:    "steven@stevenlathamproductions.com",
             password: "letsGoHome",
             password_confirmation: "letsGoHome",
-            location: "Santa Monica, CA",
+            street:   "3401 Stewart Ave",
+            city:     "Los Angeles",
+            state:    "CA",
+            zipcode:  "90066",
             bio:      "",
             admin:    true)
              
@@ -21,7 +24,10 @@ User.create!(name:    "Tim Lenz",
             email:    "tim@scimantics.com",
             password: "letsGoHome",
             password_confirmation: "letsGoHome",
-            location: "Red Hook, NY",
+            street:   "27 Lavender Ridge Rd",
+            city:     "Red Hook",
+            state:    "NY",
+            zipcode:  "12571",
             bio:      "",
             admin:    true)
 

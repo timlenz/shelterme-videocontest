@@ -1,6 +1,6 @@
 <div class="video-tile">
   <div class="tile-photo">
-    <%= image_tag("video.jpg") %>
+    <%= link_to image_tag("https://s3.amazonaws.com/smvideocontest/assets/videos/PetSafePromo.jpg"), "http://smvideocontest.s3.amazonaws.com/assets/videos/PetSafePromo.mp4", class: "videoTile" %>
   </div>
   <div class="video-icons">
     <ul>
@@ -13,10 +13,10 @@
     </ul>
   </div> 
   <div class="video-name">
-  	<h1>Video Title</h1>
+  	<h1>Pet Safe Promo</h1>
   </div>
   <div class="video-info">
-	  <%= link_to "User Name", "#", class: "user_name" %>
-    <span class="user_location">Location</span>
+	  <%= link_to "Pet Safe", "#", class: "user_name" %>
+    <span class="user_location">Knoxville, TN</span>
   </div>
 </div>

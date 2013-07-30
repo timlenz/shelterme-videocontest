@@ -5,7 +5,7 @@
 #  id                     :integer         not null, primary key
 #  name                   :string(255)
 #  email                  :string(255)
-#  location               :string(255)
+#  city                   :string(255)
 #  bio                    :text
 #  slug                   :string(255)
 #  avatar                 :string(255)
@@ -16,12 +16,18 @@
 #  password_reset_sent_at :datetime
 #  created_at             :datetime        not null
 #  updated_at             :datetime        not null
+#  date_of_birth          :datetime
+#  phone                  :string(255)
+#  zipcode                :string(255)
+#  street                 :string(255)
+#  state                  :string(255)
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :admin, :avatar, :bio, :email, :location, :name,
+  attr_accessible :admin, :avatar, :bio, :email, :phone, :name,
                   :password_digest, :password_reset_sent_at, :password_reset_token, 
-                  :remember_token, :slug, :password, :password_confirmation
+                  :remember_token, :slug, :password, :password_confirmation,
+                  :street, :city, :state, :zipcode, :date_of_birth
   
   require 'obscenity/active_model'
   
@@ -41,6 +47,12 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, on: :create
   validates :password_confirmation, presence: true, on: :create
   validates :slug, uniqueness: true, presence: true
+  validates :city, presence: true
+  validates :street, presence: true
+  validates :zipcode, presence: true
+  validates :state, presence: true
+  validates :date_of_birth, presence: true
+  validates :phone, presence: true
   
   # profanity_filter :name, :bio, :location
   # mount_uploader :avatar, AvatarUploader

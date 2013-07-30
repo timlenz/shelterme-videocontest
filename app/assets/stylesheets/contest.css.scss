@@ -1941,3 +1941,90 @@ input[type="checkbox"] {
 		margin-right:0;
 	}
 }
+
+.photoAsset {
+	position: relative;
+	width: 170px;
+	height: 113px;
+	margin-right:5px;
+	margin-top:5px;
+	float:left;
+	text-align: center;
+	a {
+		text-align: center;
+		font-size: 11px;
+		position: absolute;
+		width: 100px;
+		height: 20px;
+		text-transform: lowercase;
+		color: #0e5a61;
+		background-color: rgba(255,255,255,0.8);
+		display:none;
+		-webkit-border-radius: 4px;
+	  -moz-border-radius: 4px;
+	  border-radius: 4px;
+		&:hover {
+			background-color: rgba(14,90,97,0.8);
+			color: #ffffff;
+		}
+	}
+	.previewLink {
+		top: 20px;
+		left: 35px;
+	}
+	.downloadLink {
+		bottom: 20px;
+		left: 35px;
+	}
+}
+
+.audioTrack {
+	position: relative;
+	width: 550px;
+	height: 30px;
+	margin: 0 auto 15px;
+	padding-bottom: 15px;
+	border-bottom: 3px solid $grayLighter;
+	audio {
+		width: 45px;
+		float: left;
+	}
+	a {
+		text-align: center;
+		font-size: 11px;
+		position: absolute;
+		width: 100px;
+		height: 20px;
+		text-transform: lowercase;
+		color: #0e5a61;
+		background-color: rgba(255,255,255,0.8);
+		-webkit-border-radius: 4px;
+	  -moz-border-radius: 4px;
+	  border-radius: 4px;
+		&:hover {
+			background-color: rgba(14,90,97,0.8);
+			color: #ffffff;
+		}
+	}
+	.trackName {
+		float: left;
+		padding-left: 15px;
+		padding-top: 5px;
+		width: 300px;
+		font-size: 12px;
+		font-weight: bold;
+		color: $grayDark;
+	}
+	.trackLength {
+		float: left;
+		text-align: right;
+		padding-top: 5px;
+		width: 70px;
+		font-size: 12px;
+		color: $grayDarkish;
+	}
+	.downloadLink {
+		top: 5px;
+		right: 0;
+	}
+}

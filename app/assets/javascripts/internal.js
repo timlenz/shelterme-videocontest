@@ -81,7 +81,7 @@ $(function(){
 	});
 
 	// Show video player modal
-	$('a.previewLink').click(function(){
+	$('a.previewLink, a.videoTile').click(function(){
 		$('#videoModal').dialog('open');
 		var video = $.trim($(this).attr("href"));
 		$('video').attr('src', video);
@@ -98,8 +98,28 @@ $(function(){
     modal: true
 	});
 	
+	videojs("#player_html5_api").ready(function(){
+	  myPlayer = this;
+	});
+	
 	$('#videoModal .close').click(function(){
 		$('#videoModal').dialog('close');
+		myPlayer.pause();
 	});
+	
+	$(document).keyup(function(e) {
+		if (e.keyCode == 27 && $('#videoModal').length ) { // Stop modal video play on ESC
+			myPlayer.pause();
+		};
+	});
+	
+	// Initialize date picker for user date of birth
+	$("#user_date_of_birth").datepicker({
+		dateFormat: "yy-mm-dd",
+		yearRange: "1910:1995",
+		changeMonth: true,
+		changeYear: true,
+		maxDate: "-18Y"	// User must be at least 18 to enter
+  });
 
 });

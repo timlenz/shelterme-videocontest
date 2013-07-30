@@ -1,3 +1,19 @@
 <div class="tab-pane" id="audioNav">
-  maybe 20 - 30 tracks
+	<div class="tabbable">
+	  <ul class="nav nav-pills">
+	    <li class="active"><a href="#upbeatNav" data-toggle="tab">Upbeat</a></li>
+	    <li><a href="#reflectiveNav" data-toggle="tab">Reflective / Sentimental</a></li>
+	    <li><a href="#upliftingNav" data-toggle="tab">Heart Warming / Uplifting</a></li>
+	    <li><a href="#comedyNav" data-toggle="tab">Comedy</a></li>
+	  </ul>
+	  <div class="tab-content" style="border-bottom:none;">
+	    <%= render 'assets/audio/upbeat' %>
+	    <%= render 'assets/audio/reflective' %>
+	    <%= render 'assets/audio/uplifting' %>
+	    <%= render 'assets/audio/comedy' %>
+	  </div>
+	</div>
+	<div>
+		<p>The music is written and owned by <%= link_to "Gil Talmi", "http://www.giltalmi.com/", target: "_blank" %> and <%= link_to "Andrew Gross", "http://www.andrewgross.net/", target: "_blank" %>. By downloading this music, you agree to only use it only for the Shelter Me Video Contest, and to only upload it to this website. Any other use of this music is prohibited and requires explicit permission from the owners. You can reach them via email at <%= link_to "info@konsonant.com", "mailto:info@konsonant.com", target: "_blank" %>.</p>
+	</div>
 </div>

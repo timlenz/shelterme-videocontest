@@ -43,9 +43,9 @@ $(function(){
 	function set_camera(){
 		var native_image_h = 717;
 		var native_image_w = 1432;
-		var native_vid_h = 226;
-		var native_vid_w = 390;
-		var native_offset = 82;
+		var native_vid_h = 220;
+		var native_vid_w = 391;
+		var native_offset = 84;
 		
 		var window_h = $(window).height();
 		var window_w = $(window).width();

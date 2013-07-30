@@ -5,8 +5,11 @@
 <div class="editForm">
   <%= simple_form_for(@user, html: {class: 'form-horizontal' }) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <%= f.input :name %> 
-    <%= f.input :location, hint: "Enter as City, State" %>
+    <%= f.input :name %>
+    <%= f.input :street, label: "Street Address" %>
+    <%= f.input :city %>
+    <%= f.input :state %>
+    <%= f.input :zipcode, label: "ZIP code" %>
     <%= f.input :bio, as: :text %>
     <div id="char_count" class="editUser"></div>
 		<div class="clearfix"></div>

@@ -3,38 +3,45 @@
 	<div class="tabbable">
      <ul id="watchVideos" class="nav nav-pills">
        <!--li class="active winnersPill"><a href="#winners" data-toggle="tab"></a></li-->
-       <li class="active allVideosPill"><a href="#all" data-toggle="tab"></a></li>
-       <li class="newVideosPill"><a href="#new" data-toggle="tab"></a></li>
+       <li class="newVideosPill active"><a href="#new" data-toggle="tab"></a></li>
        <li class="mostViewsPill"><a href="#mostViews" data-toggle="tab"></a></li>
        <li class="mostVotesPill"><a href="#mostVotes" data-toggle="tab"></a></li>
        <li class="mostSharesPill"><a href="#mostShares" data-toggle="tab"></a></li>
        <li class="bestRatedPill"><a href="#bestRated" data-toggle="tab"></a></li>
+       <li class="allVideosPill"><a href="#all" data-toggle="tab"></a></li>
      </ul>
      <div class="tab-content">
-       <div class="tab-pane active" id="all">
+       <div class="tab-pane active" id="new">
          <%= render 'shared/video_tile' %>
-         <%= render 'shared/video_tile' %>
-         <%= render 'shared/video_tile' %>
-         <%= render 'shared/video_tile' %>
-       </div>
-       <div class="tab-pane" id="new">
-         new videos
        </div>
        <div class="tab-pane" id="bestRated">
-         best rated
+         <%= render 'shared/video_tile' %>
        </div>
        <div class="tab-pane" id="mostVotes">
-         most votes
+         <%= render 'shared/video_tile' %>
        </div>
        <div class="tab-pane" id="mostViews">
-         most views	
+         <%= render 'shared/video_tile' %>	
        </div>
        <div class="tab-pane" id="mostShares">
-         most shares         
+         <%= render 'shared/video_tile' %>         
+       </div>
+       <div class="tab-pane" id="all">
+         <%= render 'shared/video_tile' %>
        </div>
        <div class="tab-pane" id="winners">
-         winners         
+         No videos yet.         
        </div>
      </div>
    </div>
+</div>
+<div id="videoModal">
+	<video id="player" width="720" height="405" class="video-js vjs-default-skin active" 
+    controls autoplay preload="auto" data-setup='{}'>
+    <source src="" type="video/mp4">
+  </video>
+	<div class="close">&times;</div>
+	<div>
+		Video info will go here
+	</div>
 </div>

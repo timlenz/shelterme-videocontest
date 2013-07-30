@@ -15,6 +15,8 @@ editProfileIcon.png: editProfileIcon-6006db126065290a43c305e28992c701.png
 editProfileIcon/index.png: editProfileIcon-6006db126065290a43c305e28992c701.png
 enterContest.png: enterContest-52acc218ec6e56723b505c449094337a.png
 enterContest/index.png: enterContest-52acc218ec6e56723b505c449094337a.png
+favicon.ico: favicon-a6d37fa08810a337118033639253a701.ico
+favicon/index.ico: favicon-a6d37fa08810a337118033639253a701.ico
 footer_bkg.png: footer_bkg-8e65ab7a61ebc938baaf0a01f8140a77.png
 footer_bkg/index.png: footer_bkg-8e65ab7a61ebc938baaf0a01f8140a77.png
 handsMobile.png: handsMobile-96840cf1876fec97b731ce0a2a8c6090.png
@@ -53,10 +55,10 @@ videosNav.png: videosNav-3373dbe5275c6cb3de51db3168f61512.png
 videosNav/index.png: videosNav-3373dbe5275c6cb3de51db3168f61512.png
 welcomeBack.png: welcomeBack-91243b54cd659b11d741f44182916339.png
 welcomeBack/index.png: welcomeBack-91243b54cd659b11d741f44182916339.png
-application.js: application-7acbba44b3a3dc4222561dca65f7602e.js
-application/index.js: application-7acbba44b3a3dc4222561dca65f7602e.js
-application.css: application-62886bc33807052037ba1151d682d27d.css
-application/index.css: application-62886bc33807052037ba1151d682d27d.css
+application.js: application-c250aaacd94f212cf83837936748fbee.js
+application/index.js: application-c250aaacd94f212cf83837936748fbee.js
+application.css: application-765857a00eb79ebf31ce43c3337e7363.css
+application/index.css: application-765857a00eb79ebf31ce43c3337e7363.css
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-7d1197a52442bc56fcad60d0390f4b32.png
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100/index.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-7d1197a52442bc56fcad60d0390f4b32.png
 jquery-ui/ui-bg_flat_75_ffffff_40x100.png: jquery-ui/ui-bg_flat_75_ffffff_40x100-3c4b974defa5e8bdaf8a603034c4435e.png
