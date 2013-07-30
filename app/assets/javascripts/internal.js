@@ -98,9 +98,11 @@ $(function(){
     modal: true
 	});
 	
-	videojs("#player_html5_api").ready(function(){
-	  myPlayer = this;
-	});
+	if ( $('#videoModal').length ) {
+		videojs("#player_html5_api").ready(function(){
+		  myPlayer = this;
+		});
+	}
 	
 	$('#videoModal .close').click(function(){
 		$('#videoModal').dialog('close');
