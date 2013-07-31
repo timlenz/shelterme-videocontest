@@ -81,14 +81,21 @@ $(function(){
 	});
 
 	// Show video player modal
-	$('a.previewLink, a.videoTile').click(function(){
+	$('a.previewLink').click(function(){
+		$('#previewModal').dialog('open');
+		var video = $.trim($(this).attr("href"));
+		$('video').attr('src', video);
+		return false;
+	});
+	
+	$('a.videoTile').click(function(){
 		$('#videoModal').dialog('open');
 		var video = $.trim($(this).attr("href"));
 		$('video').attr('src', video);
 		return false;
 	});
 	
-	$('#videoModal').dialog({
+	$('#previewModal').dialog({
 		autoOpen: false,
     resizable: false,
     draggable: false,
@@ -98,22 +105,51 @@ $(function(){
     modal: true
 	});
 	
+	$('#videoModal').dialog({
+		autoOpen: false,
+    resizable: false,
+    draggable: false,
+		width: 770,
+		height: 500,
+		closeOnEscape: true,
+    modal: true
+	});
+	
 	if ( $('#videoModal').length ) {
-		videojs("#player_html5_api").ready(function(){
+		// Initialize video player
+		videojs("#videoPlayer").ready(function(){
 		  myPlayer = this;
 		});
-	}
-	
-	$('#videoModal .close').click(function(){
-		$('#videoModal').dialog('close');
-		myPlayer.pause();
-	});
-	
-	$(document).keyup(function(e) {
-		if (e.keyCode == 27 && $('#videoModal').length ) { // Stop modal video play on ESC
+		// Stop video modal play on close
+		$('#videoModal .close').click(function(){
+			$('#videoModal').dialog('close');
 			myPlayer.pause();
-		};
-	});
+		});
+		// Stop video modal play on ESC
+		$(document).keyup(function(e) {
+			if (e.keyCode == 27 && $('#videoModal').length ) {
+				myPlayer.pause();
+			};
+		});
+	};
+	
+	if ( $('#previewModal').length ) {
+		// Initialize video player
+		videojs("#previewPlayer").ready(function(){
+		  myPlayer = this;
+		});
+		// Stop preview modal play on close
+		$('#previewModal .close').click(function(){
+			$('#previewModal').dialog('close');
+			myPlayer.pause();
+		});
+		// Stop preview modal play on ESC
+		$(document).keyup(function(e) {
+			if (e.keyCode == 27 && $('#previewModal').length ) { 
+				myPlayer.pause();
+			};
+		});
+	};
 	
 	// Initialize date picker for user date of birth
 	$("#user_date_of_birth").datepicker({
@@ -123,5 +159,13 @@ $(function(){
 		changeYear: true,
 		maxDate: "-18Y"	// User must be at least 18 to enter
   });
+
+	// Hide Upload Video if mobile user agent
+  if ( $('.mediaButtons').length) {
+    if ( navigator.userAgent.match(/iPhone|iPod|Android|iPad|Tablet/i) != null ) {
+      $('.mediaButtons').hide();
+			$('#tabletAlert').show();
+    };
+  };
 
 });

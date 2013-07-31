@@ -1,42 +1,40 @@
 $(function(){
 	
-	// Get dimensions of window and resize #content div
 	if ( $('#landing').length ) {
-		set_camera();
+		set_camera();	// Get dimensions of window and resize #content div
 		$(window).resize(function() {
 			set_camera();
 		});
-	};
-	
-	// Start the parallax effect by moving camera div
-	$('html').mousemove(function(e){
-		var movementStrength = 12;
-	
-		var width = movementStrength / $(window).width();
-		var height = movementStrength / $(window).height();
-	
-	  var pageX = e.pageX - ($(window).width() / 2);
-	  var pageY = e.pageY - ($(window).height() / 2);
-	
-	  var newvalueX = width * pageX * -1;
-		var newvalueY = height * pageY * -1;
 		
-		var subject_width = $(window).width() + newvalueX;
-	
-	  $('#camera').css('left', newvalueX);
-		$('#subject').css('left', -newvalueX).css('width', subject_width);
-		$('#landing').css('left', newvalueX * 10);
-		if ( $('#landing').length ) {
-			$('html').addClass('hideScroll');
-		};
-		set_subject(newvalueY);
-	});
-	
+		$('html').mousemove(function(e){	// Start the parallax effect by moving camera div
+			var movementStrength = 12;
+
+			var width = movementStrength / $(window).width();
+			var height = movementStrength / $(window).height();
+
+		  var pageX = e.pageX - ($(window).width() / 2);
+		  var pageY = e.pageY - ($(window).height() / 2);
+
+		  var newvalueX = width * pageX * -1;
+			var newvalueY = height * pageY * -1;
+
+			var subject_width = $(window).width() + newvalueX;
+
+		  $('#camera').css('left', newvalueX);
+			$('#subject').css('left', -newvalueX).css('width', subject_width);
+			$('#landing').css('left', newvalueX * 10);
+			if ( $('#landing').length ) {
+				$('html').addClass('hideScroll');
+			};
+			set_subject(newvalueY);
+		});
+	};
+
 	function set_subject(moveY){
 		var window_h = $(window).height();
 		var native_subject_h = $('#subject').height();
 		var new_subject_h = native_subject_h * moveY / window_h * -1;
-		
+
 		$('#subject').css('top', new_subject_h);
 	};
 	
@@ -81,12 +79,6 @@ $(function(){
 
 		$('#video').height(new_vid_h).width(new_vid_w).css('top',new_offset);
 		$('#intro').height(new_vid_h).width(new_vid_w);
-		
-		// Update text values
-		/*$('.window').text(window_w + " " + window_h + " " + Math.round(window_h / window_w * 100));
-		$('.camera').text(window_w + " " + new_image_h + " " + Math.round(new_image_h / window_h * 100));
-		$('.video').text(new_vid_w + " " + new_vid_h);
-		$('.position').text(new_offset);*/
 	};
 	
 });

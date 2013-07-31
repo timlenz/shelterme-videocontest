@@ -70,10 +70,25 @@ $blueLight: #e4f1f3;
 	}
 }
 
-#videoModal {
+#previewModal {
 	display: none;
 	padding: 25px 25px 20px 25px;
 	height: 460px;
+	background-color: #ffffff;
+	.close {
+		position: absolute;
+		top: 4px;
+		right: 7px;
+		background-color: #ffffff;
+		background: none;
+		font-size: 16px;
+	}
+}
+
+#videoModal {
+	display: none;
+	padding: 25px 25px 10px 25px;
+	height: 500px;
 	background-color: #ffffff;
 	.close {
 		position: absolute;

@@ -1,6 +1,5 @@
 <%= provide(:title, 'All Videos') %>
-<div id="mainContent">
-	<div class="staticContent">
-		<h3>All Videos</h3>
-	</div>
+<div class="staticContent">
+	<h3>All Videos</h3>
+	<%= render partial: 'shared/video_tile', collection: @videos, as: :f %>
 </div>

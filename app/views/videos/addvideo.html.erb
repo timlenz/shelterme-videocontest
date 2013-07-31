@@ -12,6 +12,9 @@
 		<div class="mediaButtons">
 			<%= button_to('Upload Video', newvideo_path, remote: true, class: "btn", id: "videoClick") %>
 		</div>
+		<div id="tabletAlert" style="display:none;">
+			<p>Sorry, but you cannot upload videos from a mobile device</p>
+		</div>
 	</div>
 	<div class="tabbable">
      <ul class="nav nav-pills">
@@ -28,8 +31,8 @@
      </div>
    </div>
 </div>
-<div id="videoModal">
-	<video id="player" width="720" height="405" class="video-js vjs-default-skin active" 
+<div id="previewModal">
+	<video id="previewPlayer" width="720" height="405" class="video-js vjs-default-skin active" 
     controls autoplay preload="auto" data-setup='{}'>
     <source src="" type="video/mp4">
   </video>

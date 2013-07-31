@@ -18,7 +18,11 @@
   <%= render 'layouts/header' %>   
   <%= render 'layouts/errors' %>
 	  <div class="container">
+		  <% unless (params[:controller] == 'videos' and params[:action] == 'index') || 
+			(params[:controller] == 'users' and params[:action] == 'index') ||
+			(params[:controller] == 'static_pages' and params[:action] == 'statistics')%>
 		  <%= render 'static_pages/sidebar' %>
+		  <% end %>
 		  <%= yield %>
 		  <div class="push"></div>
 	  </div>

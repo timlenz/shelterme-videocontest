@@ -36,12 +36,28 @@
    </div>
 </div>
 <div id="videoModal">
-	<video id="player" width="720" height="405" class="video-js vjs-default-skin active" 
+	<video id="videoPlayer" width="720" height="405" class="video-js vjs-default-skin active" 
     controls autoplay preload="auto" data-setup='{}'>
     <source src="" type="video/mp4">
   </video>
 	<div class="close">&times;</div>
-	<div>
-		Video info will go here
+	<div class="videoLegend">
+		<div class="video-name">
+	  	<h1>Pet Safe Promo</h1>
+	  </div>
+	  <div class="video-info">
+		  <%= link_to "Pet Safe", "#", class: "user_name" %>
+	    <span class="user_location">Knoxville, TN</span>
+	  </div>
+	</div>
+	<div class="video-icons" style="float:right;margin-top:5px;">
+		<ul>
+      <li><%= render 'shared/icons/category' %></li>
+      <li><%= render 'shared/icons/rank' %></li>
+      <li><%= render 'shared/icons/time' %></li>
+      <li><%= render 'shared/icons/vote' %></li>
+      <li><%= render 'shared/icons/view' %></li>
+      <li><%= render 'shared/icons/share' %></li>
+    </ul>
 	</div>
 </div>
