@@ -460,22 +460,22 @@ footer {
 	background: url(presentsVideoContest.png) no-repeat;
 }
 
-#create {
+#lowerLeft {
 	position: absolute;
-	bottom: 140px;
+	bottom: 115px;
 	left: 100px;
-	height: 117px;
-	width: 315px;
-	background: url(createShortVideo.png) no-repeat;
+	height: 142px;
+	width: 307px;
+	background: url(createAShortVideo.png) no-repeat;
 }
 
-#helpGive {
+#upperRight {
 	position: fixed;
 	top: 60px;
 	right: 100px;
-	height: 17px;
-	width: 380px;
-	background: url(helpGiveShelterPets.png) no-repeat;
+	height: 55px;
+	width: 263px;
+	background: url(useYourCreativity.png) no-repeat;
 }
 
 #buttons {
@@ -832,7 +832,7 @@ footer {
 /* SPONSOR SIDEBAR */
 
 #sidebar {
-	position: fixed;
+	/*position: fixed;*/
 	z-index:0;
 	width: 205px;
 	height: 630px;
@@ -852,6 +852,11 @@ footer {
 		margin: 15px auto 0;
 		background-color: #f0ebe7;
 	}
+}
+
+.affix-bottom {
+	position: absolute;
+	bottom: 70px;
 }
 
 /* CATEGORIES */
@@ -1711,6 +1716,7 @@ input[type="checkbox"] {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   background: rgba(0, 0, 0, .2);
+	z-index: 1050;
   .modal-header {
     border-bottom: 3px solid $grayLighter;
     h3 {

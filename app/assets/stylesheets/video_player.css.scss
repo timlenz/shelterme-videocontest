@@ -64,6 +64,14 @@ $blueLight: #e4f1f3;
 	border-radius: 0.6em;
 }
 
+.vjs-default-skin .vjs-fullscreen-control {
+	display: none;
+}
+
+.vjs-default-skin .vjs-volume-control {
+	display: none;
+}
+
 #intro {
 	.vjs-lock-showing {
 		visibility: hidden;
@@ -105,6 +113,12 @@ $blueLight: #e4f1f3;
 	background-image: none;
 	opacity: 0.8;
 	filter: alpha(opacity=80);
+	z-index: 1040;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }
 
 .ui-dialog .ui-dialog-titlebar {
@@ -118,6 +132,7 @@ $blueLight: #e4f1f3;
   background-color: #ffffff;
   border: 1px solid rgb(85, 85, 85);
 	padding: 0;
+	z-index: 1050;
 	&:focus {
 		outline: none;
 	}

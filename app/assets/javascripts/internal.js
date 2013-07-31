@@ -6,36 +6,51 @@ $(function(){
 	});	
 	
   // Dynamic Floating content indicator
-  var min_height = 730; // For monitors with 800 px of vertical resolution, must account for menu bars & such
-  // Show floater for short browser windows (onload)
-  if ($(window).height() < min_height) {
-    $('#floater').show();
-  };
-  // Hide floater for pages with content near the size of the window
-  if ( $(document).height() <= ($(window).height() + 400) ) {
-    $('#floater').hide();
-  };
-  // Show floater for resized windows
-  $(window).resize(function(){
-    if ( ($(window).height() <= min_height) && ($(document).height() > ($(window).height() + 200)) ) { 
-      $('#floater').show();
-    } else {
-      $('#floater').hide();
-    };
-  });
-  // Hide/show when scrolling
-  $(window).scroll(function() {
-    if (( ($(document).height() - $('body').scrollTop() - $(window).height()) > min_height ) && ($(window).height() <= min_height)) {
-      $('#floater').show();
-    } else {
-      $('#floater').hide();
-    };
-  });
-  // Scroll down on click and hide floater
-  $('#floater').click(function() {
-    $('#floater').hide();
-    $('#mainContent').scrollTop($('#mainContent').scrollTop() + min_height);
-  });
+  // var min_height = 730; // For monitors with 800 px of vertical resolution, must account for menu bars & such
+  // // Show floater for short browser windows (onload)
+  // if ($(window).height() < min_height) {
+  //   $('#floater').show();
+  // };
+  // // Hide floater for pages with content near the size of the window
+  // if ( $(document).height() <= ($(window).height() + 400) ) {
+  //   $('#floater').hide();
+  // };
+  // // Show floater for resized windows
+  // $(window).resize(function(){
+  //   if ( ($(window).height() <= min_height) && ($(document).height() > ($(window).height() + 200)) ) { 
+  //     $('#floater').show();
+  //   } else {
+  //     $('#floater').hide();
+  //   };
+  // });
+  // // Hide/show when scrolling
+  // $(window).scroll(function() {
+  //   if (( ($(document).height() - $('body').scrollTop() - $(window).height()) > min_height ) && ($(window).height() <= min_height)) {
+  //     $('#floater').show();
+  //   } else {
+  //     $('#floater').hide();
+  //   };
+  // });
+  // // Scroll down on click and hide floater
+  // $('#floater').click(function() {
+  //   $('#floater').hide();
+  //   $('#mainContent').scrollTop($('#mainContent').scrollTop() + min_height);
+  // });
+
+	// Reposition sidebar if window is too short to avoid overlapping footer
+	if ( $(window).height() < ($('#sidebar').height() + 100) ) {
+		$('#sidebar').removeClass('affix').addClass('affix-bottom');
+	} else {
+		$('#sidebar').removeClass('affix-bottom').addClass('affix');
+	};
+	
+	$(window).scroll(function(){
+		if ( $(document).height() - $('body').scrollTop() < ($('#sidebar').height() + 100) ) {
+			$('#sidebar').removeClass('affix').addClass('affix-bottom');
+		} else {
+			$('#sidebar').removeClass('affix-bottom').addClass('affix');
+		};
+	});
 
   // Automatically hide alert dialog after slight delay
   if($('.errorBox').is(':visible')) {
