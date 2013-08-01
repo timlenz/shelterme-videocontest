@@ -169,11 +169,17 @@ li.addVideoNav  {
 			&:hover {
 				background-color: transparent;
 			}
+			&:focus {
+				background-color: transparent;
+			}
 		}
 		&.videoClipsPill {
 			background-position: -111px -51px;
 			&:hover {
 				background-position: -111px -51px;
+			}
+			&:focus {
+				background-color: transparent;
 			}
 		}
 		&.audioTracksPill {
@@ -181,17 +187,26 @@ li.addVideoNav  {
 			&:hover {
 				background-position: 0 -102px;
 			}
+			&:focus {
+				background-color: transparent;
+			}
 		}
 		&.photosPill {
 			background-position: -222px -102px;
 			&:hover {
 				background-position: -222px -102px;
 			}
+			&:focus {
+				background-color: transparent;
+			}
 		}
 		&.graphicsPill {
 			background-position: 0 -153px;
 			&:hover {
 				background-position: 0 -153px;
+			}
+			&:focus {
+				background-color: transparent;
 			}
 		}
 	}
