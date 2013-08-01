@@ -68,7 +68,11 @@ $(function(){
 
 	// Show links on mouse-over of assets
 	$('.videoClip, .photoAsset').mouseover(function(){
-		$(this).find('.previewLink, .downloadLink').show();
+		if ( navigator.userAgent.match(/iPhone|iPod|Android|iPad|Tablet/i) != null ) {
+			$(this).find('.previewLink').show();
+		} else {
+			$(this).find('.previewLink, .downloadLink').show();
+		};
 	});
 	
 	$('.videoClip, .photoAsset').mouseout(function(){
@@ -176,11 +180,16 @@ $(function(){
   });
 
 	// Hide Upload Video if mobile user agent
-  if ( $('.mediaButtons').length) {
+  if ( $('.mediaButtons').length ) {
     if ( navigator.userAgent.match(/iPhone|iPod|Android|iPad|Tablet/i) != null ) {
       $('.mediaButtons').hide();
 			$('#tabletAlert').show();
     };
   };
+
+	// Hide audio download link if mobile user agent
+	if ( $('.audioTrack .downloadLink').length ) {
+		$('.audioTrack .downloadLink').hide();
+	};
 
 });
