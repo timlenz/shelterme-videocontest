@@ -6,8 +6,14 @@
   <%= csrf_meta_tags %>
   <link href="/assets/favicon.ico" rel="shortcut icon" />
   <%= stylesheet_link_tag "application", :media => "all" %>
+  <!-- HTML5 shiv for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+      <%= javascript_include_tag 'html5shiv' %>
+      <![endif]-->
+  <% if params[:controller] == 'videos' or params[:controller] == 'users' or (params[:controller] == 'static_pages' and params[:action] == 'home') %>
   <link href="http://vjs.zencdn.net/4.0/video-js.css" rel="stylesheet">
 	<script src="http://vjs.zencdn.net/4.0/video.js"></script>
+	<% end %>
 </head>
 	<% if params[:controller] == 'static_pages' and params[:action] == 'home' %>
 <body>

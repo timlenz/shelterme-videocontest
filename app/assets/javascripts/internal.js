@@ -103,7 +103,7 @@ $(function(){
 		return false;
 	});
 	
-	$('a.videoTile').click(function(){
+	$('.tile-photo a').click(function(){
 		$('#videoModal').dialog('open');
 		var video = $.trim($(this).attr("href"));
 		$('video').attr('src', video);

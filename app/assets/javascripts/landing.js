@@ -77,7 +77,7 @@ $(function(){
 			$('#content').height(content_h);
 		};	
 
-		$('#video').height(new_vid_h).width(new_vid_w).css('top',new_offset);
+		$('#video').height(new_vid_h).width(new_vid_w).css('top',new_offset).show();
 		$('#intro').height(new_vid_h).width(new_vid_w);
 	};
 	
