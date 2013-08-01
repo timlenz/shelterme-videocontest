@@ -40,7 +40,7 @@ $blueSteel: #388cb2;
 $burntUmber: #8E190E;
 
 $footer: 60px;
-$stickyOffset: 40px;
+$stickyOffset: 70px;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
@@ -125,7 +125,6 @@ html {
 
 body {
   height: 100%;
-	min-height: 600px;
   font-size: 14px;
 	line-height: 20px;
   background-color: white;
@@ -156,8 +155,11 @@ body {
 }
 
 #mainContent {
-	margin: 25px 0 25px 240px;
+	margin: 25px 0 25px 205px;
+	padding-left: 35px;
 	width: 700px;
+	min-height: 630px;
+	border-left: 3px solid $grayLighter;
 }
 
 #floater {
@@ -195,7 +197,11 @@ body {
 	}
 }
 
-.tabbable .tab-content, .staticContent {
+.tabbable .tab-content {
+	padding-bottom: 20px;
+}
+
+.staticContent {
 	padding-bottom: 20px;
 	border-bottom: 3px solid $grayLighter;
 }
@@ -378,9 +384,9 @@ footer {
 
 .sponsorFooter {
 	float: left;
-  width: 200px;
+  width: 199px;
   height: 75px;
-	margin: -15px 70px 0 0;
+	margin: -17px 70px 0 0;
   background: white url(petSafeLogoSmall.png) center no-repeat;
   -webkit-border-top-left-radius: 8px;
   -webkit-border-top-right-radius: 8px;
@@ -388,9 +394,10 @@ footer {
   -moz-border-radius-topright: 8px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-	-webkit-box-shadow: 0px -3px 3px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow:    0px -3px 3px rgba(0, 0, 0, 0.25);
-	box-shadow:         0px -3px 3px rgba(0, 0, 0, 0.25);
+	border-top: 2px solid #bfbfbf;
+	border-right: 1px solid #bfbfbf;
+	border-top: 2px solid rgba(0,0,0,0.25);
+	border-right: 1px solid rgba(0,0,0,0.25);
   .logo {
 		height: 25px;
 		width: 100px;
@@ -414,7 +421,8 @@ footer {
 	/*min-height: 100%;*/
 	overflow: hidden;
 	height: auto !important;
-	background: url(bkgTexture1.png) no-repeat center center; /* fixed */
+	background-image: url(bkgTexture1.png);
+	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -839,12 +847,11 @@ footer {
 /* SPONSOR SIDEBAR */
 
 #sidebar {
-	/*position: fixed;*/
+	float: left;
 	z-index:0;
 	width: 205px;
 	height: 630px;
 	margin: 15px 0;
-	border-right: 3px solid $grayLighter;
 	background: transparent url(petSafeLogoSidebar.png) no-repeat center top;
 	.logo {
 		display: block;
@@ -868,6 +875,7 @@ footer {
 /* CATEGORIES */
 
 #categories {
+	height: 50px;
 	li {
 		width: 130px;
 		height: 50px;
@@ -1524,6 +1532,7 @@ input[type="checkbox"] {
 /* USER NAV */
 
 #userNav {
+	height: 50px;
 	li {
 		width: 110px;
 		height: 50px;
@@ -2050,7 +2059,7 @@ input[type="checkbox"] {
 }
 
 #tabletAlert {
-	margin-top: 10px;
+	margin-top: 20px;
 	text-align: center;
 	p {
 		color: black;

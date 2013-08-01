@@ -16,8 +16,8 @@
 			<p>Sorry, but you cannot upload videos from a mobile device</p>
 		</div>
 	</div>
-	<div class="tabbable">
-     <ul class="nav nav-pills">
+	<div id="assetNav" class="tabbable">
+     <ul class="nav nav-pills" style="height:50px;">
        <li class="active addVideoNav videoClipsPill"><a href="#videoClipsNav" data-toggle="tab"></a></li>
        <li class="addVideoNav photosPill"><a href="#photosNav" data-toggle="tab"></a></li>
        <li class="addVideoNav audioTracksPill"><a href="#audioNav" data-toggle="tab"></a></li>
@@ -33,7 +33,7 @@
 </div>
 <div id="previewModal">
 	<video id="previewPlayer" width="720" height="405" class="video-js vjs-default-skin active" 
-    controls autoplay preload="auto" data-setup='{}'>
+    controls autoplay preload="none" data-setup='{}'>
     <source src="" type="video/mp4">
   </video>
 	<div class="close">&times;</div>

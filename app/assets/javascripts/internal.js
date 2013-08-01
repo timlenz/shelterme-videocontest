@@ -37,21 +37,6 @@ $(function(){
   //   $('#mainContent').scrollTop($('#mainContent').scrollTop() + min_height);
   // });
 
-	// Reposition sidebar if window is too short to avoid overlapping footer
-	if ( $(window).height() < ($('#sidebar').height() + 100) ) {
-		$('#sidebar').removeClass('affix').addClass('affix-bottom');
-	} else {
-		$('#sidebar').removeClass('affix-bottom').addClass('affix');
-	};
-	
-	$(window).scroll(function(){
-		if ( $(document).height() - $('body').scrollTop() < ($('#sidebar').height() + 100) ) {
-			$('#sidebar').removeClass('affix').addClass('affix-bottom');
-		} else {
-			$('#sidebar').removeClass('affix-bottom').addClass('affix');
-		};
-	});
-
   // Automatically hide alert dialog after slight delay
   if($('.errorBox').is(':visible')) {
     $('#mainError').delay(3000).fadeOut('slow');
@@ -68,11 +53,7 @@ $(function(){
 
 	// Show links on mouse-over of assets
 	$('.videoClip, .photoAsset').mouseover(function(){
-		if ( navigator.userAgent.match(/iPhone|iPod|Android|iPad|Tablet/i) != null ) {
-			$(this).find('.previewLink').show();
-		} else {
-			$(this).find('.previewLink, .downloadLink').show();
-		};
+		$(this).find('.previewLink, .downloadLink').show();
 	});
 	
 	$('.videoClip, .photoAsset').mouseout(function(){
@@ -183,13 +164,9 @@ $(function(){
   if ( $('.mediaButtons').length ) {
     if ( navigator.userAgent.match(/iPhone|iPod|Android|iPad|Tablet/i) != null ) {
       $('.mediaButtons').hide();
+			$('#assetNav').hide();
 			$('#tabletAlert').show();
     };
   };
-
-	// Hide audio download link if mobile user agent
-	if ( $('.audioTrack .downloadLink').length ) {
-		$('.audioTrack .downloadLink').hide();
-	};
 
 });
