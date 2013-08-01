@@ -564,9 +564,15 @@ footer {
 
 /* HEADER */
 
+.navbar-fixed-top {
+	z-index:1000;
+}
+
 .navbar-inner {
 	min-height: 40px;
-	background: url(header_bkg.jpg) repeat-x center top;
+	background-image: url(header_bkg.jpg);
+	background-repeat: repeat-x;
+	background-position: center top;
 }
 
 .navbar .nav > li {
