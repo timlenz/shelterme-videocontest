@@ -155,7 +155,8 @@ body {
 }
 
 #mainContent {
-	margin: 25px 0 25px 205px;
+	float: left;
+	margin: 25px 0 25px 0;
 	padding-left: 35px;
 	width: 700px;
 	min-height: 630px;
@@ -203,7 +204,7 @@ body {
 
 .staticContent {
 	padding-bottom: 20px;
-	border-bottom: 3px solid $grayLighter;
+	/*border-bottom: 3px solid $grayLighter;*/
 }
 
 .tabbable, .staticContent {
@@ -335,6 +336,7 @@ footer {
   left: 0;
   z-index: 1030;
   margin-top: 10px;
+	clear: both;
   a {
     color: $darkAqua;
     text-transform: uppercase;
