@@ -89,9 +89,9 @@ $(function(){
 		$('#previewModal').dialog('open');
 		var video = $.trim($(this).attr("href"));
 		videojs("#previewPlayer").ready(function(){
-			myPlayer = this;
+			var myPlayer = this;
+			myPlayer.src(video);
 		});
-		myPlayer.src(video);
 		return false;
 	});
 	
@@ -99,9 +99,9 @@ $(function(){
 		$('#videoModal').dialog('open');
 		var video = $.trim($(this).attr("href"));
 		videojs("#videoPlayer").ready(function(){
-			myPlayer = videojs("#videoPlayer");
+			var myPlayer = this;
+			myPlayer.src(video);
 		});
-		myPlayer.src(video);
 		return false;
 	});
 	
@@ -128,7 +128,7 @@ $(function(){
 	if ( $('#videoModal').length ) {
 		// Initialize video player
 		videojs("#videoPlayer").ready(function(){
-		  myPlayer = videojs("#videoPlayer");
+		  myPlayer = this;
 		});
 		// Stop video modal play on close
 		$('#videoModal .close').click(function(){
