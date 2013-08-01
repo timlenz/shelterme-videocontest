@@ -89,7 +89,7 @@ $(function(){
 		$('#previewModal').dialog('open');
 		var video = $.trim($(this).attr("href"));
 		videojs("#previewPlayer").ready(function(){
-			var myPlayer = this;
+			myPlayer = this;
 		});
 		myPlayer.src(video);
 		return false;
@@ -99,7 +99,7 @@ $(function(){
 		$('#videoModal').dialog('open');
 		var video = $.trim($(this).attr("href"));
 		videojs("#videoPlayer").ready(function(){
-			var myPlayer = this;
+			myPlayer = this;
 		});
 		myPlayer.src(video);
 		return false;
