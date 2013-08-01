@@ -429,6 +429,8 @@ footer {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='bkgTexture1.png',sizingMethod='scale');
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='bkgTexture1.png',sizingMethod='scale')";
 }
 
 #leftEdge {
@@ -439,6 +441,7 @@ footer {
 	height: 101%;
 	-webkit-box-shadow: inset 17px 0px 25px 0px rgba(222, 219, 214, 1);
 	box-shadow: inset 17px 0px 25px 0px rgba(222, 219, 214, 1);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFdedbd6', endColorstr='#00dedbd6', GradientType=1);
 }
 
 #content {
@@ -546,12 +549,15 @@ footer {
 	min-height: 100%;
 	width: 100%;
 	margin: 0 auto;
-	background: url(introBkg.png) no-repeat center bottom;
+	background-image: url(introBkg.png);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	-webkit-background-size: 100% auto;
+	-moz-background-size: 100% auto;
+	-o-background-size: 100% auto;
 	background-size: 100% auto;
-	/*-webkit-background-size: constrain;
-	-moz-background-size: constrain;
-	-o-background-size: constrain;
-	background-size: constrain;*/
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='introBkg.png',sizingMethod='scale');
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='introBkg.png',sizingMethod='scale')";
 }
 
 #camera {

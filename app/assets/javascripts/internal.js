@@ -90,7 +90,8 @@ $(function(){
 		var video = $.trim($(this).attr("href"));
 		videojs("#previewPlayer").ready(function(){
 			var myPlayer = this;
-			myPlayer.src(video);
+			// myPlayer.src(video);
+			myPlayer.src({ type: "video/mp4", src: video });
 		});
 		return false;
 	});
@@ -100,7 +101,8 @@ $(function(){
 		var video = $.trim($(this).attr("href"));
 		videojs("#videoPlayer").ready(function(){
 			var myPlayer = this;
-			myPlayer.src(video);
+			// myPlayer.src(video);
+			myPlayer.src({ type: "video/mp4", src: video });
 		});
 		return false;
 	});
@@ -137,7 +139,8 @@ $(function(){
 		});
 		// Stop video modal play on ESC
 		$(document).keyup(function(e) {
-			if (e.keyCode == 27 && $('#videoModal').length ) {
+			var keycode = (event.keyCode ? event.keyCode : event.which);	// capture keycode for Firefox
+			if ( keycode == 27 && $('#videoModal').length ) {
 				resetPlayer();
 			};
 		});
@@ -155,7 +158,8 @@ $(function(){
 		});
 		// Stop preview modal play on ESC
 		$(document).keyup(function(e) {
-			if (e.keyCode == 27 && $('#previewModal').length ) { 
+			var keycode = (event.keyCode ? event.keyCode : event.which);	// capture keycode for Firefox
+			if ( keycode == 27 && $('#previewModal').length ) { 
 				resetPlayer();
 			};
 		});
