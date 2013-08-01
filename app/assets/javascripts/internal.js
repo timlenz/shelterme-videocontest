@@ -53,7 +53,11 @@ $(function(){
 
 	// Show links on mouse-over of assets
 	$('.videoClip, .photoAsset').mouseover(function(){
-		$(this).find('.previewLink, .downloadLink').show();
+		if ( navigator.userAgent.match(/iPhone|iPod|Android|iPad|Tablet/i) != null ) {
+			$(this).find('.previewLink').show();
+		} else {
+			$(this).find('.previewLink, .downloadLink').show();
+		};
 	});
 	
 	$('.videoClip, .photoAsset').mouseout(function(){
@@ -84,14 +88,20 @@ $(function(){
 	$('a.previewLink').click(function(){
 		$('#previewModal').dialog('open');
 		var video = $.trim($(this).attr("href"));
-		$('video').attr('src', video);
+		videojs("#previewPlayer").ready(function(){
+			var myPlayer = this;
+		});
+		myPlayer.src(video);
 		return false;
 	});
 	
 	$('.tile-photo a').click(function(){
 		$('#videoModal').dialog('open');
 		var video = $.trim($(this).attr("href"));
-		$('video').attr('src', video);
+		videojs("#videoPlayer").ready(function(){
+			var myPlayer = this;
+		});
+		myPlayer.src(video);
 		return false;
 	});
 	
@@ -123,12 +133,12 @@ $(function(){
 		// Stop video modal play on close
 		$('#videoModal .close').click(function(){
 			$('#videoModal').dialog('close');
-			myPlayer.pause();
+			resetPlayer();
 		});
 		// Stop video modal play on ESC
 		$(document).keyup(function(e) {
 			if (e.keyCode == 27 && $('#videoModal').length ) {
-				myPlayer.pause();
+				resetPlayer();
 			};
 		});
 	};
@@ -141,14 +151,19 @@ $(function(){
 		// Stop preview modal play on close
 		$('#previewModal .close').click(function(){
 			$('#previewModal').dialog('close');
-			myPlayer.pause();
+			resetPlayer();
 		});
 		// Stop preview modal play on ESC
 		$(document).keyup(function(e) {
 			if (e.keyCode == 27 && $('#previewModal').length ) { 
-				myPlayer.pause();
+				resetPlayer();
 			};
 		});
+	};
+	
+	function resetPlayer(){
+		myPlayer.pause();
+		myPlayer.currentTime(0);
 	};
 	
 	// Initialize date picker for user date of birth
@@ -164,7 +179,6 @@ $(function(){
   if ( $('.mediaButtons').length ) {
     if ( navigator.userAgent.match(/iPhone|iPod|Android|iPad|Tablet/i) != null ) {
       $('.mediaButtons').hide();
-			$('#assetNav').hide();
 			$('#tabletAlert').show();
     };
   };
