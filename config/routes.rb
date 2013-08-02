@@ -32,6 +32,7 @@ VideoContest::Application.routes.draw do
   match '/rules',             to: 'static_pages#rules'
   match '/information',       to: 'static_pages#information'
   match '/statistics',        to: 'static_pages#statistics'
+  match '/contact',           to: 'static_pages#contact'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

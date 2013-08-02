@@ -6,7 +6,7 @@
       </div>
       <div class="headerInfo" style="width:450px;">
         <h1>Upload Your Video</h1><br>
-				<p></p>
+				<p style="color:#ec520a;">available starting August 5th</p>
       </div>
 	    <button class="close" data-dismiss="modal">&times;</button>
 	    <ul id="categories" style="display:none;margin:0;">
@@ -66,10 +66,10 @@ $(function(){
 				
 				// Show elements on video upload modal
 				show_category($(this).val());
-				if ( $('#file-drop').length && $('#video_title').val().length ) {
-					$('.intro').hide();
-					$('#file-drop').show();
-				};
+				// if ( $('#file-drop').length && $('#video_title').val().length ) {
+				// 	$('.intro').hide();
+				// 	$('#file-drop').show();
+				// };
 	    });
 	    if(button.val() == hidden.val()) {
 	      // Set clicked button to active
@@ -78,12 +78,12 @@ $(function(){
 	  });
 	});
 	
-	$('#video_title').keypress(function(){
-		if ( $('#new_video button.active').length ) {
-			$('.intro').hide();
-			$('#file-drop').show();
-		};
-	});
+	// $('#video_title').keypress(function(){
+	// 	if ( $('#new_video button.active').length ) {
+	// 		$('.intro').hide();
+	// 		$('#file-drop').show();
+	// 	};
+	// });
 	
 	function show_category(category) {
 		$('#categories').show();

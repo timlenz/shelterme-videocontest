@@ -83,30 +83,81 @@ $(function(){
 	    };
 	  });
 	});
-
-	// Show video player modal
+	
+	// Target asset preview
 	$('a.previewLink').click(function(){
+
+		// Open video modal dialog
 		$('#previewModal').dialog('open');
-		var video = $.trim($(this).attr("href"));
-		videojs("#previewPlayer").ready(function(){
-			var myPlayer = this;
-			// myPlayer.src(video);
-			myPlayer.src({ type: "video/mp4", src: video });
+
+		var $source = $.trim($(this).attr("href")); // Find new source movie from clicked tile
+		var $path = "http://smvideocontest.s3.amazonaws.com/assets/videos/";
+		var $poster = $.trim($(this).find('img').attr("src")); // Grab poster jpg from clicked tile
+		var $vid_obj = _V_("previewPlayer");
+
+		// Make sure video is ready
+		$vid_obj.ready(function(){
+
+			// Assign variable to current player
+			myPlayer = this;
+
+			// Hide video UI
+			$('video').hide();
+
+			// Assign source to video object
+			this.src([
+			  { type: "video/mp4", src: $path+$source+".mp4" },
+			  { type: "video/webm", src: $path+$source+".webm" }
+			]);
+
+			// Replace poster jpg
+			$('img.vjs-poster').attr('src', $poster).show();
+
+			// Load new source
+			this.load();
+			$('video').show();
+
 		});
 		return false;
 	});
 	
+	// Target video tile
 	$('.tile-photo a').click(function(){
+
+		// Open video modal dialog
 		$('#videoModal').dialog('open');
-		var video = $.trim($(this).attr("href"));
-		videojs("#videoPlayer").ready(function(){
-			var myPlayer = this;
-			// myPlayer.src(video);
-			myPlayer.src({ type: "video/mp4", src: video });
+
+		var $source = $.trim($(this).attr("href")); // Find new source movie from clicked tile
+		var $path = "http://smvideocontest.s3.amazonaws.com/assets/videos/";
+		var $poster = $.trim($(this).find('img').attr("src")); // Grab poster jpg from clicked tile
+		var $vid_obj = _V_("videoPlayer");
+
+		// Make sure video is ready
+		$vid_obj.ready(function(){
+
+			// Assign variable to current player
+			myPlayer = this;
+
+			// Hide video UI
+			$('video').hide();
+
+			// Assign source to video object
+			this.src([
+			  { type: "video/mp4", src: $path+$source+".mp4" },
+			  { type: "video/webm", src: $path+$source+".webm" }
+			]);
+
+			// Replace poster jpg
+			$('img.vjs-poster').attr('src', $poster).show();
+
+			// Load new source
+			this.load();
+			$('video').show();
+
 		});
 		return false;
 	});
-	
+		
 	$('#previewModal').dialog({
 		autoOpen: false,
     resizable: false,
@@ -128,10 +179,6 @@ $(function(){
 	});
 	
 	if ( $('#videoModal').length ) {
-		// Initialize video player
-		videojs("#videoPlayer").ready(function(){
-		  myPlayer = this;
-		});
 		// Stop video modal play on close
 		$('#videoModal .close').click(function(){
 			$('#videoModal').dialog('close');
@@ -139,7 +186,7 @@ $(function(){
 		});
 		// Stop video modal play on ESC
 		$(document).keyup(function(e) {
-			var keycode = (event.keyCode ? event.keyCode : event.which);	// capture keycode for Firefox
+			var keycode = (e.keyCode ? e.keyCode : e.which);	// capture keycode for Firefox
 			if ( keycode == 27 && $('#videoModal').length ) {
 				resetPlayer();
 			};
@@ -147,10 +194,6 @@ $(function(){
 	};
 	
 	if ( $('#previewModal').length ) {
-		// Initialize video player
-		videojs("#previewPlayer").ready(function(){
-		  myPlayer = this;
-		});
 		// Stop preview modal play on close
 		$('#previewModal .close').click(function(){
 			$('#previewModal').dialog('close');
@@ -158,7 +201,7 @@ $(function(){
 		});
 		// Stop preview modal play on ESC
 		$(document).keyup(function(e) {
-			var keycode = (event.keyCode ? event.keyCode : event.which);	// capture keycode for Firefox
+			var keycode = (e.keyCode ? e.keyCode : e.which);	// capture keycode for Firefox
 			if ( keycode == 27 && $('#previewModal').length ) { 
 				resetPlayer();
 			};
@@ -168,6 +211,8 @@ $(function(){
 	function resetPlayer(){
 		myPlayer.pause();
 		myPlayer.currentTime(0);
+		$('video').hide();
+		$('.vjs-loading-spinner').hide();
 	};
 	
 	// Initialize date picker for user date of birth
