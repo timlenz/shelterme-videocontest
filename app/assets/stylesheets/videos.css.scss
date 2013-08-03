@@ -239,7 +239,7 @@ li.addVideoNav  {
 
 #videoClipsNav, #photosNav, #audioNav, #graphicsNav {
 	.tabbable {
-		margin:0;
+		margin-top:0;
 	}
 	.nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus {
 		color: white;
@@ -261,9 +261,7 @@ li.addVideoNav  {
 	margin-right:5px;
 	margin-top:5px;
 	float:left;
-	background-image: url(logoSmall.png);
-	background-position: center center;
-	background-repeat: no-repeat;
+	background-color: $grayLight;
 	a {
 		text-align: center;
 		font-size: 11px;

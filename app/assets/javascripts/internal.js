@@ -37,6 +37,25 @@ $(function(){
   //   $('#mainContent').scrollTop($('#mainContent').scrollTop() + min_height);
   // });
 
+	// Reposition sidebar if window is too short
+  $(window).scroll(function() {
+		var doc_height = Math.max( $(document).height(), window.innerHeight );	// cross-browser compatibility for Firefox
+		var vert_scroll = Math.max ( $('body').scrollTop(), window.scrollY );	// cross-browser compatibility for Firefox
+		var min_height = $('#sidebar').height() + $('header').height() + $('footer').height() + 15;	// includes sidebar top margin
+    if ( (doc_height - vert_scroll) <= min_height ) {	
+			var new_top = doc_height - $('#sidebar').height() - $('footer').height() - 20;
+      $('#sidebar').removeClass('affix').addClass('affix-bottom').css('top',new_top);
+    } else {
+      $('#sidebar').removeClass('affix-bottom').addClass('affix').css('top','');
+    };
+  });
+
+	// Set sidebar left position (addresses Firefox layout issue)
+	if ( $('#sidebar').length ) {
+		var set_left = ( $(window).width() - $('.container').width() ) / 2;
+		$('#sidebar').css('left',set_left).show();
+	};
+
   // Automatically hide alert dialog after slight delay
   if($('.errorBox').is(':visible')) {
     $('#mainError').delay(3000).fadeOut('slow');
@@ -92,9 +111,7 @@ $(function(){
 
 		var $source = $.trim($(this).attr("href")); // Find new source movie from clicked tile
 		var $path = "http://smvideocontest.s3.amazonaws.com/video/";
-		var $poster = $.trim($(this).find('img').attr("src")); // Grab poster jpg from clicked tile
 		var $vid_obj = _V_("previewPlayer");
-
 		// Make sure video is ready
 		$vid_obj.ready(function(){
 
@@ -111,7 +128,7 @@ $(function(){
 			]);
 
 			// Replace poster jpg
-			$('.vjs-poster').css('background-image', 'url("'+ $poster +'")').show();
+			$('.vjs-poster').css('background-image', 'url('+ $path + $source + '.jpg)').show();
 
 			// Load new source
 			this.load();
@@ -129,7 +146,6 @@ $(function(){
 
 		var $source = $.trim($(this).attr("href")); // Find new source movie from clicked tile
 		var $path = "http://smvideocontest.s3.amazonaws.com/video/";
-		var $poster = $.trim($(this).find('img').attr("src")); // Grab poster jpg from clicked tile
 		var $vid_obj = _V_("videoPlayer");
 
 		// Make sure video is ready
@@ -148,7 +164,7 @@ $(function(){
 			]);
 
 			// Replace poster jpg
-			$('img.vjs-poster').attr('src', $poster).show();
+			$('.vjs-poster').css('background-image', 'url('+ $path + $source + '.jpg)').show();
 
 			// Load new source
 			this.load();

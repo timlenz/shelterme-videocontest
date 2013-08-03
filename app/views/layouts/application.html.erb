@@ -24,17 +24,15 @@
   <%= render 'layouts/header' %>   
   <%= render 'layouts/errors' %>
 	  <div class="container" style="margin-top:40px;">
-		  <div class="row">
-		  	<% unless (params[:controller] == 'videos' and params[:action] == 'index') || 
-				(params[:controller] == 'users' and params[:action] == 'index') ||
-				(params[:controller] == 'static_pages' and params[:action] == 'statistics')%>
-			  <%= render 'static_pages/sidebar' %>
-			  <% end %>
-			
-			  <%= yield %>
-			
-			  <div class="push"></div>
-		  </div>
+	  	<% unless (params[:controller] == 'videos' and params[:action] == 'index') || 
+			(params[:controller] == 'users' and params[:action] == 'index') ||
+			(params[:controller] == 'static_pages' and params[:action] == 'statistics')%>
+		  <%= render 'static_pages/sidebar' %>
+		  <% end %>
+		
+		  <%= yield %>
+		
+		  <div class="push"></div>
 	  </div>
   </div>
   <%= render 'layouts/footer' %> 

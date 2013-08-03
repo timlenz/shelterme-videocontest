@@ -60,6 +60,12 @@ $blueLight: #e4f1f3;
 	top: 1.1em;
 }
 
+@-moz-document url-prefix() { 
+	.vjs-loading-spinner {
+		font-size: 0; /* Hack to hide extraneous spinner in Firefox */
+	}
+}
+
 .vjs-default-skin .vjs-progress-holder, .vjs-default-skin .vjs-progress-holder .vjs-load-progress, .vjs-default-skin .vjs-progress-holder .vjs-play-progress {
 	-moz-border-radius: 0.6em;
 	-webkit-border-radius: 0.6em;
