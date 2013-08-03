@@ -91,7 +91,7 @@ $(function(){
 		$('#previewModal').dialog('open');
 
 		var $source = $.trim($(this).attr("href")); // Find new source movie from clicked tile
-		var $path = "http://smvideocontest.s3.amazonaws.com/assets/videos/";
+		var $path = "http://smvideocontest.s3.amazonaws.com/video/";
 		var $poster = $.trim($(this).find('img').attr("src")); // Grab poster jpg from clicked tile
 		var $vid_obj = _V_("previewPlayer");
 
@@ -111,7 +111,7 @@ $(function(){
 			]);
 
 			// Replace poster jpg
-			$('img.vjs-poster').attr('src', $poster).show();
+			$('.vjs-poster').css('background-image', 'url("'+ $poster +'")').show();
 
 			// Load new source
 			this.load();
@@ -128,7 +128,7 @@ $(function(){
 		$('#videoModal').dialog('open');
 
 		var $source = $.trim($(this).attr("href")); // Find new source movie from clicked tile
-		var $path = "http://smvideocontest.s3.amazonaws.com/assets/videos/";
+		var $path = "http://smvideocontest.s3.amazonaws.com/video/";
 		var $poster = $.trim($(this).find('img').attr("src")); // Grab poster jpg from clicked tile
 		var $vid_obj = _V_("videoPlayer");
 
