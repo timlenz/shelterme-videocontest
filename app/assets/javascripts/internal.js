@@ -48,6 +48,9 @@ $(function(){
     } else {
       $('#sidebar').removeClass('affix-bottom').addClass('affix').css('top','');
     };
+		$('#scroll').text(vert_scroll);
+		$('#height').text(doc_height);
+		$('#top').text(new_top);
   });
 
 	// Set sidebar left position (addresses Firefox layout issue)

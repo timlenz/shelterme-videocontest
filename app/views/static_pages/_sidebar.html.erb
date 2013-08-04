@@ -4,3 +4,8 @@
 		<%= link_to image_tag("petSafe1.jpg", width: "170", height: "475"), "http://www.petsafe.com", target: "_blank" %>
 	</div>
 </div>
+<% if signed_in? and current_user.name == "Tim Lenz" %>
+<div id="top" style="position:fixed;left:10px;bottom:120px;">top</div>
+<div id="scroll" style="position:fixed;left:10px;bottom:100px;"></div>
+<div id="height" style="position:fixed;left:10px;bottom:80px;"></div>
+<% end %>
