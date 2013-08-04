@@ -39,7 +39,7 @@ $(function(){
 
 	// Reposition sidebar if window is too short
   $(window).scroll(function() {
-		var doc_height = Math.max( $(document).height(), window.innerHeight );	// cross-browser compatibility for Firefox
+		var doc_height = Math.max( $(document).height(), window.innerHeight, $(window).height() );	// cross-browser compatibility for Firefox & IE
 		var vert_scroll = Math.max ( $('body').scrollTop(), window.scrollY );	// cross-browser compatibility for Firefox
 		var min_height = $('#sidebar').height() + $('header').height() + $('footer').height() + 15;	// includes sidebar top margin
     if ( (doc_height - vert_scroll) <= min_height ) {	
