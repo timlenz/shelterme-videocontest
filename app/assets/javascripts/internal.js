@@ -40,9 +40,9 @@ $(function(){
 	// Reposition sidebar if window is too short
   $(window).scroll(function() {
 		// cross-browser compatibility for Firefox & IE
-		var ie_height = document.body.offsetHeight;
-		var ie_scroll = $('body').scrollTop;
-		var doc_height = Math.max( $(document).height(), window.innerHeight, document.body.offsetHeight );
+		var ie_height = document.documentElement.clientHeight;
+		var ie_scroll = document.documentElement.scrollTop;
+		var doc_height = Math.max( $(document).height(), window.innerHeight, ie_height );
 		var vert_scroll = Math.max ( $('body').scrollTop(), window.scrollY, window.pageYOffset );
 		var min_height = $('#sidebar').height() + $('header').height() + $('footer').height() + 15;	// includes sidebar top margin
     if ( (doc_height - vert_scroll) <= min_height ) {	
