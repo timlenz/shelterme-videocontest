@@ -40,6 +40,8 @@ $(function(){
 	// Reposition sidebar if window is too short
   $(window).scroll(function() {
 		// cross-browser compatibility for Firefox & IE
+		var ie_height = document.body.offsetHeight;
+		var ie_scroll = $('body').scrollTop;
 		var doc_height = Math.max( $(document).height(), window.innerHeight, document.body.offsetHeight );
 		var vert_scroll = Math.max ( $('body').scrollTop(), window.scrollY, window.pageYOffset );
 		var min_height = $('#sidebar').height() + $('header').height() + $('footer').height() + 15;	// includes sidebar top margin
@@ -50,7 +52,9 @@ $(function(){
       $('#sidebar').removeClass('affix-bottom').addClass('affix').css('top','');
     };
 		$('#scroll').text(vert_scroll);
+		$('#ieScroll').text(ie_scroll);
 		$('#height').text(doc_height);
+		$('#ieHeight').text(ie_height);
 		$('#top').text(new_top);
   });
 
