@@ -12,8 +12,6 @@ $blueLight: #e4f1f3;
       -ms-transition: visibility 0.1s, opacity 0.1s;
        -o-transition: visibility 0.1s, opacity 0.1s;
           transition: visibility 0.1s, opacity 0.1s;
-
-  /* Wait a moment before fading out the control bar */
   -webkit-transition-delay: 0;
      -moz-transition-delay: 0;
       -ms-transition-delay: 0;
@@ -22,25 +20,11 @@ $blueLight: #e4f1f3;
 }
 
 .vjs-default-skin .vjs-big-play-button {
-	display: none;
-	/*border-radius: 54px;
-		width: 100px;
-		height: 100px;
-		top: 50%;
-		left: 50%;
-		margin: -5em auto auto -5.5em;
-		
-		-webkit-transition: border 0.1s, -webkit-box-shadow 0.1s, -webkit-transform 0.1s;
-	     -moz-transition: border 0.1s,    -moz-box-shadow 0.1s,    -moz-transform 0.1s;
-	       -o-transition: border 0.1s,      -o-box-shadow 0.1s,      -o-transform 0.1s;
-	          transition: border 0.1s,         box-shadow 0.1s,         transform 0.1s;*/
+	/*display: none;*/
 }
 
 .vjs-default-skin .vjs-big-play-button:before {
-	display: none;
-	/*font-size: 6em;
-		line-height: 1.7em;
-		text-indent: 10px;*/
+	/*display: none;*/
 }
 
 .vjs-default-skin .vjs-duration, .vjs-time-divider {
@@ -60,9 +44,9 @@ $blueLight: #e4f1f3;
 	top: 1.1em;
 }
 
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {  /* Hack to hide extraneous spinner in Firefox */
 	.vjs-loading-spinner {
-		font-size: 0; /* Hack to hide extraneous spinner in Firefox */
+		font-size: 0;
 	}
 }
 

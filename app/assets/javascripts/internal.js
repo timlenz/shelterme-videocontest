@@ -194,7 +194,7 @@ $(function(){
     modal: true
 	});
 	
-	if ( $('#videoModal').length ) {
+	if ( $('#videoModal').length && typeof myPlayer !== 'undefined' ) {
 		// Stop video modal play on close
 		$('#videoModal .close').click(function(){
 			$('#videoModal').dialog('close');
@@ -209,7 +209,7 @@ $(function(){
 		});
 	};
 	
-	if ( $('#previewModal').length ) {
+	if ( $('#previewModal').length && typeof myPlayer !== 'undefined' ) {
 		// Stop preview modal play on close
 		$('#previewModal .close').click(function(){
 			$('#previewModal').dialog('close');
@@ -230,6 +230,53 @@ $(function(){
 		$('video').hide();
 		$('.vjs-loading-spinner').hide();
 	};
+	
+	// Initialize audio player on click
+	$('.audioPlay').click(function(){
+		
+		$(this).hide();
+		$(this).parent().find('.audioPause').show();
+		
+		var $audio_obj = $(this).parent().find('.jplayer');
+		var $source = $audio_obj.attr("data-media"); // Find new source audio from clicked play button
+		var $path = "http://smvideocontest.s3.amazonaws.com/audio/";
+		var $parentId = '#' + $(this).parents('.audioTrack').attr('id');
+		
+		$audio_obj.jPlayer({
+			ready: function (event) {
+        $(this).jPlayer("setMedia", {
+          mp3: $path+$source+".mp3",
+					oga: $path+$source+".ogg"
+        });
+
+				$audio_obj.bind($.jPlayer.event.play, function() { // Bind an event handler to the instance's play event.
+				  $(this).jPlayer("pauseOthers"); // pause all players except this one.
+					$(this).parents('.tab-pane').find('.trackCurrentTime').removeClass('show');
+					$(this).parents('.audioTrack').find('.trackCurrentTime').addClass('show');
+				});
+
+				$(this).bind($.jPlayer.event.pause, function() {
+		      $(this).parents('.audioTrack').find('.trackCurrentTime').removeClass('show');
+		    });
+		
+				$(this).bind($.jPlayer.event.ended, function() {
+					$(this).parents('.audioTrack').find('.trackCurrentTime').removeClass('show');
+				});
+
+				$(this).jPlayer("play");
+				
+	    },
+	    swfPath: "/",
+	    supplied: "mp3, oga",
+			keyEnabled: true,
+			cssSelectorAncestor: $parentId,
+			cssSelector: {
+			  play: ".audioPlay",
+			  pause: ".audioPause",
+			  currentTime: ".trackCurrentTime .trackTimer"
+			}
+		});
+	});
 	
 	// Initialize date picker for user date of birth
 	$("#user_date_of_birth").datepicker({

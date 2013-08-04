@@ -65,10 +65,10 @@ $(function(){
 				
 				// Show elements on video upload modal
 				show_category($(this).val());
-				// if ( $('#file-drop').length && $('#video_title').val().length ) {
-				// 	$('.intro').hide();
-				// 	$('#file-drop').show();
-				// };
+				if ( $('#file-drop').length && $('#video_title').val().length ) {
+					$('.intro').hide();
+					$('#file-drop').show();
+				};
 	    });
 	    if(button.val() == hidden.val()) {
 	      // Set clicked button to active
@@ -77,12 +77,20 @@ $(function(){
 	  });
 	});
 	
-	// $('#video_title').keypress(function(){
-	// 	if ( $('#new_video button.active').length ) {
-	// 		$('.intro').hide();
-	// 		$('#file-drop').show();
-	// 	};
-	// });
+	$('#video_title').keypress(function(){
+		if ( $('#new_video button.active').length ) {
+			$('.intro').hide();
+			$('#file-drop').show();
+		};
+	});
+	
+	// Close dialog with ESC
+	$(document).keyup(function(e) {
+		var keycode = (e.keyCode ? e.keyCode : e.which);	// capture keycode for Firefox
+		if ( keycode == 27 ) {
+			$('.close').click();
+		};
+	});
 	
 	function show_category(category) {
 		$('#categories').show();

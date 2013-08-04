@@ -30,12 +30,12 @@ $(function(){
 		});
 	};
 	
-	// Hide video controls for non-mobile platforms
-	if ( navigator.userAgent.match(/iPhone|iPod|Android|iPad|Tablet/i) == null && $('#landing').length ) {
-		videojs("#intro").ready(function(){
-		  $('#intro .vjs-control-bar').removeClass('vjs-fade-in').hide();
-		});
-	};
+	// // Hide video controls for non-mobile platforms
+	// if ( navigator.userAgent.match(/iPhone|iPod|Android|iPad|Tablet/i) == null && $('#landing').length ) {
+	// 	videojs("#intro").ready(function(){
+	// 	  $('#intro .vjs-control-bar').removeClass('vjs-fade-in').hide();
+	// 	});
+	// };
 
 	function set_subject(moveY){
 		var window_h = $(window).height();

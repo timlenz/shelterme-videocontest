@@ -1,0 +1,139 @@
+/* MIXINS & VARIABLES */
+
+$grayDark: #333333;
+$grayLightDark: #5e6465;
+$grayDarkish: #999999;
+$grayMediumDark: #c7c7c7;
+$grayMediumLight: #eaeaea;
+$grayMedium: #d9d7d6;
+$grayLight: #f5f3f2;
+$grayLighter: #f1efee;
+$offWhite: #fdfdfd;
+
+$brownGray: #d3cacb;
+$brownDarkest: #722705;
+$brownDark: #853a18;
+$brownMediumDark: #ddd8d5;
+$brownMedium: #d7d0cd;
+$brownMediumLight: #efebe8;
+$brownLight: #f2eeeb;
+$brownLighter: #f4f2f0;
+$brownLightest: #faf9f7;
+
+$orange: #ec520a;
+$orangeDark: #d54509;
+$orangeLight: #f89e4f;
+
+$grayBlue: #3d8aac;
+$blueGray: #e9edee;
+$blueLight: #e4f1f3;
+$blueFade: #c0dce5;
+$blueHilite: #49afcd;
+$aqua: #19a3b1;
+$lightAqua: #71e6f1;
+$darkAqua: #0e5a61;
+$aqua: #1bb3c1;
+$blueSteel: #388cb2;
+
+$burntUmber: #8E190E;
+
+.audioTrack {
+	clear: both;
+	position: relative;
+	width: 550px;
+	height: 26px;
+	margin: 0 auto 15px;
+	padding-bottom: 15px;
+	audio {
+		width: 45px;
+		float: left;
+	}
+	a.downloadLink {
+		top: 5px;
+		right: 0;
+		text-align: center;
+		font-size: 11px;
+		position: absolute;
+		width: 100px;
+		height: 20px;
+		text-transform: lowercase;
+		color: #0e5a61;
+		background: rgb(255, 255, 255) transparent;
+		background-color: rgba(255,255,255,0.8);
+		filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ccffffff', endColorstr='#ccffffff'); /* IE */
+		-webkit-border-radius: 4px;
+	  -moz-border-radius: 4px;
+	  border-radius: 4px;
+		&:hover {
+			background: rgb(14, 90, 97) transparent;
+			background-color: rgba(14,90,97,0.8);
+			filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#cc0E5A61', endColorstr='#cc0E5A61'); /* IE */
+			color: #ffffff;
+		}
+	}
+	.audioControls {
+		float: left;
+		a {
+			text-align: center;
+			display: block;
+			width: 26px;
+			height: 26px;
+			border-radius: 13px;
+			-moz-border-radius: 13px;
+		}
+		i {
+			vertical-align: middle;
+		}
+	}
+	.audioPlay {
+		background-color: $grayDarkish;
+		-webkit-transition: background .3s ease;
+		-moz-transition: background .3s ease;
+		-ms-transition: background .3s ease;
+		-o-transition: background .3s ease;
+		transition: background .3s ease;
+		&:hover {
+			background-color: $darkAqua;
+		}
+	}
+	.audioPause {
+		background-color: $darkAqua;
+	}
+	.trackName {
+		float: left;
+		padding-left: 15px;
+		padding-top: 5px;
+		width: 300px;
+		font-size: 12px;
+		font-weight: bold;
+		color: $grayDark;
+	}
+	.trackLength {
+		float: left;
+		text-align: right;
+		padding-top: 5px;
+		width: 75px;
+		font-size: 12px;
+		color: $grayDarkish;
+		.trackCurrentTime {
+			visibility: hidden;
+			float: left;
+			width: 40px;
+		}
+		.trackTimer {
+			float: left;
+			width: 33px;
+		}
+	}
+}
+
+.show {
+	opacity: 1!important;
+	filter: alpha(opacity=100)!important;
+	visibility: visible!important;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
