@@ -15,7 +15,7 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'active_attr'
 gem 'panda', '~> 1.6.0'
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 # gem 'unicorn'
 
 group :development do
