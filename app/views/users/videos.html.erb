@@ -2,7 +2,13 @@
 <div id="mainContent">
 	<div class="staticContent">
 		<h3>My Videos</h3>
-		
 	</div>
+	<% if @videos.size > 0 %>
+	<%= render partial: "shared/video_tile", collection: @videos, as: :f %>
+  <div class="clearfix"></div>
+  <%= will_paginate @videos %>
+  <% else %>
+  You have not added any videos yet. Create and <%= link_to "upload a video", addvideo_path %>.
+  <% end %>
 </div>
 <div class="clearfix"></div>

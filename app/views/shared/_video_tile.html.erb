@@ -1,22 +1,30 @@
 <div class="video-tile">
   <div class="tile-photo">
-    <%= link_to image_tag("https://s3.amazonaws.com/smvideocontest/assets/videos/PetSafePromo.jpg"), "PetSafePromo" %>
+	  <% if f.panda_video.encodings["thumbnail"].status == "success" && f.h264.status == "success"%>
+    <% link_to image_tag(f.thumbnail.screenshots.first, height: "169"), "#{f.title}" %>
+    <%= image_tag(f.panda_video.encodings["thumbnail"].screenshots.first, height: "169") %>
+    <% else %>
+    <div class="processing">
+	    <p>Processing <%= f.thumbnail.status == "processing" ? "thumbnail..." : "video..." %><br>
+	      Please reload the page in a few minutes.</p>
+    </div>
+    <% end %>
   </div>
   <div class="video-icons">
     <ul>
-      <li><%= render 'shared/icons/category' %></li>
-      <li><%= render 'shared/icons/rank' %></li>
-      <li><%= render 'shared/icons/time' %></li>
-      <li><%= render 'shared/icons/vote' %></li>
-      <li><%= render 'shared/icons/view' %></li>
-      <li><%= render 'shared/icons/share' %></li>
+      <li><%= render 'shared/icons/category', f: f %></li>
+      <li><%= render 'shared/icons/ranking', f: f %></li>
+      <li><%= render 'shared/icons/time', f: f %></li>
+      <li><%= render 'shared/icons/vote', f: f %></li>
+      <li><%= render 'shared/icons/view', f: f %></li>
+      <li><%= render 'shared/icons/share', f: f %></li>
     </ul>
   </div>
   <div class="video-name">
-  	<h1>Sample Video</h1>
+  	<h1><%= f.title %></h1>
   </div>
   <div class="video-info">
-	  <%= link_to "Pet Safe", "#", class: "user_name" %>
-    <span class="user_location">Knoxville, TN</span>
+	  <%= link_to "#{f.user.name}", f.user, class: "user_name" %>
+    <span class="user_location"><%= f.user.city %>, <%= f.user.state %></span>
   </div>
 </div>

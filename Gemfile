@@ -11,6 +11,11 @@ gem 'simple_form', '2.0.2'
 gem 'obscenity'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
+gem 'carrierwave'
+gem 'cloudinary'
+gem 'active_attr'
+gem 'panda', '~> 1.6.0'
+gem 'newrelic_rpm'
 # gem 'unicorn'
 
 group :development do

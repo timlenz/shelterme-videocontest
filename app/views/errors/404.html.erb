@@ -1,0 +1,10 @@
+<div class="focus404">
+  <div class="inner404">
+    <h1>Lost Link</h1>
+		<%= image_tag("badLink.png", id: "badLink")%>
+    <div id="message">
+      <p>Answers to the name of "<%= request.fullpath %>"</p>
+      <p>Please <%= link_to "contact us", contact_path %> with any information.</p>
+    </div>
+  </div>
+</div>

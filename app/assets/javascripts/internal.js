@@ -39,11 +39,25 @@ $(function(){
 
 	// Reposition sidebar if window is too short
   $(window).scroll(function() {
-		// cross-browser compatibility for Firefox & IE
+		// cross-browser compatibility for Firefox & IE - STILL NEEDS IE SUPPORT
+		// var D = document;
+		// 
+		// Math.max(	Math.max(D.body.scrollHeight,    D.documentElement.scrollHeight),
+		// 					Math.max(D.body.offsetHeight, D.documentElement.offsetHeight), 
+		// 					Math.max(D.body.clientHeight, D.documentElement.clientHeight)
+		// );
+		// 
+		// 
+		// Math.max(
+		//         $(document).height(),
+		//         $(window).height(),
+		//         /* For opera: */
+		//         document.documentElement.clientHeight
+		//     );
 		var ie_height = document.documentElement.clientHeight;
-		var ie_scroll = document.documentElement.scrollTop;
+		var ie_scroll = document.documentElement.scrollTop;	// kind of working
 		var doc_height = Math.max( $(document).height(), window.innerHeight, ie_height );
-		var vert_scroll = Math.max ( $('body').scrollTop(), window.scrollY, window.pageYOffset );
+		var vert_scroll = Math.max ( $('body').scrollTop(), window.scrollY, ie_scroll );
 		var min_height = $('#sidebar').height() + $('header').height() + $('footer').height() + 15;	// includes sidebar top margin
     if ( (doc_height - vert_scroll) <= min_height ) {	
 			var new_top = doc_height - $('#sidebar').height() - $('footer').height() - 20;
@@ -202,7 +216,7 @@ $(function(){
     modal: true
 	});
 	
-	if ( $('#videoModal').length && typeof myPlayer !== 'undefined' ) {
+	if ( $('#videoModal').length ) {
 		// Stop video modal play on close
 		$('#videoModal .close').click(function(){
 			$('#videoModal').dialog('close');
@@ -211,13 +225,13 @@ $(function(){
 		// Stop video modal play on ESC
 		$(document).keyup(function(e) {
 			var keycode = (e.keyCode ? e.keyCode : e.which);	// capture keycode for Firefox
-			if ( keycode == 27 && $('#videoModal').length ) {
+			if ( $('#videoModal').length && keycode == 27 ) {
 				resetPlayer();
 			};
 		});
 	};
 	
-	if ( $('#previewModal').length && typeof myPlayer !== 'undefined' ) {
+	if ( $('#previewModal').length && $('#addVideo').length == 0 ) {
 		// Stop preview modal play on close
 		$('#previewModal .close').click(function(){
 			$('#previewModal').dialog('close');
@@ -226,7 +240,7 @@ $(function(){
 		// Stop preview modal play on ESC
 		$(document).keyup(function(e) {
 			var keycode = (e.keyCode ? e.keyCode : e.which);	// capture keycode for Firefox
-			if ( keycode == 27 && $('#previewModal').length ) { 
+			if ( $('#previewModal').length && keycode == 27 ) { 
 				resetPlayer();
 			};
 		});
@@ -302,5 +316,41 @@ $(function(){
 			$('#tabletAlert').show();
     };
   };
+
+	// Show progress bar on upload start
+	$('.cloudinary-fileupload').bind('fileuploadstart', function() {  
+  	$('#loadingPhoto, .handhold').show();
+		$('button.close, .filedrop').hide();
+		$('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data){
+			$('.mediaModal .headerInfo p').text(data.files[0].name);
+			progress = parseInt(data.loaded / data.total * 100, 10);
+			$('.progress .bar').css('width', progress + '%');
+		});
+	  return true;
+	});
+
+	// Show selected avatar photo name
+	$('.cloudinary-fileupload input[type=file]').change(function(){
+		var new_label = escape($('input[type=file]').val()).replace('C%3A%5Cfakepath%5C','');
+		$('.mediaModal .headerInfo p').text("new_label");
+	});
+	
+	// Reset form if photo upload failure
+	$('.cloudinary-fileupload').bind('fail', function() {
+		alert("Upload failed.");
+  	$('#loadingPhoto, .handhold').hide();
+		$('button.close, .filedrop').show();		
+	});
+	
+	// Submit uploaded avatar info to db when uploaded
+	$('#addAvatar .cloudinary-fileupload').bind('fileuploaddone', function() {
+		$('.filedrop input[type=submit]').click();
+	  $.cookie("avatar", "true");
+	});
+  
+  // Explicitly set avatar cookie to false on Save click
+  $('#saveUser, #saveUserAccount').click(function(){
+    $.cookie("avatar", "false");
+  });
 
 });

@@ -3,6 +3,7 @@
     <div class="pageHeader">
       <div class="headerLogo">
         <%= image_tag("videoIcon.png", alt: "Add Video", width: "65", height: "65") %>
+        <p></p>
       </div>
       <div class="headerInfo" style="width:450px;">
         <h1>Upload Your Video</h1><br>
@@ -14,13 +15,13 @@
     </div>
     <div class="form">
       <div class="handhold" style="display:none;text-align:center;margin-bottom:20px;">
-        This page will refresh once your upload is complete. Do not close the browser window.
+        This page will refresh once your upload is complete.<br> Do not close the browser window.
       </div>
       <%= simple_form_for @video, html: {class: 'form-horizontal' } do |f| %>
        <%= render 'shared/error_messages', object: f.object %>
        <%= f.hidden_field :user_id, value: current_user.id %>
        <%= f.input :title, label: "Video Title" %>
-       <div class="btn-group btn-graphic btn-add-video" data-toggle="buttons-radio" data-toggle-name="video[category_id]">
+       <div id="category" class="btn-group btn-graphic btn-add-video" data-toggle="buttons-radio" data-toggle-name="video[category_id]">
          <button type="button" data-toggle="button" class="btn" value="1">Adopt</button>
          <button type="button" data-toggle="button" class="btn" value="2">Volunteer</button>
          <button type="button" data-toggle="button" class="btn" value="3">Donate</button>
@@ -33,23 +34,45 @@
          Please enter a title for your video and<br> select the category for which it should be considered.<br><br>
          Make sure you have included the sponsor clip at the end of your video.<br><br>
          All uploaded videos are subject to the <%= link_to "contest rules", rules_path %>.
-       </div>
-       <div id="file-drop" class="row filedrop" style="display:none;">
+       </div>			
+       <div id="file-drop" class="row filedrop" style="border:none;display:none;">
 			  <span class="btn formBtn fileinput-button" style="width:145px;margin-left:-5px;">
 	        <span>Choose Video</span>
-	        <input type="hidden" name="pet_video[panda_video_id]" id="returned_video_id" />
+	        <input type="hidden" name="video[panda_video_id]" id="returned_video_id" />
 	       </span>
-         <p>Or drop file here</p>
          <%= f.button :submit, "Upload", class: "formBtn" %>
        </div>
-       <div id="upload_progress" class="panda_upload_progress"></div>
      <% end %>
+     <div id="upload_progress" class="panda_upload_progress"></div>
     </div>
   </div>
 </div>
 
 <script>
+
+<% auth_params = Panda.signed_params('post', "/videos.json") %>
+jQuery("#returned_video_id").pandaUploader(<%=raw auth_params.to_json %>, {
+  upload_progress_id: 'upload_progress'
+});
+
 $(function(){
+	
+	// Show selected video name
+	$('input[type=file]').change(function(){
+		var new_label = escape($('input[type=file]').val()).replace('C%3A%5Cfakepath%5C','');
+		$('.mediaModal .headerInfo p').text(new_label);			
+		$('#new_video :submit').click();
+	});
+  
+  // Hide extra video elements during upload
+  $('#new_video :submit').click(function(){
+    $('.form p, .control-group, #file-drop, #category, button.close').hide();
+    $('.handhold').show();
+  });
+  
+  // Reformat progress indicator
+  $('#upload_progress').css({'width':'100%','margin-bottom':'15px','margin-top':'6px'});
+	
 	// Connect graphic buttons with hidden input elements
 	$('div.btn-group[data-toggle-name]').each(function(){
 	  var group   = $(this);
@@ -87,7 +110,7 @@ $(function(){
 	// Close dialog with ESC
 	$(document).keyup(function(e) {
 		var keycode = (e.keyCode ? e.keyCode : e.which);	// capture keycode for Firefox
-		if ( keycode == 27 ) {
+		if ( $('#addVideo').length && keycode == 27 ) {
 			$('.close').click();
 		};
 	});
@@ -116,5 +139,6 @@ $(function(){
     };
 		$('#categories li:first').removeClass().addClass(icon + "Pill").addClass("active");
 	};
+
 });
 </script>

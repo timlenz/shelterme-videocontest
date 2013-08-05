@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   attr_accessible :admin, :avatar, :bio, :email, :phone, :name,
                   :password_digest, :password_reset_sent_at, :password_reset_token, 
                   :remember_token, :slug, :password, :password_confirmation,
-                  :street, :city, :state, :zipcode, :date_of_birth
+                  :street, :city, :state, :zipcode, :date_of_birth, :avatar_cache
   
   require 'obscenity/active_model'
   
@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   validates :phone, presence: true
   
   # profanity_filter :name, :bio, :location
-  # mount_uploader :avatar, AvatarUploader
+  mount_uploader :avatar, AvatarUploader
   
   before_validation :generate_slug, on: :create
   
@@ -63,22 +63,22 @@ class User < ActiveRecord::Base
     slug
   end
   
-  private
-  
-    def send_password_reset
-      generate_token(:password_reset_token)
-      self.password_reset_sent_at = Time.zone.now
-      save!
-      UserMailer.password_reset(self).deliver
-    end
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
 
-    def self.search(search)
-      if search
-        where('name iLIKE ?', "%#{search}%")
-      else
-        scoped
-      end
+  def self.search(search)
+    if search
+      where('name iLIKE ?', "%#{search}%")
+    else
+      scoped
     end
+  end
+  
+  private
     
     def generate_token(column)
       begin

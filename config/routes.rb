@@ -1,5 +1,6 @@
 VideoContest::Application.routes.draw do
   
+  get "messages/new"
   get "password_resets/new"
   get "videos/new"
 
@@ -7,8 +8,11 @@ VideoContest::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
   resources :videos
+  resources :messages, only: [:new, :create]
   
   root to: 'static_pages#home'
+  
+  match "/panda/authorize_upload", :to => "panda#authorize_upload"
   
   match '/addvideo',          to: 'videos#addvideo'
   match '/newvideo',          to: 'videos#new'
@@ -32,7 +36,7 @@ VideoContest::Application.routes.draw do
   match '/rules',             to: 'static_pages#rules'
   match '/information',       to: 'static_pages#information'
   match '/statistics',        to: 'static_pages#statistics'
-  match '/contact',           to: 'static_pages#contact'
+  match '/contact',           to: 'messages#new'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

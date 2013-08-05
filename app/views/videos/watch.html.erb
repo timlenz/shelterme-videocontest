@@ -12,22 +12,58 @@
      </ul>
      <div class="tab-content">
        <div class="tab-pane active" id="new">
+	       <% if @new_videos.size > 0 %>
+         <%= render partial: 'shared/video_tile', collection: @new_videos, as: :f %>
+         <div class="clearfix"></div>
+         <%= will_paginate @new_videos, param_name: 'new_videos' %>
+         <% else %>
 	       No videos have been approved yet. Create and <%= link_to "upload a video", addvideo_path %> to see it here.
+         <% end %>
        </div>
        <div class="tab-pane" id="bestRated">
+	       <% if @rated_videos.size > 0 %>
+         <%= render partial: 'shared/video_tile', collection: @rated_videos, as: :f %>
+         <div class="clearfix"></div>
+         <%= will_paginate @rated_videos, param_name: 'rated_videos' %>
+         <% else %>
 	       No videos have been rated yet.
+         <% end %>
        </div>
        <div class="tab-pane" id="mostVotes">
+	       <% if @voted_videos.size > 0 %>
+         <%= render partial: 'shared/video_tile', collection: @voted_videos, as: :f %>
+         <div class="clearfix"></div>
+         <%= will_paginate @voted_videos, param_name: 'voted_videos' %>
+         <% else %>
 	       No videos have votes yet.
+         <% end %>
        </div>
        <div class="tab-pane" id="mostViews">
+	       <% if @viewed_videos.size > 0 %>
+         <%= render partial: 'shared/video_tile', collection: @viewed_videos, as: :f %>
+         <div class="clearfix"></div>
+         <%= will_paginate @viewed_videos, param_name: 'viewed_videos' %>
+         <% else %>
 	       No videos have been viewed yet.
+         <% end %>
        </div>
        <div class="tab-pane" id="mostShares">  
+	       <% if @shared_videos.size > 0 %>
+         <%= render partial: 'shared/video_tile', collection: @shared_videos, as: :f %>
+         <div class="clearfix"></div>
+         <%= will_paginate @shared_videos, param_name: 'shared_videos' %>
+         <% else %>
 	       No videos have been shared yet.
+         <% end %>
        </div>
        <div class="tab-pane" id="all">
-         <%= render 'shared/video_tile' %>
+	       <% if @videos.size > 0 %>
+         <%= render partial: 'shared/video_tile', collection: @videos, as: :f %>
+         <div class="clearfix"></div>
+         <%= will_paginate @videos, param_name: 'all_videos' %>
+         <% else %>
+         No videos have been approved yet. Create and <%= link_to "upload a video", addvideo_path %> to see it here.
+         <% end %>
        </div>
        <div class="tab-pane" id="winners">
          No videos yet.         
@@ -44,21 +80,21 @@
 	<div class="close">&times;</div>
 	<div class="videoLegend">
 		<div class="video-name">
-	  	<h1>Sample Video</h1>
+	  	<h1></h1>
 	  </div>
 	  <div class="video-info">
-		  <%= link_to "Pet Safe", "#", class: "user_name" %>
-	    <span class="user_location">Knoxville, TN</span>
+		  <%= link_to "", "#", class: "user_name" %>
+	    <span class="user_location"></span>
 	  </div>
 	</div>
 	<div class="video-icons" style="float:right;margin-top:5px;">
 		<ul>
-      <li><%= render 'shared/icons/category' %></li>
-      <li><%= render 'shared/icons/rank' %></li>
-      <li><%= render 'shared/icons/time' %></li>
-      <li><%= render 'shared/icons/vote' %></li>
-      <li><%= render 'shared/icons/view' %></li>
-      <li><%= render 'shared/icons/share' %></li>
+      <li><!--%= render 'shared/icons/category', f: f %></li-->
+      <li><!--%= render 'shared/icons/ranking', f: f %></li-->
+      <li><!--%= render 'shared/icons/time', f: f %></li-->
+      <li><!--%= render 'shared/icons/vote', f: f %></li-->
+      <li><!--%= render 'shared/icons/view', f: f %></li-->
+      <li><!--%= render 'shared/icons/share', f: f %></li-->
     </ul>
 	</div>
 </div>

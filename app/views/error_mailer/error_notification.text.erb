@@ -1,0 +1,19 @@
+<%= @user.name %> has experienced an error on Contest.ShelterMe.com at <%= Time.now.strftime("%I:%M %p on %b %d, %Y") %>.
+
+Page where the error occurred: <%= @page %>
+
+Contact them at <%= @user.email %>.
+
+================
+
+Message:
+
+<%= @exception.message.html_safe %>
+
+================
+
+Trace:
+
+<%= @exception.backtrace.join("\n").html_safe %>
+
+================

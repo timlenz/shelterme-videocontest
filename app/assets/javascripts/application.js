@@ -15,4 +15,8 @@
 //= require jquery-ui
 //= require jquery.jplayer.min
 //= require bootstrap
+//= require jquery.fileupload
+//= require jquery.cloudinary
+//= require jquery.cookie
+//= require jquery.iframe-transport
 //= require_tree .

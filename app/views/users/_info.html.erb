@@ -32,14 +32,14 @@
     </div>
     <div class="form">
       <div class="handhold" style="display:none;text-align:center;margin-bottom:20px;">
-        This page will refresh once your upload is complete. Do not close the browser window.
+        This page will refresh once your upload is complete.<br>Do not close the browser window.
       </div>
 			<%= simple_form_for @user do |f| %>
 			  <div class="row filedrop">
           <div>
             <span class="btn formBtn fileinput-button" style="width:145px;margin-left:20px;">
               <span>Choose Photo</span>
-              <!-- %= f.cl_image_upload(:avatar)  %-->
+              <%= f.cl_image_upload(:avatar)  %>
             </span>
             <p>Or drop file here</p>
             <%= f.button :submit, "Upload", style: "width:1px;" %>

@@ -50,6 +50,21 @@ VideoContest::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  
+  # Established mailer default host
+  config.action_mailer.default_url_options = { host: "contest.shelterme.com" }
+
+  # Configure using Mandrill on Heroku
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.mandrillapp.com',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['MANDRILL_USERNAME'],
+    :password       => ENV['MANDRILL_APIKEY'],
+    :domain         => 'shelterme.com',
+    :enable_starttls_auto => true
+  }
 
   # Enable threaded mode
   # config.threadsafe!

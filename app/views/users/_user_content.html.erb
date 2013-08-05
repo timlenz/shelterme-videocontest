@@ -1,22 +1,62 @@
 <div class="tabbable">
   <ul id="userNav" class="nav nav-pills">
-    <li class="active videosPill"><a href="#myVideos" data-toggle="tab"></a></li>
-    <li class="watchedPill"><a href="#watched" data-toggle="tab"></a></li>
-    <li class="votedPill"><a href="#voted" data-toggle="tab"></a></li>
-    <li class="sharedPill"><a href="#shared" data-toggle="tab"></a></li>
+    <li class="active videosPill">
+	    <a href="#myVideos" data-toggle="tab"></a>
+	    <span class="count"><%= @videos.size > 0 ? @videos.size : '' %></span>
+	  </li>
+    <li class="watchedPill">
+	    <a href="#watched" data-toggle="tab"></a>
+	    <span class="count"><%= @watched.size > 0 ? @watched.size : '' %></span>
+	  </li>
+    <li class="votedPill">
+	    <a href="#voted" data-toggle="tab"></a>
+	    <span class="count"><%= @voted.size > 0 ? @voted.size : '' %></span>
+    </li>
+    <li class="sharedPill">
+	    <a href="#shared" data-toggle="tab"></a>
+	    <span class="count"><%= @shared.size > 0 ? @shared.size : '' %></span>
+	  </li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="myVideos">
-      user videos
+	    <% if @videos.size > 0 %>
+      <%= render partial: "shared/video_tile", collection: @videos, as: :f %>
+      <div class="clearfix"></div>
+      <%= will_paginate @videos, param_name: 'videos_page' %>
+      <% elsif @approved.size > 0 %>
+      <%= render partial: "shared/video_tile", collection: @approved, as: :f %>
+      <div class="clearfix"></div>
+      <%= will_paginate @approved, param_name: 'videos_page' %>
+      <% else %>
+      <p>You have not added any videos. <%= link_to "Add a video", addvideo_path %> today!</p>
+      <% end %>
     </div>
     <div class="tab-pane" id="voted">
-      user votes
+	    <% if @voted.size > 0 %>
+      <%= render partial: "shared/video_tile", collection: @voted, as: :f %>
+      <div class="clearfix"></div>
+      <%= will_paginate @voted, param_name: 'voted_page' %>
+      <% else %>
+      <p>You have not voted for any videos.</p>
+      <% end %>
     </div>
     <div class="tab-pane" id="watched">
-      user views	
+	    <% if @watched.size > 0 %>
+      <%= render partial: "shared/video_tile", collection: @watched, as: :f %>
+      <div class="clearfix"></div>
+      <%= will_paginate @watched, param_name: 'watched_page' %>
+      <% else %>
+      <p>You have not watched any videos. How about <%= link_to "watching some", watch_path %> now?</p>
+      <% end %>
     </div>
     <div class="tab-pane" id="shared">
-      user shares         
+	    <% if @shared.size > 0 %>
+      <%= render partial: "shared/video_tile", collection: @shared, as: :f %>
+      <div class="clearfix"></div>
+      <%= will_paginate @shared, param_name: 'shared_page' %>
+      <% else %>
+      <p>You have not shared any videos.</p>
+      <% end %>
     </div>
   </div>
 </div>

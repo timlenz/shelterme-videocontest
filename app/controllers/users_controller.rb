@@ -7,7 +7,11 @@ class UsersController < ApplicationController
   respond_to :html, :js, only: :update
   
   def show
-
+    @videos = Video.where(user_id: @user.id).paginate(page: params[:videos_page], per_page: 12)
+    @approved = Video.where(user_id: @user.id, approved: true).paginate(page: params[:videos_page], per_page: 12)
+    @watched = []#@user.watched.paginate(page: params[:watched_page], per_page: 12)
+    @voted = []#@user.voted.paginate(page: params[:voted_page], per_page: 12)
+    @shared = []#@user.shared.paginate(page: params[:shared_page], per_page: 12)
   end
   
   def index
@@ -83,7 +87,7 @@ class UsersController < ApplicationController
   
   def videos
     @user = current_user
-    #@videos = Video.where(user_id: @user.id).paginate(page: params[:page], per_page: 12)
+    @videos = Video.where(user_id: @user.id).paginate(page: params[:page], per_page: 12)
   end
   
   private

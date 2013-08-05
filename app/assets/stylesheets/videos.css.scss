@@ -317,14 +317,28 @@ li.addVideoNav  {
     -moz-box-shadow:    0px 0px 8px rgba(0, 85, 128, 0.75);
     box-shadow:         0px 0px 8px rgba(0, 85, 128, 0.75);
   }
+	.processing {
+    text-align: center;
+    padding: 10px;
+		p {
+			font-size: 13px;
+			line-height: 16px;
+			font-weight: bold;
+		}
+	}
 }
 
 .tile-photo {
   width: 300px;
   height: 169px;
+	text-align: center;
+	overflow: hidden;
   -moz-background-attachment: fixed;
   img {
-	  width: 300px;
+	  max-height: 169px;
+		width: auto;
+		max-width: 100%;
+		margin: 0 auto;
   }
   a {
     display: block;
