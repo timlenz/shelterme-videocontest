@@ -19,7 +19,7 @@ User.create!(name:    "Steven Latham",
             zipcode:  "90066",
             bio:      "",
             date_of_birth: "1969-02-08 08:00:00",
-            phone:    "310-729-0528"
+            phone:    "310-729-0528",
             admin:    true)
              
 User.create!(name:    "Tim Lenz",
@@ -32,7 +32,7 @@ User.create!(name:    "Tim Lenz",
             zipcode:  "12571",
             bio:      "",
             date_of_birth: "1969-09-15 07:00:00",
-            phone:    "646-535-9639"
+            phone:    "646-535-9639",
             admin:    true)
 
 ["adopt", "volunteer", "donate", "sterilize", "foster", "wildcard"].each do |elem|
