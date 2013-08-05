@@ -86,6 +86,7 @@ $(function(){
 		
 		$('[id^="intro"], #intro').height(new_vid_h).width(new_vid_w);
 		$('#video').height(new_vid_h).width(new_vid_w).css('top',new_offset).show();
+		$('#intro .vjs-poster').height(new_vid_h).width(new_vid_w);
 	};
 	
 });
