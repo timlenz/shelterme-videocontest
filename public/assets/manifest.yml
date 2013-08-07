@@ -1,4 +1,6 @@
 ---
+PetSafe_ShelterMe.jpg: PetSafe_ShelterMe-03d475950281089f5aea0287797242b0.jpg
+PetSafe_ShelterMe/index.jpg: PetSafe_ShelterMe-03d475950281089f5aea0287797242b0.jpg
 addVideoNav.png: addVideoNav-8637cb5b8921984bc193a6962242e91a.png
 addVideoNav/index.png: addVideoNav-8637cb5b8921984bc193a6962242e91a.png
 badLink.png: badLink-b6bfd496505aa63c0f4e7b82d194c276.png
@@ -11,8 +13,8 @@ blankProfile.png: blankProfile-e01c6c34b2d2d2d16badd150d2b253f7.png
 blankProfile/index.png: blankProfile-e01c6c34b2d2d2d16badd150d2b253f7.png
 categoriesNav.png: categoriesNav-ecf4f56788ac02d910ba2857ce8e2426.png
 categoriesNav/index.png: categoriesNav-ecf4f56788ac02d910ba2857ce8e2426.png
-createAShortVideo2.png: createAShortVideo2-20cb6ddd419a0cff9d53febeb049f5e5.png
-createAShortVideo2/index.png: createAShortVideo2-20cb6ddd419a0cff9d53febeb049f5e5.png
+createAShortVideo3.png: createAShortVideo3-e52f3601eb0f8459c375025d16cc82b6.png
+createAShortVideo3/index.png: createAShortVideo3-e52f3601eb0f8459c375025d16cc82b6.png
 downloadAssets.png: downloadAssets-71e575743ddf1d357006c521f3736574.png
 downloadAssets/index.png: downloadAssets-71e575743ddf1d357006c521f3736574.png
 editProfileIcon.png: editProfileIcon-6006db126065290a43c305e28992c701.png
@@ -37,8 +39,6 @@ logoSmall.png: logoSmall-baefc29f7ace62672e528c40db47964b.png
 logoSmall/index.png: logoSmall-baefc29f7ace62672e528c40db47964b.png
 nav.png: nav-8b7bbbfe01e2c8f94498839d02181679.png
 nav/index.png: nav-8b7bbbfe01e2c8f94498839d02181679.png
-petSafe1.jpg: petSafe1-61a2e9b5d98c4aaee80a0849f7167f98.jpg
-petSafe1/index.jpg: petSafe1-61a2e9b5d98c4aaee80a0849f7167f98.jpg
 petSafeLogoBig.png: petSafeLogoBig-ec4ddf0dd2b1acc9cb3124238a563fef.png
 petSafeLogoBig/index.png: petSafeLogoBig-ec4ddf0dd2b1acc9cb3124238a563fef.png
 petSafeLogoSidebar.png: petSafeLogoSidebar-9ee28601759484e74812f0afe67b1d4f.png
@@ -53,8 +53,8 @@ tempVideoClip.png: tempVideoClip-b44d4d6f971608423d194c208735a64a.png
 tempVideoClip/index.png: tempVideoClip-b44d4d6f971608423d194c208735a64a.png
 tiles.png: tiles-be42f4dd2205a14bc25c39050dfb6e5b.png
 tiles/index.png: tiles-be42f4dd2205a14bc25c39050dfb6e5b.png
-useYourCreativity2.png: useYourCreativity2-95050683fefb5e012dae8cbcfe993bfe.png
-useYourCreativity2/index.png: useYourCreativity2-95050683fefb5e012dae8cbcfe993bfe.png
+useYourCreativity3.png: useYourCreativity3-4b50cb417be4303f7742cec2363adf91.png
+useYourCreativity3/index.png: useYourCreativity3-4b50cb417be4303f7742cec2363adf91.png
 userNav.png: userNav-43586b84bb06cb8ff86e92eb711b8878.png
 userNav/index.png: userNav-43586b84bb06cb8ff86e92eb711b8878.png
 videoIcon.png: videoIcon-86f7794d50668d0a40ed6a90b52752cd.png
@@ -63,10 +63,10 @@ videosNav.png: videosNav-3373dbe5275c6cb3de51db3168f61512.png
 videosNav/index.png: videosNav-3373dbe5275c6cb3de51db3168f61512.png
 welcomeBack.png: welcomeBack-91243b54cd659b11d741f44182916339.png
 welcomeBack/index.png: welcomeBack-91243b54cd659b11d741f44182916339.png
-application.js: application-e4b1ba9ae4ffd1db6fc11cb753bc474f.js
-application/index.js: application-e4b1ba9ae4ffd1db6fc11cb753bc474f.js
-application.css: application-afe9cec00cfb6461df2a1636e3a259eb.css
-application/index.css: application-afe9cec00cfb6461df2a1636e3a259eb.css
+application.js: application-397cb0bd59d1edd1e5ad8a2e30fbc782.js
+application/index.js: application-397cb0bd59d1edd1e5ad8a2e30fbc782.js
+application.css: application-f8e9047c89892888f9f63aef08f9ebfd.css
+application/index.css: application-f8e9047c89892888f9f63aef08f9ebfd.css
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-7d1197a52442bc56fcad60d0390f4b32.png
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100/index.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-7d1197a52442bc56fcad60d0390f4b32.png
 jquery-ui/ui-bg_flat_75_ffffff_40x100.png: jquery-ui/ui-bg_flat_75_ffffff_40x100-3c4b974defa5e8bdaf8a603034c4435e.png

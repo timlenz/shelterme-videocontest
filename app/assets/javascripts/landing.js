@@ -1,7 +1,12 @@
 $(function(){
 	
 	if ( $('#landing').length ) {
-		set_camera();	// Get dimensions of window and resize #content div
+		var $vid_obj = _V_("intro");
+		// Make sure video is ready
+		$vid_obj.ready(function(){
+			set_camera();	// Get dimensions of window and resize #content div
+		});
+		
 		$(window).resize(function() {
 			set_camera();
 		});
@@ -85,8 +90,8 @@ $(function(){
 		};	
 		
 		$('[id^="intro"], #intro').height(new_vid_h).width(new_vid_w);
-		$('#video').height(new_vid_h).width(new_vid_w).css('top',new_offset).show();
 		$('#intro .vjs-poster').height(new_vid_h).width(new_vid_w);
+		$('#video').height(new_vid_h).width(new_vid_w).css('top',new_offset).show();
 	};
 	
 });

@@ -13,9 +13,9 @@
           <%= f.input :city %>
           <%= f.input :state %>
           <%= f.input :zipcode, label: "ZIP code" %>
-          <%= f.input :email, label: "Your Email", hint: "Used to sign in and to contact winners" %>
-          <%= f.input :phone %>
           <%= f.input :date_of_birth, as: :string, label: "Birthdate", hint: "You must be 18 to enter" %>
+          <%= f.input :phone %>
+          <%= f.input :email, label: "Your Email", hint: "Used to sign in and to contact winners" %>
           <%= f.input :password, required: true, label: "Choose Password", hint: "Must be at least six characters" %>
           <%= f.input :password_confirmation, label: "Re-enter Password" %>
           <%= f.submit "Enter", class: "btn btn-header", style: "width:120px;" %>
