@@ -1,6 +1,25 @@
 <%= provide(:title, 'All Videos') %>
-<div class="staticContent" style="margin-top: 20px;">
-	<h3>All Videos</h3>
-	<%= render partial: 'shared/video_tile', collection: @videos, as: :f %>
+<div class="adminContent">
+	<div class="profile-section">
+		<div class="pageHeader">
+			<div class="headerInfo">
+		    <h1><%= @videos.size %> <%= "Video".pluralize(@videos.size) %></h1>
+		  </div>	
+	    <div class="searchButton" style="width:370px;">
+	      <%= form_tag videos_path, :method => 'get', id: "videos_search", style: "margin:0 auto;width:360px;", remote: true do %>
+          <div class="btn-group three-btn btn-graphic btn-two-column" data-toggle="buttons-radio" data-toggle-name="search">
+            <button type="button" data-toggle="button" class="btn" value="true">Approved</button>
+            <button type="button" data-toggle="button" class="btn" value="false">Unapproved</button>
+            <button type="button" data-toggle="button" class="btn" value="all">All Videos</button>
+          </div>
+			    <%= hidden_field_tag :search, params[:search], value: 'all' %>
+			    <%= submit_tag "Save", :name => nil, style: "display:none;" %>
+        <% end %>
+	    </div>
+		</div>
+	  <div id="videos" class="row">
+	    <%= render 'videos' %>
+	  </div>
+	</div>
 </div>
 <div class="clearfix"></div>

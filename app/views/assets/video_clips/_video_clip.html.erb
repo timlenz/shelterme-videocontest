@@ -1,0 +1,5 @@
+<div class="videoClip">
+	<%= image_tag("http://smvideocontest.s3.amazonaws.com/video/#{f}.jpg", width: "170", height: "96")%>
+  <%= link_to "preview", "#{f}", class: "previewLink" %>
+  <%= link_to "download", "http://smvideocontest.s3.amazonaws.com/video/#{f}.zip", class: "downloadLink" %>
+</div>

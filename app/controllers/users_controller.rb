@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :correct_user, only: [:edit, :update]
   before_filter :find_user, only: [:show, :destroy]
     
-  respond_to :html, :js, only: :update
+  respond_to :html, :js, only: [:update, :index]
   
   def show
     @videos = Video.where(user_id: @user.id).paginate(page: params[:videos_page], per_page: 12)
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    if signed_in? && current_user.admin?
+    if current_user.admin?
       @users = User.search(params[:search]).paginate(page: params[:page])
     else
       redirect_to root_path

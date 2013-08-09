@@ -9,6 +9,18 @@
 	      Please reload the page in a few minutes.</p>
     </div>
     <% end %>
+		<% if f.created_at >= 1.week.ago %>
+    <div class="videoTile newIcon"></div>
+	  <% end %>
+	  <% if params[:controller] == 'videos' and params[:action] == 'index' %>
+	  <div class="adminApproval">
+	  	 <% if f.approved == false %>
+        <%= render 'approve', f: f %>
+      <% else %>
+        <%= render 'unapprove', f: f %>
+      <% end %>
+	  </div>
+	  <% end %>
   </div>
   <div class="video-icons">
     <ul>

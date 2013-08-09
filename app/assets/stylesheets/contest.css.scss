@@ -162,6 +162,48 @@ body {
 	min-height: 630px;
 }
 
+.adminContent {
+	margin: 15px 0 25px 0;
+	width: 100%;
+	.btn-two-column {
+	  margin: 0 auto;
+	  width: 349px;
+	}
+  .three-btn {
+    .btn {
+      width: 117px;
+    }
+  }
+}
+
+.searchButton {
+  float: right;
+  width: 430px;
+  padding: 10px;
+  margin: 10px 0 0 0;
+  @include small-border-radius;
+  background-color: $blueFade;
+  label {
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+    margin-top: 6px;
+    font-weight: bold;
+		font-size: 14px;
+  }
+  form {
+    margin: 0;
+  }
+  .smallField {
+    float: left;
+    margin-top: 1px;
+    line-height: 1;
+    padding: 5px;
+    margin-bottom: 0;
+    width: 160px;
+  }
+}
+
 #floater {
   position: fixed;
   bottom: 0;
@@ -1904,7 +1946,6 @@ input[type="checkbox"] {
 		width: 87px;
 		padding-left:4px;
 		padding-right:4px;
-		font-size: 12px;
 		font-weight: bold;
     color: $grayLightDark;
     text-shadow: none;
@@ -2032,5 +2073,269 @@ input[type="checkbox"] {
 	p {
 		color: black;
 		font-weight: bold;
+	}
+}
+
+/* ADMIN VIEW ALL */
+
+.adminView {
+  table {
+    border: 1px solid $grayMediumLight;
+    margin: 0 0 -1px 10px;
+    width: 920px;
+    th {
+      text-align: center;
+      background-color: $grayLight;
+    }
+  }
+  ul {
+    list-style: none;
+    padding-right: 10px;
+    margin-left: 10px;
+  }
+  li {
+    margin-bottom: -1px;
+    border: 1px solid $grayMediumLight;
+		&:nth-child(even) {
+			background-color: #f5f3f2;
+		}
+  }
+  .pagination {
+    margin-left: 0;
+  }
+}
+
+.pagination {
+  margin: 20px 0 0 0;
+	height: 36px;
+	.previous_page, .current, a, .gap, .next_page {
+		float: left;
+		padding: 0 14px;
+		line-height: 34px;
+		text-decoration: none;
+		background-color: transparent;
+		font-weight: bold;
+		border: 1px solid #ddd;
+	}
+	.previous_page {
+		border-right-width: 0;
+		-webkit-border-radius: 3px 0 0 3px;
+		-moz-border-radius: 3px 0 0 3px;
+		border-radius: 3px 0 0 3px;
+		margin-bottom: -1px;
+	}
+	.current {
+		border-right-width: 0;
+		background-color: #f5f5f5;
+		color: #999;
+	}
+	a {
+		border-right-width: 0;
+	}
+	.gap {
+		border-top-width: 0;
+		border-bottom-width: 0;
+		border-right-width: 0;
+	}
+	.next_page {
+		-webkit-border-radius: 0 3px 3px 0;
+		-moz-border-radius: 0 3px 3px 0;
+		border-radius: 0 3px 3px 0;
+		margin-bottom: -1px;
+	}	
+	.disabled {
+		color: #999;
+		cursor: default;
+	}
+}
+
+.subAdmin {
+  padding: 0;
+  table {
+    border: none;
+    margin: 0;
+    padding: 0;
+    .adminId {
+      width: 52px;
+      text-align: center;
+    }
+    .adminAdded {
+      width: 120px;
+      text-align: center;
+    }  
+    .adminSpark {
+      width: 101px;
+      text-align: center;
+    }
+    .sparklines {
+      height: 20px;
+      margin-right: 6px;
+    }
+    .adminDelete {
+      float: right;
+      width: 50px;
+      text-align: center;
+    }
+    .adminCode, .adminFollowers {
+      width: 82px;
+      text-align: center;
+    }
+    .adminShelter {
+      width: 330px;
+      padding-left: 10px;
+    }
+    .managedName {
+      width: 210px;
+			a {
+				line-height: 38px;
+			}
+    }
+		.adminName {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			-o-text-overflow: ellipsis;
+		}
+    .managedStatus {
+      width: 310px;
+    }
+    .managedDelete {
+      width: 50px;
+      text-align: center;
+      margin: 10px 10px 10px 0;
+      padding-left:0;
+    }
+		.adminStateChange {
+			width: 560px;
+			margin: 0 auto 5px;
+		}
+  }
+  form {
+    margin: 0 0 8px 0;
+  }
+  .btn-group {
+    margin:0;
+  }
+  .hiddenBtn {
+    display: none;
+  }
+	.veteranAdmin {
+		color: white;
+		font-weight: bold;
+		background-color: #e34831;
+	}
+	.middleAdmin {		
+		color: white;
+		font-weight: bold;
+		background-color: #faac3d;
+	}
+	.newAdmin {
+		color: white;
+		font-weight: bold;
+		background-color: #97c95a;
+	}
+}
+
+th {
+  .asc {
+    border-bottom: 3px solid $grayBlue;
+    padding-bottom: 3px;
+  }
+  .desc {
+    border-top: 3px solid $grayBlue;
+    padding-top: 3px;
+  }
+}
+
+.adminColumn {
+  float: left;
+  margin-top: 20px;
+  margin-right: 9px;
+  width: 278px;
+  min-height: 450px;
+  padding: 10px;
+  border: 1px solid $grayMedium;
+  @include small-border-radius;
+  h2 {
+    img {
+      margin-right: 10px;
+    }
+    color: black;
+    text-transform: none;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0 0 10px 0;
+    letter-spacing: 1;
+    padding-bottom: 10px;
+    border-bottom: solid 1px $grayDark;
+  }
+  h3 {
+    display: inline;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 16px;
+		span {
+			float: right;
+		}
+  }
+  .sparklines {
+    height: 20px;
+    margin-right: 6px;
+  }
+  ul {
+    width: 268px;
+	  li {
+	    font-size: 16px;
+	    padding: 10px 0;
+	    border: none;
+	    border-bottom: solid 1px $grayMedium;
+	  }
+  }
+	ol {
+		li {
+			font-size: 14px;
+			border:none;
+			padding: 0;
+			clear: both;
+			span {
+				float: right;
+			}
+		}
+	}
+}
+
+.adminPhoto {
+	float: left;
+	position: relative;
+	width: 60px;
+	height: 40px;
+	padding-right: 6px;
+	a {
+		width: 100%;
+		height: 100%;
+		display: block;
+		background: $grayMedium;
+	}
+	.corner {
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		top: 0;
+		right: 6px;
+		z-index: 4;
+	}
+	img {
+		vertical-align: top;
+	}
+}
+
+.adminApproval {
+	width: 150px;
+	height: 40px;
+	position: absolute;
+	top: 8px;
+	left: 75px;
+	input {
+		width: 100%;
 	}
 }

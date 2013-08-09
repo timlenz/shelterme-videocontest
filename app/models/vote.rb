@@ -11,5 +11,11 @@
 #
 
 class Vote < ActiveRecord::Base
-  attr_accessible :user_id, :value, :video_id
+  attr_accessible :user_id, :video_id
+
+  belongs_to :user
+  belongs_to :video
+
+  validates :user_id, presence: true
+  validates :video_id, presence: true
 end

@@ -1,0 +1,4 @@
+<%= simple_form_for(f, remote: true) do |p| %>
+  <%= p.hidden_field :approved, label: false, value: true %>
+  <%= p.button :submit, "Unapproved", class: "btn btn-header btn-follow" %>
+<% end %>

@@ -19,6 +19,10 @@
 class Video < ActiveRecord::Base
   attr_accessible :user_id, :category_id, :title, :approved, :length, :panda_video_id,
                   :views_count, :shares_count, :votes_count
+    
+  has_many :shares
+  has_many :views
+  has_many :votes
   
   belongs_to :user
   belongs_to :category
@@ -50,5 +54,13 @@ class Video < ActiveRecord::Base
   
   def ranking  # Return a value of 1 through 4 depending upon the overall rating of a video
     ranking = 1
+  end
+  
+  def self.search(search)
+    if search && search != 'all'
+      where(approved: search)
+    else
+      scoped
+    end
   end
 end

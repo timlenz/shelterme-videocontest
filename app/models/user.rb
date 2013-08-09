@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
   
   has_secure_password
   has_many :videos
+  has_many :shares
+  has_many :views
+  has_many :votes
+  
   before_save { |user| user.email = email.downcase }
   before_save { generate_token(:remember_token) }
     

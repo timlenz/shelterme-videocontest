@@ -117,6 +117,13 @@ $(function(){
 	    button.on('click', function(){
 	      current_value = hidden.val();
 				hidden.val($(this).val());
+				
+				// Submit All Video search by approval state on click
+			  if ( $('#videos_search').length ) {
+				  var $submit = form.find('input[name="search"]')
+			    $.get($submit.action, $($submit).serialize(), null, 'script');
+			    return false;
+			  };
 	    });
 	    if(button.val() == hidden.val()) {
 	      // Set clicked button to active

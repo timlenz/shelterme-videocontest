@@ -1,5 +1,21 @@
 <%= provide(:title, 'All Users') %>
-<div class="staticContent">
-	<h3>All Users</h3>
+<div class="adminContent">
+	<div class="profile-section">
+		<div class="pageHeader">
+			<div class="headerInfo">
+		    <h1><%= @users.size %> Users</h1>
+		  </div>	
+	    <div class="searchButton">
+	      <%= form_tag users_path, :method => 'get', id: "users_search", remote: true do %>
+	        <%= label_tag :search, "Enter user name" %>
+	        <%= text_field_tag :search, params[:search], class: "smallField" %>
+	        <%= submit_tag "Search", :name => nil, class: "btn btn-header", style: "width:115px;" %>
+	      <% end %>
+	    </div>
+		</div>
+	  <div id="users" class="row">
+	    <%= render 'users' %>
+	  </div>
+	</div>
 </div>
 <div class="clearfix"></div>

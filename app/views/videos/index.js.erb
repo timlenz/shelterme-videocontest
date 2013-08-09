@@ -1,0 +1,36 @@
+$('#videos').html('<%= j render("videos") %>');
+
+// Connect graphic buttons with hidden input elements
+$('div.btn-group[data-toggle-name]').each(function(){
+  var group   = $(this);
+  var form    = group.parents('form').eq(0);
+  var name    = group.attr('data-toggle-name');
+  var hidden  = $('input[name="' + name + '"]', form);
+  var current_value;
+  $('button', group).each(function(){
+    var button = $(this);
+    if(button.val() == hidden.val()) {
+      // Set clicked button to active
+      button.addClass('active');
+    } else {
+			button.removeClass('active');
+		};
+  });
+});
+
+// Hide tiles once they've been approved or unapproved, depending on currently selected page filter
+if ( $('#videos_search .active').val() == 'false' ) {
+	$('.video-tile').each(function(){
+		var tile = $(this);
+		if ( $(this).find('input[name="commit"]').val() == 'Approved' ) {
+			tile.hide();
+		}
+	});
+} else if ( $('#videos_search .active').val() == 'true' ) {
+	$('.video-tile').each(function(){
+		var tile = $(this);
+		if ( $(this).find('input[name="commit"]').val() == 'Unapproved' ) {
+			tile.hide();
+		}
+	});
+};
