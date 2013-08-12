@@ -27,7 +27,7 @@
       <%= render partial: "shared/video_tile", collection: @approved, as: :f %>
       <div class="clearfix"></div>
       <%= will_paginate @approved, param_name: 'videos_page' %>
-      <% else %>
+      <% elsif current_user == @user %>
       <p>You have not added any videos. <%= link_to "Add a video", addvideo_path %> today!</p>
       <% end %>
     </div>
@@ -36,7 +36,7 @@
       <%= render partial: "shared/video_tile", collection: @voted, as: :f %>
       <div class="clearfix"></div>
       <%= will_paginate @voted, param_name: 'voted_page' %>
-      <% else %>
+      <% elsif current_user == @user %>
       <p>You have not voted for any videos.</p>
       <% end %>
     </div>
@@ -45,7 +45,7 @@
       <%= render partial: "shared/video_tile", collection: @watched, as: :f %>
       <div class="clearfix"></div>
       <%= will_paginate @watched, param_name: 'watched_page' %>
-      <% else %>
+      <% elsif current_user == @user %>
       <p>You have not watched any videos. How about <%= link_to "watching some", watch_path %> now?</p>
       <% end %>
     </div>
@@ -54,9 +54,11 @@
       <%= render partial: "shared/video_tile", collection: @shared, as: :f %>
       <div class="clearfix"></div>
       <%= will_paginate @shared, param_name: 'shared_page' %>
-      <% else %>
+      <% elsif current_user == @user %>
       <p>You have not shared any videos.</p>
       <% end %>
     </div>
   </div>
 </div>
+<%= render 'videos/video_modal' %>
+<div class="clearfix"></div>

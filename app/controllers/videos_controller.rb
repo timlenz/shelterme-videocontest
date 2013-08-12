@@ -3,6 +3,8 @@ class VideosController < ApplicationController
   
   respond_to :html, :js, only: [:update, :index]
   
+  respond_to :json, only: :show
+  
   def new
     @user = current_user
     @video = Video.new(user_id: @user.id)
@@ -54,6 +56,13 @@ class VideosController < ApplicationController
     redirect_to :back
   end
   
+  def show
+    @video = Video.find(params[:id])
+    respond_with do |format|
+      format.json { render :json => @video }
+    end
+  end
+  
   def destroy
     @video = Video.find(params[:id])
     Panda::Video.delete(@video.panda_video_id)
@@ -84,7 +93,7 @@ class VideosController < ApplicationController
     @new_videos = Video.where(created_at: 7.days.ago.utc...Time.now.utc, approved: true).paginate(page: params[:new_videos], per_page: 12)
     @rated_videos = []#Video.rated.paginate(page: params[:rated_videos], per_page: 12)
     @voted_videos = []#Video.voted.paginate(page: params[:voted_videos], per_page: 12)
-    @viewed_videos = []#Video.all.sort_by{|e| -e[:views_count]}.paginate(page: params[:viewed_videos], per_page: 12)
+    @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).paginate(page: params[:played_videos], per_page: 12)
     @shared_videos = []#Video.all.sort_by{|e| -e[:shares_count]}.paginate(page: params[:shared_videos], per_page: 12)
   end
 end

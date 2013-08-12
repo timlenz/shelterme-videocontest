@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: views
+# Table name: plays
 #
 #  id         :integer         not null, primary key
 #  video_id   :integer
@@ -11,6 +11,6 @@
 
 require 'spec_helper'
 
-describe View do
+describe Play do
   pending "add some examples to (or delete) #{__FILE__}"
 end

@@ -11,10 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805143852) do
+ActiveRecord::Schema.define(:version => 20130810161909) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "plays", :force => true do |t|
+    t.integer  "video_id"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -54,18 +61,11 @@ ActiveRecord::Schema.define(:version => 20130805143852) do
     t.integer  "category_id"
     t.boolean  "approved",       :default => false
     t.float    "length"
-    t.integer  "views_count",    :default => 0,     :null => false
+    t.integer  "plays_count",    :default => 0,     :null => false
     t.integer  "shares_count",   :default => 0,     :null => false
     t.integer  "votes_count",    :default => 0,     :null => false
     t.string   "title"
     t.string   "panda_video_id"
-  end
-
-  create_table "views", :force => true do |t|
-    t.integer  "video_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "votes", :force => true do |t|

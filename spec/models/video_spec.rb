@@ -9,7 +9,7 @@
 #  category_id    :integer
 #  approved       :boolean         default(FALSE)
 #  length         :float
-#  views_count    :integer         default(0), not null
+#  plays_count    :integer         default(0), not null
 #  shares_count   :integer         default(0), not null
 #  votes_count    :integer         default(0), not null
 #  title          :string(255)

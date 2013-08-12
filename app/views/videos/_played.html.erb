@@ -1,0 +1,11 @@
+<% if signed_in? %>
+<%= form_for(current_user.plays.build(video_id: ''), remote: true) do |f| %>
+  <div><%= f.hidden_field :video_id %></div>
+  <%= f.submit "Played", class: "btn btn-header btn-follow" %>
+<% end %>
+<% else %>
+<%= form_for(null_user.plays.build(video_id: ''), remote: true) do |f| %>
+  <div><%= f.hidden_field :video_id %></div>
+  <%= f.submit "Played", class: "btn btn-header btn-follow" %>
+<% end %>
+<% end %>

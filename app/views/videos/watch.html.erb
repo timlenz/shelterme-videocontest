@@ -4,7 +4,7 @@
      <ul id="watchVideos" class="nav nav-pills">
        <!--li class="active winnersPill"><a href="#winners" data-toggle="tab"></a></li-->
        <li class="newVideosPill active"><a href="#new" data-toggle="tab"></a></li>
-       <li class="mostViewsPill"><a href="#mostViews" data-toggle="tab"></a></li>
+       <li class="mostPlaysPill"><a href="#mostPlays" data-toggle="tab"></a></li>
        <li class="mostVotesPill"><a href="#mostVotes" data-toggle="tab"></a></li>
        <li class="mostSharesPill"><a href="#mostShares" data-toggle="tab"></a></li>
        <li class="bestRatedPill"><a href="#bestRated" data-toggle="tab"></a></li>
@@ -38,11 +38,11 @@
 	       No videos have votes yet.
          <% end %>
        </div>
-       <div class="tab-pane" id="mostViews">
-	       <% if @viewed_videos.size > 0 %>
-         <%= render partial: 'shared/video_tile', collection: @viewed_videos, as: :f %>
+       <div class="tab-pane" id="mostPlays">
+	       <% if @played_videos.size > 0 %>
+         <%= render partial: 'shared/video_tile', collection: @played_videos.sort! { |a,b| b.plays_count <=> a.plays_count }, as: :f %>
          <div class="clearfix"></div>
-         <%= will_paginate @viewed_videos, param_name: 'viewed_videos' %>
+         <%= will_paginate @played_videos, param_name: 'played_videos' %>
          <% else %>
 	       No videos have been viewed yet.
          <% end %>
@@ -71,31 +71,5 @@
      </div>
    </div>
 </div>
-<div id="videoModal">
-	<video id="videoPlayer" width="720" height="405" class="video-js vjs-default-skin active"
-	  controls autoplay preload="auto" data-setup='{}'>
-    <source src="" type="video/mp4" />
-	  <source src="" type="video/webm" />
-  </video>
-	<div class="close">&times;</div>
-	<div class="videoLegend">
-		<div class="video-name">
-	  	<h1></h1>
-	  </div>
-	  <div class="video-info">
-		  <%= link_to "", "#", class: "user_name" %>
-	    <span class="user_location"></span>
-	  </div>
-	</div>
-	<div class="video-icons" style="float:right;margin-top:5px;">
-		<ul>
-      <li><!--%= render 'shared/icons/category', f: f %></li-->
-      <li><!--%= render 'shared/icons/ranking', f: f %></li-->
-      <li><!--%= render 'shared/icons/time', f: f %></li-->
-      <li><!--%= render 'shared/icons/vote', f: f %></li-->
-      <li><!--%= render 'shared/icons/view', f: f %></li-->
-      <li><!--%= render 'shared/icons/share', f: f %></li-->
-    </ul>
-	</div>
-</div>
+<%= render 'videos/video_modal' %>
 <div class="clearfix"></div>

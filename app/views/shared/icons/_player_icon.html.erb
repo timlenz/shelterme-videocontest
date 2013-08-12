@@ -1,0 +1,8 @@
+<div class="icon">
+  <%= link_to "", "#", class: "#{ n == 4 ? 'videoTile playsIcon' : ( n == 5 ? 'videoTile sharesIcon' : '')}", rel: "tooltip", title: "" %>
+  <% if n == 4 %>
+  <span class="plays"></span>
+  <% elsif n == 5 %>
+  <span class="shares"></span>
+  <% end %>
+</div>

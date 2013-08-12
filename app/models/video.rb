@@ -9,7 +9,7 @@
 #  category_id    :integer
 #  approved       :boolean         default(FALSE)
 #  length         :float
-#  views_count    :integer         default(0), not null
+#  plays_count    :integer         default(0), not null
 #  shares_count   :integer         default(0), not null
 #  votes_count    :integer         default(0), not null
 #  title          :string(255)
@@ -18,10 +18,10 @@
 
 class Video < ActiveRecord::Base
   attr_accessible :user_id, :category_id, :title, :approved, :length, :panda_video_id,
-                  :views_count, :shares_count, :votes_count
+                  :plays_count, :shares_count, :votes_count
     
   has_many :shares
-  has_many :views
+  has_many :plays
   has_many :votes
   
   belongs_to :user
@@ -46,6 +46,10 @@ class Video < ActiveRecord::Base
   
   def h264
     @h264 = @panda_video.encodings["h264"]
+  end
+  
+  def webm
+    @webm = @panda_video.encodings["webm"]
   end
   
   def thumbnail

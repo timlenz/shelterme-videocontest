@@ -1,5 +1,8 @@
 VideoContest::Application.routes.draw do
   
+  get "votes/new"
+  get "shares/new"
+  get "plays/new"
   get "messages/new"
   get "password_resets/new"
   get "videos/new"
@@ -9,6 +12,9 @@ VideoContest::Application.routes.draw do
   resources :password_resets
   resources :videos
   resources :messages, only: [:new, :create]
+  resources :plays, only: :create
+  resources :shares, only: :create
+  resources :votes, only: :create
   
   root to: 'static_pages#home'
   

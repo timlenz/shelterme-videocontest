@@ -1,26 +1,32 @@
-<div class="video-tile">
+<div class="video-tile" data-video-id="<%= f.id %>">
   <div class="tile-photo">
-	  <% if f.panda_video.encodings["thumbnail"].status == "success" && f.h264.status == "success"%>
-    <% link_to image_tag(f.thumbnail.screenshots.first, height: "169"), "#{f.title}" %>
-    <%= image_tag(f.panda_video.encodings["thumbnail"].screenshots.first, height: "169") %>
+	<% if f.panda_video.encodings["thumbnail"].status == "success" && f.h264.status == "success" && f.webm.status == "success" %>
+	  <% if f.approved == true || (signed_in? && current_user.admin?) %>
+    <%= link_to image_tag(f.thumbnail.screenshots.first, height: "169"), "#", class: "video_link", data: {mp4: "#{f.h264.url}", webm: "#{f.webm.url}"} %>
     <% else %>
+    <div class="comingSoon">
+	  	<p>You can watch this video once it is <%= link_to "approved", "/rules#requirements" %>.</p>
+	  </div>
+	  <%= image_tag(f.thumbnail.screenshots.first, height: "169") %>
+    <% end %>
+  <% else %>
     <div class="processing">
 	    <p>Processing <%= f.thumbnail.status == "processing" ? "thumbnail..." : "video..." %><br>
 	      Please reload the page in a few minutes.</p>
     </div>
-    <% end %>
-		<% if f.created_at >= 1.week.ago %>
+  <% end %>
+  <% if f.created_at >= 1.week.ago %>
     <div class="videoTile newIcon"></div>
-	  <% end %>
-	  <% if params[:controller] == 'videos' and params[:action] == 'index' %>
+	<% end %>
+	<% if params[:controller] == 'videos' and params[:action] == 'index' %>
 	  <div class="adminApproval">
-	  	 <% if f.approved == false %>
-        <%= render 'approve', f: f %>
-      <% else %>
-        <%= render 'unapprove', f: f %>
-      <% end %>
+	  <% if f.approved == false %>
+      <%= render 'approve', f: f %>
+    <% else %>
+      <%= render 'unapprove', f: f %>
+    <% end %>
 	  </div>
-	  <% end %>
+  <% end %>
   </div>
   <div class="video-icons">
     <ul>
@@ -28,7 +34,7 @@
       <li><%= render 'shared/icons/ranking', f: f %></li>
       <li><%= render 'shared/icons/time', f: f %></li>
       <li><%= render 'shared/icons/vote', f: f %></li>
-      <li><%= render 'shared/icons/view', f: f %></li>
+      <li><%= render 'shared/icons/play', f: f %></li>
       <li><%= render 'shared/icons/share', f: f %></li>
     </ul>
   </div>

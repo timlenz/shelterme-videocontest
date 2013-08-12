@@ -1,0 +1,11 @@
+$('#play_video_id').val('');
+
+// Find current video tile and its plays icon and update the value for plays_count
+var $video_id = $.cookie("video_id");
+// var $old_count = parseInt($('*[data-video-id="'+$video_id+'"]:first').find('.plays').text(), 10);
+// $('*[data-video-id="'+$video_id+'"]').find('.plays').text($old_count+1);
+
+// Get current plays_count value from database
+$.get('videos/'+$video_id+'', function(data) {
+  $('*[data-video-id="'+$video_id+'"]').find('.plays').text(data.plays_count);
+});

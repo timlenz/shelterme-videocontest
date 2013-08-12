@@ -168,14 +168,34 @@ $(function(){
 	});
 	
 	// Target video tile
-	$('.tile-photo a').click(function(){
+	$('a.video_link').click(function(){
 
 		// Open video modal dialog
 		$('#videoModal').dialog('open');
 
-		var $source = $.trim($(this).attr("href")); // Find new source movie from clicked tile
-		var $path = "http://smvideocontest.s3.amazonaws.com/video/";
+		// Get two sources for video, one each for mp4 and webm; stored in data-mp4 and data-webm tags
+		var $mp4_source = $.trim($(this).attr("data-mp4"));
+		var $webm_source = $.trim($(this).attr("data-webm"));
+		var $poster = $.trim($(this).find('img').attr("src")); // Get poster image from clicked tile
 		var $vid_obj = _V_("videoPlayer");
+		var video_title = $(this).parents('.video-tile').find('.video-name h1').text();
+		var video_id = $(this).parents('.video-tile').attr('data-video-id');
+		$.cookie("video_id", video_id);
+		var user_name = $(this).parents('.video-tile').find('.user_name').text();
+		var user_link = $(this).parents('.video-tile').find('.user_name').attr('href');
+		var user_location = $(this).parents('.video-tile').find('.user_location').text();
+		var category_name = $(this).parents('.video-tile').find('li:eq(0)').find('a').attr('data-original-title');
+		var category_icon = $(this).parents('.video-tile').find('li:eq(0)').find('a').attr('class');
+		var ranking_name = $(this).parents('.video-tile').find('li:eq(1)').find('a').attr('data-original-title');
+		var ranking_icon = $(this).parents('.video-tile').find('li:eq(1)').find('a').attr('class');
+		var duration_name = $(this).parents('.video-tile').find('li:eq(2)').find('a').attr('data-original-title');
+		var duration_icon = $(this).parents('.video-tile').find('li:eq(2)').find('a').attr('class');
+		var vote_name = $(this).parents('.video-tile').find('li:eq(3)').find('a').attr('data-original-title');
+		var vote_icon = $(this).parents('.video-tile').find('li:eq(3)').find('a').attr('class');
+		var plays_name = $(this).parents('.video-tile').find('li:eq(4)').find('a').attr('data-original-title');
+		var shares_name = $(this).parents('.video-tile').find('li:eq(5)').find('a').attr('data-original-title');
+		var plays_count = $(this).parents('.video-tile').find('.plays').text();
+		var shares_count = $(this).parents('.video-tile').find('.shares').text();
 
 		// Make sure video is ready
 		$vid_obj.ready(function(){
@@ -188,16 +208,41 @@ $(function(){
 
 			// Assign source to video object
 			this.src([
-			  { type: "video/mp4", src: $path+$source+".mp4" },
-			  { type: "video/webm", src: $path+$source+".webm" }
+			  { type: "video/mp4", src: $mp4_source },
+			  { type: "video/webm", src: $webm_source }
 			]);
 
 			// Replace poster jpg
-			$('.vjs-poster').css('background-image', 'url('+ $path + $source + '.jpg)').show();
+			$('.vjs-poster').css('background-image', 'url('+ $poster + ')').show();
+			
+			// Populate video data on bottom bar
+			$('#videoModal').find('.video-name h1').text(video_title);
+			$('#videoModal').find('.user_name').text(user_name);
+			$('#videoModal').find('.user_name').attr('href',user_link);
+			$('#videoModal').find('.user_location').text(user_location);
+			$('#videoModal').find('ul').find('li:eq(0)').find('a').attr('class',category_icon);
+			$('#videoModal').find('ul').find('li:eq(0)').find('a').attr('data-original-title',category_name);
+			$('#videoModal').find('ul').find('li:eq(1)').find('a').attr('class',ranking_icon);
+			$('#videoModal').find('ul').find('li:eq(1)').find('a').attr('data-original-title',ranking_name);
+			$('#videoModal').find('ul').find('li:eq(2)').find('a').attr('class',duration_icon);
+			$('#videoModal').find('ul').find('li:eq(2)').find('a').attr('data-original-title',duration_name);
+			$('#videoModal').find('ul').find('li:eq(3)').find('a').attr('class',vote_icon);
+			$('#videoModal').find('ul').find('li:eq(3)').find('a').attr('data-original-title',vote_name);
+			$('#videoModal').find('ul').find('li:eq(4)').find('a').attr('data-original-title',plays_name);
+			$('#videoModal').find('ul').find('li:eq(5)').find('a').attr('data-original-title',shares_name);
+			$('#videoModal').find('.plays').text(plays_count);
+			$('#videoModal').find('.shares').text(shares_count);
 
 			// Load new source
 			this.load();
 			$('video').show();
+			
+			// Add plays counter button when video is finished
+			var myFunc = function(){
+			  var myPlayer = this;
+			  $('#play_video_id').val(video_id);
+			};
+			myPlayer.on("ended", myFunc);
 
 		});
 		return false;
@@ -227,12 +272,14 @@ $(function(){
 		// Stop video modal play on close
 		$('#videoModal .close').click(function(){
 			$('#videoModal').dialog('close');
+			countPlay();
 			resetPlayer();
 		});
 		// Stop video modal play on ESC
 		$(document).keyup(function(e) {
 			var keycode = (e.keyCode ? e.keyCode : e.which);	// capture keycode for Firefox
 			if ( $('#videoModal').length && keycode == 27 ) {
+				countPlay();
 				resetPlayer();
 			};
 		});
@@ -251,6 +298,13 @@ $(function(){
 				resetPlayer();
 			};
 		});
+	};
+	
+	function countPlay(){
+		if ( $('#play_video_id').val() != '' ) {
+			$('#new_play').find('input[name=commit]').click();
+		};
+		return;
 	};
 	
 	function resetPlayer(){

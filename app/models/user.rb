@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :videos
   has_many :shares
-  has_many :views
+  has_many :plays
   has_many :votes
   
   before_save { |user| user.email = email.downcase }
@@ -65,6 +65,10 @@ class User < ActiveRecord::Base
   
   def to_param
     slug
+  end
+  
+  def play!(video)
+    plays.create!(video_id: video.id)
   end
   
   def send_password_reset
