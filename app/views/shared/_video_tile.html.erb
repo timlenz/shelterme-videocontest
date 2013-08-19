@@ -21,10 +21,13 @@
 	<% if params[:controller] == 'videos' and params[:action] == 'index' %>
 	  <div class="adminApproval">
 	  <% if f.approved == false %>
-      <%= render 'approve', f: f %>
+      <%= render 'videos/approve', f: f %>
     <% else %>
-      <%= render 'unapprove', f: f %>
+      <%= render 'videos/unapprove', f: f %>
     <% end %>
+	  </div>
+	  <div class="adminDelete">
+	  	<%= link_to "Delete", f, method: :delete, class: "btn btn-header btn-admin" %>
 	  </div>
   <% end %>
   </div>
@@ -40,6 +43,15 @@
   </div>
   <div class="video-name">
   	<h1><%= f.title %></h1>
+    <% if signed_in? && current_user == @user %>
+    <div class="videoEdit">
+	  	<%= link_to "Edit", "javascript;", class: "btn btn-header btn-admin" %>
+	    <%= simple_form_for(f, remote: true) do |p| %>
+        <%= p.hidden_field :title, label: false %>
+        <%= p.button :submit, "Save", class: "hiddenBtn" %>
+      <% end %>
+	  </div> 
+    <% end %>
   </div>
   <div class="video-info">
 	  <%= link_to "#{f.user.name}", f.user, class: "user_name" %>

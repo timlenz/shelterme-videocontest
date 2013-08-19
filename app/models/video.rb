@@ -20,9 +20,9 @@ class Video < ActiveRecord::Base
   attr_accessible :user_id, :category_id, :title, :approved, :length, :panda_video_id,
                   :plays_count, :shares_count, :votes_count
     
-  has_many :shares
-  has_many :plays
-  has_many :votes
+  has_many :shares, dependent: :destroy
+  has_many :plays, dependent: :destroy
+  has_many :votes, dependent: :destroy
   
   belongs_to :user
   belongs_to :category

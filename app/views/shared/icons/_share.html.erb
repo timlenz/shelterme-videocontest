@@ -1,4 +1,4 @@
 <div class="icon">
-  <%= link_to "", "#", class: "videoTile sharesIcon", rel: "tooltip", title: "#{f.shares_count} shares" %>
+  <%= link_to "", "#", class: "videoTile sharesIcon", rel: "tooltip", title: "#{pluralize(f.shares_count, 'share')}" %>
   <span class="shares"><%= f.shares_count %></span>
 </div>

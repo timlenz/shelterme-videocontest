@@ -3,7 +3,7 @@
 	<div class="profile-section">
 		<div class="pageHeader">
 			<div class="headerInfo">
-		    <h1><%= @videos.size %> <%= "Video".pluralize(@videos.size) %></h1>
+		    <h1><%= Video.count('id') %> <%= "Video".pluralize(Video.count('id')) %></h1>
 		  </div>	
 	    <div class="searchButton" style="width:370px;">
 	      <%= form_tag videos_path, :method => 'get', id: "videos_search", style: "margin:0 auto;width:360px;", remote: true do %>
@@ -23,4 +23,12 @@
 	</div>
 </div>
 <%= render 'videos/video_modal' %>
+<div id="deleteVideo">
+	<h1></h1>
+  <p>This will also delete all data associated this video, including plays, shares and votes.<br><br> 
+	Are you sure you want to delete '<span class="title"></span>'?</p>
+	<div class="hide" style="text-align:center;margin-top:20px;margin-bottom:20px;">
+    <%= image_tag("spinner.gif", width: "55", height: "55")%>
+  </div>
+</div>
 <div class="clearfix"></div>

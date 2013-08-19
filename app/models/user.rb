@@ -33,9 +33,9 @@ class User < ActiveRecord::Base
   
   has_secure_password
   has_many :videos
-  has_many :shares
-  has_many :plays
-  has_many :votes
+  has_many :shares, dependent: :destroy
+  has_many :plays, dependent: :destroy
+  has_many :votes, dependent: :destroy
   
   before_save { |user| user.email = email.downcase }
   before_save { generate_token(:remember_token) }

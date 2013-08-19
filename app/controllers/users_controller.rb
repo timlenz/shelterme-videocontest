@@ -89,6 +89,7 @@ class UsersController < ApplicationController
   def videos
     @user = current_user
     @videos = Video.where(user_id: @user.id).paginate(page: params[:page], per_page: 12)
+    cookies[:editTitle] = "false"
   end
   
   private

@@ -238,15 +238,31 @@ $(function(){
 			$('video').show();
 			
 			// Add plays counter button when video is finished
-			var myFunc = function(){
+			var modalPlayed = function(){
 			  var myPlayer = this;
 			  $('#play_video_id').val(video_id);
 			};
-			myPlayer.on("ended", myFunc);
+			myPlayer.on("ended", modalPlayed);
 
 		});
 		return false;
 	});
+	
+	// Stand-alone video player controls
+	if ( $('#videoSolo').length ) {
+		var $vid_obj = _V_("videoPlayer");
+		var video_id = $('#videoSolo').attr('data-video-id');
+		$.cookie("video_id", video_id, { path: '/'});
+		$('#play_video_id').val(video_id);
+		$vid_obj.ready(function(){
+			myPlayer = this;
+			$('video').show();
+			var soloPlayed = function(){
+			  $('#new_play').find('input[name=commit]').click();
+			};
+			myPlayer.on("ended", soloPlayed);
+		});
+	};
 		
 	$('#previewModal').dialog({
 		autoOpen: false,
@@ -413,5 +429,79 @@ $(function(){
   $('#saveUser, #saveUserAccount').click(function(){
     $.cookie("avatar", "false");
   });
+
+	// All Videos Delete
+  $("#videos .adminDelete a").click(function(){
+    $("#deleteVideo").dialog('open');
+    deleteVideoLink = "";
+    $("#deleteVideo").parent().find(".ui-dialog-buttonset button").last().focus(); // Set focus on "delete" button in dialog
+    var active = $(this);
+    deleteVideoLink  = $.trim(active.attr("href"));
+    var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
+    $("#deleteVideo h1").text("Delete " + title + "?");
+    $("#deleteVideo .title").text(title);
+    return false;	// prevents the default click behavior for delete button
+  });
+  
+  $("#deleteVideo").dialog({
+    autoOpen: false,
+    resizable: false,
+    draggable: false,
+    closeOnEscape: false,
+    width: 400,
+    modal: true,
+    buttons: {
+      Cancel: function() {
+        $(this).dialog("close");
+      },
+      "Delete": function() {
+        $("#deleteVideo p, .ui-dialog-buttonset").hide();
+        $("#deleteVideo .hide").show();
+        $(".ui-dialog-title").text("Deleting...");
+				$.post(deleteVideoLink, {"_method":"delete"}, function() {
+					location.reload();
+				})
+      }
+    }
+  });
+
+	// Edit video title
+	
+	$('.videoEdit a').click(function(){
+		$("#editVideo").dialog('open');
+		$("#video_title").focus(); // Set focus on text field in dialog
+		var video_id = $(this).parents('.video-tile').attr('data-video-id');
+		$.cookie("video_id", video_id);
+		$.cookie("editTitle", "true", { expires: 1, path: '/' });
+    titleChangeLink = $(this).parents('.videoEdit').find("input[type=submit]");
+    var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
+		$("#editVideo").find('input').val(title);
+		return false;
+	});
+	
+	$('#editVideo').dialog({
+		autoOpen: false,
+    resizable: false,
+    draggable: false,
+		width: 400,
+		closeOnEscape: true,
+    modal: true,
+		buttons: {
+			Cancel: function() {
+				$(this).dialog("close");
+			},
+			"Save": function() {
+				var new_title = $("#editVideo").find('input').val();
+				var video_id = $.cookie("video_id");
+				$('*[data-video-id="'+video_id+'"]').find('.video-name h1').text(new_title);
+				$('*[data-video-id="'+video_id+'"]').find('#video_title').val(new_title);
+				$(this).dialog("close");
+				titleChangeLink.click();
+				// $.post(editVideoLink, $('#editVideo').find('form').serialize(), {"_method":"put"}, function() {
+				// 	$('*[data-video-id="'+$video_id+'"]').find('.video-name h1').text(new_title);
+				// }, "json");
+			}
+		}
+	});
 
 });

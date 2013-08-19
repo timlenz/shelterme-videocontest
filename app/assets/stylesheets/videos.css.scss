@@ -316,6 +316,9 @@ li.addVideoNav  {
     -webkit-box-shadow: 0px 0px 8px rgba(0, 85, 128, 0.75);
     -moz-box-shadow:    0px 0px 8px rgba(0, 85, 128, 0.75);
     box-shadow:         0px 0px 8px rgba(0, 85, 128, 0.75);
+		.adminApproval, .adminDelete, .videoEdit {
+			display: inline-block;
+		}
   }
 	.processing {
     text-align: center;
@@ -325,6 +328,52 @@ li.addVideoNav  {
 			font-size: 13px;
 			line-height: 16px;
 			font-weight: bold;
+		}
+	}
+  .btn-admin {
+    text-indent: 0;
+    text-shadow: none;
+		padding: 3px 10px;
+    &:hover {
+      color: $orange;
+	    text-shadow: none;
+    }
+  }
+	.adminApproval {
+		width: 150px;
+		height: 40px;
+		position: absolute;
+		top: 8px;
+		left: 50px;
+		display: none;
+		input {
+			width: 100%;
+		}
+	}
+	.adminDelete {
+		position: absolute;
+		top: 8px;
+		right: 12px;
+		display: inline-block;
+		display: none;
+		a {
+			width: auto;
+			height: auto;
+			display: inline-block;
+		}
+	}
+	.videoEdit {
+		position: absolute;
+		right: 5px;
+		bottom: 30px;
+		display: none;
+		a {
+			width: 30px;
+			padding: 0 8px;
+			font-size: 12px;
+		}
+		form {
+			display: none;
 		}
 	}
 }
@@ -347,7 +396,7 @@ li.addVideoNav  {
 		max-width: 100%;
 		margin: 0 auto;
   }
-  a {
+  .video_link {
     display: block;
     width: 300px;
     height: 169px;
@@ -404,7 +453,7 @@ li.addVideoNav  {
   color: $grayDark;
   font-size: 13px;
   width: 290px;
-  height: 16px;
+  height: auto;
 	a {
 		display: inline-block;
 		height: 100%;
@@ -439,7 +488,7 @@ li.addVideoNav  {
 	padding-top: 7px;
 	margin-left: 5px;
 	width: 290px;
-	height: 20px;
+	height: 24px;
 	overflow: hidden;
 	h1 {
 		height: 100%;
@@ -454,6 +503,16 @@ li.addVideoNav  {
 	float: left;
 	margin-top: 5px;
 	margin-left: -5px;
+	width: 400px;
+	.video-name, .video-info {
+		width: 400px;
+	}
+	.user_name {
+		width: 196px;
+	}
+	.user_location {
+		width: 195px;
+	}
 }
 
 .comingSoon {

@@ -1,9 +1,9 @@
 class VideosController < ApplicationController
   before_filter :signed_in_user, only: [:index, :create, :edit, :new]
   
-  respond_to :html, :js, only: [:update, :index]
+  respond_to :html, :js, only: [:update, :index, :destroy]
   
-  respond_to :json, only: :show
+  respond_to :html, :json, only: [:show]
   
   def new
     @user = current_user
@@ -31,6 +31,8 @@ class VideosController < ApplicationController
     @video = Video.create!(params[:video])
     if @video.save
       flash[:notice] = "Your video entitled '#{@video.title}' was added."
+      # add email notice to Steven
+      VideoMailer.new_video(@video,current_user).deliver
     else
       flash[:notice] = "Upload of video failed."
     end
@@ -43,9 +45,12 @@ class VideosController < ApplicationController
   def update
     @video = Video.find(params[:id])
     if @video.update_attributes(params[:video])
+      # if video approved, send email to user
+      unless cookies[:editTitle] == "true" || @video.approved == false
+        VideoMailer.approved_video(@video).deliver
+      end
       redirect_to :back
-    else
-      redirect_to watch_path
+      cookies[:editTitle] = "false"
     end
   rescue
     if @video
@@ -65,9 +70,10 @@ class VideosController < ApplicationController
   
   def destroy
     @video = Video.find(params[:id])
-    Panda::Video.delete(@video.panda_video_id)
     @video.destroy
+    Panda::Video.delete(@video.panda_video_id)
     flash[:notice] = "'#{@video.title}' deleted."
+    redirect_to :back
   rescue
     if @video
       flash[:error] = "Unable to delete #{@video.title}."

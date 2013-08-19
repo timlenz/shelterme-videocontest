@@ -115,3 +115,43 @@ $('a.video_link').click(function(){
 	});
 	return false;
 });
+
+// All Videos Delete
+$("#videos .adminDelete a").click(function(){
+  $("#deleteVideo").dialog('open');
+  deleteVideoLink = "";
+  $("#deleteVideo").parent().find(".ui-dialog-buttonset button").last().focus(); // Set focus on "delete" button in dialog
+  var active = $(this);
+  deleteVideoLink  = $.trim(active.attr("href"));
+  var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
+  $("#deleteVideo h1").text("Delete " + title + "?");
+  $("#deleteVideo .title").text(title);
+  return false;	// prevents the default click behavior for delete button
+});
+
+$("#deleteVideo").dialog({
+  autoOpen: false,
+  resizable: false,
+  draggable: false,
+  closeOnEscape: false,
+  width: 400,
+  modal: true,
+  buttons: {
+    Cancel: function() {
+      $(this).dialog("close");
+    },
+    "Delete": function() {
+      $("#deleteVideo p, .ui-dialog-buttonset").hide();
+      $("#deleteVideo .hide").show();
+      $(".ui-dialog-title").text("Deleting...");
+      $.ajax({
+          url: deleteVideoLink,
+          type: 'POST',
+					data: {"_method":"delete"},
+          complete: function() {
+            location.reload();
+          }
+      });
+    }
+  }
+});
