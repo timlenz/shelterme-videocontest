@@ -16,6 +16,8 @@
          <%= render partial: 'shared/video_tile', collection: @new_videos, as: :f %>
          <div class="clearfix"></div>
          <%= will_paginate @new_videos, param_name: 'new_videos' %>
+         <% elsif @videos.size > 0 %>
+         No videos have been added in the last week. Click on another category to see existing videos.
          <% else %>
 	       No videos have been approved yet. Create and <%= link_to "upload a video", addvideo_path %> to see it here.
          <% end %>
