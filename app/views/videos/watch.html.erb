@@ -3,15 +3,15 @@
 	<div class="tabbable">
      <ul id="watchVideos" class="nav nav-pills">
        <!--li class="active winnersPill"><a href="#winners" data-toggle="tab"></a></li-->
-       <li class="newVideosPill active"><a href="#new" data-toggle="tab"></a></li>
+       <li class="allVideosPill active"><a href="#all" data-toggle="tab"></a></li>
+       <li class="newVideosPill"><a href="#new" data-toggle="tab"></a></li>
        <li class="mostPlaysPill"><a href="#mostPlays" data-toggle="tab"></a></li>
        <li class="mostVotesPill"><a href="#mostVotes" data-toggle="tab"></a></li>
        <li class="mostSharesPill"><a href="#mostShares" data-toggle="tab"></a></li>
        <li class="bestRatedPill"><a href="#bestRated" data-toggle="tab"></a></li>
-       <li class="allVideosPill"><a href="#all" data-toggle="tab"></a></li>
      </ul>
      <div class="tab-content">
-       <div class="tab-pane active" id="new">
+       <div class="tab-pane" id="new">
 	       <% if @new_videos.size > 0 %>
          <%= render partial: 'shared/video_tile', collection: @new_videos, as: :f %>
          <div class="clearfix"></div>
@@ -58,7 +58,7 @@
 	       No videos have been shared yet.
          <% end %>
        </div>
-       <div class="tab-pane" id="all">
+       <div class="tab-pane active" id="all">
 	       <% if @videos.size > 0 %>
          <%= render partial: 'shared/video_tile', collection: @videos, as: :f %>
          <div class="clearfix"></div>
