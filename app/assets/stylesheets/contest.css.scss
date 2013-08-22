@@ -2252,9 +2252,9 @@ th {
 
 .adminColumn {
   float: left;
-  margin-top: 20px;
-  margin-right: 9px;
-  width: 278px;
+  margin-top: 0;
+  margin-right: 20px;
+  width: 438px;
   min-height: 450px;
   padding: 10px;
   border: 1px solid $grayMedium;
@@ -2277,19 +2277,19 @@ th {
     margin-right: 10px;
     font-weight: bold;
     font-size: 16px;
-		span {
-			float: right;
-		}
   }
   .sparklines {
     height: 20px;
-    margin-right: 6px;
+		position: relative;
+		float: right;
   }
   ul {
-    width: 268px;
+    width: 435px;
+		margin: 0;
+		padding-right: 0;
 	  li {
 	    font-size: 16px;
-	    padding: 10px 0;
+	    padding: 20px;
 	    border: none;
 	    border-bottom: solid 1px $grayMedium;
 	  }

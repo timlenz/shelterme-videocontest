@@ -503,5 +503,26 @@ $(function(){
 			}
 		}
 	});
+	
+	// Sparklines for Statistics
+  $('.sparklines').sparkline('html', { 
+    zeroColor: '#999',
+    barColor: '#999',
+		barWidth: '20',
+		barSpacing: '5',
+		type: 'bar'
+    // width: '100px'
+  });
+
+  // $('.sparklines').sparkline('html', { 
+  //   fillColor: 'none',
+  //   lineColor: '#999',
+  //   spotColor: 'none',
+  //   minSpotColor: 'none',
+  //   maxSpotColor: 'none',
+  //   highlightSpotColor: '#d54509',
+  //   highlightLineColor: '#d54509',
+  //   width: '60px'
+  // });
 
 });

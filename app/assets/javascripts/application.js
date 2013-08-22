@@ -19,4 +19,5 @@
 //= require jquery.cloudinary
 //= require jquery.cookie
 //= require jquery.iframe-transport
+//= require jquery.sparkline.min
 //= require_tree .
