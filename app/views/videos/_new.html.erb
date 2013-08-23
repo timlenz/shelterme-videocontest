@@ -17,7 +17,22 @@
       <div class="handhold" style="display:none;text-align:center;margin-bottom:20px;">
         This page will refresh once your upload is complete.<br> Do not close the browser window.
       </div>
-      <%= simple_form_for @video, html: {class: 'form-horizontal' } do |f| %>
+			<div class="intro">
+	       <span style="margin-right:20px;margin-left:4px;">Did you include the required PetSafe clip?</span>
+	       <div id="clip" class="btn-group btn-graphic" data-toggle="buttons-radio">
+					  <button class="btn" value="No">No</button>
+					  <button class="btn" value="Yes">Yes</button>
+			   </div><br><br>
+			   <span style="margin-right:20px;">Is your video between 15 and 60 seconds?</span>
+	       <div id="length" class="btn-group btn-graphic" data-toggle="buttons-radio">
+					  <button class="btn" value="No">No</button>
+					  <button class="btn" value="Yes">Yes</button>
+			   </div><br><br><br>
+			   <div class="center">
+			     All uploaded videos are subject to the <%= link_to "contest rules", rules_path %>.
+			   </div>
+       </div>
+      <%= simple_form_for @video, html: {class: 'form-horizontal', style: 'display:none;margin-bottom:20px;' } do |f| %>
        <%= render 'shared/error_messages', object: f.object %>
        <%= f.hidden_field :user_id, value: current_user.id %>
        <%= f.input :title, label: "Video Title" %>
@@ -29,12 +44,7 @@
          <button type="button" data-toggle="button" class="btn" value="5">Foster</button>
          <button type="button" data-toggle="button" class="btn" value="6">Wildcard</button>
        </div>
-       <%= f.hidden_field :category_id, label: false %>
-       <div class="intro center">
-         Please enter a title for your video and<br> select the category for which it should be considered.<br><br>
-         Make sure you have included the sponsor clip at the end of your video.<br><br>
-         All uploaded videos are subject to the <%= link_to "contest rules", rules_path %>.
-       </div>			
+       <%= f.hidden_field :category_id, label: false %>			
        <div id="file-drop" class="row filedrop" style="border:none;display:none;">
 			  <span class="btn formBtn fileinput-button" style="width:145px;margin-left:-5px;">
 	        <span>Choose Video</span>
@@ -65,7 +75,7 @@ $(function(){
 	});
   
   // Hide extra video elements during upload
-  $('#new_video :submit').click(function(){
+  $('#file-drop :submit').click(function(){
     $('.form p, .control-group, #file-drop, #category, button.close').hide();
     $('.handhold').show();
   });
@@ -92,6 +102,7 @@ $(function(){
 					$('.intro').hide();
 					$('#file-drop').show();
 				};
+				
 	    });
 	    if(button.val() == hidden.val()) {
 	      // Set clicked button to active
@@ -101,9 +112,17 @@ $(function(){
 	});
 	
 	$('#video_title').keypress(function(){
-		if ( $('#new_video button.active').length ) {
+		if ( $('#category button.active').length ) {
 			$('.intro').hide();
 			$('#file-drop').show();
+		};
+	});
+	
+	// Show video submission form if video qualifies
+	$('.intro button').on('click', function(){
+		if ( ($('#clip button.active').val() == 'Yes' || $('#length button.active').val() == 'Yes') && $(this).val() == 'Yes' ) {
+			$('.intro').hide();
+			$('#new_video').show();
 		};
 	});
 	
