@@ -233,6 +233,12 @@ $(function(){
 			$('#videoModal').find('.plays').text(plays_count);
 			$('#videoModal').find('.shares').text(shares_count);
 
+			// Populate sharing info
+			$('#share').find('a').attr('href', function(i,val){
+				return val.replace('videoID',video_id).replace('imageURL',$poster).replace('videoTITLE',encodeURIComponent(video_title)).replace('videoTITLE',encodeURIComponent(video_title)).replace('userNAME',encodeURIComponent(user_name));
+			});
+			$('#share_video_id').val(video_id);
+
 			// Load new source
 			this.load();
 			$('video').show();
@@ -315,6 +321,20 @@ $(function(){
 			};
 		});
 	};
+	
+	$('#videoPlayer, #share').hover(
+		function(){
+			$('#share').show().removeClass('vjs-fade-out');
+		}, function(){
+			// $('#share').hide();
+			$('#share').addClass('vjs-fade-out');
+		}
+	);
+	
+	// Increment video shares
+	$('#share a').click(function(){
+		$('#new_share').find('input[name=commit]').click();
+	});
 	
 	function countPlay(){
 		if ( $('#play_video_id').val() != '' ) {
@@ -466,7 +486,6 @@ $(function(){
   });
 
 	// Edit video title
-	
 	$('.videoEdit a').click(function(){
 		$("#editVideo").dialog('open');
 		$("#video_title").focus(); // Set focus on text field in dialog

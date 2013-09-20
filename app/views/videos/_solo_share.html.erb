@@ -1,0 +1,17 @@
+<div id="share">
+	<div class="share"></div>
+	<%= link_to "", "http://www.facebook.com/sharer.php?s=100&p[url]=http://contest.shelterme.com/videos/#{@video.id}&p[images][0]=#{@video.panda_video.encodings["thumbnail"].screenshots.first}&p[title]=#{@video.title}&p[summary]=Watch%20%22#{@video.title}%22%20submitted%20by%20#{@video.user.name}%20to%20the%20ShelterMe%20Video%20Contest", class: "navMain facebook social", target: "_blank" %>
+  <%= link_to "", "http://twitter.com/home/?status=Watch%20%22#{@video.title}%22%20submitted%20by%20#{@video.user.name}%20to%20the%20ShelterMe%20Video%20Contest%20-%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F#{@video.id}", class: "navMain twitter social", target: "_blank" %>
+  <%= link_to "", "mailto:?Subject=#{@video.title}&Body=Watch%20%22#{@video.title}%22%20submitted%20by%20#{@video.user.name}%20to%20the%20ShelterMe%20Video%20Contest%20-%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F#{@video.id}", class: "email", target: "_blank" %>
+	<% if signed_in? %>
+	<%= form_for(current_user.shares.build(video_id: @video.id), remote: true) do |f| %>
+	  <div><%= f.hidden_field :video_id %></div>
+	  <%= f.submit "Shared", class: "btn btn-header btn-follow hidden" %>
+	<% end %>
+	<% else %>
+	<%= form_for(null_user.shares.build(video_id: @video.id), remote: true) do |f| %>
+	  <div><%= f.hidden_field :video_id %></div>
+	  <%= f.submit "Shared", class: "btn btn-header btn-follow" %>
+	<% end %>
+	<% end %>
+</div>

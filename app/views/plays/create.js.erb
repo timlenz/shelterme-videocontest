@@ -4,6 +4,7 @@ if ( $('#videoSolo').length ){
 	var $video_id = $.cookie("video_id");
 	$.get($video_id, function(data) {
 	  $('.plays').text(data.plays_count);
+		$('.playsIcon').attr('data-original-title',data.plays_count + " plays")
 	}, "json");
 	
 } else {
@@ -14,6 +15,7 @@ if ( $('#videoSolo').length ){
 	var $video_id = $.cookie("video_id");
 	$.get('videos/'+$video_id+'', function(data) {
 	  $('*[data-video-id="'+$video_id+'"]').find('.plays').text(data.plays_count);
+		$('*[data-video-id="'+$video_id+'"]').find('.playsIcon').attr('data-original-title',data.plays_count + " plays");
 	}, "json");
 	
 };

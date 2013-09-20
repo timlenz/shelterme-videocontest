@@ -1,0 +1,21 @@
+if ( $('#videoSolo').length ){
+	
+	// Get current shares_count value from database & update video tile icon value
+	var $video_id = $.cookie("video_id");
+	$.get($video_id, function(data) {
+	  $('.shares').text(data.shares_count);
+		$('.sharesIcon').attr('data-original-title',data.shares_count + " shares")
+	}, "json");
+	
+} else {
+
+	// Get current shares_count value from database & update video tile icon values
+	var $video_id = $.cookie("video_id");
+	$.get('videos/'+$video_id+'', function(data) {
+	  $('*[data-video-id="'+$video_id+'"]').find('.shares').text(data.shares_count);
+		$('*[data-video-id="'+$video_id+'"]').find('.sharesIcon').attr('data-original-title',data.shares_count + " shares");
+		$('#videoModal').find('.shares').text(data.shares_count);
+		$('#videoModal').find('.sharesIcon').attr('data-original-title',data.shares_count + " shares");
+	}, "json");
+	
+};

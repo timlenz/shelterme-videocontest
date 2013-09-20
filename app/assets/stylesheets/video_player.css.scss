@@ -138,7 +138,54 @@ $blueLight: #e4f1f3;
 	display: none;
 }
 
+#share {
+	display:none;
+	width: 43px;
+	position: absolute;
+	top: 34px;
+	right: 34px;
+	padding: 9px 9px 0;
+	background-color: rgba(255,255,255,0.8);
+	a {
+		width:32px;
+		height:32px;
+		display:block;
+		margin:0 auto 9px;
+	}
+	#new_share {
+		display:none;
+	}
+	.email, .share {
+		background:url(share.png);
+		background-color: transparent; 
+		background-repeat: no-repeat;
+		display:block;
+	}
+	.share {
+		background-position: 0 -33px ;
+		width: 43px;
+		height: 10px;
+		margin-bottom:9px;
+	}
+	.email {
+		background-position: 0 0;
+		width: 32px;
+		height: 32px;
+		&:hover {
+			background-position: -34px 0;
+		}
+	}
+}
+
 #videoSolo {
 	margin-left: -20px;
 	margin-top: 15px;
+	#share {
+		top:79px;
+		right:179px;
+		padding: 9px 9px 0;
+		a {
+			margin:0 auto 9px;
+		}
+	}
 }

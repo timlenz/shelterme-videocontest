@@ -12,6 +12,7 @@
   <%= csrf_meta_tags %>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <%= render 'layouts/shim' %>
+  <%= render 'layouts/open_graph'%>
 </head>
 <body onLoad="testCookies();">
 	<% if params[:controller] == 'static_pages' and params[:action] == 'home' %>

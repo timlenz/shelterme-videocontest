@@ -1,8 +1,10 @@
-<%= @user.name %> has experienced an error on Contest.ShelterMe.com at <%= Time.now.strftime("%I:%M %p on %b %d, %Y") %>.
+<%= @user ? @user.name : "Unknown user" %> has experienced an error on Contest.ShelterMe.com at <%= Time.now.strftime("%I:%M %p on %b %d, %Y") %>.
 
 Page where the error occurred: <%= @page %>
 
+<% if @user %>
 Contact them at <%= @user.email %>.
+<% end %>
 
 ================
 
