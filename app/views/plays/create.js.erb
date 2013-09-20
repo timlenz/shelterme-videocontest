@@ -13,7 +13,7 @@ if ( $('#videoSolo').length ){
 
 	// Get current plays_count value from database & update video tile icon values
 	var $video_id = $.cookie("video_id");
-	$.get('videos/'+$video_id+'', function(data) {
+	$.get('/videos/'+$video_id+'', function(data) {
 	  $('*[data-video-id="'+$video_id+'"]').find('.plays').text(data.plays_count);
 		$('*[data-video-id="'+$video_id+'"]').find('.playsIcon').attr('data-original-title',data.plays_count + " plays");
 	}, "json");
