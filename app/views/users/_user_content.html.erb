@@ -8,14 +8,14 @@
 	    <a href="#watched" data-toggle="tab"></a>
 	    <span class="count"><%= @watched.size > 0 ? @watched.size : '' %></span>
 	  </li>
-    <li class="votedPill">
-	    <a href="#voted" data-toggle="tab"></a>
-	    <span class="count"><%= @voted.size > 0 ? @voted.size : '' %></span>
-    </li>
     <li class="sharedPill">
 	    <a href="#shared" data-toggle="tab"></a>
 	    <span class="count"><%= @shared.size > 0 ? @shared.size : '' %></span>
 	  </li>
+    <li class="votedPill">
+	    <a href="#voted" data-toggle="tab"></a>
+	    <span class="count"><%= @voted.size > 0 ? @voted.size : '' %></span>
+    </li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="myVideos">

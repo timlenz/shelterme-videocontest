@@ -100,6 +100,6 @@ class VideosController < ApplicationController
     @rated_videos = []#Video.rated.paginate(page: params[:rated_videos], per_page: 12)
     @voted_videos = []#Video.voted.paginate(page: params[:voted_videos], per_page: 12)
     @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).paginate(page: params[:played_videos], per_page: 12)
-    @shared_videos = []#Video.all.sort_by{|e| -e[:shares_count]}.paginate(page: params[:shared_videos], per_page: 12)
+    @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).paginate(page: params[:shared_videos], per_page: 12)
   end
 end
