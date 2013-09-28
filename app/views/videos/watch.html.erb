@@ -5,32 +5,32 @@
        <!--li class="active winnersPill"><a href="#winners" data-toggle="tab"></a></li-->
        <li class="allVideosPill active">
 	       <a href="#all" data-toggle="tab">
-	         <span class="count"><%= @videos.size > 0 ? @videos.size : '' %></span>
+	         <span class="count"><%= @videos_count > 0 ? @videos_count : '' %></span>
 	       </a>
 	     </li>
        <li class="newVideosPill">
 	       <a href="#new" data-toggle="tab">
-	         <span class="count"><%= @new_videos.size > 0 ? @new_videos.size : '' %></span>
+	         <span class="count"><%= @new_videos_count > 0 ? @new_videos_count : '' %></span>
 	       </a>
 	     </li>
        <li class="mostPlaysPill">
 	       <a href="#mostPlays" data-toggle="tab">
-		       <span class="count"><%= @played_videos.size > 0 ? @played_videos.size : '' %></span>
+		       <span class="count"><%= @played_videos_count > 0 ? @played_videos_count : '' %></span>
 		     </a>
 		   </li>
        <li class="mostVotesPill">
 	       <a href="#mostVotes" data-toggle="tab">
-		       <span class="count"><%= @voted_videos.size > 0 ? @voted_videos.size : '' %></span>
+		       <span class="count"><%= @voted_videos_count > 0 ? @voted_videos_count : '' %></span>
 		     </a>
 		   </li>
        <li class="mostSharesPill">
 	       <a href="#mostShares" data-toggle="tab">
-		       <span class="count"><%= @shared_videos.size > 0 ? @shared_videos.size : '' %></span>
+		       <span class="count"><%= @shared_videos_count > 0 ? @shared_videos_count : '' %></span>
 		     </a>
 		   </li>
        <li class="bestRatedPill">
 	       <a href="#bestRated" data-toggle="tab">
-		       <span class="count"><%= @rated_videos.size > 0 ? @rated_videos.size : '' %></span>
+		       <span class="count"><%= @rated_videos_count > 0 ? @rated_videos_count : '' %></span>
 		     </a>
 		   </li>
      </ul>
