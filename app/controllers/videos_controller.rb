@@ -85,8 +85,9 @@ class VideosController < ApplicationController
   
   def index
     if current_user.admin?
-      @videos = Video.includes(:user).search(params[:search]).paginate(page: params[:page], per_page: 12)
+      @videos = Video.includes(:user).search(params[:search])
       cookies[:video_count] = @videos.length
+      @videos = @videos.paginate(page: params[:page], per_page: 12)
     else
       redirect_to root_path
     end
