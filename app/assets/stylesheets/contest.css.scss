@@ -1655,15 +1655,17 @@ input[type="checkbox"] {
 			background-position: -111px 0;
 		}
 	}
-	.count {
-		position: absolute;
-		font-size: 18px;
-		font-weight: bold;
-		width: 40px;
-		text-align: right;
-		top: 10px;
-		left: -10px;
-	}
+}
+
+.count {
+	position: absolute;
+	font-size: 18px;
+	font-weight: bold;
+	width: 40px;
+	text-align: right;
+	top: 10px;
+	left: -10px;
+	color: #333333;
 }
 
 /* ALERTS */

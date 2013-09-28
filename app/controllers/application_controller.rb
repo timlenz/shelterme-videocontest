@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     end
 
     def mobile_user_agent?
-      @mobile_user_agent ||= ( request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|Android)/] )
+      @mobile_user_agent ||= ( request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|iPad|Android|BlackBerry)/] )
     end
 
     def canonical_url(canonical_url)

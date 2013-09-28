@@ -32,6 +32,8 @@ class Video < ActiveRecord::Base
   validates :title, presence: true
   validates :panda_video_id, presence: true, on: :create
   
+  before_create :store_video_duration
+  
   # GENERATE LENGTH ON CREATE DYNAMICALLY FROM PANDA VIDEO OBJECT - DURATION BELOW
   
   default_scope order: 'videos.created_at DESC'
@@ -67,4 +69,10 @@ class Video < ActiveRecord::Base
       scoped
     end
   end
+  
+  private
+  
+    def store_video_duration
+      self.length = self.duration.to_i
+    end
 end

@@ -27,6 +27,11 @@
 	       <div id="length" class="btn-group btn-graphic" data-toggle="buttons-radio">
 					  <button class="btn" value="No">No</button>
 					  <button class="btn" value="Yes">Yes</button>
+			   </div><br><br>
+			   <span style="margin-right:20px;">Is your audio rights-free or public domain?</span>
+	       <div id="music" class="btn-group btn-graphic" data-toggle="buttons-radio">
+					  <button class="btn" value="No">No</button>
+					  <button class="btn" value="Yes">Yes</button>
 			   </div><br><br><br>
 			   <div class="center">
 			     All uploaded videos are subject to the <%= link_to "contest rules", rules_path %>.
@@ -120,7 +125,7 @@ $(function(){
 	
 	// Show video submission form if video qualifies
 	$('.intro button').on('click', function(){
-		if ( ($('#clip button.active').val() == 'Yes' || $('#length button.active').val() == 'Yes') && $(this).val() == 'Yes' ) {
+		if ( (($('#clip button.active').val() == 'Yes' && $('#length button.active').val() == 'Yes') || ($('#clip button.active').val() == 'Yes' && $('#music button.active').val() == 'Yes') || ($('#music button.active').val() == 'Yes' && $('#length button.active').val() == 'Yes')) && $(this).val() == 'Yes' ) {
 			$('.intro').hide();
 			$('#new_video').show();
 		};

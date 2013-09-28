@@ -43,7 +43,7 @@
   </div>
   <div class="video-name">
   	<h1><%= f.title %></h1>
-    <% if signed_in? && current_user == @user %>
+    <% if signed_in? && (current_user == @user || current_user.admin?) %>
     <div class="videoEdit">
 	  	<%= link_to "Edit", "javascript;", class: "btn btn-header btn-admin" %>
 	    <%= simple_form_for(f, remote: true) do |p| %>

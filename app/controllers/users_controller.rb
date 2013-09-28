@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     @watched = Video.where(id: (Play.where(user_id: @user.id).map{|p| p.video_id}.uniq)).paginate(page: params[:watched_page], per_page: 12)
     @voted = []#@user.voted.paginate(page: params[:voted_page], per_page: 12)
     @shared = Video.where(id: (Share.where(user_id: @user.id).map{|p| p.video_id}.uniq)).paginate(page: params[:shared_page], per_page: 12)
+  rescue
+    raise ActionController::RoutingError.new('Not Found')
   end
   
   def index

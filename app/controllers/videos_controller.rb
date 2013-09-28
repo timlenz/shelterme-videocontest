@@ -86,6 +86,7 @@ class VideosController < ApplicationController
   def index
     if current_user.admin?
       @videos = Video.includes(:user).search(params[:search]).paginate(page: params[:page], per_page: 12)
+      cookies[:video_count] = @videos.length
     else
       redirect_to root_path
     end
@@ -99,7 +100,7 @@ class VideosController < ApplicationController
     @new_videos = Video.where(created_at: 7.days.ago.utc...Time.now.utc, approved: true).paginate(page: params[:new_videos], per_page: 12)
     @rated_videos = []#Video.rated.paginate(page: params[:rated_videos], per_page: 12)
     @voted_videos = []#Video.voted.paginate(page: params[:voted_videos], per_page: 12)
-    @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).paginate(page: params[:played_videos], per_page: 12)
-    @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).paginate(page: params[:shared_videos], per_page: 12)
+    @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).reorder("plays_count DESC").paginate(page: params[:played_videos], per_page: 12)
+    @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).reorder("shares_count DESC").paginate(page: params[:shared_videos], per_page: 12)
   end
 end

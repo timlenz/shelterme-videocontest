@@ -3,7 +3,7 @@
 	<div class="profile-section">
 		<div class="pageHeader">
 			<div class="headerInfo">
-		    <h1><%= Video.count('id') %> <%= "Video".pluralize(Video.count('id')) %></h1>
+		    <h1><span><%= @videos.size %></span> <%= "Video".pluralize(Video.count('id')) %></h1>
 		  </div>	
 	    <div class="searchButton" style="width:370px;">
 	      <%= form_tag videos_path, :method => 'get', id: "videos_search", style: "margin:0 auto;width:360px;", remote: true do %>
@@ -20,6 +20,8 @@
 	  <div id="videos" class="row">
 	    <%= render 'videos' %>
 	  </div>
+		<div class="clearfix"></div>
+     <%= will_paginate @videos %>
 	</div>
 </div>
 <%= render 'videos/video_modal' %>
