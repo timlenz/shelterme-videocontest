@@ -3,10 +3,10 @@
     <tr>
       <td class="adminId"><%= user.id %></td>
       <td class="adminAdded"><%= user.created_at.to_date.to_formatted_s(:long) %></td>
-      <td class="adminCode"><%= user.videos.size %></td>
-      <td class="adminCode"><%= user.plays.size %></td>
-      <td class="adminCode"><%= user.votes.size %></td>
-      <td class="adminCode"><%= user.shares.size %></td>
+      <td class="adminCode"><%= user.videos_count %></td>
+      <td class="adminCode"><%= user.plays_count %></td>
+      <td class="adminCode"><%= user.votes_count %></td>
+      <td class="adminCode"><%= user.shares_count %></td>
       <td class="adminName"><%= avatar_for user, size: 20 %> &nbsp;&nbsp; <%= link_to user.name, user %></td>
       <% if current_user.admin? && !current_user?(user) && !user.admin? %>
       <td class="adminDelete">

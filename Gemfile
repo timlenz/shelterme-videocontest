@@ -24,9 +24,9 @@ group :development do
   gem 'guard-rspec', '0.5.5'
   gem 'letter_opener'
   gem 'debugger'
-  # gem 'bullet'
-  # gem 'rack-mini-profiler'
-  # gem "meta_request", "~> 0.2.0"
+  gem 'bullet'
+  gem 'rack-mini-profiler'
+  gem "meta_request", "~> 0.2.0"
 end
 
 # Gems used only for assets and not required

@@ -1,3 +1,3 @@
 <div class="icon">
-  <%= link_to "", "#", class: "videoTile time#{f.length ? (f.length <= 15 ? "15" : (f.length <= 30 ? "30" :(f.length <= 45 ? "45" : "60"))) : (f.duration <= 15 ? "15" : (f.duration <= 30 ? "30" :(f.duration <= 45 ? "45" : "60")))}Icon", rel: "tooltip", title: "#{f.length ? f.length.to_i : f.duration} seconds" %>
+  <%= link_to "", "#", class: "videoTile time#{f.length <= 15 ? "15" : (f.length <= 30 ? "30" :(f.length <= 45 ? "45" : "60"))}Icon", rel: "tooltip", title: "#{f.length ? f.length.to_i : f.duration} seconds" %>
 </div>

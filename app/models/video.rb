@@ -24,7 +24,7 @@ class Video < ActiveRecord::Base
   has_many :plays, dependent: :destroy
   has_many :votes, dependent: :destroy
   
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   belongs_to :category
   
   validates :user_id, presence: true

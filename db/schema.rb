@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130810161909) do
+ActiveRecord::Schema.define(:version => 20131004031543) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,10 @@ ActiveRecord::Schema.define(:version => 20130810161909) do
     t.string   "zipcode"
     t.string   "street"
     t.string   "state"
+    t.integer  "plays_count",            :default => 0,     :null => false
+    t.integer  "shares_count",           :default => 0,     :null => false
+    t.integer  "votes_count",            :default => 0,     :null => false
+    t.integer  "videos_count",           :default => 0,     :null => false
   end
 
   create_table "videos", :force => true do |t|

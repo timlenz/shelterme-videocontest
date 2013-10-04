@@ -7,8 +7,8 @@ class UsersController < ApplicationController
   respond_to :html, :js, only: [:update, :index]
   
   def show
-    @videos = Video.where(user_id: @user.id).paginate(page: params[:videos_page], per_page: 12)
-    @approved = Video.where(user_id: @user.id, approved: true).paginate(page: params[:videos_page], per_page: 12)
+    @videos = Video.where(user_id: @user.id).includes(:category, :user).paginate(page: params[:videos_page], per_page: 12)
+    @approved = Video.where(user_id: @user.id, approved: true).includes(:category, :user).paginate(page: params[:videos_page], per_page: 12)
     # Get video ids from user plays
     @watched = Video.where(id: (Play.where(user_id: @user.id).map{|p| p.video_id}.uniq)).paginate(page: params[:watched_page], per_page: 12)
     @voted = []#@user.voted.paginate(page: params[:voted_page], per_page: 12)
@@ -90,7 +90,7 @@ class UsersController < ApplicationController
   
   def videos
     @user = current_user
-    @videos = Video.where(user_id: @user.id).paginate(page: params[:page], per_page: 12)
+    @videos = Video.where(user_id: @user.id).includes(:category, :user).paginate(page: params[:page], per_page: 12)
     cookies[:editTitle] = "false"
   end
   

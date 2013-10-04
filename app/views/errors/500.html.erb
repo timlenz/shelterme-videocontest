@@ -138,14 +138,10 @@
           <p>Sorry about that. It's been trained better than this.</p><br>
           <p>Please <%= link_to "contact us", contact_path %> if this continues to be a problem.</p>
           <br>Go to the
-          <% if current_pet == @pet %>
-          <%= link_to "home page", root_path %> or <%= link_to "your profile", current_user %>.
-          <% else %>
           <input type="button" value="previous page" class="btn-link" onclick="goBack()">.
-          <% end %>
         </div>
         <div id="logo">
-          <img src="/assets/logo_small.png">
+          <img src="/assets/logoSmall.png">
         </div>
         <div id="sadPet">
           <img src="/assets/badServerImage.png" width="250" height="166">

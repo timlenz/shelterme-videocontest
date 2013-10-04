@@ -248,8 +248,8 @@ $(function(){
 		
 		// Populate sharing info
 		$('#share a.facebook').attr('href', "http://www.facebook.com/sharer.php?s=100&p[url]=http://contest.shelterme.com/videos/" + video_id + "&p[images][0]=" + $poster + "&p[title]=" + encodeURIComponent(video_title) + "&p[summary]=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest");
-		$('#share a.twitter').attr('href', "http://twitter.com/home/?status=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest%20:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id);
-		$('#share a.email').attr('href', "mailto:?Subject=" + encodeURIComponent(video_title) + "&Body=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest%20:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id);
+		$('#share a.twitter').attr('href', "http://twitter.com/home/?status=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id);
+		$('#share a.email').attr('href', "mailto:?Subject=" + encodeURIComponent(video_title) + "&Body=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id);
 		
 		$('#share_video_id').val(video_id);
 		

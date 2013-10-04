@@ -13,7 +13,7 @@
 class Vote < ActiveRecord::Base
   attr_accessible :user_id, :video_id
 
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   belongs_to :video
 
   validates :user_id, presence: true

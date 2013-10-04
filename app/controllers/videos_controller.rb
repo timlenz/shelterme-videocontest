@@ -85,7 +85,7 @@ class VideosController < ApplicationController
   
   def index
     if current_user.admin?
-      @videos = Video.includes(:user).search(params[:search])
+      @videos = Video.includes(:category, :user).search(params[:search])
       cookies[:video_count] = @videos.length
       @videos = @videos.paginate(page: params[:page], per_page: 12)
     else
@@ -97,12 +97,12 @@ class VideosController < ApplicationController
   end
   
   def watch
-    @videos = Video.where(approved: true)
-    @new_videos = Video.where(created_at: 7.days.ago.utc...Time.now.utc, approved: true)
+    @videos = Video.where(approved: true).includes(:category, :user)
+    @new_videos = Video.where(created_at: 7.days.ago.utc...Time.now.utc, approved: true).includes(:category, :user)
     @rated_videos = []#Video.rated
     @voted_videos = []#Video.voted
-    @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).reorder("plays_count DESC")
-    @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).reorder("shares_count DESC")
+    @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("plays_count DESC")
+    @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("shares_count DESC")
     @videos_count = @videos.length
     @new_videos_count = @new_videos.length
     @rated_videos_count = @rated_videos.length
