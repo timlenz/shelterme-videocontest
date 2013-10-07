@@ -494,8 +494,8 @@ $(function(){
 		var video_id = $(this).parents('.video-tile').attr('data-video-id');
 		$.cookie("video_id", video_id);
 		$.cookie("editTitle", "true", { expires: 1, path: '/' });
-    titleChangeLink = $(this).parents('.videoEdit').find("input[type=submit]");
-    var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
+		    titleChangeLink = $(this).parents('.videoEdit').find("input[type=submit]");
+		    var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
 		$("#editVideo").find('input').val(title);
 		return false;
 	});

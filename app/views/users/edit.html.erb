@@ -24,10 +24,10 @@
       <ul class="nav nav-tabs" style="border-bottom:1px solid #ddd8d5;">
         <% if current_user == @user %>
         <li class="active">
-          <a href="#info" data-toggle="tab">Public Information</a>
+          <a href="#info" data-toggle="tab">Personal Information</a>
         </li>
         <li>
-          <a href="#account" data-toggle="tab">Private Information</a>
+          <a href="#account" data-toggle="tab">Account Information</a>
         </li>
         <% end %>
         <% if current_user.admin? && @user != current_user %>
