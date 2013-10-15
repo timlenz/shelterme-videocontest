@@ -242,11 +242,11 @@ li.addVideoNav  {
 	.tabbable {
 		margin-top:0;
 	}
-	.nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus {
+	.sub-nav-pills > .active > a, .sub-nav-pills > .active > a:hover, .sub-nav-pills > .active > a:focus {
 		color: white;
 		background-color: #0e5a61;
 	}
-	.nav-pills a {
+	.sub-nav-pills a {
 		font-size: 12px;
 		color: #0e5a61;
 		&:hover {

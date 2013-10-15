@@ -38,7 +38,7 @@ $(function(){
   // });
 
 	// Reposition sidebar if window is too short
-  $(window).scroll(function() {
+  // $(window).scroll(function() {
 		// cross-browser compatibility for Firefox & IE - STILL NEEDS IE SUPPORT
 		// var D = document;
 		// 
@@ -54,23 +54,23 @@ $(function(){
 		//         /* For opera: */
 		//         document.documentElement.clientHeight
 		//     );
-		var ie_height = document.documentElement.clientHeight;
-		var ie_scroll = document.documentElement.scrollTop;	// kind of working
-		var doc_height = Math.max( $(document).height(), window.innerHeight, ie_height );
-		var vert_scroll = Math.max ( $('body').scrollTop(), window.scrollY, ie_scroll );
-		var min_height = $('#sidebar').height() + $('header').height() + $('footer').height() + 15;	// includes sidebar top margin
-    if ( (doc_height - vert_scroll) <= min_height ) {	
-			var new_top = doc_height - $('#sidebar').height() - $('footer').height() - 20;
-      $('#sidebar').removeClass('affix').addClass('affix-bottom').css('top',new_top);
-    } else {
-      $('#sidebar').removeClass('affix-bottom').addClass('affix').css('top','');
-    };
-		$('#scroll').text(vert_scroll);
-		$('#ieScroll').text(ie_scroll);
-		$('#height').text(doc_height);
-		$('#ieHeight').text(ie_height);
-		$('#top').text(new_top);
-  });
+		// var ie_height = document.documentElement.clientHeight;
+		// var ie_scroll = document.documentElement.scrollTop;	// kind of working
+		// var doc_height = Math.max( $(document).height(), window.innerHeight, ie_height );
+		// var vert_scroll = Math.max ( $('body').scrollTop(), window.scrollY, ie_scroll );
+		// var min_height = $('#sidebar').height() + $('header').height() + $('footer').height() + 15;	// includes sidebar top margin
+		//     if ( (doc_height - vert_scroll) <= min_height ) {	
+		// 	var new_top = doc_height - $('#sidebar').height() - $('footer').height() - 20;
+		//       $('#sidebar').removeClass('affix').addClass('affix-bottom').css('top',new_top);
+		//     } else {
+		//       $('#sidebar').removeClass('affix-bottom').addClass('affix').css('top','');
+		//     };
+		// $('#scroll').text(vert_scroll);
+		// $('#ieScroll').text(ie_scroll);
+		// $('#height').text(doc_height);
+		// $('#ieHeight').text(ie_height);
+		// $('#top').text(new_top);
+		//   });
 
 	// Set sidebar left position (addresses Firefox layout issue)
 	if ( $('#sidebar').length ) {
@@ -248,7 +248,7 @@ $(function(){
 		
 		// Populate sharing info
 		$('#share a.facebook').attr('href', "http://www.facebook.com/sharer.php?s=100&p[url]=http://contest.shelterme.com/videos/" + video_id + "&p[images][0]=" + $poster + "&p[title]=" + encodeURIComponent(video_title) + "&p[summary]=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest");
-		$('#share a.twitter').attr('href', "http://twitter.com/home/?status=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id);
+		$('#share a.twitter').attr('href', "http://twitter.com/home/?status=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id +"%20%23ShelterMe");
 		$('#share a.email').attr('href', "mailto:?Subject=" + encodeURIComponent(video_title) + "&Body=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id);
 		
 		$('#share_video_id').val(video_id);
@@ -328,8 +328,7 @@ $(function(){
 		function(){
 			$('#share').show().removeClass('vjs-fade-out');
 		}, function(){
-			// $('#share').hide();
-			$('#share').addClass('vjs-fade-out');
+			$('#share').hide().addClass('vjs-fade-out');
 		}
 	);
 	
@@ -534,5 +533,27 @@ $(function(){
 		type: 'bar'
     // width: '100px'
   });
+
+  // Activate the appropriate tab on page load
+  if($('.nav-pills').length){
+		// Check if cookie exisits and matches with an available tab. Load proper tab if it does
+    if($.cookie("active_tab") != null && $('a[href=' + $.cookie("active_tab") +']').length){ // Must check null explicitly for Safari
+      var old_tab = $.cookie("active_tab");
+      $('.nav-pills li a[href=' + old_tab + ']').click();
+    } else {
+      // Select first tab as default if no cookie exists
+      var first_tab = $('.nav-pills li:first a');
+			var current_path = $(location).attr('pathname');
+      first_tab.click();
+      $.cookie("active_tab", first_tab.attr('href'), {path:current_path});
+    };
+    // Set cookie for any clicked tab
+    var tab_links = $('.nav-pills li a')
+    tab_links.bind('click', function(){
+			var current_path = $(location).attr('pathname');
+      current_tab = $(this).attr('href');
+      $.cookie("active_tab", current_tab, {path:current_path});
+    });
+  };
 
 });

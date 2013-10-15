@@ -901,7 +901,7 @@ footer {
 	width: 205px;
 	height: 630px;
 	margin: 15px 0;
-	background: transparent url(petSafeLogoSidebar.png) no-repeat center top;
+	background: transparent url(petSafeLogoSidebar.png) no-repeat center 95px;
 	.logo {
 		display: block;
 		width: 168px;
@@ -913,6 +913,21 @@ footer {
 		width: 170px;
 		height: 440px;
 		margin: 15px auto 0;
+	}
+	#countDown {
+		margin:0 0 30px;
+		h3 {
+			color: #ec520a;
+			font-size: 18px;
+			line-height: 22px;
+			font-weight: bold;
+			text-transform: uppercase;
+			margin-bottom: 15px;
+			text-align: center;
+		}
+	}
+	sup {
+		text-transform:lowercase;
 	}
 }
 

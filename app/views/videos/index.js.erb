@@ -158,3 +158,41 @@ $("#deleteVideo").dialog({
 
 // Update Video Count
 $('.headerInfo h1 span').text($.cookie("video_count"));
+
+// Edit video title
+$('.videoEdit a').click(function(){
+	$("#editVideo").dialog('open');
+	$("#video_title").focus(); // Set focus on text field in dialog
+	var video_id = $(this).parents('.video-tile').attr('data-video-id');
+	$.cookie("video_id", video_id);
+	$.cookie("editTitle", "true", { expires: 1, path: '/' });
+	    titleChangeLink = $(this).parents('.videoEdit').find("input[type=submit]");
+	    var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
+	$("#editVideo").find('input').val(title);
+	return false;
+});
+
+$('#editVideo').dialog({
+	autoOpen: false,
+  resizable: false,
+  draggable: false,
+	width: 400,
+	closeOnEscape: true,
+  modal: true,
+	buttons: {
+		Cancel: function() {
+			$(this).dialog("close");
+		},
+		"Save": function() {
+			var new_title = $("#editVideo").find('input').val();
+			var video_id = $.cookie("video_id");
+			$('*[data-video-id="'+video_id+'"]').find('.video-name h1').text(new_title);
+			$('*[data-video-id="'+video_id+'"]').find('#video_title').val(new_title);
+			$(this).dialog("close");
+			titleChangeLink.click();
+			// $.post(editVideoLink, $('#editVideo').find('form').serialize(), {"_method":"put"}, function() {
+			// 	$('*[data-video-id="'+$video_id+'"]').find('.video-name h1').text(new_title);
+			// }, "json");
+		}
+	}
+});

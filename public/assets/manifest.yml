@@ -51,6 +51,8 @@ resetPassword.png: resetPassword-5d120bee6c43b4cfa3a7d24f83b97b6b.png
 resetPassword/index.png: resetPassword-5d120bee6c43b4cfa3a7d24f83b97b6b.png
 share.png: share-c1244c4285763b067dba851b2b56e211.png
 share/index.png: share-c1244c4285763b067dba851b2b56e211.png
+share_contest.jpg: share_contest-029dc2403e0952f9cf6dac6d014bae1b.jpg
+share_contest/index.jpg: share_contest-029dc2403e0952f9cf6dac6d014bae1b.jpg
 spinner.gif: spinner-61a221150ee9c31aa5432811e8193c78.gif
 spinner/index.gif: spinner-61a221150ee9c31aa5432811e8193c78.gif
 tempVideoClip.png: tempVideoClip-b44d4d6f971608423d194c208735a64a.png
@@ -67,10 +69,10 @@ videosNav.png: videosNav-3373dbe5275c6cb3de51db3168f61512.png
 videosNav/index.png: videosNav-3373dbe5275c6cb3de51db3168f61512.png
 welcomeBack.png: welcomeBack-91243b54cd659b11d741f44182916339.png
 welcomeBack/index.png: welcomeBack-91243b54cd659b11d741f44182916339.png
-application.js: application-089748e593d2fabb5c72d071e678eac8.js
-application/index.js: application-089748e593d2fabb5c72d071e678eac8.js
-application.css: application-e8a113a9148b696415ca85875c7a84be.css
-application/index.css: application-e8a113a9148b696415ca85875c7a84be.css
+application.js: application-e9d55ac0bc6b65165020cc9b22639b51.js
+application/index.js: application-e9d55ac0bc6b65165020cc9b22639b51.js
+application.css: application-eea013f1be53ca3bbb14de550c13c64b.css
+application/index.css: application-eea013f1be53ca3bbb14de550c13c64b.css
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-7d1197a52442bc56fcad60d0390f4b32.png
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100/index.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-7d1197a52442bc56fcad60d0390f4b32.png
 jquery-ui/ui-bg_flat_75_ffffff_40x100.png: jquery-ui/ui-bg_flat_75_ffffff_40x100-3c4b974defa5e8bdaf8a603034c4435e.png
