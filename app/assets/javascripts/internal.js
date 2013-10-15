@@ -38,7 +38,7 @@ $(function(){
   // });
 
 	// Reposition sidebar if window is too short
-  // $(window).scroll(function() {
+  $(window).scroll(function() {
 		// cross-browser compatibility for Firefox & IE - STILL NEEDS IE SUPPORT
 		// var D = document;
 		// 
@@ -54,23 +54,23 @@ $(function(){
 		//         /* For opera: */
 		//         document.documentElement.clientHeight
 		//     );
-		// var ie_height = document.documentElement.clientHeight;
-		// var ie_scroll = document.documentElement.scrollTop;	// kind of working
-		// var doc_height = Math.max( $(document).height(), window.innerHeight, ie_height );
-		// var vert_scroll = Math.max ( $('body').scrollTop(), window.scrollY, ie_scroll );
-		// var min_height = $('#sidebar').height() + $('header').height() + $('footer').height() + 15;	// includes sidebar top margin
-		//     if ( (doc_height - vert_scroll) <= min_height ) {	
-		// 	var new_top = doc_height - $('#sidebar').height() - $('footer').height() - 20;
-		//       $('#sidebar').removeClass('affix').addClass('affix-bottom').css('top',new_top);
-		//     } else {
-		//       $('#sidebar').removeClass('affix-bottom').addClass('affix').css('top','');
-		//     };
-		// $('#scroll').text(vert_scroll);
-		// $('#ieScroll').text(ie_scroll);
-		// $('#height').text(doc_height);
-		// $('#ieHeight').text(ie_height);
-		// $('#top').text(new_top);
-		//   });
+		var ie_height = document.documentElement.clientHeight;
+		var ie_scroll = document.documentElement.scrollTop;	// kind of working
+		var doc_height = Math.max( $(document).height(), window.innerHeight, ie_height );
+		var vert_scroll = Math.max ( $('body').scrollTop(), window.scrollY, ie_scroll );
+		var min_height = $('#sidebar').height() + $('header').height() + $('footer').height() + 15;	// includes sidebar top margin
+		    if ( (doc_height - vert_scroll) <= min_height ) {	
+			var new_top = doc_height - $('#sidebar').height() - $('footer').height() - 20;
+		      $('#sidebar').removeClass('affix').addClass('affix-bottom').css('top',new_top);
+		    } else {
+		      $('#sidebar').removeClass('affix-bottom').addClass('affix').css('top','');
+		    };
+		$('#scroll').text(vert_scroll);
+		$('#ieScroll').text(ie_scroll);
+		$('#height').text(doc_height);
+		$('#ieHeight').text(ie_height);
+		$('#top').text(new_top);
+		  });
 
 	// Set sidebar left position (addresses Firefox layout issue)
 	if ( $('#sidebar').length ) {
