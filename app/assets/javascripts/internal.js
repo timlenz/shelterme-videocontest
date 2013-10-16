@@ -70,7 +70,7 @@ $(function(){
 		$('#height').text(doc_height);
 		$('#ieHeight').text(ie_height);
 		$('#top').text(new_top);
-		  });
+	});
 
 	// Set sidebar left position (addresses Firefox layout issue)
 	if ( $('#sidebar').length ) {
