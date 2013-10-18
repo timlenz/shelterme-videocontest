@@ -178,11 +178,12 @@ $blueLight: #e4f1f3;
 }
 
 #videoSolo {
+	position:relative;
 	margin-left: -20px;
 	margin-top: 15px;
 	#share {
-		top:79px;
-		right:179px;
+		top:10px;
+		right:10px;
 		padding: 9px 9px 0;
 		a {
 			margin:0 auto 9px;
