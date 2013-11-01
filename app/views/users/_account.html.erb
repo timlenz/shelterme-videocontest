@@ -2,7 +2,7 @@
   <%= simple_form_for(@user, html: {class: 'form-horizontal' }) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <%= f.input :phone %>
-    <%= f.input :date_of_birth, as: :string, label: "Birthdate", hint: "You must be 18 to enter" %>
+    <%= f.input :date_of_birth, as: :string, label: "Birthdate", hint: "You must be 13 to enter" %>
     <%= f.input :email %>
     <%= f.input :password, label: "New Password" %>
     <%= f.input :password_confirmation, label: 'Re-enter Password'  %>

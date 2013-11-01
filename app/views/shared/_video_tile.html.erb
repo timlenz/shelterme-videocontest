@@ -1,7 +1,7 @@
 <div class="video-tile" data-video-id="<%= f.id %>">
   <div class="tile-photo">
 	<% if f.panda_video.encodings["thumbnail"].status == "success" && f.h264.status == "success" && f.webm.status == "success" %>
-	  <% if f.approved == true || (signed_in? && current_user.admin?) %>
+	  <% if f.approved == true || (params[:controller] == 'videos' and params[:action] == 'index') %>
     <%= link_to image_tag(f.thumbnail.screenshots.first, height: "169"), "#", class: "video_link", data: {mp4: "#{f.h264.url}", webm: "#{f.webm.url}"} %>
     <% else %>
     <div class="comingSoon">

@@ -366,7 +366,7 @@ li.addVideoNav  {
 	.videoEdit {
 		position: absolute;
 		right: 5px;
-		bottom: 30px;
+		bottom: 10px;
 		display: none;
 		a {
 			width: 30px;
@@ -501,6 +501,21 @@ li.addVideoNav  {
 		letter-spacing: 0;
 		font-weight: bold;
   }
+}
+
+.showTitle {
+	height:281px;
+	.video-name {
+		white-space: normal;
+		overflow: auto;
+		text-overflow: auto;
+		-o-text-overflow: auto;
+		z-index:100;
+		height:auto;
+	}
+	.video-info {
+		display:none;
+	}
 }
 
 .videoLegend {

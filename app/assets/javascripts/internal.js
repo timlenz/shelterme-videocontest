@@ -401,10 +401,10 @@ $(function(){
 	// Initialize date picker for user date of birth
 	$("#user_date_of_birth").datepicker({
 		dateFormat: "yy-mm-dd",
-		yearRange: "1910:1995",
+		yearRange: "1910:2000",
 		changeMonth: true,
 		changeYear: true,
-		maxDate: "-18Y"	// User must be at least 18 to enter
+		maxDate: "-13Y"	// User must be at least 13 to enter
   });
 
 	// Hide Upload Video if mobile user agent
@@ -554,6 +554,22 @@ $(function(){
       current_tab = $(this).attr('href');
       $.cookie("active_tab", current_tab, {path:current_path});
     });
+  };
+  
+  // Resize video title font if it overflows available area
+  if( $('.video-tile').length ) {
+  	  title_width = $('.video-name').width();
+  	  $('.video-name h1').each(function(){
+  		  if ( $(this).width() > title_width ) {
+			  $(this).parent().mouseover(function(){
+				  $(this).parents('.video-tile').addClass('showTitle');
+			  });
+  
+			  $(this).parent().mouseout(function(){
+				  $(this).parents('.video-tile').removeClass('showTitle');
+			  });
+  		  };
+  	  });
   };
 
 });
