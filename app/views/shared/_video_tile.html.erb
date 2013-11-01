@@ -1,34 +1,34 @@
 <div class="video-tile" data-video-id="<%= f.id %>">
   <div class="tile-photo">
-	<% if f.panda_video.encodings["thumbnail"].status == "success" && f.h264.status == "success" && f.webm.status == "success" %>
-	  <% if f.approved == true || (params[:controller] == 'videos' and params[:action] == 'index') %>
+  <% if f.panda_video.encodings["thumbnail"].status == "success" && f.h264.status == "success" && f.webm.status == "success" %>
+    <% if f.approved == true || (params[:controller] == 'videos' and params[:action] == 'index') %>
     <%= link_to image_tag(f.thumbnail.screenshots.first, height: "169"), "#", class: "video_link", data: {mp4: "#{f.h264.url}", webm: "#{f.webm.url}"} %>
     <% else %>
     <div class="comingSoon">
-	  	<p>You can watch this video once it is <%= link_to "approved", "/rules#requirements" %>.</p>
-	  </div>
-	  <%= image_tag(f.thumbnail.screenshots.first, height: "169") %>
+      <p>You can watch this video once it is <%= link_to "approved", "/rules#requirements" %>.</p>
+    </div>
+    <%= image_tag(f.thumbnail.screenshots.first, height: "169") %>
     <% end %>
   <% else %>
     <div class="processing">
-	    <p>Processing <%= f.thumbnail.status == "processing" ? "thumbnail..." : "video..." %><br>
-	      Please reload the page in a few minutes.</p>
+      <p>Processing <%= f.thumbnail.status == "processing" ? "thumbnail..." : "video..." %><br>
+        Please reload the page in a few minutes.</p>
     </div>
   <% end %>
   <% if f.created_at >= 1.week.ago %>
     <div class="videoTile newIcon"></div>
-	<% end %>
-	<% if params[:controller] == 'videos' and params[:action] == 'index' %>
-	  <div class="adminApproval">
-	  <% if f.approved == false %>
+  <% end %>
+  <% if params[:controller] == 'videos' and params[:action] == 'index' %>
+    <div class="adminApproval">
+    <% if f.approved == false %>
       <%= render 'videos/approve', f: f %>
     <% else %>
       <%= render 'videos/unapprove', f: f %>
     <% end %>
-	  </div>
-	  <div class="adminDelete">
-	  	<%= link_to "Delete", f, method: :delete, class: "btn btn-header btn-admin" %>
-	  </div>
+    </div>
+    <div class="adminDelete">
+      <%= link_to "Delete", f, method: :delete, class: "btn btn-header btn-admin" %>
+    </div>
   <% end %>
   </div>
   <div class="video-icons">
@@ -41,20 +41,24 @@
       <li><%= render 'shared/icons/share', f: f %></li>
     </ul>
   </div>
-  <div class="video-name">
-  	<h1><%= f.title %></h1>
+  <div class="video-name">  
+    <h1><%= f.title %></h1>
     <% if signed_in? && (current_user == @user || current_user.admin?) %>
     <div class="videoEdit">
-	  	<%= link_to "Edit", "javascript;", class: "btn btn-header btn-admin" %>
-	    <%= simple_form_for(f, remote: true) do |p| %>
-        <%= p.hidden_field :title, label: false %>
-        <%= p.button :submit, "Save", class: "hiddenBtn" %>
-      <% end %>
-	  </div> 
+    <%= link_to "Edit", "javascript;", class: "btn btn-header btn-admin" %>
+    <%= simple_form_for(f, remote: true) do |p| %>
+      <%= p.hidden_field :title, label: false %>
+      <%= p.button :submit, "Save", class: "hiddenBtn" %>
+    <% end %>
+  </div> 
     <% end %>
   </div>
   <div class="video-info">
-	  <%= link_to "#{f.user.name}", f.user, class: "user_name" %>
-    <span class="user_location"><%= f.user.city %>, <%= f.user.state %></span>
+	<% if f.user %>
+      <%= link_to "#{f.user.name}", f.user, class: "user_name" %>
+      <span class="user_location"><%= f.user.city %>, <%= f.user.state %></span>
+	<% else %>
+	  <%= link_to "Shelter Me", "#", class: "user_name" %>
+	<% end %>
   </div>
 </div>

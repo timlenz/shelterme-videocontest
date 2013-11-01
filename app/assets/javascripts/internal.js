@@ -556,20 +556,15 @@ $(function(){
     });
   };
   
-  // Resize video title font if it overflows available area
-  if( $('.video-tile').length ) {
-  	  title_width = $('.video-name').width();
-  	  $('.video-name h1').each(function(){
-  		  if ( $(this).width() > title_width ) {
-			  $(this).parent().mouseover(function(){
-				  $(this).parents('.video-tile').addClass('showTitle');
-			  });
-  
-			  $(this).parent().mouseout(function(){
-				  $(this).parents('.video-tile').removeClass('showTitle');
-			  });
-  		  };
-  	  });
-  };
+  // Show video title if it overflows available area
+  $('.video-name').mouseover(function(){
+	  title_width = $(this).width();
+	  if ( $(this).find('h1').width() > title_width ) {
+	  	$(this).parents('.video-tile').addClass('showTitle');
+	  };
+  });
+  $('.video-name').mouseout(function(){
+	  $(this).parents('.video-tile').removeClass('showTitle');
+  })
 
 });

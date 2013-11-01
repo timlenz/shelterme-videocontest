@@ -1,33 +1,37 @@
 <%= provide(:title, 'Watch') %>
 <div id="mainContent">
-	<div id="videoSolo" data-video-id="<%= @video.id %>">
-		<video id="videoPlayer" width="720" height="405" class="video-js vjs-default-skin active"
-		  controls preload="auto" data-setup='{}' poster="<%= @video.panda_video.encodings["thumbnail"].screenshots.first %>">
-	    <source src="<%= @video.panda_video.encodings["h264"].url %>" type="video/mp4" />
-		  <source src="<%= @video.panda_video.encodings["webm"].url %>" type="video/webm" />
-	  </video>
-		<%= render 'videos/played' %>
-		<%= render 'videos/solo_share' %>
-		<!--%= render 'vote' %-->
-		<div class="videoLegend">
-			<div class="video-name">
-		  	<h1><%= @video.title %></h1>
-		  </div>
-		  <div class="video-info">
-			  <%= link_to "#{@video.user.name}", @video.user, class: "user_name" %>
-		    <span class="user_location"><%= @video.user.city %>, <%= @video.user.state %></span>
-		  </div>
-		</div>
-		<div class="video-icons" style="float:right;margin-top:5px;">
-			<ul>
-				<li><%= render 'shared/icons/category', f: @video %></li>
-	      <li><%= render 'shared/icons/ranking', f: @video %></li>
-	      <li><%= render 'shared/icons/time', f: @video %></li>
-	      <li><%= render 'shared/icons/vote', f: @video %></li>
-	      <li><%= render 'shared/icons/play', f: @video %></li>
-	      <li><%= render 'shared/icons/share', f: @video %></li>
-	    </ul>
-		</div>
-	</div>
+  <div id="videoSolo" data-video-id="<%= @video.id %>">
+    <video id="videoPlayer" width="720" height="405" class="video-js vjs-default-skin active"
+      controls preload="auto" data-setup='{}' poster="<%= @video.panda_video.encodings["thumbnail"].screenshots.first %>">
+      <source src="<%= @video.panda_video.encodings["h264"].url %>" type="video/mp4" />
+      <source src="<%= @video.panda_video.encodings["webm"].url %>" type="video/webm" />
+    </video>
+    <%= render 'videos/played' %>
+    <%= render 'videos/solo_share' %>
+    <!--%= render 'videos/vote' %-->
+    <div class="videoLegend">
+      <div class="video-name">
+        <h1><%= @video.title %></h1>
+      </div>
+      <div class="video-info">
+        <% if @video.user %>
+            <%= link_to "#{@video.user.name}", @video.user, class: "user_name" %>
+            <span class="user_location"><%= @video.user.city %>, <%= @video.user.state %></span>
+        <% else %>
+          <%= link_to "Shelter Me", "#", class: "user_name" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="video-icons" style="float:right;margin-top:5px;">
+      <ul>
+        <li><%= render 'shared/icons/category', f: @video %></li>
+        <li><%= render 'shared/icons/ranking', f: @video %></li>
+        <li><%= render 'shared/icons/time', f: @video %></li>
+        <li><%= render 'shared/icons/vote', f: @video %></li>
+        <li><%= render 'shared/icons/play', f: @video %></li>
+        <li><%= render 'shared/icons/share', f: @video %></li>
+      </ul>
+    </div>
+  </div>
 </div>
 <div class="clearfix"></div>

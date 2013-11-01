@@ -1,11 +1,19 @@
 <div id="sidebar" class="affix">
-	<div id="countDown">
-  	<h3>Entry deadline extended to November 1<sup>st</sup></h3>
+  <div id="countDown"> 
+	<% if DateTime.current.utc < DateTime.new(2013,11,2,12,0,0) %>
+    <h3>Today is the last day to submit<br>your videos!</h3>
+	<% elsif DateTime.current.utc < DateTime.new(2013,11,5,5,0,0) %>
+	<h3>Closed to entries. Voting begins November 4<sup>th</sup></h3>
+	<% elsif DateTime.current.utc < DateTime.new(2013,12,20,5,0,0) %>
+	<h3><%= (Date.new(2013,12,20) - Date.today).to_i %> Days left to vote for your favorite videos!</h3>
+	<% elsif DateTime.current.utc > DateTime.new(2013,12,20,5,0,0)%>
+	<h3>Voting is closed. Winners revealed in January.</h3>
+	<% end %>
   </div>
   <%= link_to "", "http://www.petsafe.net", class: "logo", target: "_blank" %>
-	<div id="tallAd">
-		<%= link_to image_tag("PetSafe_ShelterMe.jpg", width: "170", height: "475"), "http://www.petsafe.net", target: "_blank" %>
-	</div>
+  <div id="tallAd">
+    <%= link_to image_tag("PetSafe_ShelterMe.jpg", width: "170", height: "475"), "http://www.petsafe.net", target: "_blank" %>
+  </div>
 </div>
 <% if signed_in? and current_user.id == 0 %>
 <div id="top" style="position:fixed;left:10px;bottom:120px;">top</div>

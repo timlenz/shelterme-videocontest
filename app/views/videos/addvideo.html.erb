@@ -1,28 +1,33 @@
 <%= provide(:title, 'Add Video') %>
 <div id="mainContent">
-	<div class="staticContent">
-		<div class="center">
-			<%= image_tag("downloadAssets.png", alt: "Download assets, create your video and upload it", width: "631", height: "27", class: "formHeader") %>
-		</div>
-		<br>
-		<p>We are so excited to see your videos.  This is your opportunity to use your creativity to help improve the lives of our shelter pets.  We have provided a number of assets that you can use for editing:  video clips, music, photos and graphics.  Feel free to use just these assets or to combine them with your own material or your can submit a video with only your stuff.</p>
-		<p>The basic requirements for your submitted video are that it:</p>
-		<ul style="list-style:disc;font-weight:bold;">
-			<li>be no longer than 60 seconds,</li>
-			<li>be no shorter than 15 seconds,</li>
-			<li>include the 5-second PetSafe&#0174; Brand video clip (see Required tab in Video Clips below)</li>
-		</ul>
-		<p>See the official rules for the <%= link_to "full requirements", '/rules/#requirements' %> for submitted videos. We accept most <%= link_to "video encodings", "/faq#codecs" %>.</p>
-		<p>You can create any type of video you want in the categories of:  adopt, foster, spay/neuter, volunteer and donate.  There's even a "wildcard" category.  If your video promotes an aspect of shelter pets or the shelters, but doesn't fit in one of the categories, then you can submit it as a wildcard.</p>
-		<p>Let your imagination run wild.  You can use photos or video.  You can do a photo montage.  You can use voiceover or have someone on camera talking.  You can use text graphics to communicate your message.  This contest is all about helping our shelter pets and encouraging others to get involved with their local shelters.  Have fun and thank you for participating!</p>
-		<div class="mediaButtons">
-			<%= button_to('Upload Video', newvideo_path, remote: true, class: "btn", id: "videoClick") %>
-		</div>
-		<div id="tabletAlert" style="display:none;">
-			<p>Sorry, but you cannot upload videos or download assets from a mobile device</p>
-		</div>
-	</div>
-	<div id="assetNav" class="tabbable">
+  <div class="staticContent">
+    <div class="center">
+      <%= image_tag("downloadAssets.png", alt: "Download assets, create your video and upload it", width: "631", height: "27", class: "formHeader") %>
+    </div>
+    <br>
+    <p>We are so excited to see your videos.  This is your opportunity to use your creativity to help improve the lives of our shelter pets.  We have provided a number of assets that you can use for editing:  video clips, music, photos and graphics.  Feel free to use just these assets or to combine them with your own material or your can submit a video with only your stuff.</p>
+    <p>The basic requirements for your submitted video are that it:</p>
+    <ul style="list-style:disc;font-weight:bold;">
+      <li>be no longer than 60 seconds,</li>
+      <li>be no shorter than 15 seconds,</li>
+      <li>include the 5-second PetSafe&#0174; Brand video clip (see Required tab in Video Clips below)</li>
+    </ul>
+    <p>See the official rules for the <%= link_to "full requirements", '/rules/#requirements' %> for submitted videos. We accept most <%= link_to "video encodings", "/faq#codecs" %>.</p>
+    <p>You can create any type of video you want in the categories of:  adopt, foster, spay/neuter, volunteer and donate.  There's even a "wildcard" category.  If your video promotes an aspect of shelter pets or the shelters, but doesn't fit in one of the categories, then you can submit it as a wildcard.</p>
+    <p>Let your imagination run wild.  You can use photos or video.  You can do a photo montage.  You can use voiceover or have someone on camera talking.  You can use text graphics to communicate your message.  This contest is all about helping our shelter pets and encouraging others to get involved with their local shelters.  Have fun and thank you for participating!</p>
+    <% if DateTime.current.utc < DateTime.new(2013,11,2,12,0,0) %>
+	<div class="mediaButtons">
+      <%= button_to('Upload Video', newvideo_path, remote: true, class: "btn", id: "videoClick") %>
+    </div>
+    <div id="tabletAlert" style="display:none;">
+      <p>Sorry, but you cannot upload videos or download assets from a mobile device</p>
+    </div>
+	<% else %>
+	<p style="font-weight:bold;">The deadline to submit videos has passed.</p>
+	<% end %>
+  </div>
+  <% if DateTime.current.utc < DateTime.new(2013,11,2,12,0,0) %>
+  <div id="assetNav" class="tabbable">
      <ul class="nav nav-pills" style="height:50px;">
        <li class="active addVideoNav videoClipsPill"><a href="#videoClipsNav" data-toggle="tab"></a></li>
        <li class="addVideoNav photosPill"><a href="#photosNav" data-toggle="tab"></a></li>
@@ -31,19 +36,20 @@
      </ul>
      <div class="tab-content">
        <%= render 'video_clips' %>
-	     <%= render 'audio_tracks' %>
-		   <%= render 'photos' %>
-			 <%= render 'graphics' %>
+       <%= render 'audio_tracks' %>
+       <%= render 'photos' %>
+       <%= render 'graphics' %>
      </div>
    </div>
+   <% end %>
 </div>
 <div class="clearfix"></div>
 <div id="previewModal">
-	<video id="previewPlayer" width="720" height="405" class="video-js vjs-default-skin active" 
+  <video id="previewPlayer" width="720" height="405" class="video-js vjs-default-skin active" 
     controls autoplay preload="auto" data-setup='{}'>
     <source src="" type="video/mp4" />
-	  <source src="" type="video/webm" />
+    <source src="" type="video/webm" />
   </video>
-	<div class="close">&times;</div>
+  <div class="close">&times;</div>
 </div>
 <div id="modalTarget"></div>

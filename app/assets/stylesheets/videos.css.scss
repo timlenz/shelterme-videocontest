@@ -313,6 +313,7 @@ li.addVideoNav  {
   float: left;
   position: relative;
   margin: 5px 25px 20px;
+  overflow:hidden;
   &:hover {
     -webkit-box-shadow: 0px 0px 8px rgba(0, 85, 128, 0.75);
     -moz-box-shadow:    0px 0px 8px rgba(0, 85, 128, 0.75);
