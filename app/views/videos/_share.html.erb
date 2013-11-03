@@ -1,17 +1,17 @@
 <div id="share">
-	<div class="share"></div>
-	<%= link_to "", "", class: "navMain facebook social", target: "_blank" %>
+  <div class="share"></div>
+  <%= link_to "", "", class: "navMain facebook social", target: "_blank" %>
   <%= link_to "", "", class: "navMain twitter social", target: "_blank" %>
   <%= link_to "", "", class: "email", target: "_blank" %>
-	<% if signed_in? %>
-	<%= form_for(current_user.shares.build(video_id: ''), remote: true) do |f| %>
-	  <div><%= f.hidden_field :video_id %></div>
-	  <%= f.submit "Shared", class: "btn btn-header btn-follow hidden" %>
-	<% end %>
-	<% else %>
-	<%= form_for(null_user.shares.build(video_id: ''), remote: true) do |f| %>
-	  <div><%= f.hidden_field :video_id %></div>
-	  <%= f.submit "Shared", class: "btn btn-header btn-follow" %>
-	<% end %>
-	<% end %>
+  <% if signed_in? %>
+  <%= form_for(current_user.shares.build(video_id: ''), remote: true) do |f| %>
+    <div><%= f.hidden_field :video_id %></div>
+    <%= f.submit "Shared", class: "btn btn-header btn-follow hidden" %>
+  <% end %>
+  <% else %>
+  <%= form_for(null_user.shares.build(video_id: ''), remote: true) do |f| %>
+    <div><%= f.hidden_field :video_id %></div>
+    <%= f.submit "Shared", class: "btn btn-header btn-follow" %>
+  <% end %>
+  <% end %>
 </div>
