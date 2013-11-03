@@ -1,89 +1,89 @@
 <%= provide(:title, 'Watch') %>
 <div id="mainContent">
-	<div class="tabbable">
+  <div class="tabbable">
      <ul id="watchVideos" class="nav nav-pills">
        <!--li class="active winnersPill"><a href="#winners" data-toggle="tab"></a></li-->
-       <li class="allVideosPill active">
-	       <a href="#all" data-toggle="tab">
-	         <span class="count"><%= @videos_count > 0 ? @videos_count : '' %></span>
-	       </a>
-	     </li>
-       <li class="newVideosPill">
-	       <a href="#new" data-toggle="tab">
-	         <span class="count"><%= @new_videos_count > 0 ? @new_videos_count : '' %></span>
-	       </a>
-	     </li>
-       <li class="mostPlaysPill">
-	       <a href="#mostPlays" data-toggle="tab">
-		       <span class="count"><%= @played_videos_count > 0 ? @played_videos_count : '' %></span>
-		     </a>
-		   </li>
+       <li class="bestRatedPill active">
+         <a href="#bestRated" data-toggle="tab">
+           <span class="count"><%= @rated_videos_count > 0 ? @rated_videos_count : '' %></span>
+         </a>
+       </li>
        <li class="mostVotesPill">
-	       <a href="#mostVotes" data-toggle="tab">
-		       <span class="count"><%= @voted_videos_count > 0 ? @voted_videos_count : '' %></span>
-		     </a>
-		   </li>
+         <a href="#mostVotes" data-toggle="tab">
+           <span class="count"><%= @voted_videos_count > 0 ? @voted_videos_count : '' %></span>
+         </a>
+       </li>
+       <li class="mostPlaysPill">
+         <a href="#mostPlays" data-toggle="tab">
+           <span class="count"><%= @played_videos_count > 0 ? @played_videos_count : '' %></span>
+         </a>
+       </li>
        <li class="mostSharesPill">
-	       <a href="#mostShares" data-toggle="tab">
-		       <span class="count"><%= @shared_videos_count > 0 ? @shared_videos_count : '' %></span>
-		     </a>
-		   </li>
-       <li class="bestRatedPill">
-	       <a href="#bestRated" data-toggle="tab">
-		       <span class="count"><%= @rated_videos_count > 0 ? @rated_videos_count : '' %></span>
-		     </a>
-		   </li>
+         <a href="#mostShares" data-toggle="tab">
+           <span class="count"><%= @shared_videos_count > 0 ? @shared_videos_count : '' %></span>
+         </a>
+       </li>
+       <li class="allVideosPill">
+         <a href="#all" data-toggle="tab">
+           <span class="count"><%= @videos_count > 0 ? @videos_count : '' %></span>
+         </a>
+       </li>
+       <li class="newVideosPill">
+         <a href="#new" data-toggle="tab">
+           <span class="count"><%= @new_videos_count > 0 ? @new_videos_count : '' %></span>
+         </a>
+       </li>
      </ul>
      <div class="tab-content">
        <div class="tab-pane" id="new">
-	       <% if @new_videos.size > 0 %>
+         <% if @new_videos.size > 0 %>
          <%= render partial: 'shared/video_tile', collection: @new_videos, as: :f %>
          <div class="clearfix"></div>
          <%= will_paginate @new_videos, param_name: 'new_videos' %>
          <% elsif @videos.size > 0 %>
          No videos have been added in the last week. Click on another category to see existing videos.
          <% else %>
-	       No videos have been approved yet. Create and <%= link_to "upload a video", addvideo_path %> to see it here.
+         No videos have been approved yet. Create and <%= link_to "upload a video", addvideo_path %> to see it here.
          <% end %>
        </div>
-       <div class="tab-pane" id="bestRated">
-	       <% if @rated_videos.size > 0 %>
+       <div class="tab-pane active" id="bestRated">
+         <% if @rated_videos.size > 0 %>
          <%= render partial: 'shared/video_tile', collection: @rated_videos, as: :f %>
          <div class="clearfix"></div>
          <%= will_paginate @rated_videos, param_name: 'rated_videos' %>
          <% else %>
-	       No videos have been rated yet.
+         No videos have been rated yet.
          <% end %>
        </div>
        <div class="tab-pane" id="mostVotes">
-	       <% if @voted_videos.size > 0 %>
+         <% if @voted_videos.size > 0 %>
          <%= render partial: 'shared/video_tile', collection: @voted_videos, as: :f %>
          <div class="clearfix"></div>
          <%= will_paginate @voted_videos, param_name: 'voted_videos' %>
          <% else %>
-	       No videos have votes yet.
+         No videos have votes yet.
          <% end %>
        </div>
        <div class="tab-pane" id="mostPlays">
-	       <% if @played_videos.size > 0 %>
+         <% if @played_videos.size > 0 %>
          <%= render partial: 'shared/video_tile', collection: @played_videos.sort! { |a,b| b.plays_count <=> a.plays_count }, as: :f %>
          <div class="clearfix"></div>
          <%= will_paginate @played_videos, param_name: 'played_videos' %>
          <% else %>
-	       No videos have been viewed yet.
+         No videos have been viewed yet.
          <% end %>
        </div>
        <div class="tab-pane" id="mostShares">  
-	       <% if @shared_videos.size > 0 %>
+         <% if @shared_videos.size > 0 %>
          <%= render partial: 'shared/video_tile', collection: @shared_videos, as: :f %>
          <div class="clearfix"></div>
          <%= will_paginate @shared_videos, param_name: 'shared_videos' %>
          <% else %>
-	       No videos have been shared yet.
+         No videos have been shared yet.
          <% end %>
        </div>
-       <div class="tab-pane active" id="all">
-	       <% if @videos.size > 0 %>
+       <div class="tab-pane" id="all">
+         <% if @videos.size > 0 %>
          <%= render partial: 'shared/video_tile', collection: @videos, as: :f %>
          <div class="clearfix"></div>
          <%= will_paginate @videos, param_name: 'all_videos' %>

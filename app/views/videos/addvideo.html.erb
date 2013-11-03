@@ -26,22 +26,22 @@
 	<p style="font-weight:bold;">The deadline to submit videos has passed.</p>
 	<% end %>
   </div>
-  <% if DateTime.current.utc < DateTime.new(2013,11,2,12,0,0) %>
+
   <div id="assetNav" class="tabbable">
      <ul class="nav nav-pills" style="height:50px;">
-       <li class="active addVideoNav videoClipsPill"><a href="#videoClipsNav" data-toggle="tab"></a></li>
-       <li class="addVideoNav photosPill"><a href="#photosNav" data-toggle="tab"></a></li>
-       <li class="addVideoNav audioTracksPill"><a href="#audioNav" data-toggle="tab"></a></li>
-       <li class="addVideoNav graphicsPill"><a href="#graphicsNav" data-toggle="tab"></a></li>
+       <!-- <li class="active addVideoNav videoClipsPill"><a href="#videoClipsNav" data-toggle="tab"></a></li> -->
+       <!-- <li class="addVideoNav photosPill"><a href="#photosNav" data-toggle="tab"></a></li> -->
+       <li class="active addVideoNav audioTracksPill"><a href="#audioNav" data-toggle="tab"></a></li>
+       <!-- <li class="addVideoNav graphicsPill"><a href="#graphicsNav" data-toggle="tab"></a></li> -->
      </ul>
      <div class="tab-content">
-       <%= render 'video_clips' %>
+       <% render 'video_clips' %>
        <%= render 'audio_tracks' %>
-       <%= render 'photos' %>
-       <%= render 'graphics' %>
+       <% render 'photos' %>
+       <% render 'graphics' %>
      </div>
    </div>
-   <% end %>
+
 </div>
 <div class="clearfix"></div>
 <div id="previewModal">
