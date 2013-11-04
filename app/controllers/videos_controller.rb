@@ -14,6 +14,7 @@ class VideosController < ApplicationController
   end
   
   def addvideo
+    redirect_to watch_path
     if signed_in?
       @people = %w[0003EF 0007GY 0009PO 0011H0 0012GN 0013MR 0013T0 0014TE 0016XY 0019NQ 0020NK 0020XN 00229P 0023T6 0024H4 0025UT 00310N 0031A2 0032QT 0032RL 0032RY 00335Z 00339B 0033GX 0034C0 0034Y2 00358U 0041LQ 0044DE 00469Z 0046CN 00530S 00606W 00628E 0066QU 0067MJ 0151CF 0156A6 0160X0 0167NX 1058RC 1059H7 1061M9 1090V3]
       @dogs = %w[001368 0013Y3 0016R6 0018H9 0019J9 0022D3 0025UE 0027XZ 002976 0030ZM 0035QA 0036GR 0037DV 0042AY 0046Y0 0047HG 004813 0049U5 0050T6 0052GP 0053YU 00541F 0145F8 0146Q1 01542R 01550J 0162UN 0163W7 0164LR 10528P 1063QQ 1075ZH 10762C 10779G 107810 1081A9 10829U 1084LI 1086M3 1088AT 1089YC 1111KT]
@@ -63,6 +64,7 @@ class VideosController < ApplicationController
   
   def show
     @video = Video.find(params[:id])
+    vote_check = Vote.where(video_id: @video.id, user_id: current_user.id).last if signed_in?
     respond_with do |format|
       format.json { render :json => @video }
     end
