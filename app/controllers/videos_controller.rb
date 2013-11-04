@@ -64,12 +64,12 @@ class VideosController < ApplicationController
   
   def show
     @video = Video.find(params[:id])
-    vote_check = Vote.where(video_id: @video.id, user_id: current_user.id).last if signed_in?
+    @vote_check = Vote.where(video_id: @video.id, user_id: current_user.id).last if signed_in?
     respond_with do |format|
       format.json { render :json => @video }
     end
-    flash[:notice] = "<p>You do not need to create an account to watch or share a video, but you must be signed 
-                      in to vote for a video.</p><p>You may vote for a video once every 24 hours.</p>".html_safe
+    # flash[:notice] = "<p>You do not need to create an account to watch or share a video, but you must be signed 
+    #                   in to vote for a video.</p><p>You may vote for a video once every 24 hours.</p>".html_safe
   end
   
   def destroy
@@ -101,12 +101,18 @@ class VideosController < ApplicationController
   end
   
   def watch
-    @videos = Video.where(approved: true).includes(:category, :user).reorder("title ASC")#.sample(12)
+    @videos = Video.where(approved: true).includes(:category, :user)
+    seed = Random.rand()
+    if seed > 0.5
+      @videos.reorder("title ASC")
+    else
+      @videos.reorder("votes_count ASC")
+    end
     # @new_videos = Video.where(created_at: 7.days.ago.utc...Time.now.utc, approved: true).includes(:category, :user)
     @rated_videos = []#Video.rated
-    @voted_videos = Video.where(id: (Vote.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("votes_count DESC").first(12)
-    @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("plays_count DESC").first(12)
-    @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("shares_count DESC").first(12)
+    @voted_videos = Video.where(id: (Vote.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("votes_count DESC").first(30).sample(12)
+    @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("plays_count DESC").first(30).sample(12)
+    @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("shares_count DESC").first(30).sample(12)
     @videos_count = @videos.length
     # @new_videos_count = @new_videos.length
     # @rated_videos_count = @rated_videos.length
@@ -116,10 +122,10 @@ class VideosController < ApplicationController
     @videos = @videos.paginate(page: params[:all_videos], per_page: 12)
     # @new_videos = @new_videos.paginate(page: params[:new_videos], per_page: 12)
     @rated_videos = []#@rated_videos.paginate(page: params[:rated_videos], per_page: 12)
-    @voted_videos = @voted_videos#.paginate(page: params[:voted_videos], per_page: 12)
-    @played_videos = @played_videos#.paginate(page: params[:played_videos], per_page: 12)
-    @shared_videos = @shared_videos#.paginate(page: params[:shared_videos], per_page: 12)
-    flash[:notice] = "<p>You do not need to create an account to watch or share a video, but you must be signed 
-                      in to vote for a video.</p><p>You may vote for a video once every 24 hours.</p>".html_safe
+    @voted_videos = @voted_videos #.paginate(page: params[:voted_videos], per_page: 12)
+    @played_videos = @played_videos #.paginate(page: params[:played_videos], per_page: 12)
+    @shared_videos = @shared_videos #.paginate(page: params[:shared_videos], per_page: 12)
+    # flash[:notice] = "<p>You do not need to create an account to watch or share a video, but you must be signed 
+    #                   in to vote for a video.</p><p>You may vote for a video once every 24 hours.</p>".html_safe
   end
 end

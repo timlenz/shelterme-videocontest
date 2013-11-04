@@ -16,7 +16,8 @@ VideoContest::Application.routes.draw do
   resources :shares, only: :create
   resources :votes, only: :create
   
-  root to: 'static_pages#home'
+  # root to: 'static_pages#home'
+  root to: 'videos#watch'
   
   match "/panda/authorize_upload", :to => "panda#authorize_upload"
   
@@ -28,7 +29,7 @@ VideoContest::Application.routes.draw do
   match '/signin',            to: 'sessions#new'
   match '/signout',           to: 'sessions#destroy', via: :delete
   
-  match '/enter',             to: 'users#new'
+  match '/register',          to: 'users#new'
   match '/u',                 to: 'users#index'
   match '/users',             to: 'users#index'
   match '/u/:id',             to: 'users#show'

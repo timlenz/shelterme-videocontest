@@ -333,7 +333,7 @@ $(function(){
 		function(){
 			$('#share, #vote').show().removeClass('vjs-fade-out');
 		}, function(){
-			$('#share, #vote').hide().addClass('vjs-fade-out');
+			$('#share, #vote').hide().addClass('vjs-fade-out'); // add in delay
 		}
 	);
 	

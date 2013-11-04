@@ -27,9 +27,9 @@
   </li>
 <% else %>
  <% if params[:controller] == 'users' and params[:action] == 'new' %>
-  <li class="signInOn">Enter</li>
+  <li class="signInOn">Register</li>
  <% else %>  
-  <li class="signInit"><%= link_to "Enter", enter_path %></li>
+  <li class="signInit"><%= link_to "Register", register_path %></li>
  <% end %>
  <% if params[:controller] == 'sessions' and params[:action] == 'new' %>
   <li class="signInOn">Sign In</li>

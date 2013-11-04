@@ -301,6 +301,19 @@ body {
   }
 }
 
+.votingControls {
+	background: url(votingControls.png) no-repeat center;
+	float:right;
+	padding-left: 12px;
+	height:250px;
+	width:384px;
+	a {
+		display:block;
+		width:100%;
+		height:100%;
+	}
+}
+
 .disclaimer {
 	font-size: 11px;
 	color: $grayDarkish;
@@ -869,7 +882,6 @@ footer {
   text-align: center;
   a {
     display: block;
-    width: 50px;
 		font-size: 14px;
 		color: $darkAqua;
     &:hover {
@@ -881,15 +893,14 @@ footer {
 }
 
 .navbar .nav .signInOn {
-  background-color: $darkAqua;
-  margin-left: 4px;
+	background-color: $darkAqua;
+	margin-left: 4px;
 	margin-top: 4px;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  font-size: 14px;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
 	line-height: 23px;
-	width: 50px;
 	padding: 6px 10px 7px;
 }
 
