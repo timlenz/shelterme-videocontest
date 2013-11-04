@@ -9,12 +9,12 @@
         <%= simple_form_for(@user, html: {class: 'form-horizontal' }) do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
           <%= f.input :name, label: "Your Full Name" %>
-          <%= f.input :street, label: "Street Address" %>
-          <%= f.input :city %>
-          <%= f.input :state %>
-          <%= f.input :zipcode, label: "ZIP code" %>
-          <%= f.input :date_of_birth, as: :string, label: "Birthdate", hint: "You must be 13 to enter" %>
-          <%= f.input :phone %>
+          <% f.input :street, label: "Street Address" %>
+          <% f.input :city %>
+          <% f.input :state %>
+          <% f.input :zipcode, label: "ZIP code" %>
+          <% f.input :date_of_birth, as: :string, label: "Birthdate", hint: "You must be 13 to enter" %>
+          <% f.input :phone %>
           <%= f.input :email, label: "Your Email", hint: "Used to sign in and to contact winners" %>
           <%= f.input :password, required: true, label: "Choose Password", hint: "Must be at least six characters" %>
           <%= f.input :password_confirmation, label: "Re-enter Password" %>
@@ -29,7 +29,7 @@
         <ul>
           <li>Access audio, video and photo assets for use in creating your video</li>
           <li>Submit a video for a chance to be seen on national programming</li>
-          <li>Earn prizes even if you do not submit a video by sharing and voting for your favorite videos</li>
+          <li>Vote for your favorite videos</li>
         </ul>
         <p>You are not eligible to win and not all site features are available unless you create an account. As this site uses cookies for both functionality and analytics, it will not work properly if cookies are disabled. By creating an account here, you agree to our <%= link_to "terms of use", terms_path %> and <%= link_to "privacy policy", privacy_path %>.</p>
 				<br>

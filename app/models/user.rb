@@ -55,12 +55,12 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, on: :create
   validates :password_confirmation, presence: true, on: :create
   validates :slug, uniqueness: true, presence: true
-  validates :city, presence: true
-  validates :street, presence: true
-  validates :zipcode, presence: true
-  validates :state, presence: true
-  validates :date_of_birth, presence: true
-  validates :phone, presence: true
+  # validates :city, presence: true
+  # validates :street, presence: true
+  # validates :zipcode, presence: true
+  # validates :state, presence: true
+  # validates :date_of_birth, presence: true
+  # validates :phone, presence: true
   
   # profanity_filter :name, :bio, :location
   mount_uploader :avatar, AvatarUploader

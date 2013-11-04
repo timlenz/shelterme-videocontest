@@ -8,7 +8,7 @@
   <div class="clearfix"></div>
   <%= will_paginate @videos %>
   <% else %>
-  You have not added any videos yet. Create and <%= link_to "upload a video", addvideo_path %>.
+  You have not added any videos.
   <% end %>
 </div>
 <%= render 'videos/video_modal' %>

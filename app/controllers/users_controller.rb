@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     @watched = Video.where(id: (Play.where(user_id: @user.id).map{|p| p.video_id}.uniq)).includes(:category, :user).paginate(page: params[:watched_page], per_page: 12)
     @voted = Video.where(id: (Vote.where(user_id: @user.id).map{|p| p.video_id}.uniq)).includes(:category, :user).paginate(page: params[:voted_page], per_page: 12)
     @shared = Video.where(id: (Share.where(user_id: @user.id).map{|p| p.video_id}.uniq)).includes(:category, :user).paginate(page: params[:shared_page], per_page: 12)
+    flash[:notice] = "<p>You do not need to create an account to watch or share a video, but you must be signed 
+                      in to vote for a video.</p><p>You may vote for a video once every 24 hours.</p>".html_safe
   rescue
     raise ActionController::RoutingError.new('Not Found')
   end
@@ -29,7 +31,7 @@ class UsersController < ApplicationController
     unless signed_in?
       @user = User.new
     else
-      redirect_to root_path
+      redirect_to watch_path
     end
   end
   
@@ -38,12 +40,12 @@ class UsersController < ApplicationController
       @user = User.new(params[:user])
       if @user.save
         sign_in @user
-        redirect_to @user
+        redirect_to watch_path
       else
         render 'new'
       end
     else
-      redirect_to root_path
+      redirect_to watch_path
     end
   end
   

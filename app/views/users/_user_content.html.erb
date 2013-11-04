@@ -28,7 +28,7 @@
       <div class="clearfix"></div>
       <%= will_paginate @approved, param_name: 'videos_page' %>
       <% elsif current_user == @user %>
-      <p>You have not added any videos. <%= link_to "Add a video", addvideo_path %> today!</p>
+      <p>You have not added any videos.</p>
       <% end %>
     </div>
     <div class="tab-pane" id="voted">

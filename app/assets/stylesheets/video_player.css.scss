@@ -139,7 +139,6 @@ $blueLight: #e4f1f3;
 }
 
 #share {
-	display:none;
 	width: 43px;
 	position: absolute;
 	top: 34px;
@@ -178,7 +177,6 @@ $blueLight: #e4f1f3;
 }
 
 #vote {
-	display:none;
 	width:43px;
 	position: absolute;
 	top:195px;
@@ -217,6 +215,15 @@ $blueLight: #e4f1f3;
 		width: 25px;
 		height: 22px;
 	}
+}
+
+#vote_details {
+	width:70px;
+	position: absolute;
+	top:195px;
+	right:100px;
+	padding:9px 9px 5px;
+	background-color: rgba(255,255,255,0.8);
 }
 
 #videoSolo {

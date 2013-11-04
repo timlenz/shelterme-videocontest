@@ -2,19 +2,15 @@
   <div class="navbar-inner">
     <div class="container">
        <%= link_to "", root_path, class: "navLogo navMain" %>
-	     <ul class="nav pull-left">
-				 <li class="<%= (params[:controller] == 'static_pages' and params[:action] == 'information') ? "navMainOn navInformationOn" : "navMain navInformation" %>">
-				   <%= link_to "", information_path %>
-				 </li>
+       <ul class="nav pull-left">
+         <li class="<%= (params[:controller] == 'static_pages' and params[:action] == 'information') ? "navMainOn navInformationOn" : "navMain navInformation" %>">
+           <%= link_to "", information_path %>
+         </li>
          <li class="vertDivide"> </li>
-			   <li class="<%= (params[:controller] == 'videos' and params[:action] == 'watch') ? "navMainOn navWatchOn" : "navMain navWatch" %>">
-			     <%= link_to "", watch_path %>
-			   </li>
-         <li class="vertDivide"> </li>
-			   <li class="<%= (params[:controller] == 'videos' and params[:action] == 'addvideo') ? "navMainOn navAddVideoOn" : "navMain navAddVideo " %>">
-			     <%= link_to "", addvideo_path %>
-			   </li>
-			   </li>
+         <li class="<%= (params[:controller] == 'videos' and params[:action] == 'watch') ? "navMainOn navWatchOn" : "navMain navWatch" %>">
+           <%= link_to "", watch_path %>
+         </li>
+         </li>
        </ul>
        <%= render "layouts/nav_menu" %>
     </div>

@@ -1,10 +1,10 @@
 <div id="vote">
   <div class="vote"></div>
-  <%= link_to "", "#", class: "star-rating" %>
-  <%= link_to "", "#", class: "star-rating" %>
-  <%= link_to "", "#", class: "star-rating" %>
-  <%= link_to "", "#", class: "star-rating" %>
-  <%= link_to "", "#", class: "star-rating" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Hate" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Don't Like" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Like" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Really like" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Love" %>
   <%= form_for(current_user.votes.build(video_id: @video.id), remote: true) do |f| %>
     <div><%= f.hidden_field :video_id %></div>
     <div><%= f.number_field :value %></div>

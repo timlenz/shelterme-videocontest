@@ -1,5 +1,10 @@
 <%= provide(:title, 'Watch') %>
 <div id="mainContent">
+  <div class="staticContent">
+    <p>Promote your favorite videos and help them win a prize by watching, sharing and voting for them. The top rated videos as <%= link_to "determined by views, shares and votes", "/rules#semifinalists" %> will be eligible to win a prize.</p>
+	<p>You do not need to create an account to watch or share a video, but you must be <%= link_to "signed in", signin_path %> to vote for a video. You may vote for a video once every 24 hours.</p>
+	<p>Views and shares were reset to ensure fairness during the voting period. Good luck!</p>
+  </div>
   <div class="tabbable">
      <ul id="watchVideos" class="nav nav-pills">
        <!--li class="winnersPill"><a href="#winners" data-toggle="tab"></a></li-->
@@ -44,7 +49,7 @@
          <div class="clearfix"></div>
          <% else %>
          No videos have been viewed yet.<br><br>
-		 All activity from before the start of the voting period has been removed. 
+     All activity from before the start of the voting period has been removed. 
          <% end %>
        </div>
        <div class="tab-pane" id="mostShares">  
@@ -53,7 +58,7 @@
          <div class="clearfix"></div>
          <% else %>
          No videos have been shared yet.<br><br>
-		 All activity from before the start of the voting period has been removed.
+     All activity from before the start of the voting period has been removed.
          <% end %>
        </div>
        <div class="tab-pane active" id="all">
@@ -62,7 +67,7 @@
          <div class="clearfix"></div>
          <%= will_paginate @videos, param_name: 'all_videos' %>
          <% else %>
-         No videos have been approved yet. Create and <%= link_to "upload a video", addvideo_path %> to see it here.
+         No videos have been approved yet.
          <% end %>
        </div>
        <div class="tab-pane" id="winners">

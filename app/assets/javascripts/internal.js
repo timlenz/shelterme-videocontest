@@ -80,7 +80,7 @@ $(function(){
 
   // Automatically hide alert dialog after slight delay
   if($('.errorBox').is(':visible')) {
-    $('#mainError').delay(3000).fadeOut('slow');
+    $('#mainError').delay(9000).fadeOut('slow');
   };
 
   // Check if profile .headerInfo h1 field is too long and adjust font-size if needed

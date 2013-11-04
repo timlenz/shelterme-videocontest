@@ -23,11 +23,11 @@
 			<ul>
 				<% if signed_in? %>
 				<li class="welcomeNav">
-					<%= link_to "", current_user %>
+					<%= link_to "", watch_path %>
 				</li>
 				<% else %>
 				<li class="learnNav">
-					<%= link_to "", information_path %>
+					<%= link_to "", watch_path %>
 				</li>
 			  <li class="signInNav">
 					<%= link_to "", signin_path %>
