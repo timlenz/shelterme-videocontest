@@ -97,23 +97,23 @@ class VideosController < ApplicationController
   end
   
   def watch
-    @videos = Video.where(approved: true).includes(:category, :user)
-    @new_videos = Video.where(created_at: 7.days.ago.utc...Time.now.utc, approved: true).includes(:category, :user)
+    @videos = Video.where(approved: true).includes(:category, :user).reorder("title ASC")#.sample(12)
+    # @new_videos = Video.where(created_at: 7.days.ago.utc...Time.now.utc, approved: true).includes(:category, :user)
     @rated_videos = []#Video.rated
-    @voted_videos = []#Video.voted
-    @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("plays_count DESC")
-    @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("shares_count DESC")
+    @voted_videos = Video.where(id: (Vote.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("votes_count DESC").first(12)
+    @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("plays_count DESC").first(12)
+    @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("shares_count DESC").first(12)
     @videos_count = @videos.length
-    @new_videos_count = @new_videos.length
-    @rated_videos_count = @rated_videos.length
-    @voted_videos_count = @voted_videos.length
-    @played_videos_count = @played_videos.length
-    @shared_videos_count = @shared_videos.length
+    # @new_videos_count = @new_videos.length
+    # @rated_videos_count = @rated_videos.length
+    # @voted_videos_count = @voted_videos.length
+    # @played_videos_count = @played_videos.length
+    # @shared_videos_count = @shared_videos.length
     @videos = @videos.paginate(page: params[:all_videos], per_page: 12)
-    @new_videos = @new_videos.paginate(page: params[:new_videos], per_page: 12)
+    # @new_videos = @new_videos.paginate(page: params[:new_videos], per_page: 12)
     @rated_videos = []#@rated_videos.paginate(page: params[:rated_videos], per_page: 12)
-    @voted_videos = []#@voted_videos.paginate(page: params[:voted_videos], per_page: 12)
-    @played_videos = @played_videos.paginate(page: params[:played_videos], per_page: 12)
-    @shared_videos = @shared_videos.paginate(page: params[:shared_videos], per_page: 12)
+    @voted_videos = @voted_videos#.paginate(page: params[:voted_videos], per_page: 12)
+    @played_videos = @played_videos#.paginate(page: params[:played_videos], per_page: 12)
+    @shared_videos = @shared_videos#.paginate(page: params[:shared_videos], per_page: 12)
   end
 end

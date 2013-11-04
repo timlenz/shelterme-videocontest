@@ -21,6 +21,10 @@
 #  zipcode                :string(255)
 #  street                 :string(255)
 #  state                  :string(255)
+#  plays_count            :integer         default(0), not null
+#  shares_count           :integer         default(0), not null
+#  votes_count            :integer         default(0), not null
+#  videos_count           :integer         default(0), not null
 #
 
 require 'spec_helper'

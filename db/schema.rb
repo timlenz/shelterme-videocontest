@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131004031543) do
+ActiveRecord::Schema.define(:version => 20131103224808) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20131004031543) do
     t.integer  "votes_count",    :default => 0,     :null => false
     t.string   "title"
     t.string   "panda_video_id"
+    t.float    "ave_vote",       :default => 0.0
   end
 
   create_table "votes", :force => true do |t|

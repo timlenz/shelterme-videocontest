@@ -14,6 +14,7 @@
 #  votes_count    :integer         default(0), not null
 #  title          :string(255)
 #  panda_video_id :string(255)
+#  ave_vote       :float           default(0.0)
 #
 
 require 'spec_helper'

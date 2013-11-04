@@ -10,8 +10,8 @@ class UsersController < ApplicationController
     @videos = Video.where(user_id: @user.id).includes(:category, :user).paginate(page: params[:videos_page], per_page: 12)
     @approved = Video.where(user_id: @user.id, approved: true).includes(:category, :user).paginate(page: params[:videos_page], per_page: 12)
     # Get video ids from user plays
-    @watched = Video.where(id: (Play.where(user_id: @user.id).map{|p| p.video_id}.uniq)).paginate(page: params[:watched_page], per_page: 12)
-    @voted = []#@user.voted.paginate(page: params[:voted_page], per_page: 12)
+    @watched = Video.where(id: (Play.where(user_id: @user.id).map{|p| p.video_id}.uniq)).includes(:category, :user).paginate(page: params[:watched_page], per_page: 12)
+    @voted = Video.where(id: (Vote.where(user_id: @user.id).map{|p| p.video_id}.uniq)).includes(:category, :user).paginate(page: params[:voted_page], per_page: 12)
     @shared = Video.where(id: (Share.where(user_id: @user.id).map{|p| p.video_id}.uniq)).includes(:category, :user).paginate(page: params[:shared_page], per_page: 12)
   rescue
     raise ActionController::RoutingError.new('Not Found')
@@ -49,6 +49,7 @@ class UsersController < ApplicationController
   
   def edit
     cookies[:avatar] = "false"
+    asdfasdf
   rescue
     flash[:error] = "Unable to edit user profile."
     redirect_to :back

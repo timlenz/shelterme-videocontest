@@ -21,6 +21,10 @@
 #  zipcode                :string(255)
 #  street                 :string(255)
 #  state                  :string(255)
+#  plays_count            :integer         default(0), not null
+#  shares_count           :integer         default(0), not null
+#  votes_count            :integer         default(0), not null
+#  videos_count           :integer         default(0), not null
 #
 
 class User < ActiveRecord::Base
@@ -74,6 +78,10 @@ class User < ActiveRecord::Base
   def share!(video)
     shares.create!(video_id: video.id)
   end  
+  
+  def vote!(video, value)
+    votes.create!(video_id: video.id, value: value)
+  end
   
   def send_password_reset
     generate_token(:password_reset_token)

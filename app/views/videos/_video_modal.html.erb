@@ -1,27 +1,27 @@
 <div id="videoModal">
-	<video id="videoPlayer" width="720" height="405" class="video-js vjs-default-skin active"
-	  controls autoplay preload="auto" data-setup='{}'>
+  <video id="videoPlayer" width="720" height="405" class="video-js vjs-default-skin active"
+    controls autoplay preload="auto" data-setup='{}'>
     <source src="" type="video/mp4" />
-	  <source src="" type="video/webm" />
+    <source src="" type="video/webm" />
   </video>
-	<div class="close">&times;</div>
-	<%= render 'videos/played' %>
-	<%= render 'videos/share' %>
-	<!--%= render 'vote' %-->
-	<div class="videoLegend">
-		<div class="video-name">
-	  	<h1></h1>
-	  </div>
-	  <div class="video-info">
-		  <%= link_to "", "#", class: "user_name" %>
-	    <span class="user_location"></span>
-	  </div>
-	</div>
-	<div class="video-icons" style="float:right;margin-top:5px;">
-		<ul>
-			<% 6.times do |n| %>
+  <div class="close">&times;</div>
+  <%= render 'videos/played' %>
+  <%= render 'videos/share' %>
+  <%= render 'videos/vote' if signed_in? %>
+  <div class="videoLegend">
+    <div class="video-name">
+      <h1></h1>
+    </div>
+    <div class="video-info">
+      <%= link_to "", "#", class: "user_name" %>
+      <span class="user_location"></span>
+    </div>
+  </div>
+  <div class="video-icons" style="float:right;margin-top:5px;">
+    <ul>
+      <% 6.times do |n| %>
       <li><%= render 'shared/icons/player_icon', n: n %></li>
       <% end %>
     </ul>
-	</div>
+  </div>
 </div>

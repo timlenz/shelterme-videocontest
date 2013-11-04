@@ -253,6 +253,10 @@ $(function(){
 		
 		$('#share_video_id').val(video_id);
 		
+		// Populate voting info
+		$('#vote_video_id').val(video_id);
+		$('#vote a').removeClass('star-rating-set');
+		
 		return false;
 	});
 	
@@ -324,13 +328,34 @@ $(function(){
 		});
 	};
 	
-	$('#videoPlayer, #share').hover(
+	// Show/hide sharing & voting controls
+	$('#videoPlayer, #share, #vote').hover(
 		function(){
-			$('#share').show().removeClass('vjs-fade-out');
+			$('#share, #vote').show().removeClass('vjs-fade-out');
 		}, function(){
-			$('#share').hide().addClass('vjs-fade-out');
+			$('#share, #vote').hide().addClass('vjs-fade-out');
 		}
 	);
+	
+	// Highlight stars
+	$('#vote a').hover(
+		function(){
+			$(this).prevAll('a').addClass('star-rating-on');
+		}, function(){
+			$(this).prevAll('a').removeClass('star-rating-on');
+		}
+	);
+	
+	// Submit vote
+	$('#vote a').click(function(){
+		$(this).prevAll('a').addClass('star-rating-set');
+		$(this).addClass('star-rating-set');
+		var new_vote = $(this).index();
+		$('#vote_value').val(new_vote);
+		$('#new_vote').find('input[name=commit]').click();
+		return false;
+	});
+	
 	
 	// Increment video shares
 	$('#share a').click(function(){
@@ -560,11 +585,11 @@ $(function(){
   $('.video-name').mouseover(function(){
 	  title_width = $(this).width();
 	  if ( $(this).find('h1').width() > title_width ) {
-	  	$(this).parents('.video-tile').addClass('showTitle');
+	  	$(this).parents('.video-tile, .videoLegend').addClass('showTitle');
 	  };
   });
   $('.video-name').mouseout(function(){
-	  $(this).parents('.video-tile').removeClass('showTitle');
+	  $(this).parents('.video-tile, .videoLegend').removeClass('showTitle');
   })
 
 });

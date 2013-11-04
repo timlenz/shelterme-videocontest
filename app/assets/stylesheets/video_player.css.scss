@@ -177,6 +177,48 @@ $blueLight: #e4f1f3;
 	}
 }
 
+#vote {
+	display:none;
+	width:43px;
+	position: absolute;
+	top:195px;
+	right:34px;
+	padding:9px 9px 5px;
+	background-color: rgba(255,255,255,0.8);
+	#new_vote {
+		display:none;
+	}
+	.vote, .star-rating {
+		background: url(vote.png);
+		background-color: transparent;
+		background-repeat: no-repeat;
+		display:block;
+	}
+	.vote {
+		margin-left:3px;
+		margin-bottom:8px;
+		background-position: 0 0;
+		width: 34px;
+		height: 10px;
+	}
+	.star-rating {
+		margin:4px auto;
+		background-position: 0 -11px;
+		width: 25px;
+		height: 22px;
+		&:hover {
+			background-position: 0 -34px;
+			width: 25px;
+			height: 22px;
+		}
+	}
+	.star-rating-on, .star-rating-set {
+		background-position: 0 -34px;
+		width: 25px;
+		height: 22px;
+	}
+}
+
 #videoSolo {
 	position:relative;
 	margin-left: -20px;
@@ -188,5 +230,9 @@ $blueLight: #e4f1f3;
 		a {
 			margin:0 auto 9px;
 		}
+	}
+	#vote {
+		top:172px;
+		right:10px;
 	}
 }

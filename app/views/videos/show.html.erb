@@ -8,7 +8,7 @@
     </video>
     <%= render 'videos/played' %>
     <%= render 'videos/solo_share' %>
-    <!--%= render 'videos/vote' %-->
+    <%= render 'videos/solo_vote' if signed_in? %>
     <div class="videoLegend">
       <div class="video-name">
         <h1><%= @video.title %></h1>

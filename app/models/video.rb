@@ -14,6 +14,7 @@
 #  votes_count    :integer         default(0), not null
 #  title          :string(255)
 #  panda_video_id :string(255)
+#  ave_vote       :float           default(0.0)
 #
 
 class Video < ActiveRecord::Base
@@ -70,9 +71,16 @@ class Video < ActiveRecord::Base
     end
   end
   
+  def calculate_ave_vote
+    average_vote = Vote.average(:value, conditions: ['video_id = ?', id]).to_f.round(2)
+    self.ave_vote = average_vote
+    self.save
+  end
+  
   private
   
     def store_video_duration
       self.length = self.duration.to_i
     end
+    
 end

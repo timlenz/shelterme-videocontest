@@ -5,7 +5,7 @@
   <%= link_to "", "#", class: "star-rating" %>
   <%= link_to "", "#", class: "star-rating" %>
   <%= link_to "", "#", class: "star-rating" %>
-  <%= form_for(current_user.votes.build(video_id: ''), remote: true) do |f| %>
+  <%= form_for(current_user.votes.build(video_id: @video.id), remote: true) do |f| %>
     <div><%= f.hidden_field :video_id %></div>
     <div><%= f.number_field :value %></div>
     <%= f.submit "Vote", class: "btn btn-header btn-follow hidden" %>
