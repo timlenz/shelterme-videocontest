@@ -64,12 +64,17 @@ class VideosController < ApplicationController
   
   def show
     @video = Video.find(params[:id])
-    @vote_check = Vote.where(video_id: @video.id, user_id: current_user.id).last if signed_in?
+    if signed_in?
+      vote_check = Vote.where(video_id: @video.id, user_id: current_user.id).last
+      if vote_check.created_at > 1.day.ago
+        @vote_check = vote_check
+      end
+    end
     respond_with do |format|
       format.json { render :json => @video }
     end
-    flash[:notice] = "<p>You do not need to create an account to watch or share a video, but you must be signed 
-                      in to vote for a video.</p><p>You may vote for a video once every 24 hours.</p>".html_safe
+    # flash[:notice] = "<p>You do not need to create an account to watch or share a video, but you must be signed 
+    #                   in to vote for a video.</p><p>You may vote for a video once every 24 hours.</p>".html_safe
   end
   
   def destroy
@@ -125,7 +130,7 @@ class VideosController < ApplicationController
     @voted_videos = @voted_videos #.paginate(page: params[:voted_videos], per_page: 12)
     @played_videos = @played_videos #.paginate(page: params[:played_videos], per_page: 12)
     @shared_videos = @shared_videos #.paginate(page: params[:shared_videos], per_page: 12)
-    flash[:notice] = "<p>You do not need to create an account to watch or share a video, but you must be signed 
-                      in to vote for a video.</p><p>You may vote for a video once every 24 hours.</p>".html_safe
+    # flash[:notice] = "<p>You do not need to create an account to watch or share a video, but you must be signed 
+    #                   in to vote for a video.</p><p>You may vote for a video once every 24 hours.</p>".html_safe
   end
 end

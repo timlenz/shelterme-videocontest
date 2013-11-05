@@ -12,12 +12,30 @@
     <%= f.submit "Vote", class: "btn btn-header btn-follow hidden" %>
   <% end %>
   <% else %>
-  <p style="font-size:12px;text-align:center;font-weight:bold;">Please <%= link_to "register", register_path %> to vote.</p>
+  <div id="inactive">
+  <%= link_to "", "#", class: "star-rating",  title: "Dislike" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Fair" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Like" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Really like" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Love" %>
+  </div>
   <% end %>
 </div>
-<!-- <div id="vote_details">
-	<% if @vote_check %>
-	<p>Your rated this video <%= @vote_check.value %> stars .</p>
-	<% end %>
-	<p>You may only vote for a video once per day.</p>
-</div> -->
+<div id="vote_details">
+  <% if signed_in? %>
+  <ul>
+	  <li class="<%= 'star-rating-set' if @vote_check && (@vote_check.value == 1)%>">Dislike</li>
+	  <li class="<%= 'star-rating-set' if @vote_check && (@vote_check.value == 2)%>">Fair</li>
+	  <li class="<%= 'star-rating-set' if @vote_check && (@vote_check.value == 3)%>">Like</li>
+	  <li class="<%= 'star-rating-set' if @vote_check && (@vote_check.value == 4)%>">Really Like</li>
+	  <li class="<%= 'star-rating-set' if @vote_check && (@vote_check.value == 5)%>">Love</li>
+  </ul>
+  <% else %>
+    <p>Please <%= link_to "register", register_path %> to vote.</p>
+  <% end %>
+</div>
+<% if @vote_check %>
+<div id="vote_feedback">
+	You may vote again in <%= distance_of_time_in_words(DateTime.current,@vote_check.created_at.to_datetime + 1.day) %>.
+</div>
+<% end %>

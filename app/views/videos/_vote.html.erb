@@ -1,6 +1,7 @@
 <div id="vote">
   <div class="vote"></div>
   <% if signed_in? %>
+  <div id="active">
   <%= link_to "", "#", class: "star-rating",  title: "Dislike" %>
   <%= link_to "", "#", class: "star-rating",  title: "Fair" %>
   <%= link_to "", "#", class: "star-rating",  title: "Like" %>
@@ -11,10 +12,27 @@
     <div><%= f.number_field :value %></div>
     <%= f.submit "Vote", class: "btn btn-header btn-follow hidden" %>
   <% end %>
+  </div>
   <% else %>
-  <p style="font-size:12px;text-align:center;font-weight:bold;">Please <%= link_to "register", register_path %> to vote.</p>
+  <div id="inactive">
+  <%= link_to "", "#", class: "star-rating",  title: "Dislike" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Fair" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Like" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Really like" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Love" %>
+  </div>
   <% end %>
 </div>
-<!-- <div id="vote_details">
-	<p>You may only vote for a video once per day.</p>
-</div> -->
+<div id="vote_details">
+  <% if signed_in? %>
+  <ul>
+	  <li>Dislike</li>
+	  <li>Fair</li>
+	  <li>Like</li>
+	  <li>Really Like</li>
+	  <li>Love</li>
+  </ul>
+  <% else %>
+    <p>Please <%= link_to "register", register_path %> to vote.</p>
+  <% end %>
+</div>

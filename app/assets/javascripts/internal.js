@@ -329,7 +329,7 @@ $(function(){
 	};
 	
 	// Show/hide sharing & voting controls
-	$('#videoPlayer, #share, #vote').hover(
+	$('#videoPlayer, #share, #vote, #vote_details, #vote_feedback').hover(
 		function(){
 			$('#share, #vote').show().removeClass('vjs-fade-out');
 		}, function(){
@@ -337,17 +337,43 @@ $(function(){
 		}
 	);
 	
-	// Highlight stars
-	$('#vote a').hover(
+	$('#vote, #vote_details, #vote_feedback').hover(
 		function(){
-			$(this).prevAll('a').addClass('star-rating-on');
+			$('#vote_details, #vote_feedback').show().removeClass('vjs-fade-out');
 		}, function(){
-			$(this).prevAll('a').removeClass('star-rating-on');
+			$('#vote_details, #vote_feedback').hide().addClass('vjs-fade-out'); // add in delay
 		}
 	);
 	
+	// Highlight stars
+	$('#vote .star-rating').hover(
+		function(){
+			$(this).prevAll('a').addClass('star-rating-on');
+			if ( $('#videoSolo').length ) {
+				var which_star = $(this).index() - 1;
+			} else {
+				var which_star = $(this).index();
+			};
+			$('#vote_details li:eq('+ which_star + ')').addClass('star-rating-on');
+		}, function(){
+			$(this).prevAll('a').removeClass('star-rating-on');
+			if ( $('#videoSolo').length ) {
+				var which_star = $(this).index() - 1;
+			} else {
+				var which_star = $(this).index();
+			};
+			$('#vote_details li:eq('+ which_star + ')').removeClass('star-rating-on');
+		}
+	);
+	
+	// Remind to register to vote
+	$('#vote #inactive .star-rating').click(function(){
+		$('#vote_details').show();
+		return false;
+	});	
+	
 	// Submit vote
-	$('#vote .star-rating').click(function(){
+	$('#vote #active .star-rating').click(function(){
 		$(this).prevAll('a').addClass('star-rating-set');
 		$(this).addClass('star-rating-set');
 		var new_vote = $(this).index();
@@ -375,6 +401,11 @@ $(function(){
 		$('video').hide();
 		$('.vjs-loading-spinner').hide();
 	};
+	
+	// Display video share, vote controls on click of icon tiles
+	$('#videoSolo .videoTile, #videoModal .videoTile').click(function(){
+		$('#share, #vote').show();
+	});
 	
 	// Initialize audio player on click
 	$('.audioPlay').click(function(){
