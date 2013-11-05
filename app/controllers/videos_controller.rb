@@ -66,7 +66,7 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     if signed_in?
       vote_check = Vote.where(video_id: @video.id, user_id: current_user.id).last
-      if vote_check.created_at > 1.day.ago
+      if vote_check && vote_check.created_at > 1.day.ago
         @vote_check = vote_check
       end
     end
