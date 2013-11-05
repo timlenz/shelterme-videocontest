@@ -1,5 +1,6 @@
 <div id="vote">
   <div class="vote"></div>
+  <% if signed_in? %>
   <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check }",  title: "Dislike" %>
   <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 2)}",  title: "Fair" %>
   <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 3)}",  title: "Like" %>
@@ -9,6 +10,9 @@
     <div><%= f.hidden_field :video_id %></div>
     <div><%= f.number_field :value %></div>
     <%= f.submit "Vote", class: "btn btn-header btn-follow hidden" %>
+  <% end %>
+  <% else %>
+  <p style="font-size:12px;text-align:center;font-weight:bold;">Please <%= link_to "register", register_path %> to vote.</p>
   <% end %>
 </div>
 <!-- <div id="vote_details">

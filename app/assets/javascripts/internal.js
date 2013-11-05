@@ -347,7 +347,7 @@ $(function(){
 	);
 	
 	// Submit vote
-	$('#vote a').click(function(){
+	$('#vote .star-rating').click(function(){
 		$(this).prevAll('a').addClass('star-rating-set');
 		$(this).addClass('star-rating-set');
 		var new_vote = $(this).index();
