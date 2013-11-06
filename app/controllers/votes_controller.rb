@@ -9,9 +9,6 @@ class VotesController < ApplicationController
     if vote_check.nil? || vote_check.created_at.utc < 1.day.ago
       current_user.vote!(@video, params[:vote][:value])
       @video.calculate_ave_vote
-    else
-      # Not displaying - figure out why
-      flash[:notice] = "You have already voted for this video today."
     end
   end
 end

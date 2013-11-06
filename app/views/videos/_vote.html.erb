@@ -36,3 +36,6 @@
     <p>Please <%= link_to "register", register_path %> to vote.</p>
   <% end %>
 </div>
+<% if signed_in? %>
+<div id="vote_feedback"></div>
+<% end %>

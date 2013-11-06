@@ -13,8 +13,8 @@ class UsersController < ApplicationController
     @watched = Video.where(id: (Play.where(user_id: @user.id).map{|p| p.video_id}.uniq)).includes(:category, :user).paginate(page: params[:watched_page], per_page: 12)
     @voted = Video.where(id: (Vote.where(user_id: @user.id).map{|p| p.video_id}.uniq)).includes(:category, :user).paginate(page: params[:voted_page], per_page: 12)
     @shared = Video.where(id: (Share.where(user_id: @user.id).map{|p| p.video_id}.uniq)).includes(:category, :user).paginate(page: params[:shared_page], per_page: 12)
-    flash[:notice] = "<p>You do not need to create an account to watch or share a video, but you must be signed 
-                      in to vote for a video.</p><p>You may vote for a video once every 24 hours.</p>".html_safe
+    # flash[:notice] = "<p>You do not need to create an account to watch or share a video, but you must be signed 
+    #                   in to vote for a video.</p><p>You may vote for a video once every 24 hours.</p>".html_safe
   rescue
     raise ActionController::RoutingError.new('Not Found')
   end

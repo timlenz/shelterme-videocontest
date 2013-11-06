@@ -1,11 +1,13 @@
 <div id="vote">
   <div class="vote"></div>
   <% if signed_in? %>
+  <div <%='id=active' unless @vote_check %>>
   <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check }",  title: "Dislike" %>
   <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 2)}",  title: "Fair" %>
   <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 3)}",  title: "Like" %>
   <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 4)}",  title: "Really like" %>
   <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 5)}",  title: "Love" %>
+  </div>
   <%= form_for(current_user.votes.build(video_id: @video.id), remote: true) do |f| %>
     <div><%= f.hidden_field :video_id %></div>
     <div><%= f.number_field :value %></div>
@@ -34,8 +36,10 @@
     <p>Please <%= link_to "register", register_path %> to vote.</p>
   <% end %>
 </div>
-<% if @vote_check %>
+<% if signed_in? %>
 <div id="vote_feedback">
-	You may vote again in <%= distance_of_time_in_words(DateTime.current,@vote_check.created_at.to_datetime + 1.day) %>.
+	<% if @vote_check %>
+	You may vote for this video again in <%= distance_of_time_in_words(DateTime.current,@vote_check.created_at.to_datetime + 1.day) %>.
+	<% end %>
 </div>
 <% end %>

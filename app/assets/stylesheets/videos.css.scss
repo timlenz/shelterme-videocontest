@@ -314,6 +314,7 @@ li.addVideoNav  {
   position: relative;
   margin: 5px 25px 20px;
   overflow:hidden;
+  height:281px;
   &:hover {
     -webkit-box-shadow: 0px 0px 8px rgba(0, 85, 128, 0.75);
     -moz-box-shadow:    0px 0px 8px rgba(0, 85, 128, 0.75);
@@ -505,7 +506,6 @@ li.addVideoNav  {
 }
 
 .showTitle {
-	height:281px;
 	.video-name {
 		white-space: normal;
 		overflow: auto;
@@ -524,6 +524,7 @@ li.addVideoNav  {
 	margin-top: 5px;
 	margin-left: -5px;
 	width: 400px;
+	height:62px;
 	.video-name, .video-info {
 		width: 400px;
 	}

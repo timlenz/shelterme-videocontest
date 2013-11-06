@@ -196,6 +196,8 @@ $(function(){
 		var shares_name = $(this).parents('.video-tile').find('li:eq(5)').find('a').attr('data-original-title');
 		var plays_count = $(this).parents('.video-tile').find('.plays').text();
 		var shares_count = $(this).parents('.video-tile').find('.shares').text();
+		var vote_check = $(this).parents('.video-tile').attr('data-vote-check');
+		var vote_value = $(this).parents('.video-tile').attr('data-vote-value');
 
 		// Make sure video is ready
 		$vid_obj.ready(function(){
@@ -232,6 +234,21 @@ $(function(){
 			$('#videoModal').find('ul').find('li:eq(5)').find('a').attr('data-original-title',shares_name);
 			$('#videoModal').find('.plays').text(plays_count);
 			$('#videoModal').find('.shares').text(shares_count);
+			
+			// Populate previous vote information
+			if ( typeof vote_check != 'undefined' ) {
+				var vote_index = vote_value - 1;
+				$('#videoModal').find('#vote_feedback').text("You may vote for this video again in " + vote_check);
+				$('#videoModal').find('.star-rating').removeClass('star-rating-set');
+				$('#videoModal').find('.star-rating:eq('+ vote_index + ')').addClass('star-rating-set');
+				$('#videoModal').find('.star-rating:eq('+ vote_index + ')').prevAll('a').addClass('star-rating-set');
+				$('#videoModal').find('#vote_details li').removeClass('star-rating-set');
+				$('#videoModal').find('#vote_details li:eq('+ vote_index +')').addClass('star-rating-set');
+			} else {
+				$('#videoModal').find('.star-rating').removeClass('star-rating-set');
+				$('#videoModal').find('#vote_details li').removeClass('star-rating-set');
+				$('#videoModal').find('#vote_feedback').text(" ");
+			};
 
 			// Load new source
 			this.load();
@@ -246,16 +263,15 @@ $(function(){
 
 		});
 		
-		// Populate sharing info
+		// Populate sharing info for modal
 		$('#share a.facebook').attr('href', "http://www.facebook.com/sharer.php?s=100&p[url]=http://contest.shelterme.com/videos/" + video_id + "&p[images][0]=" + $poster + "&p[title]=" + encodeURIComponent(video_title) + "&p[summary]=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest");
 		$('#share a.twitter').attr('href', "http://twitter.com/home/?status=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id +"%20%23ShelterMe");
 		$('#share a.email').attr('href', "mailto:?Subject=" + encodeURIComponent(video_title) + "&Body=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id);
 		
 		$('#share_video_id').val(video_id);
 		
-		// Populate voting info
+		// Populate voting info for modal
 		$('#vote_video_id').val(video_id);
-		$('#vote a').removeClass('star-rating-set');
 		
 		return false;
 	});
@@ -288,12 +304,12 @@ $(function(){
 	
 	$('#videoModal').dialog({
 		autoOpen: false,
-    resizable: false,
-    draggable: false,
+    	resizable: false,
+    	draggable: false,
 		width: 770,
 		height: 500,
 		closeOnEscape: true,
-    modal: true
+    	modal: true
 	});
 	
 	if ( $('#videoModal').length ) {
@@ -327,6 +343,10 @@ $(function(){
 			};
 		});
 	};
+
+	// ====================
+	// == VIDEO CONTROLS == 
+	// ====================
 	
 	// Show/hide sharing & voting controls
 	$('#videoPlayer, #share, #vote, #vote_details, #vote_feedback').hover(
@@ -336,7 +356,6 @@ $(function(){
 			$('#share, #vote').hide().addClass('vjs-fade-out'); // add in delay
 		}
 	);
-	
 	$('#vote, #vote_details, #vote_feedback').hover(
 		function(){
 			$('#vote_details, #vote_feedback').show().removeClass('vjs-fade-out');
@@ -344,44 +363,53 @@ $(function(){
 			$('#vote_details, #vote_feedback').hide().addClass('vjs-fade-out'); // add in delay
 		}
 	);
+
+	// ===================
+	// ===== VOTING ====== 
+	// ===================
 	
 	// Highlight stars
 	$('#vote .star-rating').hover(
 		function(){
 			$(this).prevAll('a').addClass('star-rating-on');
-			if ( $('#videoSolo').length ) {
-				var which_star = $(this).index() - 1;
-			} else {
-				var which_star = $(this).index();
-			};
+			var which_star = $(this).index();
 			$('#vote_details li:eq('+ which_star + ')').addClass('star-rating-on');
 		}, function(){
 			$(this).prevAll('a').removeClass('star-rating-on');
-			if ( $('#videoSolo').length ) {
-				var which_star = $(this).index() - 1;
-			} else {
-				var which_star = $(this).index();
-			};
+			var which_star = $(this).index();
 			$('#vote_details li:eq('+ which_star + ')').removeClass('star-rating-on');
 		}
 	);
-	
-	// Remind to register to vote
-	$('#vote #inactive .star-rating').click(function(){
-		$('#vote_details').show();
-		return false;
-	});	
-	
+		
 	// Submit vote
 	$('#vote #active .star-rating').click(function(){
-		$(this).prevAll('a').addClass('star-rating-set');
-		$(this).addClass('star-rating-set');
-		var new_vote = $(this).index();
-		$('#vote_value').val(new_vote);
-		$('#new_vote').find('input[name=commit]').click();
-		return false;
+		if ( $('#vote .star-rating-set').length ) {
+			return false;
+		} else {
+			$(this).prevAll('a').addClass('star-rating-set');
+			$(this).addClass('star-rating-set');
+			if ( $('#videoSolo').length ) {
+				var new_vote = $(this).index();
+			} else {
+				var new_vote = $(this).index() + 1;
+				var vote_label = new_vote - 1;
+			};
+			$('#vote_value').val(new_vote);
+			$.cookie("vote_value", new_vote);
+			$('#new_vote').find('input[name=commit]').click();
+			$('#vote_details li').removeClass('star-rating-set');
+			$('#vote_details li:eq('+ vote_label +')').addClass('star-rating-set');
+			$('#vote_feedback').show().html('Thank you for your vote.');
+		}
 	});
 	
+	// Remind to register to vote
+	// $('#vote #inactive .star-rating').click(function(){
+	// 	$('#vote_details').show();
+	// 	return false;
+	// });	
+	
+	// ===== VOTING ======
 	
 	// Increment video shares
 	$('#share a').click(function(){
@@ -405,6 +433,7 @@ $(function(){
 	// Display video share, vote controls on click of icon tiles
 	$('#videoSolo .videoTile, #videoModal .videoTile').click(function(){
 		$('#share, #vote').show();
+		return false;
 	});
 	
 	// Initialize audio player on click

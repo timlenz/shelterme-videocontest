@@ -4,8 +4,15 @@ class PlaysController < ApplicationController
   
   def create
     @video = Video.find(params[:play][:video_id])
-    current_user.play!(@video)
+    # check if current_user has shared this video (very) recently
+    play_check = Play.where(video_id: @video.id, user_id: current_user.id).last
+    if play_check.nil? || play_check.created_at < 1.minute.ago
+      current_user.play!(@video)
+    end
   rescue
-    null_user.play!(@video)
+    play_check = Play.where(video_id: @video.id, user_id: null_user.id).last
+    if play_check.nil? || play_check.created_at < 30.seconds.ago
+      null_user.play!(@video)
+    end
   end
 end

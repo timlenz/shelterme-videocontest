@@ -4,8 +4,15 @@ class SharesController < ApplicationController
   
   def create
     @video = Video.find(params[:share][:video_id])
-    current_user.share!(@video)
+    # check if current_user has shared this video (very) recently
+    share_check = Share.where(video_id: @video.id, user_id: current_user.id).last
+    if share_check.nil? || share_check.created_at < 30.seconds.ago
+      current_user.share!(@video)
+    end
   rescue
-    null_user.share!(@video)
+    share_check = Share.where(video_id: @video.id, user_id: null_user.id).last
+    if share_check.nil? || share_check.created_at < 30.seconds.ago
+      null_user.share!(@video)
+    end
   end
 end
