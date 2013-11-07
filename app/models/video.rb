@@ -63,6 +63,14 @@ class Video < ActiveRecord::Base
     ranking = 1
   end
   
+  def self.text_search(query)
+    if query.present?
+      where("title @@ :q", q: query)
+    else
+      scoped
+    end
+  end
+  
   def self.search(search)
     if search && search != 'all'
       where(approved: search)

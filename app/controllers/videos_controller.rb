@@ -1,7 +1,7 @@
 class VideosController < ApplicationController
   before_filter :signed_in_user, only: [:index, :create, :edit, :new]
   
-  respond_to :html, :js, only: [:update, :index, :destroy]
+  respond_to :html, :js, only: [:update, :index, :watch, :destroy]
   
   respond_to :html, :json, only: [:show]
   
@@ -113,6 +113,7 @@ class VideosController < ApplicationController
     else
       @videos.reorder("votes_count ASC")
     end
+    @search_videos = Video.text_search(params[:search]).paginate(page: params[:searched_videos], per_page: 12)
     # @new_videos = Video.where(created_at: 7.days.ago.utc...Time.now.utc, approved: true).includes(:category, :user)
     @rated_videos = []#Video.rated
     @voted_videos = Video.where(id: (Vote.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("votes_count DESC")

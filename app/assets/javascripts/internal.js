@@ -226,6 +226,7 @@ $(function(){
 			var modalPlayed = function(){
 				var myPlayer = this;
 				$('#play_video_id').val(video_id);
+				countPlay();
 			};
 			myPlayer.on("ended", modalPlayed);
 
@@ -284,14 +285,14 @@ $(function(){
 		// Stop video modal play on close
 		$('#videoModal .close').click(function(){
 			$('#videoModal').dialog('close');
-			countPlay();
+			// countPlay();
 			resetPlayer();
 		});
 		// Stop video modal play on ESC
 		$(document).keyup(function(e) {
 			var keycode = (e.keyCode ? e.keyCode : e.which);	// capture keycode for Firefox
 			if ( $('#videoModal').length && keycode == 27 ) {
-				countPlay();
+				// countPlay();
 				resetPlayer();
 			};
 		});
@@ -369,6 +370,7 @@ $(function(){
 			$('#vote_details li').removeClass('star-rating-set');
 			$('#vote_details li:eq('+ vote_label +')').addClass('star-rating-set');
 			$('#vote_feedback').show().html('Thank you for your vote.');
+			return false;
 		}
 	});
 	
@@ -383,13 +385,17 @@ $(function(){
 	// Increment video shares
 	$('#share a').click(function(){
 		$('#new_share').find('input[name=commit]').click();
+		return false;
 	});
 	
 	function countPlay(){
 		if ( $('#play_video_id').val() != '' ) {
 			$('#new_play').find('input[name=commit]').click();
+			var old_plays = parseInt($('#videoModal').find('span.plays').text(),10);
+			var new_plays = old_plays + 1;
+			$('#videoModal').find('span.plays').text(new_plays);
 		};
-		return;
+		return false;
 	};
 	
 	function resetPlayer(){
@@ -450,6 +456,7 @@ $(function(){
 				currentTime: ".trackCurrentTime .trackTimer"
 			}
 		});
+		return false;
 	});
 	
 	// Initialize date picker for user date of birth
