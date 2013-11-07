@@ -9,16 +9,19 @@ class PlaysController < ApplicationController
       play_check = Play.where(video_id: @video.id, user_id: current_user.id).last
       if play_check.nil? || play_check.created_at < 1.minute.ago
         current_user.play!(@video)
+      else
+        # do nothing if attempting to play too quickly
+        return false
       end
     else
       play_check = Play.where(video_id: @video.id, user_id: null_user.id).last
       if play_check.nil? || play_check.created_at < 30.seconds.ago
         null_user.play!(@video)
+      else
+        # do nothing if attempting to play too quickly
+        return false
       end      
     end
-  end
-  
-  def new
   end
   
 end
