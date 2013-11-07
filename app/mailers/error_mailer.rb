@@ -5,8 +5,8 @@ class ErrorMailer < ActionMailer::Base
     @exception = exception
     @user = user
     @page = page
-    exclude_error = "Missing template plays/create"
-    unless @exception.message.html_safe.start_with?(exclude_error)
+    exclude_page = "/plays"
+    unless @page = exclude_page
       mail to: 'admin@shelterme.com', subject: "Video Contest Error Encountered"
     end
   end
