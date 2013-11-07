@@ -1,70 +1,38 @@
 $(function(){
 	
-  // Hover tooltip for video tile icons
-  $('[rel=tooltip]').tooltip({
+	// Hover tooltip for video tile icons
+	$('[rel=tooltip]').tooltip({
 		container: 'body'
 	});	
 	
-  // Dynamic Floating content indicator
-  // var min_height = 730; // For monitors with 800 px of vertical resolution, must account for menu bars & such
-  // // Show floater for short browser windows (onload)
-  // if ($(window).height() < min_height) {
-  //   $('#floater').show();
-  // };
-  // // Hide floater for pages with content near the size of the window
-  // if ( $(document).height() <= ($(window).height() + 400) ) {
-  //   $('#floater').hide();
-  // };
-  // // Show floater for resized windows
-  // $(window).resize(function(){
-  //   if ( ($(window).height() <= min_height) && ($(document).height() > ($(window).height() + 200)) ) { 
-  //     $('#floater').show();
-  //   } else {
-  //     $('#floater').hide();
-  //   };
-  // });
-  // // Hide/show when scrolling
-  // $(window).scroll(function() {
-  //   if (( ($(document).height() - $('body').scrollTop() - $(window).height()) > min_height ) && ($(window).height() <= min_height)) {
-  //     $('#floater').show();
-  //   } else {
-  //     $('#floater').hide();
-  //   };
-  // });
-  // // Scroll down on click and hide floater
-  // $('#floater').click(function() {
-  //   $('#floater').hide();
-  //   $('#mainContent').scrollTop($('#mainContent').scrollTop() + min_height);
-  // });
-
 	// Reposition sidebar if window is too short
-  $(window).scroll(function() {
+	$(window).scroll(function() {
 		// cross-browser compatibility for Firefox & IE - STILL NEEDS IE SUPPORT
 		// var D = document;
 		// 
-		// Math.max(	Math.max(D.body.scrollHeight,    D.documentElement.scrollHeight),
+		// Math.max(	Math.max(D.body.scrollHeight,		D.documentElement.scrollHeight),
 		// 					Math.max(D.body.offsetHeight, D.documentElement.offsetHeight), 
 		// 					Math.max(D.body.clientHeight, D.documentElement.clientHeight)
 		// );
 		// 
 		// 
 		// Math.max(
-		//         $(document).height(),
-		//         $(window).height(),
-		//         /* For opera: */
-		//         document.documentElement.clientHeight
-		//     );
+		//				 $(document).height(),
+		//				 $(window).height(),
+		//				 /* For opera: */
+		//				 document.documentElement.clientHeight
+		//		 );
 		var ie_height = document.documentElement.clientHeight;
 		var ie_scroll = document.documentElement.scrollTop;	// kind of working
 		var doc_height = Math.max( $(document).height(), window.innerHeight, ie_height );
 		var vert_scroll = Math.max ( $('body').scrollTop(), window.scrollY, ie_scroll );
 		var min_height = $('#sidebar').height() + $('header').height() + $('footer').height() + 15;	// includes sidebar top margin
-		    if ( (doc_height - vert_scroll) <= min_height ) {	
+				if ( (doc_height - vert_scroll) <= min_height ) {	
 			var new_top = doc_height - $('#sidebar').height() - $('footer').height() - 20;
-		      $('#sidebar').removeClass('affix').addClass('affix-bottom').css('top',new_top);
-		    } else {
-		      $('#sidebar').removeClass('affix-bottom').addClass('affix').css('top','');
-		    };
+					$('#sidebar').removeClass('affix').addClass('affix-bottom').css('top',new_top);
+				} else {
+					$('#sidebar').removeClass('affix-bottom').addClass('affix').css('top','');
+				};
 		$('#scroll').text(vert_scroll);
 		$('#ieScroll').text(ie_scroll);
 		$('#height').text(doc_height);
@@ -78,19 +46,19 @@ $(function(){
 		$('#sidebar').css('left',set_left).show();
 	};
 
-  // Automatically hide alert dialog after slight delay
-  if($('.errorBox').is(':visible')) {
-    $('#mainError').delay(9000).fadeOut('slow');
-  };
+	// Automatically hide alert dialog after slight delay
+	if($('.errorBox').is(':visible')) {
+		$('#mainError').delay(6000).fadeOut('slow');
+	};
 
-  // Check if profile .headerInfo h1 field is too long and adjust font-size if needed
-  if ($('.headerInfo h1').length) {
-    var element = document.querySelector('.headerInfo h1');
-    var default_height = 36;
-    if (element.offsetHeight > default_height) {
-      $('.headerInfo h1').css('font-size','22px');
-    };
-  };
+	// Check if profile .headerInfo h1 field is too long and adjust font-size if needed
+	if ($('.headerInfo h1').length) {
+		var element = document.querySelector('.headerInfo h1');
+		var default_height = 36;
+		if (element.offsetHeight > default_height) {
+			$('.headerInfo h1').css('font-size','22px');
+		};
+	};
 
 	// Show links on mouse-over of assets
 	$('.videoClip, .photoAsset').mouseover(function(){
@@ -107,29 +75,29 @@ $(function(){
 	
 	// Connect graphic buttons with hidden input elements
 	$('div.btn-group[data-toggle-name]').each(function(){
-	  var group   = $(this);
-	  var form    = group.parents('form').eq(0);
-	  var name    = group.attr('data-toggle-name');
-	  var hidden  = $('input[name="' + name + '"]', form);
-	  var current_value;
-	  $('button', group).each(function(){
-	    var button = $(this);
-	    button.on('click', function(){
-	      current_value = hidden.val();
+		var group	 = $(this);
+		var form		= group.parents('form').eq(0);
+		var name		= group.attr('data-toggle-name');
+		var hidden	= $('input[name="' + name + '"]', form);
+		var current_value;
+		$('button', group).each(function(){
+			var button = $(this);
+			button.on('click', function(){
+				current_value = hidden.val();
 				hidden.val($(this).val());
 				
 				// Submit All Video search by approval state on click
-			  if ( $('#videos_search').length ) {
-				  var $submit = form.find('input[name="search"]')
-			    $.get($submit.action, $($submit).serialize(), null, 'script');
-			    return false;
-			  };
-	    });
-	    if(button.val() == hidden.val()) {
-	      // Set clicked button to active
-	      button.addClass('active');
-	    };
-	  });
+				if ( $('#videos_search').length ) {
+					var $submit = form.find('input[name="search"]')
+					$.get($submit.action, $($submit).serialize(), null, 'script');
+					return false;
+				};
+			});
+			if(button.val() == hidden.val()) {
+				// Set clicked button to active
+				button.addClass('active');
+			};
+		});
 	});
 	
 	// Target asset preview
@@ -152,8 +120,8 @@ $(function(){
 
 			// Assign source to video object
 			this.src([
-			  { type: "video/mp4", src: $path+$source+".mp4" },
-			  { type: "video/webm", src: $path+$source+".webm" }
+				{ type: "video/mp4", src: $path+$source+".mp4" },
+				{ type: "video/webm", src: $path+$source+".webm" }
 			]);
 
 			// Replace poster jpg
@@ -210,8 +178,8 @@ $(function(){
 
 			// Assign source to video object
 			this.src([
-			  { type: "video/mp4", src: $mp4_source },
-			  { type: "video/webm", src: $webm_source }
+				{ type: "video/mp4", src: $mp4_source },
+				{ type: "video/webm", src: $webm_source }
 			]);
 
 			// Replace poster jpg
@@ -256,8 +224,8 @@ $(function(){
 			
 			// Add plays counter button when video is finished
 			var modalPlayed = function(){
-			  var myPlayer = this;
-			  $('#play_video_id').val(video_id);
+				var myPlayer = this;
+				$('#play_video_id').val(video_id);
 			};
 			myPlayer.on("ended", modalPlayed);
 
@@ -286,7 +254,7 @@ $(function(){
 			myPlayer = this;
 			$('video').show();
 			var soloPlayed = function(){
-			  $('#new_play').find('input[name=commit]').click();
+				$('#new_play').find('input[name=commit]').click();
 			};
 			myPlayer.on("ended", soloPlayed);
 		});
@@ -294,22 +262,22 @@ $(function(){
 		
 	$('#previewModal').dialog({
 		autoOpen: false,
-    resizable: false,
-    draggable: false,
+		resizable: false,
+		draggable: false,
 		width: 770,
 		height: 460,
 		closeOnEscape: true,
-    modal: true
+		modal: true
 	});
 	
 	$('#videoModal').dialog({
 		autoOpen: false,
-    	resizable: false,
-    	draggable: false,
+			resizable: false,
+			draggable: false,
 		width: 770,
 		height: 500,
 		closeOnEscape: true,
-    	modal: true
+			modal: true
 	});
 	
 	if ( $('#videoModal').length ) {
@@ -389,7 +357,8 @@ $(function(){
 			$(this).prevAll('a').addClass('star-rating-set');
 			$(this).addClass('star-rating-set');
 			if ( $('#videoSolo').length ) {
-				var new_vote = $(this).index();
+				var new_vote = $(this).index() + 1;
+				var vote_label = new_vote - 1;
 			} else {
 				var new_vote = $(this).index() + 1;
 				var vote_label = new_vote - 1;
@@ -449,20 +418,20 @@ $(function(){
 		
 		$audio_obj.jPlayer({
 			ready: function (event) {
-        $(this).jPlayer("setMedia", {
-          mp3: $path+$source+".mp3",
+				$(this).jPlayer("setMedia", {
+					mp3: $path+$source+".mp3",
 					oga: $path+$source+".ogg"
-        });
+				});
 
 				$audio_obj.bind($.jPlayer.event.play, function() { // Bind an event handler to the instance's play event.
-				  $(this).jPlayer("pauseOthers"); // pause all players except this one.
+					$(this).jPlayer("pauseOthers"); // pause all players except this one.
 					$(this).parents('.tab-pane').find('.trackCurrentTime').removeClass('show');
 					$(this).parents('.audioTrack').find('.trackCurrentTime').addClass('show');
 				});
 
 				$(this).bind($.jPlayer.event.pause, function() {
-		      $(this).parents('.audioTrack').find('.trackCurrentTime').removeClass('show');
-		    });
+					$(this).parents('.audioTrack').find('.trackCurrentTime').removeClass('show');
+				});
 		
 				$(this).bind($.jPlayer.event.ended, function() {
 					$(this).parents('.audioTrack').find('.trackCurrentTime').removeClass('show');
@@ -470,15 +439,15 @@ $(function(){
 
 				$(this).jPlayer("play");
 				
-	    },
-	    swfPath: "/",
-	    supplied: "mp3, oga",
+			},
+			swfPath: "/",
+			supplied: "mp3, oga",
 			keyEnabled: true,
 			cssSelectorAncestor: $parentId,
 			cssSelector: {
-			  play: ".audioPlay",
-			  pause: ".audioPause",
-			  currentTime: ".trackCurrentTime .trackTimer"
+				play: ".audioPlay",
+				pause: ".audioPause",
+				currentTime: ".trackCurrentTime .trackTimer"
 			}
 		});
 	});
@@ -490,26 +459,26 @@ $(function(){
 		changeMonth: true,
 		changeYear: true,
 		maxDate: "-13Y"	// User must be at least 13 to enter
-  });
+	});
 
 	// Hide Upload Video if mobile user agent
-  if ( $('.mediaButtons').length ) {
-    if ( navigator.userAgent.match(/iPhone|iPod|Android|iPad|BlackBerry/i) != null ) {
-      $('.mediaButtons').hide();
+	if ( $('.mediaButtons').length ) {
+		if ( navigator.userAgent.match(/iPhone|iPod|Android|iPad|BlackBerry/i) != null ) {
+			$('.mediaButtons').hide();
 			$('#tabletAlert').show();
-    };
-  };
+		};
+	};
 
 	// Show progress bar on upload start
-	$('.cloudinary-fileupload').bind('fileuploadstart', function() {  
-  	$('#loadingPhoto, .handhold').show();
+	$('.cloudinary-fileupload').bind('fileuploadstart', function() {	
+		$('#loadingPhoto, .handhold').show();
 		$('button.close, .filedrop').hide();
 		$('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data){
 			$('.mediaModal .headerInfo p').text(data.files[0].name);
 			progress = parseInt(data.loaded / data.total * 100, 10);
 			$('.progress .bar').css('width', progress + '%');
 		});
-	  return true;
+		return true;
 	});
 
 	// Show selected avatar photo name
@@ -521,55 +490,55 @@ $(function(){
 	// Reset form if photo upload failure
 	$('.cloudinary-fileupload').bind('fail', function() {
 		alert("Upload failed.");
-  	$('#loadingPhoto, .handhold').hide();
+		$('#loadingPhoto, .handhold').hide();
 		$('button.close, .filedrop').show();		
 	});
 	
 	// Submit uploaded avatar info to db when uploaded
 	$('#addAvatar .cloudinary-fileupload').bind('fileuploaddone', function() {
 		$('.filedrop input[type=submit]').click();
-	  $.cookie("avatar", "true");
+		$.cookie("avatar", "true");
 	});
-  
-  // Explicitly set avatar cookie to false on Save click
-  $('#saveUser, #saveUserAccount').click(function(){
-    $.cookie("avatar", "false");
-  });
+	
+	// Explicitly set avatar cookie to false on Save click
+	$('#saveUser, #saveUserAccount').click(function(){
+		$.cookie("avatar", "false");
+	});
 
 	// All Videos Delete
-  $("#videos .adminDelete a").click(function(){
-    $("#deleteVideo").dialog('open');
-    deleteVideoLink = "";
-    $("#deleteVideo").parent().find(".ui-dialog-buttonset button").last().focus(); // Set focus on "delete" button in dialog
-    var active = $(this);
-    deleteVideoLink  = $.trim(active.attr("href"));
-    var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
-    $("#deleteVideo h1").text("Delete " + title + "?");
-    $("#deleteVideo .title").text(title);
-    return false;	// prevents the default click behavior for delete button
-  });
-  
-  $("#deleteVideo").dialog({
-    autoOpen: false,
-    resizable: false,
-    draggable: false,
-    closeOnEscape: false,
-    width: 400,
-    modal: true,
-    buttons: {
-      Cancel: function() {
-        $(this).dialog("close");
-      },
-      "Delete": function() {
-        $("#deleteVideo p, .ui-dialog-buttonset").hide();
-        $("#deleteVideo .hide").show();
-        $(".ui-dialog-title").text("Deleting...");
+	$("#videos .adminDelete a").click(function(){
+		$("#deleteVideo").dialog('open');
+		deleteVideoLink = "";
+		$("#deleteVideo").parent().find(".ui-dialog-buttonset button").last().focus(); // Set focus on "delete" button in dialog
+		var active = $(this);
+		deleteVideoLink	= $.trim(active.attr("href"));
+		var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
+		$("#deleteVideo h1").text("Delete " + title + "?");
+		$("#deleteVideo .title").text(title);
+		return false;	// prevents the default click behavior for delete button
+	});
+	
+	$("#deleteVideo").dialog({
+		autoOpen: false,
+		resizable: false,
+		draggable: false,
+		closeOnEscape: false,
+		width: 400,
+		modal: true,
+		buttons: {
+			Cancel: function() {
+				$(this).dialog("close");
+			},
+			"Delete": function() {
+				$("#deleteVideo p, .ui-dialog-buttonset").hide();
+				$("#deleteVideo .hide").show();
+				$(".ui-dialog-title").text("Deleting...");
 				$.post(deleteVideoLink, {"_method":"delete"}, function() {
 					location.reload();
 				})
-      }
-    }
-  });
+			}
+		}
+	});
 
 	// Edit video title
 	$('.videoEdit a').click(function(){
@@ -578,19 +547,19 @@ $(function(){
 		var video_id = $(this).parents('.video-tile').attr('data-video-id');
 		$.cookie("video_id", video_id);
 		$.cookie("editTitle", "true", { expires: 1, path: '/' });
-		    titleChangeLink = $(this).parents('.videoEdit').find("input[type=submit]");
-		    var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
+				titleChangeLink = $(this).parents('.videoEdit').find("input[type=submit]");
+				var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
 		$("#editVideo").find('input').val(title);
 		return false;
 	});
 	
 	$('#editVideo').dialog({
 		autoOpen: false,
-    resizable: false,
-    draggable: false,
+		resizable: false,
+		draggable: false,
 		width: 400,
 		closeOnEscape: true,
-    modal: true,
+		modal: true,
 		buttons: {
 			Cancel: function() {
 				$(this).dialog("close");
@@ -610,46 +579,46 @@ $(function(){
 	});
 	
 	// Sparklines for Statistics
-  $('.sparklines').sparkline('html', { 
-    zeroColor: '#999',
-    barColor: '#999',
+	$('.sparklines').sparkline('html', { 
+		zeroColor: '#999',
+		barColor: '#999',
 		barWidth: '20',
 		barSpacing: '5',
 		type: 'bar'
-    // width: '100px'
-  });
+		// width: '100px'
+	});
 
-  // Activate the appropriate tab on page load
-  if($('.nav-pills').length){
+	// Activate the appropriate tab on page load
+	if($('.nav-pills').length){
 		// Check if cookie exisits and matches with an available tab. Load proper tab if it does
-    if($.cookie("active_tab") != null && $('a[href=' + $.cookie("active_tab") +']').length){ // Must check null explicitly for Safari
-      var old_tab = $.cookie("active_tab");
-      $('.nav-pills li a[href=' + old_tab + ']').click();
-    } else {
-      // Select first tab as default if no cookie exists
-      var first_tab = $('.nav-pills li:first a');
+		if($.cookie("active_tab") != null && $('a[href=' + $.cookie("active_tab") +']').length){ // Must check null explicitly for Safari
+			var old_tab = $.cookie("active_tab");
+			$('.nav-pills li a[href=' + old_tab + ']').click();
+		} else {
+			// Select first tab as default if no cookie exists
+			var first_tab = $('.nav-pills li:first a');
 			var current_path = $(location).attr('pathname');
-      first_tab.click();
-      $.cookie("active_tab", first_tab.attr('href'), {path:current_path});
-    };
-    // Set cookie for any clicked tab
-    var tab_links = $('.nav-pills li a')
-    tab_links.bind('click', function(){
+			first_tab.click();
+			$.cookie("active_tab", first_tab.attr('href'), {path:current_path});
+		};
+		// Set cookie for any clicked tab
+		var tab_links = $('.nav-pills li a')
+		tab_links.bind('click', function(){
 			var current_path = $(location).attr('pathname');
-      current_tab = $(this).attr('href');
-      $.cookie("active_tab", current_tab, {path:current_path});
-    });
-  };
-  
-  // Show video title if it overflows available area
-  $('.video-name').mouseover(function(){
-	  title_width = $(this).width();
-	  if ( $(this).find('h1').width() > title_width ) {
-	  	$(this).parents('.video-tile, .videoLegend').addClass('showTitle');
-	  };
-  });
-  $('.video-name').mouseout(function(){
-	  $(this).parents('.video-tile, .videoLegend').removeClass('showTitle');
-  })
+			current_tab = $(this).attr('href');
+			$.cookie("active_tab", current_tab, {path:current_path});
+		});
+	};
+	
+	// Show video title if it overflows available area
+	$('.video-name').mouseover(function(){
+		title_width = $(this).width();
+		if ( $(this).find('h1').width() > title_width ) {
+			$(this).parents('.video-tile, .videoLegend').addClass('showTitle');
+		};
+	});
+	$('.video-name').mouseout(function(){
+		$(this).parents('.video-tile, .videoLegend').removeClass('showTitle');
+	})
 
 });
