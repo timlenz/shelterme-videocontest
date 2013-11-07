@@ -385,15 +385,11 @@ $(function(){
 	// Increment video shares
 	$('#share a').click(function(){
 		$('#new_share').find('input[name=commit]').click();
-		return false;
 	});
 	
 	function countPlay(){
 		if ( $('#play_video_id').val() != '' ) {
 			$('#new_play').find('input[name=commit]').click();
-			var old_plays = parseInt($('#videoModal').find('span.plays').text(),10);
-			var new_plays = old_plays + 1;
-			$('#videoModal').find('span.plays').text(new_plays);
 		};
 		return false;
 	};
