@@ -34,4 +34,5 @@ class ApplicationController < ActionController::Base
       ErrorMailer.error_notification(exception,current_user,request.fullpath).deliver
       render file: "/errors/500", layout: false
     end
+    
 end

@@ -1,6 +1,6 @@
 class PlaysController < ApplicationController
   
-  respond_to :html, :js
+  respond_to :js, only: [:create]
   
   def create
     @video = Video.find(params[:play][:video_id])
@@ -16,6 +16,9 @@ class PlaysController < ApplicationController
         null_user.play!(@video)
       end      
     end
+  end
+  
+  def new
   end
   
 end
