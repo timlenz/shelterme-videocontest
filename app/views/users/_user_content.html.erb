@@ -19,7 +19,7 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="myVideos">
-	    <% if @videos.size > 0 %>
+	  <% if @videos.size > 0 && (signed_in? && (current_user == @user || current_user.admin?)) %>
       <%= render partial: "shared/video_tile", collection: @videos, as: :f %>
       <div class="clearfix"></div>
       <%= will_paginate @videos, param_name: 'videos_page' %>

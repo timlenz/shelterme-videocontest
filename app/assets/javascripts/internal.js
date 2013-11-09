@@ -623,5 +623,9 @@ $(function(){
 	$('.video-name').mouseout(function(){
 		$(this).parents('.video-tile, .videoLegend').removeClass('showTitle');
 	})
+	
+	// $('#videos_search input[type=submit]').click(function(){
+	// 	$('#searching').show();
+	// });
 
 });
