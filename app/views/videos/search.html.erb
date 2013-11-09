@@ -37,9 +37,13 @@
          <div class="clearfix"></div>
 		 <div style="margin-top:10px;text-align:center;">You may also browse the list of <%= link_to "video contributors", contributors_path %> by name.</div>
    	     <div id="searched_videos" class="row" style="margin-top:10px;">
-   	       <%= render 'searched_videos' %>
-		   <!-- <div id="searching" style="text-align:center;display:none;">Searching...</div> -->
+   	       <% render 'searched_videos' %>
    	     </div>
+		 <div id="searching">
+			 <%= image_tag "spinner.gif" %>
+			 <br><br>
+			 <h3>Searching...</h3>
+		 </div>
    		 <div class="clearfix"></div>
        </div>
      </div>

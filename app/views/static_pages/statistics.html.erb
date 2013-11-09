@@ -9,60 +9,35 @@
 		</div>
 	  <div class="row">
 		  <div class="span12 adminView">
-			  <div class="adminColumn">
-			  	<h2>Previous Week<span style="font-size:12px;color:#999;float:right;line-height:35px;">(through yesterday)</span></h2>
-			    <ul>
-			    	<li>
-				      <h3>
-				        <%= pluralize(@new_videos_count, "Video") %> added
-				        <span class="sparklines"><%= @new_videos %></span>
-				      </h3>
-				    </li>
-			    	<li>
-				      <h3>
-				        <%= pluralize(@new_users_count, "User") %> joined 
-				        <span class="sparklines"><%= @new_users %></span>
-				      </h3>
-				    </li>
-			    	<li>
-				      <h3>
-				        <%= pluralize(@new_plays_count, "Video play") %> 
-				        <span class="sparklines"><%= @new_plays %></span>
-				      </h3>
-				    </li>
-			    	<li>
-				      <h3>
-				        <%= pluralize(@new_shares_count, "Video share") %> 
-				        <span class="sparklines"><%= @new_shares %></span>
-				      </h3>
-				    </li>
-			    </ul>
-			  </div>
 			  <div class="adminColumn" style="margin-right:0;">
 			  	<h2>To Date<span style="font-size:12px;color:#999;float:right;line-height:35px;">(by week, including most recent)</span></h2>
 			    <ul>
 			    	<li>
 			        <h3>
 			          <%= pluralize(@all_videos_count, "Video") %> added 
-			          <span class="sparklines"><%= @all_videos %></span>
 			        </h3>
 			      </li>
 				    <li>
 					    <h3>
 					      <%= pluralize(@all_users_count, "User") %> joined 
-					      <span class="sparklines"><%= @all_users %></span>
 					    </h3>
 					  </li>
 				    <li>
 					    <h3>
-					      <%= pluralize(@all_plays_count, "Video play") %> 
+					      <%= pluralize(@all_plays_count, "View") %> 
 					      <span class="sparklines"><%= @all_plays %></span>
 					    </h3>
 					  </li>
 			    	<li>
 				      <h3>
-				        <%= pluralize(@all_shares_count, "Video share") %> 
+				        <%= pluralize(@all_shares_count, "Share") %> 
 				        <span class="sparklines"><%= @all_shares %></span>
+				      </h3>
+				    </li>
+			    	<li>
+				      <h3>
+				        <%= pluralize(@all_votes_count, "Vote") %> 
+				        <span class="sparklines"><%= @all_votes %></span>
 				      </h3>
 				    </li>
 			    </ul>
