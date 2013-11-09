@@ -28,8 +28,7 @@ class UsersController < ApplicationController
   end
   
   def contributors
-    # @contributors = User.where("videos_count > 0")
-    @contributors = User.all
+    @contributors = User.where("videos_count > 0")
     @video_count = Video.where(approved: true).count
   end
   
