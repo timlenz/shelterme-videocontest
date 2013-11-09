@@ -7,7 +7,7 @@ class PlaysController < ApplicationController
     # check if current_user has shared this video (very) recently
     if signed_in?
       play_check = Play.where(video_id: @video.id, user_id: current_user.id).last
-      if play_check.nil? || play_check.created_at < 1.minute.ago
+      if play_check.nil? || play_check.created_at < @video.length.seconds.ago
         current_user.play!(@video)
       else
         # do nothing if attempting to play too quickly

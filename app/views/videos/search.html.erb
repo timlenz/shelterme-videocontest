@@ -1,0 +1,50 @@
+<%= provide(:title, 'Search') %>
+<div id="mainContent">
+  <%= render 'instructions'%>
+  <div class="tabbable">
+     <ul id="watchVideos" class="nav nav-pills">
+       <!--li class="winnersPill"><a href="#winners"></a></li-->
+       <li class="allVideosPill">
+  		 <%= link_to "", watch_path %>
+       </li>
+       <li class="bestRatedPill">
+		 <%= link_to "", rated_path %>
+       </li>
+       <li class="mostVotesPill">
+  		 <%= link_to "", votes_path %>
+       </li>
+       <li class="mostPlaysPill">
+		 <%= link_to "", views_path %>
+       </li>
+       <li class="mostSharesPill">
+		 <%= link_to "", shares_path %>
+       </li>
+       <li class="searchVideosPill active">
+         <a href="#" onclick="return false;">
+         	<span class="count"></span>
+         </a>
+       </li>
+     </ul>
+     <div class="tab-content">
+       <div class="tab-pane active" id="search">
+	     <div class="searchButton" style="width:96%;margin-top:0;">
+	       <%= form_tag search_path, :method => 'get', id: "videos_search", remote: true do %>
+	         <%= label_tag :text_search, "By video title" %>
+	         <%= text_field_tag :text_search, params[:text_search], style: "width:460px;" %>
+	         <%= submit_tag "Search", :name => nil, class: "btn btn-header" %>
+           <% end %>
+	     </div>
+         <div class="clearfix"></div>
+		 <div style="margin-top:10px;text-align:center;">You may also browse the list of <%= link_to "video contributors", contributors_path %> by name.</div>
+   	     <div id="videos" class="row" style="margin-left:5px;margin-top:10px;">
+   	       <%= render 'searched_videos' %>
+   	     </div>
+   		 <div class="clearfix"></div>
+         <%= will_paginate @searched_videos, param_name: 'searched_videos' if @searched_videos %> 
+       </div>
+     </div>
+   </div>
+</div>
+<%= render 'videos/video_modal' %>
+<%= render "users/edit_video" %>
+<div class="clearfix"></div>

@@ -302,11 +302,11 @@ body {
 }
 
 .votingControls {
-	background: url(votingControls.png) no-repeat center;
+	background: url(votingControls2.png) no-repeat right;
 	float:right;
-	padding-left: 12px;
-	height:250px;
-	width:384px;
+	padding-left: 20px;
+	height:200px;
+	width:307px;
 	a {
 		display:block;
 		width:100%;
@@ -2516,4 +2516,17 @@ th {
 	background: $blueHilite;
 	font-weight: bold;
 	color: white;
+}
+
+ul.contributors {
+	width:100%;
+	li {
+		width:25%;
+		float:left;
+		padding:5px 0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+	}
 }

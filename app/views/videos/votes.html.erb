@@ -1,19 +1,19 @@
-<%= provide(:title, 'Watch') %>
+<%= provide(:title, 'Watch Most Votes') %>
 <div id="mainContent">
   <%= render 'instructions'%>
   <div class="tabbable">
      <ul id="watchVideos" class="nav nav-pills">
        <!--li class="winnersPill"><a href="#winners"></a></li-->
-       <li class="allVideosPill active">
-         <a href="#" onclick="return false;">
-           <span class="count"><%= @videos_count > 0 ? @videos_count : '' %></span>
-         </a>
+       <li class="allVideosPill">
+  		 <%= link_to "", watch_path %>
        </li>
        <li class="bestRatedPill">
 		 <%= link_to "", rated_path %>
        </li>
-       <li class="mostVotesPill">
-  		 <%= link_to "", votes_path %>
+       <li class="mostVotesPill active">
+         <a href="#" onclick="return false;">
+         	<span class="count"><%= @voted_videos_count > 0 ? @voted_videos_count : '' %></span>
+         </a>
        </li>
        <li class="mostPlaysPill">
 		 <%= link_to "", views_path %>
@@ -26,13 +26,13 @@
        </li>
      </ul>
      <div class="tab-content">
-       <div class="tab-pane active" id="all">
-         <% if @videos.size > 0 %>
-         <%= render partial: 'shared/video_tile', collection: @videos, as: :f %>
+       <div class="tab-pane active" id="mostVotes">
+         <% if @voted_videos.size > 0 %>
+         <%= render partial: 'shared/video_tile', collection: @voted_videos, as: :f %>
          <div class="clearfix"></div>
-         <%= will_paginate @videos, param_name: 'all_videos' %>
+         <%= will_paginate @voted_videos, param_name: 'voted_videos' %>
          <% else %>
-         No videos have been approved yet.
+         No videos have votes yet.
          <% end %>
        </div>
      </div>

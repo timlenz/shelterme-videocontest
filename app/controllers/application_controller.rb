@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
       logger.warn "#{exception.message}"
       render file: "/errors/404"
     end
-
+    
     def render_error(exception)
       logger.warn "#{exception.message}"
       ErrorMailer.error_notification(exception,current_user,request.fullpath).deliver

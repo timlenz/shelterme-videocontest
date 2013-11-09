@@ -64,11 +64,10 @@ class Video < ActiveRecord::Base
   end
   
   def self.text_search(query)
-    if query.present?
-      where("title @@ :q", q: query)
-    else
-      scoped
-    end
+    rank = <<-RANK
+    ts_rank(to_tsvector(title), plainto_tsquery(#{sanitize(query)}))
+    RANK
+    where("title @@ :q", q: query).order("#{rank} desc")
   end
   
   def self.search(search)

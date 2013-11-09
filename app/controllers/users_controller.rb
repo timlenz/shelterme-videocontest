@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, 
-                only: [:index, :edit, :update, :destroy, :videos]
+                only: [:index, :update, :destroy, :videos]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :find_user, only: [:show, :destroy]
     
@@ -27,6 +27,12 @@ class UsersController < ApplicationController
     end
   end
   
+  def contributors
+    # @contributors = User.where("videos_count > 0")
+    @contributors = User.all
+    @video_count = Video.where(approved: true).count
+  end
+  
   def new
     unless signed_in?
       @user = User.new
@@ -51,7 +57,6 @@ class UsersController < ApplicationController
   
   def edit
     cookies[:avatar] = "false"
-    asdfasdf
   rescue
     flash[:error] = "Unable to edit user profile."
     redirect_to :back

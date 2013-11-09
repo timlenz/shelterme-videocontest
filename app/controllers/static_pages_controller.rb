@@ -2,6 +2,10 @@ class StaticPagesController < ApplicationController
   def new
   end
   
+  def home
+    redirect_to watch_path
+  end
+  
   def statistics
     unless signed_in? && current_user.admin? 
       redirect_to root_path

@@ -1,13 +1,11 @@
-<%= provide(:title, 'Watch') %>
+<%= provide(:title, 'Watch Most Views') %>
 <div id="mainContent">
   <%= render 'instructions'%>
   <div class="tabbable">
      <ul id="watchVideos" class="nav nav-pills">
        <!--li class="winnersPill"><a href="#winners"></a></li-->
-       <li class="allVideosPill active">
-         <a href="#" onclick="return false;">
-           <span class="count"><%= @videos_count > 0 ? @videos_count : '' %></span>
-         </a>
+       <li class="allVideosPill">
+  		 <%= link_to "", watch_path %>
        </li>
        <li class="bestRatedPill">
 		 <%= link_to "", rated_path %>
@@ -15,8 +13,10 @@
        <li class="mostVotesPill">
   		 <%= link_to "", votes_path %>
        </li>
-       <li class="mostPlaysPill">
-		 <%= link_to "", views_path %>
+       <li class="mostPlaysPill active">
+         <a href="#" onclick="return false;">
+         	<span class="count"><%= @played_videos_count > 0 ? @played_videos_count : '' %></span>
+         </a>
        </li>
        <li class="mostSharesPill">
 		 <%= link_to "", shares_path %>
@@ -26,13 +26,14 @@
        </li>
      </ul>
      <div class="tab-content">
-       <div class="tab-pane active" id="all">
-         <% if @videos.size > 0 %>
-         <%= render partial: 'shared/video_tile', collection: @videos, as: :f %>
+       <div class="tab-pane active" id="mostPlays">
+         <% if @played_videos.size > 0 %>
+         <%= render partial: 'shared/video_tile', collection: @played_videos.sort! { |a,b| b.plays_count <=> a.plays_count }, as: :f %>
          <div class="clearfix"></div>
-         <%= will_paginate @videos, param_name: 'all_videos' %>
+         <%= will_paginate @played_videos, param_name: 'played_videos' %>
          <% else %>
-         No videos have been approved yet.
+         No videos have been viewed yet.<br><br>
+		 All activity from before the start of the voting period has been removed. 
          <% end %>
        </div>
      </div>

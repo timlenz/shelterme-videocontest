@@ -1,39 +1,15 @@
-$('#videos').html('<%= j render("videos") %>');
+$('#videos').html('<%= j render("searched_videos") %>');
 
-// Connect graphic buttons with hidden input elements
-$('div.btn-group[data-toggle-name]').each(function(){
-  var group   = $(this);
-  var form    = group.parents('form').eq(0);
-  var name    = group.attr('data-toggle-name');
-  var hidden  = $('input[name="' + name + '"]', form);
-  var current_value;
-  $('button', group).each(function(){
-    var button = $(this);
-    if(button.val() == hidden.val()) {
-      // Set clicked button to active
-      button.addClass('active');
-    } else {
-			button.removeClass('active');
-		};
-  });
-});
-
-// Hide tiles once they've been approved or unapproved, depending on currently selected page filter
-if ( $('#videos_search .active').val() == 'false' ) {
-	$('.video-tile').each(function(){
-		var tile = $(this);
-		if ( $(this).find('input[name="commit"]').val() == 'Approved' ) {
-			tile.hide();
+// Hover tooltip for video tile icons
+$('[rel=tooltip]').tooltip({
+	container: 'body',
+	placement: function(tip, element){
+		if ( $(element).hasClass('star-rating') ) {
+			return "right";
 		}
-	});
-} else if ( $('#videos_search .active').val() == 'true' ) {
-	$('.video-tile').each(function(){
-		var tile = $(this);
-		if ( $(this).find('input[name="commit"]').val() == 'Unapproved' ) {
-			tile.hide();
-		}
-	});
-};
+		return "top";
+	}
+});	
 
 // Target video tile
 $('a.video_link').click(function(){
@@ -145,48 +121,93 @@ $('a.video_link').click(function(){
 	return false;
 });
 
-// All Videos Delete
-$("#videos .adminDelete a").click(function(){
-  $("#deleteVideo").dialog('open');
-  deleteVideoLink = "";
-  $("#deleteVideo").parent().find(".ui-dialog-buttonset button").last().focus(); // Set focus on "delete" button in dialog
-  var active = $(this);
-  deleteVideoLink  = $.trim(active.attr("href"));
-  var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
-  $("#deleteVideo h1").text("Delete " + title + "?");
-  $("#deleteVideo .title").text(title);
-  return false;	// prevents the default click behavior for delete button
+// ====================
+// == VIDEO CONTROLS == 
+// ====================
+
+// Show/hide sharing & voting controls
+$('#videoPlayer, #share, #vote, #vote_details, #vote_feedback').hover(
+	function(){
+		$('#share, #vote').show().removeClass('vjs-fade-out');
+	}, function(){
+		$('#share, #vote').hide().addClass('vjs-fade-out'); // add in delay
+	}
+);
+$('#vote, #vote_details, #vote_feedback').hover(
+	function(){
+		$('#vote_details, #vote_feedback').show().removeClass('vjs-fade-out');
+	}, function(){
+		$('#vote_details, #vote_feedback').hide().addClass('vjs-fade-out'); // add in delay
+	}
+);
+
+// ===================
+// ===== VOTING ====== 
+// ===================
+
+// Highlight stars
+$('#vote .star-rating').hover(
+	function(){
+		$(this).prevAll('a').addClass('star-rating-on');
+		var which_star = $(this).index();
+		$('#vote_details li:eq('+ which_star + ')').addClass('star-rating-on');
+	}, function(){
+		$(this).prevAll('a').removeClass('star-rating-on');
+		var which_star = $(this).index();
+		$('#vote_details li:eq('+ which_star + ')').removeClass('star-rating-on');
+	}
+);
+	
+// Submit vote
+$('#vote #active .star-rating').click(function(){
+	if ( $('#vote .star-rating-set').length ) {
+		return false;
+	} else {
+		$(this).prevAll('a').addClass('star-rating-set');
+		$(this).addClass('star-rating-set');
+		if ( $('#videoSolo').length ) {
+			var new_vote = $(this).index() + 1;
+			var vote_label = new_vote - 1;
+		} else {
+			var new_vote = $(this).index() + 1;
+			var vote_label = new_vote - 1;
+		};
+		$('#vote_value').val(new_vote);
+		$.cookie("vote_value", new_vote);
+		$('#new_vote').find('input[name=commit]').click();
+		$('#vote_details li').removeClass('star-rating-set');
+		$('#vote_details li:eq('+ vote_label +')').addClass('star-rating-set');
+		$('#vote_feedback').show().html('Thank you for your vote.');
+		return false;
+	}
 });
 
-$("#deleteVideo").dialog({
-  autoOpen: false,
-  resizable: false,
-  draggable: false,
-  closeOnEscape: false,
-  width: 400,
-  modal: true,
-  buttons: {
-    Cancel: function() {
-      $(this).dialog("close");
-    },
-    "Delete": function() {
-      $("#deleteVideo p, .ui-dialog-buttonset").hide();
-      $("#deleteVideo .hide").show();
-      $(".ui-dialog-title").text("Deleting...");
-      $.ajax({
-          url: deleteVideoLink,
-          type: 'POST',
-					data: {"_method":"delete"},
-          complete: function() {
-            location.reload();
-          }
-      });
-    }
-  }
+// ===== VOTING ======
+
+// Increment video shares
+$('#share a').click(function(){
+	$('#new_share').find('input[name=commit]').click();
 });
 
-// Update Video Count
-$('.headerInfo h1 span').text($.cookie("video_count"));
+function countPlay(){
+	if ( $('#play_video_id').val() != '' ) {
+		$('#new_play').find('input[name=commit]').click();
+	};
+	return false;
+};
+
+function resetPlayer(){
+	myPlayer.pause();
+	myPlayer.currentTime(0);
+	$('video').hide();
+	$('.vjs-loading-spinner').hide();
+};
+
+// Display video share, vote controls on click of icon tiles
+$('#videoSolo .videoTile, #videoModal .videoTile').click(function(){
+	$('#share, #vote').show();
+	return false;
+});
 
 // Edit video title
 $('.videoEdit a').click(function(){
@@ -195,19 +216,19 @@ $('.videoEdit a').click(function(){
 	var video_id = $(this).parents('.video-tile').attr('data-video-id');
 	$.cookie("video_id", video_id);
 	$.cookie("editTitle", "true", { expires: 1, path: '/' });
-	    titleChangeLink = $(this).parents('.videoEdit').find("input[type=submit]");
-	    var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
+			titleChangeLink = $(this).parents('.videoEdit').find("input[type=submit]");
+			var title = $.trim($(this).parents('.video-tile').find(".video-name h1").text());
 	$("#editVideo").find('input').val(title);
 	return false;
 });
 
 $('#editVideo').dialog({
 	autoOpen: false,
-  resizable: false,
-  draggable: false,
+	resizable: false,
+	draggable: false,
 	width: 400,
 	closeOnEscape: true,
-  modal: true,
+	modal: true,
 	buttons: {
 		Cancel: function() {
 			$(this).dialog("close");
@@ -225,3 +246,14 @@ $('#editVideo').dialog({
 		}
 	}
 });
+
+// Show video title if it overflows available area
+$('.video-name').mouseover(function(){
+	title_width = $(this).width();
+	if ( $(this).find('h1').width() > title_width ) {
+		$(this).parents('.video-tile, .videoLegend').addClass('showTitle');
+	};
+});
+$('.video-name').mouseout(function(){
+	$(this).parents('.video-tile, .videoLegend').removeClass('showTitle');
+})

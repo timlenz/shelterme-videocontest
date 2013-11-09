@@ -1,8 +1,8 @@
 VideoContest::Application.routes.draw do
   
-  get "votes/new"
-  get "shares/new"
-  get "plays/new"
+  # get "votes/new"
+  # get "shares/new"
+  # get "plays/new"
   get "messages/new"
   get "password_resets/new"
   get "videos/new"
@@ -16,8 +16,7 @@ VideoContest::Application.routes.draw do
   resources :shares, only: :create
   resources :votes, only: :create
   
-  # root to: 'static_pages#home'
-  root to: 'videos#watch'
+  root to: 'static_pages#home'
   
   match "/panda/authorize_upload", :to => "panda#authorize_upload"
   
@@ -25,6 +24,12 @@ VideoContest::Application.routes.draw do
   match '/newvideo',          to: 'videos#new'
   match '/av',                to: 'videos#index'
   match '/watch',             to: 'videos#watch'
+  
+  match '/rated',             to: 'videos#rated'
+  match '/votes',             to: 'videos#votes'
+  match '/shares',            to: 'videos#shares'
+  match '/views',             to: 'videos#views'
+  match '/search',            to: 'videos#search'
   
   match '/signin',            to: 'sessions#new'
   match '/signout',           to: 'sessions#destroy', via: :delete
@@ -36,6 +41,7 @@ VideoContest::Application.routes.draw do
   match '/myvideos',          to: 'users#videos'
   match '/mv',                to: 'users#videos'
   match '/myassets',          to: 'users#assets'
+  match '/contributors',      to: 'users#contributors'
   
   match '/faq',               to: 'static_pages#faq'
   match '/terms',             to: 'static_pages#terms'
@@ -44,6 +50,9 @@ VideoContest::Application.routes.draw do
   match '/information',       to: 'static_pages#information'
   match '/statistics',        to: 'static_pages#statistics'
   match '/contact',           to: 'messages#new'
+  
+  # Any routes that aren't defined above here go to the 404
+  match "*a",                 to: "application#routing_error"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

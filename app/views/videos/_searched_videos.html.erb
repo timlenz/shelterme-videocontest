@@ -1,0 +1,4 @@
+<%= render partial: 'shared/video_tile', collection: @searched_videos, as: :f %>
+<% unless @searched_videos && @searched_videos.count > 0 %>
+No matching videos found.
+<% end %>

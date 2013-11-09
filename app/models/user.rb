@@ -67,6 +67,8 @@ class User < ActiveRecord::Base
   
   before_validation :generate_slug, on: :create
   
+  default_scope order: 'slug ASC'
+  
   def to_param
     slug
   end

@@ -1,0 +1,15 @@
+<div class="staticContent">
+  <div class="votingControls"></div>
+  <p>Promote your favorite videos and help their creators win a prize by watching, sharing and voting for them. Mouse over a video to access controls for sharing and voting (see right). The top rated videos as <%= link_to "determined by views, shares and votes", "/rules#semifinalists" %> will be eligible to win a prize.</p>
+  <p>The view count for a video will only increment after you watch the entire video.</p>
+  <p>You do not need to create an account to watch or share a video, but you must
+	<% if signed_in? %>
+	register and be signed in
+	<% else %>
+	<%= link_to "register", register_path %> and be
+	<%= link_to "signed in", signin_path %> 
+	<% end %>
+	to vote for a video. You may vote for a video once every 24 hours.</p>
+  <p>Views and shares before November 4th were reset to ensure fairness during the voting period. Good luck!</p>
+</div>
+<div class="clearfix"></div>

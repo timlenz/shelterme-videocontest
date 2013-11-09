@@ -7,8 +7,8 @@
            <%= link_to "", information_path %>
          </li>
          <li class="vertDivide"> </li>
-         <li class="<%= (params[:controller] == 'videos' and params[:action] == 'watch') ? "navMainOn navWatchOn" : "navMain navWatch" %>">
-           <%= link_to "", watch_path %>
+         <li class="<%= (params[:controller] == 'videos' and (params[:action] == 'watch' || params[:action] == 'rated' || params[:action] == 'views') || params[:action] == 'shares' || params[:action] == 'votes' || params[:action] == 'search') ? "navMainOn navWatchOn" : "navMain navWatch" %>">
+           <%= link_to "", root_path %>
          </li>
          </li>
        </ul>

@@ -2,11 +2,11 @@
   <div class="vote"></div>
   <% if signed_in? %>
   <div <%='id=active' unless @vote_check %>>
-  <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check }",  title: "Dislike" %>
-  <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 2)}",  title: "Fair" %>
-  <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 3)}",  title: "Like" %>
-  <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 4)}",  title: "Really like" %>
-  <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 5)}",  title: "Love" %>
+  <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check }", title: "Dislike", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 2)}",  title: "Fair", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 3)}",  title: "Like", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 4)}",  title: "Really like", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 5)}",  title: "Love", rel: "tooltip" %>
   </div>
   <%= form_for(current_user.votes.build(video_id: @video.id), remote: true) do |f| %>
     <div><%= f.hidden_field :video_id %></div>
@@ -15,11 +15,11 @@
   <% end %>
   <% else %>
   <div id="inactive">
-  <%= link_to "", "#", class: "star-rating",  title: "Dislike" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Fair" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Like" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Really like" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Love" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Dislike", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Fair", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Like", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Really like", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating",  title: "Love", rel: "tooltip" %>
   </div>
   <% end %>
 </div>

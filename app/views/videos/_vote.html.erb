@@ -2,11 +2,11 @@
   <div class="vote"></div>
   <% if signed_in? %>
   <div id="active">
-  <%= link_to "", "#", class: "star-rating",  title: "Dislike" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Fair" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Like" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Really like" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Love" %>
+  <%= link_to "", "#", class: "star-rating", title: "Dislike", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating", title: "Fair", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating", title: "Like", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating", title: "Really like", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating", title: "Love", rel: "tooltip" %>
   <%= form_for(current_user.votes.build(video_id: ''), remote: true) do |f| %>
     <div><%= f.hidden_field :video_id %></div>
     <div><%= f.number_field :value %></div>
@@ -15,11 +15,11 @@
   </div>
   <% else %>
   <div id="inactive">
-  <%= link_to "", "#", class: "star-rating",  title: "Dislike" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Fair" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Like" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Really like" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Love" %>
+  <%= link_to "", "#", class: "star-rating", title: "Dislike", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating", title: "Fair", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating", title: "Like", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating", title: "Really like", rel: "tooltip" %>
+  <%= link_to "", "#", class: "star-rating", title: "Love", rel: "tooltip" %>
   </div>
   <% end %>
 </div>

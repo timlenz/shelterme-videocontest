@@ -2,7 +2,13 @@ $(function(){
 	
 	// Hover tooltip for video tile icons
 	$('[rel=tooltip]').tooltip({
-		container: 'body'
+		container: 'body',
+		placement: function(tip, element){
+			if ( $(element).hasClass('star-rating') ) {
+				return "right";
+			}
+			return "top";
+		}
 	});	
 	
 	// Reposition sidebar if window is too short
@@ -374,12 +380,6 @@ $(function(){
 		}
 	});
 	
-	// Remind to register to vote
-	// $('#vote #inactive .star-rating').click(function(){
-	// 	$('#vote_details').show();
-	// 	return false;
-	// });	
-	
 	// ===== VOTING ======
 	
 	// Increment video shares
@@ -591,27 +591,27 @@ $(function(){
 		// width: '100px'
 	});
 
-	// Activate the appropriate tab on page load
-	if($('.nav-pills').length){
-		// Check if cookie exisits and matches with an available tab. Load proper tab if it does
-		if($.cookie("active_tab") != null && $('a[href=' + $.cookie("active_tab") +']').length){ // Must check null explicitly for Safari
-			var old_tab = $.cookie("active_tab");
-			$('.nav-pills li a[href=' + old_tab + ']').click();
-		} else {
-			// Select first tab as default if no cookie exists
-			var first_tab = $('.nav-pills li:first a');
-			var current_path = $(location).attr('pathname');
-			first_tab.click();
-			$.cookie("active_tab", first_tab.attr('href'), {path:current_path});
-		};
-		// Set cookie for any clicked tab
-		var tab_links = $('.nav-pills li a')
-		tab_links.bind('click', function(){
-			var current_path = $(location).attr('pathname');
-			current_tab = $(this).attr('href');
-			$.cookie("active_tab", current_tab, {path:current_path});
-		});
-	};
+	// Activate the appropriate tab on page load - DISABLED BECAUSE OF SPLITTING TABS INTO SEPARATE PAGES
+	// if($('.nav-pills').length){
+	// 	// Check if cookie exisits and matches with an available tab. Load proper tab if it does
+	// 	if($.cookie("active_tab") != null && $('a[href=' + $.cookie("active_tab") +']').length){ // Must check null explicitly for Safari
+	// 		var old_tab = $.cookie("active_tab");
+	// 		$('.nav-pills li a[href=' + old_tab + ']').click();
+	// 	} else {
+	// 		// Select first tab as default if no cookie exists
+	// 		var first_tab = $('.nav-pills li:first a');
+	// 		var current_path = $(location).attr('pathname');
+	// 		first_tab.click();
+	// 		$.cookie("active_tab", first_tab.attr('href'), {path:current_path});
+	// 	};
+	// 	// Set cookie for any clicked tab
+	// 	var tab_links = $('.nav-pills li a')
+	// 	tab_links.bind('click', function(){
+	// 		var current_path = $(location).attr('pathname');
+	// 		current_tab = $(this).attr('href');
+	// 		$.cookie("active_tab", current_tab, {path:current_path});
+	// 	});
+	// };
 	
 	// Show video title if it overflows available area
 	$('.video-name').mouseover(function(){

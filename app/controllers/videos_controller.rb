@@ -106,32 +106,43 @@ class VideosController < ApplicationController
   end
   
   def watch
-    @videos = Video.where(approved: true).includes(:category, :user)
-    seed = Random.rand()
-    if seed > 0.5
-      @videos.reorder("title ASC")
-    else
-      @videos.reorder("votes_count ASC")
-    end
-    @search_videos = Video.text_search(params[:search]).paginate(page: params[:searched_videos], per_page: 12)
+    @videos = Video.where(approved: true).includes(:category, :user).reorder("title ASC")
     # @new_videos = Video.where(created_at: 7.days.ago.utc...Time.now.utc, approved: true).includes(:category, :user)
-    @rated_videos = []#Video.rated
-    @voted_videos = Video.where(id: (Vote.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("votes_count DESC")
-    @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("plays_count DESC")
-    @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("shares_count DESC")
     @videos_count = @videos.length
     # @new_videos_count = @new_videos.length
-    @rated_videos_count = @rated_videos.length
-    @voted_videos_count = @voted_videos.length
-    @played_videos_count = @played_videos.length
-    @shared_videos_count = @shared_videos.length
     @videos = @videos.paginate(page: params[:all_videos], per_page: 12)
     # @new_videos = @new_videos.paginate(page: params[:new_videos], per_page: 12)
-    @rated_videos = []#@rated_videos.paginate(page: params[:rated_videos], per_page: 12)
-    @voted_videos = @voted_videos.paginate(page: params[:voted_videos], per_page: 12)
-    @played_videos = @played_videos.paginate(page: params[:played_videos], per_page: 12)
-    @shared_videos = @shared_videos.paginate(page: params[:shared_videos], per_page: 12)
     # flash[:notice] = "<p>You do not need to create an account to watch or share a video, but you must be signed 
     #                   in to vote for a video.</p><p>You may vote for a video once every 24 hours.</p>".html_safe
+  end
+  
+  def rated
+    @rated_videos = []#Video.rated
+    @rated_videos_count = @rated_videos.length
+    @rated_videos = []#@rated_videos.paginate(page: params[:rated_videos], per_page: 12)
+  end
+  
+  def views
+    @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("plays_count DESC")
+    @played_videos_count = @played_videos.length
+    @played_videos = @played_videos.paginate(page: params[:played_videos], per_page: 12)
+  end
+  
+  def votes
+    @voted_videos = Video.where(id: (Vote.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("votes_count DESC")
+    @voted_videos_count = @voted_videos.length
+    @voted_videos = @voted_videos.paginate(page: params[:voted_videos], per_page: 12)
+  end
+  
+  def shares
+    @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("shares_count DESC")
+    @shared_videos_count = @shared_videos.length
+    @shared_videos = @shared_videos.paginate(page: params[:shared_videos], per_page: 12)
+  end
+  
+  def search
+    if params[:text_search]
+      @searched_videos = Video.includes(:category, :user).text_search(params[:text_search]).paginate(page: params[:searched_videos], per_page: 12)
+    end
   end
 end
