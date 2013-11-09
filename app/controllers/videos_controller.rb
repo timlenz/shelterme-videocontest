@@ -142,7 +142,7 @@ class VideosController < ApplicationController
   
   def search
     if params[:text_search]
-      @searched_videos = Video.where(approved: true).includes(:category, :user).text_search(params[:text_search]).paginate(page: params[:searched_videos], per_page: 12)
+      @searched_videos = Video.where(approved: true).includes(:category, :user).text_search(params[:text_search]).first(12)#.paginate(page: params[:searched_videos], per_page: 12)
     end
   end
 end
