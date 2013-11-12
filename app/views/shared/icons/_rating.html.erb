@@ -1,4 +1,4 @@
 <div class="icon">
-  <%= link_to "", "#", class: "videoTile rank#{f.rating.round(0)}Icon", rel: "tooltip", title: "#{f.rating} rating" %>
+  <%= link_to "", "#", class: "videoTile rank#{f.rating == 0 ? "1" : f.rating.round(0)}Icon", rel: "tooltip", title: "#{f.rating} rating" %>
 </div>
 
