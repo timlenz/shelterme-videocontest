@@ -4,15 +4,15 @@
   <title><%= full_title(yield(:title)) %></title>
   <%= canonical_link_tag %>
   <link href="/assets/favicon.ico" rel="shortcut icon" />
-  <% if params[:controller] == 'videos' or params[:controller] == 'users' or (params[:controller] == 'static_pages' and params[:action] == 'home') %>
-  <link href="http://vjs.zencdn.net/4.2.1/video-js.css" rel="stylesheet">
-	<script src="http://vjs.zencdn.net/4.2.1/video.js"></script>
-	<% end %>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <%= render 'layouts/shim' %>
   <%= render 'layouts/open_graph'%>
+  <% if params[:controller] == 'videos' or params[:controller] == 'users' or (params[:controller] == 'static_pages' and params[:action] == 'home') %>
+  <link href="http://vjs.zencdn.net/4.2.1/video-js.css" rel="stylesheet">
+  <script src="http://vjs.zencdn.net/4.2.1/video.js"></script>
+  <% end %>
 </head>
 <body onLoad="testCookies();">
 	<% if params[:controller] == 'static_pages' and params[:action] == 'home' %>

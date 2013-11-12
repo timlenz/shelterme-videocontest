@@ -12,4 +12,5 @@ class VotesController < ApplicationController
       @video.calculate_ave_vote
     end
   end
+  
 end

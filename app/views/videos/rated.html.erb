@@ -8,9 +8,7 @@
   		 <%= link_to "", watch_path %>
        </li>
        <li class="bestRatedPill active">
-         <a href="#" onclick="return false;">
-         	<span class="count"><%= @rated_videos_count > 0 ? @rated_videos_count : '' %></span>
-         </a>
+         <a href="#" onclick="return false;"></a>
        </li>
        <li class="mostVotesPill">
   		 <%= link_to "", votes_path %>
@@ -27,11 +25,13 @@
      </ul>
      <div class="tab-content">
        <div class="tab-pane active" id="bestRated">
+		 <p>Ratings are determined from the views, shares &amp; votes a video receives. For details, see the <%= link_to "official rules", "/rules#semifinalists" %>.</p>
          <% if @rated_videos_count > 0 %>
          <%= render partial: 'shared/video_tile', collection: @rated_videos, as: :f %>
          <div class="clearfix"></div>
+         <%= will_paginate @rated_videos, param_name: 'rated_videos' %>
          <% else %>
-         Ratings will be available soon.
+         Ratings are coming soon!
          <% end %>
        </div>
    </div>

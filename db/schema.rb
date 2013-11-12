@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131103224808) do
+ActiveRecord::Schema.define(:version => 20131110232053) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -60,17 +60,21 @@ ActiveRecord::Schema.define(:version => 20131103224808) do
 
   create_table "videos", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "category_id"
-    t.boolean  "approved",       :default => false
+    t.boolean  "approved",        :default => false
     t.float    "length"
-    t.integer  "plays_count",    :default => 0,     :null => false
-    t.integer  "shares_count",   :default => 0,     :null => false
-    t.integer  "votes_count",    :default => 0,     :null => false
+    t.integer  "plays_count",     :default => 0,     :null => false
+    t.integer  "shares_count",    :default => 0,     :null => false
+    t.integer  "votes_count",     :default => 0,     :null => false
     t.string   "title"
     t.string   "panda_video_id"
-    t.float    "ave_vote",       :default => 0.0
+    t.float    "ave_vote",        :default => 0.0
+    t.float    "rating"
+    t.integer  "plays_quartile"
+    t.integer  "shares_quartile"
+    t.integer  "votes_quartile"
   end
 
   create_table "votes", :force => true do |t|

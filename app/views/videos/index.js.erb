@@ -54,8 +54,8 @@ $('a.video_link').click(function(){
 	var user_location = $(this).parents('.video-tile').find('.user_location').text();
 	var category_name = $(this).parents('.video-tile').find('li:eq(0)').find('a').attr('data-original-title');
 	var category_icon = $(this).parents('.video-tile').find('li:eq(0)').find('a').attr('class');
-	var ranking_name = $(this).parents('.video-tile').find('li:eq(1)').find('a').attr('data-original-title');
-	var ranking_icon = $(this).parents('.video-tile').find('li:eq(1)').find('a').attr('class');
+	var rating_name = $(this).parents('.video-tile').find('li:eq(1)').find('a').attr('data-original-title');
+	var rating_icon = $(this).parents('.video-tile').find('li:eq(1)').find('a').attr('class');
 	var duration_name = $(this).parents('.video-tile').find('li:eq(2)').find('a').attr('data-original-title');
 	var duration_icon = $(this).parents('.video-tile').find('li:eq(2)').find('a').attr('class');
 	var vote_name = $(this).parents('.video-tile').find('li:eq(3)').find('a').attr('data-original-title');
@@ -92,8 +92,8 @@ $('a.video_link').click(function(){
 		$('#videoModal').find('.user_location').text(user_location);
 		$('#videoModal').find('ul').find('li:eq(0)').find('a').attr('class',category_icon);
 		$('#videoModal').find('ul').find('li:eq(0)').find('a').attr('data-original-title',category_name);
-		$('#videoModal').find('ul').find('li:eq(1)').find('a').attr('class',ranking_icon);
-		$('#videoModal').find('ul').find('li:eq(1)').find('a').attr('data-original-title',ranking_name);
+		$('#videoModal').find('ul').find('li:eq(1)').find('a').attr('class',rating_icon);
+		$('#videoModal').find('ul').find('li:eq(1)').find('a').attr('data-original-title',rating_name);
 		$('#videoModal').find('ul').find('li:eq(2)').find('a').attr('class',duration_icon);
 		$('#videoModal').find('ul').find('li:eq(2)').find('a').attr('data-original-title',duration_name);
 		$('#videoModal').find('ul').find('li:eq(3)').find('a').attr('class',vote_icon);

@@ -7,14 +7,15 @@ class SharesController < ApplicationController
     # check if current_user has shared this video (very) recently
     if signed_in?
       share_check = Share.where(video_id: @video.id, user_id: current_user.id).last
-      if share_check.nil? || share_check.created_at < 30.seconds.ago
+      if share_check.nil? || share_check.created_at < 10.seconds.ago
         current_user.share!(@video)
       end
     else
       share_check = Share.where(video_id: @video.id, user_id: null_user.id).last
-      if share_check.nil? || share_check.created_at < 30.seconds.ago
+      if share_check.nil? || share_check.created_at < 10.seconds.ago
         null_user.share!(@video)
       end
     end
   end
+  
 end

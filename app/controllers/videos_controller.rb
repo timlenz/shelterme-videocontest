@@ -117,9 +117,9 @@ class VideosController < ApplicationController
   end
   
   def rated
-    @rated_videos = []#Video.rated
+    @rated_videos = Video.where(approved: true).includes(:category, :user).reorder("rating DESC")
     @rated_videos_count = @rated_videos.length
-    @rated_videos = []#@rated_videos.paginate(page: params[:rated_videos], per_page: 12)
+    @rated_videos = @rated_videos.paginate(page: params[:rated_videos], per_page: 12)
   end
   
   def views

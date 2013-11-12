@@ -2,19 +2,19 @@
   <ul id="userNav" class="nav nav-pills">
     <li class="active videosPill">
 	    <a href="#myVideos" data-toggle="tab"></a>
-	    <span class="count"><%= @videos.size > 0 ? @videos.size : '' %></span>
+	    <span class="count"><%= @videos_count > 0 ? @videos_count : '' %></span>
 	  </li>
     <li class="watchedPill">
 	    <a href="#watched" data-toggle="tab"></a>
-	    <span class="count"><%= @watched.size > 0 ? @watched.size : '' %></span>
+	    <span class="count"><%= @watched_count > 0 ? @watched_count : '' %></span>
 	  </li>
     <li class="sharedPill">
 	    <a href="#shared" data-toggle="tab"></a>
-	    <span class="count"><%= @shared.size > 0 ? @shared.size : '' %></span>
+	    <span class="count"><%= @shared_count > 0 ? @shared_count : '' %></span>
 	  </li>
     <li class="votedPill">
 	    <a href="#voted" data-toggle="tab"></a>
-	    <span class="count"><%= @voted.size > 0 ? @voted.size : '' %></span>
+	    <span class="count"><%= @voted_count > 0 ? @voted_count : '' %></span>
     </li>
   </ul>
   <div class="tab-content">

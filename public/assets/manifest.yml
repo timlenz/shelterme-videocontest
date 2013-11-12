@@ -31,8 +31,8 @@ footer_bkg.png: footer_bkg-8e65ab7a61ebc938baaf0a01f8140a77.png
 footer_bkg/index.png: footer_bkg-8e65ab7a61ebc938baaf0a01f8140a77.png
 handsMobile.png: handsMobile-96840cf1876fec97b731ce0a2a8c6090.png
 handsMobile/index.png: handsMobile-96840cf1876fec97b731ce0a2a8c6090.png
-header_bkg.jpg: header_bkg-d4653fb8a72a1fbc076f2b8f0161d9eb.jpg
-header_bkg/index.jpg: header_bkg-d4653fb8a72a1fbc076f2b8f0161d9eb.jpg
+header_bkg.jpg: header_bkg-605a5bc9ce398e561ad1138e2fa4ce49.jpg
+header_bkg/index.jpg: header_bkg-605a5bc9ce398e561ad1138e2fa4ce49.jpg
 introBkg.png: introBkg-69c9681d3e931563d7f06ac717e1b88d.png
 introBkg/index.png: introBkg-69c9681d3e931563d7f06ac717e1b88d.png
 landingNav.png: landingNav-13c542f20b8831f9cdc020bbe866babd.png
@@ -87,8 +87,8 @@ welcomeBack.png: welcomeBack-91243b54cd659b11d741f44182916339.png
 welcomeBack/index.png: welcomeBack-91243b54cd659b11d741f44182916339.png
 application.js: application-de6113ece0c28fdfd0f6807104f593e7.js
 application/index.js: application-de6113ece0c28fdfd0f6807104f593e7.js
-application.css: application-e43489bcd02beb961664c3a84a39ca79.css
-application/index.css: application-e43489bcd02beb961664c3a84a39ca79.css
+application.css: application-79541349fb83de974f280d5c9e54ed29.css
+application/index.css: application-79541349fb83de974f280d5c9e54ed29.css
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-7d1197a52442bc56fcad60d0390f4b32.png
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100/index.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-7d1197a52442bc56fcad60d0390f4b32.png
 jquery-ui/ui-bg_flat_75_ffffff_40x100.png: jquery-ui/ui-bg_flat_75_ffffff_40x100-3c4b974defa5e8bdaf8a603034c4435e.png
