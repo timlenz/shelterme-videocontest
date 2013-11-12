@@ -13,21 +13,6 @@ $(function(){
 	
 	// Reposition sidebar if window is too short
 	$(window).scroll(function() {
-		// cross-browser compatibility for Firefox & IE - STILL NEEDS IE SUPPORT
-		// var D = document;
-		// 
-		// Math.max(	Math.max(D.body.scrollHeight,		D.documentElement.scrollHeight),
-		// 					Math.max(D.body.offsetHeight, D.documentElement.offsetHeight), 
-		// 					Math.max(D.body.clientHeight, D.documentElement.clientHeight)
-		// );
-		// 
-		// 
-		// Math.max(
-		//				 $(document).height(),
-		//				 $(window).height(),
-		//				 /* For opera: */
-		//				 document.documentElement.clientHeight
-		//		 );
 		var ie_height = document.documentElement.clientHeight;
 		var ie_scroll = document.documentElement.scrollTop;	// kind of working
 		var doc_height = Math.max( $(document).height(), window.innerHeight, ie_height );
@@ -54,7 +39,7 @@ $(function(){
 
 	// Automatically hide alert dialog after slight delay
 	if($('.errorBox').is(':visible')) {
-		$('#mainError').delay(6000).fadeOut('slow');
+		$('#mainError').delay(4000).fadeOut('slow');
 	};
 
 	// Check if profile .headerInfo h1 field is too long and adjust font-size if needed
