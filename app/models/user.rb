@@ -82,7 +82,9 @@ class User < ActiveRecord::Base
   end  
   
   def vote!(video, value)
-    votes.create!(video_id: video.id, value: value)
+    value = 1 if value < 1
+    value = 5 if value > 5
+    votes.create!(video_id: video.id, value: value.round(0))
   end
   
   def send_password_reset

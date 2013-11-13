@@ -36,6 +36,11 @@ $(function(){
 		var set_left = ( $(window).width() - $('.container').width() ) / 2;
 		$('#sidebar').css('left',set_left).show();
 	};
+	
+	$(window).resize(function(){
+		var set_left = ( $(window).width() - $('.container').width() ) / 2;
+		$('#sidebar').css('left',set_left).show();
+	});
 
 	// Automatically hide alert dialog after slight delay
 	if($('.errorBox').is(':visible')) {
@@ -128,112 +133,117 @@ $(function(){
 	
 	// Target video tile
 	$('a.video_link').click(function(){
+		
+		// Check for cell phone resolution and redirect to stand-alone page; else show modal player
+		if( $(window).width() < 768 ){
+			alert("hi");
+		} else {
+			// Open video modal dialog
+			$('#videoModal').dialog('open');
 
-		// Open video modal dialog
-		$('#videoModal').dialog('open');
+			// Get two sources for video, one each for mp4 and webm; stored in data-mp4 and data-webm tags
+			var $mp4_source = $.trim($(this).attr("data-mp4"));
+			var $webm_source = $.trim($(this).attr("data-webm"));
+			var $poster = $.trim($(this).find('img').attr("src")); // Get poster image from clicked tile
+			var $vid_obj = _V_("videoPlayer");
+			var video_title = $(this).parents('.video-tile').find('.video-name h1').text();
+			var video_id = $(this).parents('.video-tile').attr('data-video-id');
+			$.cookie("video_id", video_id);
+			var user_name = $(this).parents('.video-tile').find('.user_name').text();
+			var user_link = $(this).parents('.video-tile').find('.user_name').attr('href');
+			var user_location = $(this).parents('.video-tile').find('.user_location').text();
+			var category_name = $(this).parents('.video-tile').find('li:eq(0)').find('a').attr('data-original-title');
+			var category_icon = $(this).parents('.video-tile').find('li:eq(0)').find('a').attr('class');
+			var rating_name = $(this).parents('.video-tile').find('li:eq(1)').find('a').attr('data-original-title');
+			var rating_icon = $(this).parents('.video-tile').find('li:eq(1)').find('a').attr('class');
+			var duration_name = $(this).parents('.video-tile').find('li:eq(2)').find('a').attr('data-original-title');
+			var duration_icon = $(this).parents('.video-tile').find('li:eq(2)').find('a').attr('class');
+			var vote_name = $(this).parents('.video-tile').find('li:eq(3)').find('a').attr('data-original-title');
+			var vote_icon = $(this).parents('.video-tile').find('li:eq(3)').find('a').attr('class');
+			var plays_name = $(this).parents('.video-tile').find('li:eq(4)').find('a').attr('data-original-title');
+			var shares_name = $(this).parents('.video-tile').find('li:eq(5)').find('a').attr('data-original-title');
+			var plays_count = $(this).parents('.video-tile').find('.plays').text();
+			var shares_count = $(this).parents('.video-tile').find('.shares').text();
+			var vote_check = $(this).parents('.video-tile').attr('data-vote-check');
+			var vote_value = $(this).parents('.video-tile').attr('data-vote-value');
 
-		// Get two sources for video, one each for mp4 and webm; stored in data-mp4 and data-webm tags
-		var $mp4_source = $.trim($(this).attr("data-mp4"));
-		var $webm_source = $.trim($(this).attr("data-webm"));
-		var $poster = $.trim($(this).find('img').attr("src")); // Get poster image from clicked tile
-		var $vid_obj = _V_("videoPlayer");
-		var video_title = $(this).parents('.video-tile').find('.video-name h1').text();
-		var video_id = $(this).parents('.video-tile').attr('data-video-id');
-		$.cookie("video_id", video_id);
-		var user_name = $(this).parents('.video-tile').find('.user_name').text();
-		var user_link = $(this).parents('.video-tile').find('.user_name').attr('href');
-		var user_location = $(this).parents('.video-tile').find('.user_location').text();
-		var category_name = $(this).parents('.video-tile').find('li:eq(0)').find('a').attr('data-original-title');
-		var category_icon = $(this).parents('.video-tile').find('li:eq(0)').find('a').attr('class');
-		var rating_name = $(this).parents('.video-tile').find('li:eq(1)').find('a').attr('data-original-title');
-		var rating_icon = $(this).parents('.video-tile').find('li:eq(1)').find('a').attr('class');
-		var duration_name = $(this).parents('.video-tile').find('li:eq(2)').find('a').attr('data-original-title');
-		var duration_icon = $(this).parents('.video-tile').find('li:eq(2)').find('a').attr('class');
-		var vote_name = $(this).parents('.video-tile').find('li:eq(3)').find('a').attr('data-original-title');
-		var vote_icon = $(this).parents('.video-tile').find('li:eq(3)').find('a').attr('class');
-		var plays_name = $(this).parents('.video-tile').find('li:eq(4)').find('a').attr('data-original-title');
-		var shares_name = $(this).parents('.video-tile').find('li:eq(5)').find('a').attr('data-original-title');
-		var plays_count = $(this).parents('.video-tile').find('.plays').text();
-		var shares_count = $(this).parents('.video-tile').find('.shares').text();
-		var vote_check = $(this).parents('.video-tile').attr('data-vote-check');
-		var vote_value = $(this).parents('.video-tile').attr('data-vote-value');
+			// Make sure video is ready
+			$vid_obj.ready(function(){
 
-		// Make sure video is ready
-		$vid_obj.ready(function(){
+				// Assign variable to current player
+				myPlayer = this;
 
-			// Assign variable to current player
-			myPlayer = this;
+				// Hide video UI
+				$('video').hide();
 
-			// Hide video UI
-			$('video').hide();
+				// Assign source to video object
+				this.src([
+					{ type: "video/mp4", src: $mp4_source },
+					{ type: "video/webm", src: $webm_source }
+				]);
 
-			// Assign source to video object
-			this.src([
-				{ type: "video/mp4", src: $mp4_source },
-				{ type: "video/webm", src: $webm_source }
-			]);
-
-			// Replace poster jpg
-			$('.vjs-poster').css('background-image', 'url('+ $poster + ')').show();
+				// Replace poster jpg
+				$('.vjs-poster').css('background-image', 'url('+ $poster + ')').show();
 			
-			// Populate video data on bottom bar
-			$('#videoModal').find('.video-name h1').text(video_title);
-			$('#videoModal').find('.user_name').text(user_name);
-			$('#videoModal').find('.user_name').attr('href',user_link);
-			$('#videoModal').find('.user_location').text(user_location);
-			$('#videoModal').find('ul').find('li:eq(0)').find('a').attr('class',category_icon);
-			$('#videoModal').find('ul').find('li:eq(0)').find('a').attr('data-original-title',category_name);
-			$('#videoModal').find('ul').find('li:eq(1)').find('a').attr('class',rating_icon);
-			$('#videoModal').find('ul').find('li:eq(1)').find('a').attr('data-original-title',rating_name);
-			$('#videoModal').find('ul').find('li:eq(2)').find('a').attr('class',duration_icon);
-			$('#videoModal').find('ul').find('li:eq(2)').find('a').attr('data-original-title',duration_name);
-			$('#videoModal').find('ul').find('li:eq(3)').find('a').attr('class',vote_icon);
-			$('#videoModal').find('ul').find('li:eq(3)').find('a').attr('data-original-title',vote_name);
-			$('#videoModal').find('ul').find('li:eq(4)').find('a').attr('data-original-title',plays_name);
-			$('#videoModal').find('ul').find('li:eq(5)').find('a').attr('data-original-title',shares_name);
-			$('#videoModal').find('.plays').text(plays_count);
-			$('#videoModal').find('.shares').text(shares_count);
+				// Populate video data on bottom bar
+				$('#videoModal').find('.video-name h1').text(video_title);
+				$('#videoModal').find('.user_name').text(user_name);
+				$('#videoModal').find('.user_name').attr('href',user_link);
+				$('#videoModal').find('.user_location').text(user_location);
+				$('#videoModal').find('ul').find('li:eq(0)').find('a').attr('class',category_icon);
+				$('#videoModal').find('ul').find('li:eq(0)').find('a').attr('data-original-title',category_name);
+				$('#videoModal').find('ul').find('li:eq(1)').find('a').attr('class',rating_icon);
+				$('#videoModal').find('ul').find('li:eq(1)').find('a').attr('data-original-title',rating_name);
+				$('#videoModal').find('ul').find('li:eq(2)').find('a').attr('class',duration_icon);
+				$('#videoModal').find('ul').find('li:eq(2)').find('a').attr('data-original-title',duration_name);
+				$('#videoModal').find('ul').find('li:eq(3)').find('a').attr('class',vote_icon);
+				$('#videoModal').find('ul').find('li:eq(3)').find('a').attr('data-original-title',vote_name);
+				$('#videoModal').find('ul').find('li:eq(4)').find('a').attr('data-original-title',plays_name);
+				$('#videoModal').find('ul').find('li:eq(5)').find('a').attr('data-original-title',shares_name);
+				$('#videoModal').find('.plays').text(plays_count);
+				$('#videoModal').find('.shares').text(shares_count);
 			
-			// Populate previous vote information
-			if ( typeof vote_check != 'undefined' ) {
-				var vote_index = vote_value - 1;
-				$('#videoModal').find('#vote_feedback').text("You may vote for this video again in " + vote_check);
-				$('#videoModal').find('.star-rating').removeClass('star-rating-set');
-				$('#videoModal').find('.star-rating:eq('+ vote_index + ')').addClass('star-rating-set');
-				$('#videoModal').find('.star-rating:eq('+ vote_index + ')').prevAll('a').addClass('star-rating-set');
-				$('#videoModal').find('#vote_details li').removeClass('star-rating-set');
-				$('#videoModal').find('#vote_details li:eq('+ vote_index +')').addClass('star-rating-set');
-			} else {
-				$('#videoModal').find('.star-rating').removeClass('star-rating-set');
-				$('#videoModal').find('#vote_details li').removeClass('star-rating-set');
-				$('#videoModal').find('#vote_feedback').text(" ");
-			};
+				// Populate previous vote information
+				if ( typeof vote_check != 'undefined' ) {
+					var vote_index = vote_value - 1;
+					$('#videoModal').find('#vote_feedback').text("You may vote for this video again in " + vote_check);
+					$('#videoModal').find('.star-rating').removeClass('star-rating-set');
+					$('#videoModal').find('.star-rating:eq('+ vote_index + ')').addClass('star-rating-set');
+					$('#videoModal').find('.star-rating:eq('+ vote_index + ')').prevAll('a').addClass('star-rating-set');
+					$('#videoModal').find('#vote_details li').removeClass('star-rating-set');
+					$('#videoModal').find('#vote_details li:eq('+ vote_index +')').addClass('star-rating-set');
+				} else {
+					$('#videoModal').find('.star-rating').removeClass('star-rating-set');
+					$('#videoModal').find('#vote_details li').removeClass('star-rating-set');
+					$('#videoModal').find('#vote_feedback').text(" ");
+				};
 
-			// Load new source
-			this.load();
-			$('video').show();
+				// Load new source
+				this.load();
+				$('video').show();
 			
-			// Add plays counter button when video is finished
-			var modalPlayed = function(){
-				var myPlayer = this;
-				$('#play_video_id').val(video_id);
-				countPlay();
-			};
-			myPlayer.on("ended", modalPlayed);
+				// Add plays counter button when video is finished
+				var modalPlayed = function(){
+					var myPlayer = this;
+					$('#play_video_id').val(video_id);
+					countPlay();
+				};
+				myPlayer.on("ended", modalPlayed);
 
-		});
+			});
 		
-		// Populate sharing info for modal
-		$('#share a.facebook').attr('href', "http://www.facebook.com/sharer.php?s=100&p[url]=http://contest.shelterme.com/videos/" + video_id + "&p[images][0]=" + $poster + "&p[title]=" + encodeURIComponent(video_title) + "&p[summary]=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest");
-		$('#share a.twitter').attr('href', "http://twitter.com/home/?status=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id +"%20%23ShelterMe");
-		$('#share a.email').attr('href', "mailto:?Subject=" + encodeURIComponent(video_title) + "&Body=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id);
+			// Populate sharing info for modal
+			$('#share a.facebook').attr('href', "http://www.facebook.com/sharer.php?s=100&p[url]=http://contest.shelterme.com/videos/" + video_id + "&p[images][0]=" + $poster + "&p[title]=" + encodeURIComponent(video_title) + "&p[summary]=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest");
+			$('#share a.twitter').attr('href', "http://twitter.com/home/?status=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id +"%20%23ShelterMe");
+			$('#share a.email').attr('href', "mailto:?Subject=" + encodeURIComponent(video_title) + "&Body=Watch%20%22" + encodeURIComponent(video_title) + "%22%20submitted%20by%20" + encodeURIComponent(user_name) + "%20to%20the%20Shelter%20Me%20Video%20Contest:%20http%3A%2F%2Fcontest.shelterme.com%2Fvideos%2F" + video_id);
 		
-		$('#share_video_id').val(video_id);
+			$('#share_video_id').val(video_id);
 		
-		// Populate voting info for modal
-		$('#vote_video_id').val(video_id);
+			// Populate voting info for modal
+			$('#vote_video_id').val(video_id);
 		
-		return false;
+			return false;
+		}
 	});
 	
 	// Stand-alone video player controls
@@ -264,12 +274,20 @@ $(function(){
 	
 	$('#videoModal').dialog({
 		autoOpen: false,
-			resizable: false,
-			draggable: false,
+		resizable: false,
+		draggable: false,
 		width: 770,
 		height: 500,
 		closeOnEscape: true,
-			modal: true
+		modal: true
+	});
+	
+	// ===============
+	// close Video modal on click of background (partially to make easier to close on mobile)
+	// ===============
+	$('div.ui-widget-overlay.ui-front').click(function(){
+		$('#videoModal').dialog('close');
+		resetPlayer();
 	});
 	
 	if ( $('#videoModal').length ) {

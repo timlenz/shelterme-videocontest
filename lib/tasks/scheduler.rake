@@ -16,5 +16,5 @@ task calculate_rating: :environment do
   videos.each{|v| v.update_attribute(:shares_quartile, sq.select{|q| q["id"] == v.id.to_s}.map{|q| q["ntile"]}[0])}
 
   # calculate_rating
-  videos.each{|v| v.update_attribute(:rating, ((v.shares_quartile + v.plays_quartile + v.votes_quartile / 2 + 0.4 * v.ave_vote) / 3).round(2) )}
+  videos.each{|v| v.update_attribute(:rating, ((v.shares_quartile + v.plays_quartile + v.votes_quartile / 2 + 0.4 * v.ave_vote) / 3).round(5) )}
 end
