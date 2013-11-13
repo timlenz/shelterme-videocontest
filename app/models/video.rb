@@ -79,7 +79,7 @@ class Video < ActiveRecord::Base
   end
   
   def calculate_ave_vote
-    average_vote = Vote.average(:value, conditions: ['video_id = ?', id]).to_f.round(2)
+    average_vote = Vote.average(:value, conditions: ['video_id = ?', id]).to_f
     self.ave_vote = average_vote
     self.save
   end

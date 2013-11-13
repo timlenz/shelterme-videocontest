@@ -8,7 +8,7 @@ if ( $('#videoSolo').length ){
 	var vote_rank = Math.floor(data.ave_vote);
 	var new_class = "vote" + vote_rank + "Icon";
 	$("a[class*='vote']").removeClass().addClass('videoTile').addClass(new_class);
-    $("a[class*='vote']").attr('data-original-title',data.ave_vote + "/5 from " + data.votes_count + " votes");
+    $("a[class*='vote']").attr('data-original-title',Math.round(data.ave_vote).toFixed(2) + "/5 from " + data.votes_count + " votes");
   }, "json");
   
 } else {
@@ -28,7 +28,7 @@ if ( $('#videoSolo').length ){
 	$('*[data-video-id="'+$video_id+'"]').attr('data-vote-value',$.cookie("vote_value"));
 	// Update video tile icon and hover text for modal video
     $('#videoModal').find("a[class*='vote']").removeClass().addClass('videoTile').addClass(new_class);
-    $('#videoModal').find("a[class*='vote']").attr('data-original-title',data.ave_vote + "/5 from " + data.votes_count + " votes");
+    $('#videoModal').find("a[class*='vote']").attr('data-original-title',Math.round(data.ave_vote).toFixed(2) + "/5 from " + data.votes_count + " votes");
 	$('#videoModal').find('#active').removeAttr('id');
   }, "json");
   

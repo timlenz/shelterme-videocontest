@@ -82,9 +82,9 @@ class User < ActiveRecord::Base
   end  
   
   def vote!(video, value)
-    value = 1 if value < 1
-    value = 5 if value > 5
-    votes.create!(video_id: video.id, value: value.round(0))
+    value = 1 if value.to_i < 1 # explicitly prevent user hacks to submit negative values
+    value = 5 if value.to_i > 5 # explicitly prevent user hacks to submit large positive values
+    votes.create!(video_id: video.id, value: value)
   end
   
   def send_password_reset
