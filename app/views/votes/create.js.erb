@@ -22,7 +22,7 @@ if ( $('#videoSolo').length ){
 	var new_class = "vote" + vote_rank + "Icon";
 	// Find all instances of video tile and update vote tile icon and hover text
 	$('*[data-video-id="'+$video_id+'"]').find("a[class*='vote']").removeClass().addClass('videoTile').addClass(new_class);
-    $('*[data-video-id="'+$video_id+'"]').find("a[class*='vote']").attr('data-original-title',data.ave_vote + "/5 from " + data.votes_count + " votes");
+    $('*[data-video-id="'+$video_id+'"]').find("a[class*='vote']").attr('data-original-title',Math.round(data.ave_vote).toFixed(2) + "/5 from " + data.votes_count + " votes");
 	// Find all instance of video tile and update data-vote-check and data-vote-value
 	$('*[data-video-id="'+$video_id+'"]').attr('data-vote-check','about 24 hours');
 	$('*[data-video-id="'+$video_id+'"]').attr('data-vote-value',$.cookie("vote_value"));
