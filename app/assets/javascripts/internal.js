@@ -285,7 +285,8 @@ $(function(){
 	// ===============
 	// close Video modal on click of background (partially to make easier to close on mobile)
 	// ===============
-	$('div.ui-widget-overlay.ui-front').click(function(){
+	$('.ui-widget-overlay').on("click", function(){
+		alert("hi");
 		$('#videoModal').dialog('close');
 		resetPlayer();
 	});

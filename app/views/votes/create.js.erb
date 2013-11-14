@@ -5,7 +5,7 @@ if ( $('#videoSolo').length ){
   // Update tooltip text "ave/5 from # votes"
   var $video_id = $.cookie("video_id");
   $.get($video_id, function(data) {
-	var vote_rank = Math.floor(data.ave_vote);
+	var vote_rank = Math.round(data.ave_vote);
 	var new_class = "vote" + vote_rank + "Icon";
 	$("a[class*='vote']").removeClass().addClass('videoTile').addClass(new_class);
     $("a[class*='vote']").attr('data-original-title',data.ave_vote.toFixed(2) + "/5 from " + data.votes_count + " votes");
@@ -18,7 +18,7 @@ if ( $('#videoSolo').length ){
   // Update tooltip text "x/5 from # votes"
   var $video_id = $.cookie("video_id");
   $.get('/videos/'+$video_id+'', function(data) {
-	var vote_rank = Math.floor(data.ave_vote);
+	var vote_rank = Math.round(data.ave_vote);
 	var new_class = "vote" + vote_rank + "Icon";
 	// Find all instances of video tile and update vote tile icon and hover text
 	$('*[data-video-id="'+$video_id+'"]').find("a[class*='vote']").removeClass().addClass('videoTile').addClass(new_class);
