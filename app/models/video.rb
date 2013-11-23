@@ -90,14 +90,14 @@ class Video < ActiveRecord::Base
     # Check if value(1).count > value(2-4).count (but not more than 2-5) & if so, reject value(1) votes & 24 # of top votes
     if sav_1 > sav_24 && sav_1 < sav_25
       sav_cap = sav_all - sav_24
-      sav_floor = sav_1
+      sav_floor = sav_24
     # Check if there are more 1 votes than all other votes combined, if so, eliminate as many 1 votes as other votes
     elsif sav_1 > sav_25
       sav_cap = sav_all
       sav_floor = sav_25
     # Else, if value(5).count > value(1-4).count*3, reject # of value(5) votes equal to value(1-4).count
     elsif sav_5 > sav_14 * 3
-      sav_cap = sav_all - sav_14
+      sav_cap = sav_all - sav_14 * 1.5
       sav_floor = 0
     else
       sav_cap = sav_all

@@ -51,7 +51,7 @@ $(function(){
 	};
 	
 	// Show/hide rotation notice on device rotation
-	if ( $(window).width() < 568 && $('#videoSolo').length ) {
+	if ( $(window).width() < 480 && $('#videoSolo').length ) {
 		show_rotate();
 		$(window).bind('orientationchange', function() {
 		   show_rotate();
@@ -65,7 +65,7 @@ $(function(){
 		   $('#videoSolo').hide();
 	   } else {
 		   $('#rotateNotice').hide();
-		   if ( $(window).width() >= 568 ) {
+		   if ( $(window).width() >= 480 ) {
 		   	$('#videoSolo').show();
 		   };
 	   };
