@@ -1,13 +1,14 @@
 <div id="videoModal">
+  <%= render 'videos/played' %>
+  <%= render 'videos/share' %>
+  <%= render 'videos/vote' %>
+  <div class="clearfix"></div>
   <video id="videoPlayer" width="720" height="405" class="video-js vjs-default-skin active"
     controls autoplay preload="auto" data-setup='{}'>
     <source src="" type="video/mp4" />
     <source src="" type="video/webm" />
   </video>
   <div class="close">&times;</div>
-  <%= render 'videos/played' %>
-  <%= render 'videos/share' %>
-  <%= render 'videos/vote' %>
   <div class="videoLegend">
     <div class="video-name">
       <h1></h1>

@@ -1,47 +1,40 @@
 <%= provide(:title, 'Enter') %>
 <div id="mainContent">
-	<div class="signinDialog">
-    <div class="center">
-      <%= image_tag("registerForContest.png", alt: "Register for the contest by creating an account.", width: "570", height: "27", class: "formHeader") %>
-    </div>
-    <br>
-    <div class="span6 offset1 center">
-        <%= simple_form_for(@user, html: {class: 'form-horizontal' }) do |f| %>
-          <%= render 'shared/error_messages', object: f.object %>
-          <%= f.input :name, label: "Your Full Name" %>
-          <% f.input :street, label: "Street Address" %>
-          <% f.input :city %>
-          <% f.input :state %>
-          <% f.input :zipcode, label: "ZIP code" %>
-          <% f.input :date_of_birth, as: :string, label: "Birthdate", hint: "You must be 13 to enter" %>
-          <% f.input :phone %>
-          <%= f.input :email, label: "Your Email", hint: "Used to sign in and to contact winners" %>
-          <%= f.input :password, required: true, label: "Choose Password", hint: "Must be at least six characters" %>
-          <%= f.input :password_confirmation, label: "Re-enter Password" %>
-          <%= f.submit "Enter", class: "btn btn-header", style: "width:120px;" %>
-        <% end %>
-      </div>
-      <div class="clearfix"></div>
-      <br><br>
-      <div class="staticContent">
-    <div class="votingControls"><% link_to "", "/videos/234" %></div>
-    <p>Promote your favorite videos and help their creators win a prize by watching, sharing and voting for them. Mouse over a video to access controls for sharing and voting (see right). The top rated videos as <%= link_to "determined by views, shares and votes", "/rules#semifinalists" %> will be eligible to win a prize.</p>
-	<p>You do not need to create an account to watch or share a video, but you must be 
-		<% if signed_in? %>
-		signed in
-		<% else %>
-		<%= link_to "signed in", signin_path %> 
-		<% end %>
-		to vote for a video. You may vote for a video once every 24 hours.</p>
-        <p>Not all site features are available unless you create an account. As this site uses cookies for both functionality and analytics, it will not work properly if cookies are disabled. By creating an account here, you agree to our <%= link_to "terms of use", terms_path %> and <%= link_to "privacy policy", privacy_path %>.</p>
-				<br>
-		    <p class="center">Have you already registered for the contest? Please <%= link_to "sign in", signin_path %>.</p>
-		    <div class="row">
-		      <div class="cornerLogo">
-		        <%= image_tag("logoSmall.png", alt: "Shelter Me", width: "100", height: "64") %>
-		      </div>
-		    </div>
-      </div>
+  <div id="textHeader">
+    <%= image_tag("registerForContest.png", alt: "Register for the contest by creating an account.", width: "570", height: "27", class: "formHeader") %>
   </div>
+  <div class="signinDialog">
+    <%= simple_form_for(@user, html: {class: 'form-horizontal' }) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= f.input :name, label: "Your Full Name" %>
+      <% f.input :street, label: "Street Address" %>
+      <% f.input :city %>
+      <% f.input :state %>
+      <% f.input :zipcode, label: "ZIP code" %>
+      <% f.input :date_of_birth, as: :string, label: "Birthdate", hint: "You must be 13 to enter" %>
+      <% f.input :phone %>
+      <%= f.input :email, label: "Your Email", hint: "Used to sign in and to contact winners" %>
+      <%= f.input :password, required: true, label: "Choose Password", hint: "Must be at least six characters" %>
+      <%= f.input :password_confirmation, label: "Re-enter Password" %>
+      <%= f.submit "Enter", class: "btn btn-header", style: "width:120px;" %>
+    <% end %>
+    <div class="clearfix"></div>
+  </div>
+  <div class="staticContent">
+    <p>Not all site features are available unless you create an account. As this site uses cookies for both functionality and analytics, it will not work properly if cookies are disabled. By creating an account here, you agree to our <%= link_to "terms of use", terms_path %> and <%= link_to "privacy policy", privacy_path %>.</p>
+    <p>Promote your favorite videos and help their creators win a prize by watching, sharing and voting for them. The top rated videos as <%= link_to "determined by views, shares and votes", "/rules#semifinalists" %> will be eligible to win a prize.</p>
+    <p>The view count for a video will only increment after you watch the entire video.</p>
+    <p>You do not need to create an account to watch or share a video, but you must
+    <% if signed_in? %>
+    register and be signed in
+    <% else %>
+    <%= link_to "register", register_path %> and be
+    <%= link_to "signed in", signin_path %> 
+    <% end %>
+    to vote for a video. You may vote for a video once every 24 hours.</p>
+    <br>
+    <p class="center">Have you already registered for the contest? Please <%= link_to "sign in", signin_path %>.</p>
+  </div>
+  <div id="sponsorMobile"></div>
 </div>
 <div class="clearfix"></div>

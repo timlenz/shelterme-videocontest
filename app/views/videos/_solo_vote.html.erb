@@ -1,6 +1,6 @@
 <div id="vote">
-  <div class="vote"></div>
   <% if signed_in? %>
+  <div class="vote"></div>
   <div <%='id=active' unless @vote_check %>>
   <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check }", title: "Dislike", rel: "tooltip" %>
   <%= link_to "", "#", class: "star-rating #{'star-rating-set' if @vote_check && (@vote_check.value >= 2)}",  title: "Fair", rel: "tooltip" %>
@@ -15,25 +15,8 @@
   <% end %>
   <% else %>
   <div id="inactive">
-  <%= link_to "", "#", class: "star-rating",  title: "Dislike", rel: "tooltip" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Fair", rel: "tooltip" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Like", rel: "tooltip" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Really like", rel: "tooltip" %>
-  <%= link_to "", "#", class: "star-rating",  title: "Love", rel: "tooltip" %>
-  </div>
-  <% end %>
-</div>
-<div id="vote_details">
-  <% if signed_in? %>
-  <ul>
-	  <li class="<%= 'star-rating-set' if @vote_check && (@vote_check.value == 1)%>">Dislike</li>
-	  <li class="<%= 'star-rating-set' if @vote_check && (@vote_check.value == 2)%>">Fair</li>
-	  <li class="<%= 'star-rating-set' if @vote_check && (@vote_check.value == 3)%>">Like</li>
-	  <li class="<%= 'star-rating-set' if @vote_check && (@vote_check.value == 4)%>">Really Like</li>
-	  <li class="<%= 'star-rating-set' if @vote_check && (@vote_check.value == 5)%>">Love</li>
-  </ul>
-  <% else %>
     <p>Please <%= link_to "register", register_path %> to vote.</p>
+  </div>
   <% end %>
 </div>
 <% if signed_in? %>

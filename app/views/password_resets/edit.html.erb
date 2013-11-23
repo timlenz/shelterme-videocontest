@@ -1,41 +1,36 @@
 <%= provide(:title, 'Reset Password') %>
 <div id="mainContent">
-  <div class="signinDialog">
-    <div class="row center">
-      <%= image_tag("enterPassword.png", alt: "Enter Password", class: "formHeader", width: "311", height: "27") %>
-      <br><br>
-      <div class="span6 offset1 center">
-        <%= form_for @user, :url => password_reset_path(params[:id]), html: {class: 'form-horizontal'} do |f| %>
-          <% if @user.errors.any? %>
-            <div class="error_messages">
-              <h2>Try that again</h2>
-              <ul>
-                <% for message in @user.errors.full_messages %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul><br>
-            </div>
-          <% end %>
-					<div class="control-group email required">
-            <label class="email control-label" for="email">New Password</label>
-            <div class="controls">
-              <input class="string email required" id="user_password" name="user[password]" size="50" type="password">
-            </div>
-          </div>
-					<div class="control-group email required">
-            <label class="email control-label" for="email">Confirm Password</label>
-            <div class="controls">
-              <input class="string email required" id="user_password_confirmation" name="user[password_confirmation]" size="50" type="password">
-            </div>
-          </div>
-          <div class="actions"><%= f.submit "Update", class: "btn btn-header", style: "width:120px;" %></div>
-        <% end %>
-        <div class="clearfix"></div>
-      </div>
-    </div>
-	  <div class="cornerLogo">
-	    <%= image_tag("logoSmall.png", alt: "Shelter Me", width: "100", height: "64") %>
-	  </div>
+  <div id="textHeader">
+    <%= image_tag("enterPassword.png", alt: "Enter Password", class: "formHeader", width: "311", height: "27") %>
   </div>
+  <div class="signinDialog">
+    <%= form_for @user, :url => password_reset_path(params[:id]), html: {class: 'form-horizontal'} do |f| %>
+      <% if @user.errors.any? %>
+        <div class="error_messages">
+          <h2>Try that again</h2>
+          <ul>
+            <% for message in @user.errors.full_messages %>
+              <li><%= message %></li>
+            <% end %>
+          </ul><br>
+        </div>
+      <% end %>
+      <div class="control-group email required">
+        <label class="email control-label" for="email">New Password</label>
+        <div class="controls">
+          <input class="string email required" id="user_password" name="user[password]" size="50" type="password">
+        </div>
+      </div>
+      <div class="control-group email required">
+        <label class="email control-label" for="email">Confirm Password</label>
+        <div class="controls">
+          <input class="string email required" id="user_password_confirmation" name="user[password_confirmation]" size="50" type="password">
+        </div>
+      </div>
+      <div class="actions"><%= f.submit "Update", class: "btn btn-header", style: "width:120px;" %></div>
+    <% end %>
+    <div class="clearfix"></div>
+  </div>
+  <div id="sponsorMobile"></div>
 </div>
 <div class="clearfix"></div>

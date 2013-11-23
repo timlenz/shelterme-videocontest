@@ -14,9 +14,7 @@
   		 <%= link_to "", votes_path %>
        </li>
        <li class="mostPlaysPill active">
-         <a href="#" onclick="return false;">
-         	<span class="count"><%= @played_videos_count > 0 ? @played_videos_count : '' %></span>
-         </a>
+         <a href="#" onclick="return false;"></a>
        </li>
        <li class="mostSharesPill">
 		 <%= link_to "", shares_path %>
@@ -27,7 +25,7 @@
      </ul>
      <div class="tab-content">
        <div class="tab-pane active" id="mostPlays">
-         <% if @played_videos.size > 0 %>
+         <% if @played_videos_count > 0 %>
          <%= render partial: 'shared/video_tile', collection: @played_videos.sort! { |a,b| b.plays_count <=> a.plays_count }, as: :f %>
          <div class="clearfix"></div>
          <%= will_paginate @played_videos, param_name: 'played_videos' %>

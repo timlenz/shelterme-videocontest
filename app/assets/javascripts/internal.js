@@ -4,9 +4,9 @@ $(function(){
 	$('[rel=tooltip]').tooltip({
 		container: 'body',
 		placement: function(tip, element){
-			if ( $(element).hasClass('star-rating') ) {
-				return "right";
-			}
+			// if ( $(element).hasClass('star-rating') ) {
+			// 	return "right";
+			// }
 			return "top";
 		}
 	});	
@@ -32,15 +32,49 @@ $(function(){
 	});
 
 	// Set sidebar left position (addresses Firefox layout issue)
-	if ( $('#sidebar').length ) {
+	if ( $('#sidebar').length && $(window).width() > 959) {
 		var set_left = ( $(window).width() - $('.container').width() ) / 2;
 		$('#sidebar').css('left',set_left).show();
 	};
 	
 	$(window).resize(function(){
-		var set_left = ( $(window).width() - $('.container').width() ) / 2;
-		$('#sidebar').css('left',set_left).show();
+		if ( $(window).width() > 959 ) {
+			var set_left = ( $(window).width() - $('.container').width() ) / 2;
+			$('#sidebar').css('left',set_left).show();
+		};
 	});
+	
+	// Hide Sidebar presented by logo for screens < 959px and video solo, signin or register page
+	if ( $(window).width() < 959 && ( $('#videoSolo').length || $('.signinDialog').length ) ) {
+		$('#sidebar a.logo').hide();
+		$('#countDown').css('max-width','100%');
+	};
+	
+	// Show/hide rotation notice on device rotation
+	if ( $(window).width() < 568 && $('#videoSolo').length ) {
+		show_rotate();
+		$(window).bind('orientationchange', function() {
+		   show_rotate();
+		});
+	};
+	
+	function show_rotate() {
+	   var position = window.orientation;
+	   if ( position == 0 || position == -180) {
+		   $('#rotateNotice').show();
+		   $('#videoSolo').hide();
+	   } else {
+		   $('#rotateNotice').hide();
+		   if ( $(window).width() >= 568 ) {
+		   	$('#videoSolo').show();
+		   };
+	   };
+	};
+	
+	// Hide Sign-in & Register for iPhones
+	if ( $(window).width() < 639 && $('.signInit').length ) {
+		$('.pull-right').hide();
+	};
 
 	// Automatically hide alert dialog after slight delay
 	if($('.errorBox').is(':visible')) {
@@ -132,19 +166,27 @@ $(function(){
 	});
 	
 	// Target video tile
-	$('a.video_link').click(function(){
+	$('a.video_link, .video-tile a.videoTile').click(function(){
 		
 		// Check for cell phone resolution and redirect to stand-alone page; else show modal player
 		if( $(window).width() < 768 ){
-			alert("hi");
+			var video_id = $(this).parents('.video-tile').attr('data-video-id');
+			var link_target = "/videos/" + video_id;
+			window.location.href = link_target;
 		} else {
 			// Open video modal dialog
 			$('#videoModal').dialog('open');
 
 			// Get two sources for video, one each for mp4 and webm; stored in data-mp4 and data-webm tags
-			var $mp4_source = $.trim($(this).attr("data-mp4"));
-			var $webm_source = $.trim($(this).attr("data-webm"));
-			var $poster = $.trim($(this).find('img').attr("src")); // Get poster image from clicked tile
+			if ( $(this).hasClass('videoTile') ) {
+				var $mp4_source = $.trim($(this).parents('.video-tile').find('.video_link').attr("data-mp4"));
+				var $webm_source = $.trim($(this).parents('.video-tile').find('.video_link').attr("data-webm"));
+				var $poster = $.trim($(this).parents('.video-tile').find('.video_link').find('img').attr("src")); // Get poster image from clicked tile
+			} else {
+				var $mp4_source = $.trim($(this).attr("data-mp4"));
+				var $webm_source = $.trim($(this).attr("data-webm"));
+				var $poster = $.trim($(this).find('img').attr("src")); // Get poster image from clicked tile
+			};
 			var $vid_obj = _V_("videoPlayer");
 			var video_title = $(this).parents('.video-tile').find('.video-name h1').text();
 			var video_id = $(this).parents('.video-tile').attr('data-video-id');
@@ -277,7 +319,7 @@ $(function(){
 		resizable: false,
 		draggable: false,
 		width: 770,
-		height: 500,
+		height: 540,
 		closeOnEscape: true,
 		modal: true
 	});
@@ -323,26 +365,6 @@ $(function(){
 		});
 	};
 
-	// ====================
-	// == VIDEO CONTROLS == 
-	// ====================
-	
-	// Show/hide sharing & voting controls
-	$('#videoPlayer, #share, #vote, #vote_details, #vote_feedback').hover(
-		function(){
-			$('#share, #vote').show().removeClass('vjs-fade-out');
-		}, function(){
-			$('#share, #vote').hide().addClass('vjs-fade-out'); // add in delay
-		}
-	);
-	$('#vote, #vote_details, #vote_feedback').hover(
-		function(){
-			$('#vote_details, #vote_feedback').show().removeClass('vjs-fade-out');
-		}, function(){
-			$('#vote_details, #vote_feedback').hide().addClass('vjs-fade-out'); // add in delay
-		}
-	);
-
 	// ===================
 	// ===== VOTING ====== 
 	// ===================
@@ -383,11 +405,17 @@ $(function(){
 			return false;
 		}
 	});
-	
-	// ===== VOTING ======
+
+	// ====================
+	// ===== SHARING ====== 
+	// ====================
 	
 	// Increment video shares
-	$('#share a').click(function(){
+	// $('#share a').click(function(){
+	// 	$('#new_share').find('input[name=commit]').click();
+	// });
+	
+	$('#share a').on('click', function(){
 		$('#new_share').find('input[name=commit]').click();
 	});
 	
@@ -596,26 +624,26 @@ $(function(){
 	});
 
 	// Activate the appropriate tab on page load - DISABLED BECAUSE OF SPLITTING TABS INTO SEPARATE PAGES
-	// if($('.nav-pills').length){
-	// 	// Check if cookie exisits and matches with an available tab. Load proper tab if it does
-	// 	if($.cookie("active_tab") != null && $('a[href=' + $.cookie("active_tab") +']').length){ // Must check null explicitly for Safari
-	// 		var old_tab = $.cookie("active_tab");
-	// 		$('.nav-pills li a[href=' + old_tab + ']').click();
-	// 	} else {
-	// 		// Select first tab as default if no cookie exists
-	// 		var first_tab = $('.nav-pills li:first a');
-	// 		var current_path = $(location).attr('pathname');
-	// 		first_tab.click();
-	// 		$.cookie("active_tab", first_tab.attr('href'), {path:current_path});
-	// 	};
-	// 	// Set cookie for any clicked tab
-	// 	var tab_links = $('.nav-pills li a')
-	// 	tab_links.bind('click', function(){
-	// 		var current_path = $(location).attr('pathname');
-	// 		current_tab = $(this).attr('href');
-	// 		$.cookie("active_tab", current_tab, {path:current_path});
-	// 	});
-	// };
+	if($('#userNav .nav-pills').length){
+		// Check if cookie exisits and matches with an available tab. Load proper tab if it does
+		if($.cookie("active_tab") != null && $('a[href=' + $.cookie("active_tab") +']').length){ // Must check null explicitly for Safari
+			var old_tab = $.cookie("active_tab");
+			$('.nav-pills li a[href=' + old_tab + ']').click();
+		} else {
+			// Select first tab as default if no cookie exists
+			var first_tab = $('.nav-pills li:first a');
+			var current_path = $(location).attr('pathname');
+			first_tab.click();
+			$.cookie("active_tab", first_tab.attr('href'), {path:current_path});
+		};
+		// Set cookie for any clicked tab
+		var tab_links = $('.nav-pills li a')
+		tab_links.bind('click', function(){
+			var current_path = $(location).attr('pathname');
+			current_tab = $(this).attr('href');
+			$.cookie("active_tab", current_tab, {path:current_path});
+		});
+	};
 	
 	// Show video title if it overflows available area
 	$('.video-name').mouseover(function(){

@@ -1,0 +1,718 @@
+// ===================
+// ====== - 959 ======
+// ===================
+
+@media only screen and (max-width: 959px) {
+
+#sidebar {
+	display:block;
+	position:relative;
+	height:auto;
+	width:100%;
+	top:0;
+	background:none;
+	#countdown {
+		width:50%;
+		text-align:center;
+		margin:0 auto;
+	}
+	a.logo {
+		display:inline-block;
+		float:left;
+		background: transparent url(petSafeLogoSidebar.png) no-repeat center;
+		margin: -10px 20px 20px 20px;
+	}
+	#tallAd {
+		display:none;
+	}
+}
+
+.editTabs {
+	width:90%;
+}
+
+.editAvatar {
+	display:none;
+}
+
+#mainContent {
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:0;
+	padding:0;
+	float:none;
+	min-height:100%;
+	.tabbable {
+		clear:both;
+	}
+}
+
+#sponsorMobile {
+	background: transparent url(petSafeLogoSidebar.png) no-repeat center;
+	height:142px;
+}
+
+.pageHeader {
+	margin:0 0 0 10px;
+	display:block;
+	border-bottom:0;
+	.headerLogo {
+		margin-bottom:20px;
+	}
+	.headerInfo {
+		max-width:600px;
+		width:435px;
+	}
+	.headerButtons {
+		width:138px;
+		position:relative;
+		float:right;
+	}
+}
+
+#users.row {
+	margin-left:-10px;
+	clear:both;
+}
+
+}
+
+// ===================
+// ==== 768 - 959 ====
+// ===================
+
+@media only screen and (max-width: 959px) and (min-width:768px) {
+
+.container, .navbar-fixed-top .container {
+	width:760px;
+}
+
+.searchButton {
+	max-width:760px;
+	margin-top:0;
+	#text_search {
+		max-width:740px;
+		margin:0 auto;
+	}
+}
+
+footer {
+	.pull-left {
+		margin-right:16px;
+	}
+	.sponsorFooter {
+		margin-right:10px;
+		width:160px;
+	}
+	.pull-right {
+		width:auto;
+	}
+	.social {
+		margin-right:10px;
+	}
+}
+
+	
+}
+
+// ===================
+// ====== - 767 ======
+// ===================
+
+@media only screen and (max-width: 767px) {
+	
+.navbar {
+	.navLogo {
+		margin-left:10px;
+	}
+	.nav.pull-left {
+		padding-left:20px;
+	}
+	.navInformation, .navInformationOn {
+		width:26px;
+		margin-right:20px;
+	}
+	.navInformation {
+		background-position: -359px -74px;
+		&:hover {
+			background-position: -16px -113px;
+		}
+	}
+	.navInformationOn {
+		background-position: -332px 0;
+	}
+	.navWatch, .navWatchOn {
+		width:31px;
+		margin-left:20px;
+	}
+	.navWatch {
+		background-position: -189px -113px;
+		&:hover {
+			background-position: -150px -39px;
+		}
+	}
+	.navWatchOn {
+		background-position: -172px -76px;
+	}
+	.nav.pull-right {
+		padding-right:10px;
+	}
+}	
+
+#editProfileLink {
+	display:none;
+}
+
+.staticContent, .tabbable {
+	padding-left:10px;
+	padding-right:10px;
+}
+
+.staticContent {
+	.staticEntry {
+		clear: none;
+	}
+	#new_message {
+		clear: both;
+	}
+}
+
+.pageHeader {
+	height: 36px;
+	margin:0 0 0 10px;
+	border-bottom:0px;
+}
+
+.votingControls {
+	display: none;
+}
+
+ul.contributors {
+	margin-right:0;
+	li {
+		width:30%;
+	}
+}
+
+#videoSolo {
+	width:558px !important; 
+	height:370px !important;
+	margin:0 auto;
+	margin-top:0 !important;
+	#videoPlayer {
+		width:558px !important;
+		height:314px !important;
+	}
+	.videoLegend {
+		width:260px;
+		.video-name, .video-info {
+			width:260px;
+		}
+		.user_name {
+			width:130px;
+		}
+		.user_location {
+			width:122px;
+		}
+	}
+	#vote_feedback {
+		width:170px;
+		padding-top:2px;
+	}
+}
+	
+}
+
+// ===================
+// ==== 640 - 767 ====
+// ===================
+
+@media only screen and (max-width: 767px) and (min-width:640px) {
+	
+.container, .navbar-fixed-top .container {
+	width:100%;
+}
+
+#mainContent {
+	width:100%;
+	.tab-content {
+		width:620px;
+		margin:0 auto;
+		overflow:hidden;
+	}
+}
+
+.pageHeader {
+	.headerInfo {
+		width:330px;
+	}
+}
+
+#watchVideos {
+	height:auto;
+	max-width:620px;
+	margin:0 auto;
+	li {
+		width:103px !important;
+		margin-right:0 !important;
+	}
+}
+
+#userNav {
+	margin:0 auto 10px;
+	width:540px;
+	li {
+		margin-right:25px;
+	}
+}
+
+.video-tile:nth-child(odd) {
+	margin:10px 5px 0 0 !important;
+}
+
+.video-tile:nth-child(even) {
+	margin:10px 0 0 5px !important;
+}
+
+.pagination {
+	.previous_page, .next_page {
+		padding: 0 10px;
+	}
+}
+
+#categories {
+	li {
+		width:114px;
+		margin-right:0;
+	}
+}
+
+.searchButton {
+	max-width:600px;
+	margin-top:10px;
+	#text_search {
+		max-width:385px;
+		margin:0 auto;
+	}
+}
+
+footer {
+	.pull-left {
+		padding-left:10px;
+		margin-right:0;
+	}
+	.sponsorFooter {
+		display:none;
+	}
+	.pull-right {
+		padding-right:10px;
+	}
+}
+	
+}
+
+// ===================
+// ====== - 639 ======
+// ===================
+
+@media only screen and (max-width: 639px) {
+
+	#sidebar {
+		margin:5px auto !important;
+	}
+
+	#mainError {
+		width: 90%;
+		left:5%;
+	}
+
+#countDown {
+	padding:0 10px;
+	margin-bottom:0 !important;
+//	h3 {
+//		margin-bottom:0 !important;
+//		font-size:14px !important;
+//		line-height:1em !important;
+//	}
+}
+
+.navbar {
+	.navLogo {
+		margin-left:5px;
+		margin-right:0;
+	}
+	.nav.pull-left {
+		float:right;
+		padding-left:0;
+		padding-right:0;
+		margin-right:0;
+	}
+	.navInformation, .navInformationOn {
+		margin-right:5px;
+	}
+	.navWatch, .navWatchOn {
+		margin-left:5px;
+	}
+	.vertDivide {
+		display:none;
+	}
+	.nav.pull-right {
+		padding-left:10px;
+		padding-right:5px;
+		.profileIcon {
+			width:18px;
+		}
+	}
+}	
+
+.navbar .pull-right>li>.dropdown-menu:before, .navbar .nav>li>.dropdown-menu.pull-right:before {
+	right: -32px;
+}
+
+.navbar .pull-right>li>.dropdown-menu:after, .navbar .nav>li>.dropdown-menu.pull-right:after {
+	right: -31px;
+}
+
+.container, .navbar-fixed-top .container, #mainContent {
+	width:100%;
+}
+
+.pageHeader {
+	height: 36px;
+	margin:0 10px;
+	border-bottom:0px;
+	.headerLogo {
+		display:none;
+	}
+	.headerInfo {
+		max-width:100%;
+		width:auto;
+	}
+}
+
+#userNav {
+	margin:10px auto 0;
+	width:300px;
+	li {
+		width:70px;
+		height:36px;
+		margin-right:5px;
+	}
+}
+
+#users.row {
+	margin-left:-10px;
+	clear:both;
+}
+
+ul.contributors {
+	margin-right:0;
+	li {
+		width:45%;
+	}
+}
+
+.searchButton {
+	max-width:300px;
+	margin-top:10px;
+	#text_search {
+		width:300px !important;
+		margin:0 auto;
+	}
+	.btn {
+		margin-top: 10px;
+	}
+}
+
+#categories {
+	height:auto;
+	li {
+		width: 50px;
+		height: 36px;
+		margin-right:10px;
+	}
+	li.active.adoptPill {
+		background-position: -40px -51px !important;
+		&:hover {
+			background-position: -40px -51px !important;
+		}
+	}
+	li.active.volunteerPill {
+		background-position: -302px -51px !important;
+		&:hover {
+			background-position: -302px -51px !important;
+		}
+	}
+	li.active.donatePill {
+		background-position: -171px -102px !important;
+		&:hover {
+			background-position: -171px -102px !important;
+		}
+	}
+	li.active.spayNeuterPill {
+		background-position: -302px -255px !important;
+		&:hover {
+			background-position: -302px -255px !important;
+		}
+	}
+	li.active.fosterPill {
+		background-position: -302px -102px !important;
+		&:hover {
+			background-position: -302px -102px !important;
+		}
+	}
+	.adoptPill {
+		background-position: -40px -102px !important;
+		&:hover {
+			background-position: -40px -51px !important;
+		}
+	}
+	.volunteerPill {
+		background-position: -302px 0 !important;
+		&:hover {
+			background-position: -302px -51px !important;
+		}
+	}
+	.donatePill {
+		background-position: -302px -204px !important;
+		&:hover {
+			background-position: -171px -102px !important;
+		}
+	}
+	.spayNeuterPill {
+		background-position: -171px -255px !important;
+		&:hover {
+			background-position: -302px -255px !important;
+		}
+	}
+	.fosterPill {
+		background-position: -171px -51px !important;
+		&:hover {
+			background-position: -302px -102px !important;
+		}
+	}
+}
+
+#watchVideos {
+	height:auto !important;
+	max-width:370px;
+	margin:0 auto;
+	li {
+		width:55px !important;
+		height:36px !important;
+		margin-right:0 !important;
+		.count {
+			display:none;
+		}
+	}
+	li.active.winnersPill {
+		background-position: -694px 0 !important;
+	}
+	li.active.allVideosPill {
+		background-position: -28px -102px !important;
+	}
+	li.active.mostPlaysPill {
+		background-position: -472px 0 !important;
+	}
+	li.active.mostVotesPill {
+		background-position: -583px 0 !important;
+	}
+	li.active.mostSharesPill {
+		background-position: -361px 0 !important;
+	}
+	li.active.bestRatedPill {
+		background-position: -250px 0 !important;
+	}
+	li.active.searchVideosPill {
+		background-position: -805px 0 !important;
+	}
+	.winnersPill {
+		background-position: -694px -51px !important;
+		&:hover {
+			background-position: -694px 0 !important;
+		}
+	}
+	.allVideosPill {
+		background-position: -28px 0 !important;
+		&:hover {
+			background-position: -28px -102px !important;
+		}
+	}
+	.bestRatedPill {
+		background-position: -250px -51px !important;
+		&:hover {
+			background-position: -250px 0 !important;
+		}
+	}
+	.mostVotesPill {
+		background-position: -583px -51px !important;
+		&:hover {
+			background-position: -583px 0 !important;
+		}
+	}
+	.mostPlaysPill {
+		background-position: -472px -51px !important;
+		&:hover {
+			background-position: -472px 0 !important;
+		}
+	}
+	.mostSharesPill {
+		background-position: -361px -51px !important;
+		&:hover {
+			background-position: -361px 0 !important;
+		}
+	}
+	.searchVideosPill {
+		background-position: -805px -102px !important;
+		&:hover {
+			background-position: -805px 0 !important;
+		}
+	}
+}
+
+.tab-content {
+	max-width:100%;
+	margin:0 auto;
+	overflow:hidden;
+	.tab-pane {
+		width:90%;
+		margin:0 auto;
+	}
+}
+
+#watchVideos + .tab-content {
+	width:300px;
+}
+
+.pagination {
+	max-width:300px;
+	margin:0 auto;
+}
+
+.video-tile {
+	margin:10px auto 0 !important;
+	float:none !important;
+	&:hover {
+		-webkit-box-shadow: 0px 0px 0px rgba(0,85,128,0.75) !important;
+		-moz-box-shadow: 0px 0px 0px rgba(0,85,128,0.75) !important;
+		box-shadow: 0px 0px 0px rgba(0,85,128,0.75) !important;
+	}
+}
+
+.form-horizontal {
+	.control-label {
+		width:80px;
+	}
+	.controls {
+		margin-left:90px;
+	}
+}
+
+footer {
+	.pull-left {
+		float:none;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.sponsorFooter {
+		display:none;
+	}
+	.pull-right {
+		display:none;
+	}
+}
+
+}
+
+
+// ===================
+// ====== -568 =======
+// ===================
+
+@media only screen and (max-width: 567px) {
+	
+	#videoSolo {
+		display:none;
+	}
+	
+	#rotateNotice {
+		display:block !important;
+		margin:10px auto 0;
+		text-align:center;
+		font-weight:bold;
+		background-color:#e4f1f3;
+		border:2px solid #0e5a61;
+		width:280px;
+		padding:20px 10px;
+		-moz-border-radius: 0.6em;
+		-webkit-border-radius: 0.6em;
+		border-radius: 0.6em;
+	}
+	
+	.signinDialog {
+		width:90%;
+	}
+	
+}
+
+// ===================
+// ======= 320 =======
+// ===================
+
+@media only screen and (max-width: 320px) {
+
+	.navLogo {
+		margin-right:0;
+	}
+
+	#sidebar {
+		padding:0;
+		#countDown {
+			position:relative;
+			float: right;
+			display:inline-block;
+			max-width:125px;
+			padding-right:5px;
+		}
+		a.logo {
+			float:none;
+			margin:0;
+			margin-left:10px;
+		}
+	}
+
+	#instructions {
+		display:none;
+	}
+
+	#watchVideos {
+		height:auto !important;
+		li {
+			width:42px !important;
+			height:36px !important;
+			margin-right:6px !important;
+			.count {
+				display:none;
+			}
+		}
+	}
+
+	.searchButton {
+		width:280px !important;
+		margin-top:10px;
+		#text_search {
+			width:280px !important;
+			margin:0 auto;
+		}
+		.btn {
+			margin-top: 10px;
+		}
+	}
+
+	.video-tile {
+		margin:10px auto 0 !important;
+		float:none !important;
+		display:block !important;
+	}
+
+}

@@ -1,6 +1,6 @@
 <div id="vote">
-  <div class="vote"></div>
   <% if signed_in? %>
+  <div class="vote"></div>
   <div id="active">
   <%= link_to "", "#", class: "star-rating", title: "Dislike", rel: "tooltip" %>
   <%= link_to "", "#", class: "star-rating", title: "Fair", rel: "tooltip" %>
@@ -15,25 +15,8 @@
   </div>
   <% else %>
   <div id="inactive">
-  <%= link_to "", "#", class: "star-rating", title: "Dislike", rel: "tooltip" %>
-  <%= link_to "", "#", class: "star-rating", title: "Fair", rel: "tooltip" %>
-  <%= link_to "", "#", class: "star-rating", title: "Like", rel: "tooltip" %>
-  <%= link_to "", "#", class: "star-rating", title: "Really like", rel: "tooltip" %>
-  <%= link_to "", "#", class: "star-rating", title: "Love", rel: "tooltip" %>
+	  <p>Please <%= link_to "register", register_path %> to vote.</p>
   </div>
-  <% end %>
-</div>
-<div id="vote_details">
-  <% if signed_in? %>
-  <ul>
-	  <li>Dislike</li>
-	  <li>Fair</li>
-	  <li>Like</li>
-	  <li>Really Like</li>
-	  <li>Love</li>
-  </ul>
-  <% else %>
-    <p>Please <%= link_to "register", register_path %> to vote.</p>
   <% end %>
 </div>
 <% if signed_in? %>

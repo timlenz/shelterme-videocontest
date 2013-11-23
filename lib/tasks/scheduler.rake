@@ -18,3 +18,8 @@ task calculate_rating: :environment do
   # calculate_rating
   videos.each{|v| v.update_attribute(:rating, ((v.shares_quartile + v.plays_quartile + (v.votes_quartile / 2) + (0.4 * v.ave_vote)) / 3).round(5) )}
 end
+
+task update_ave_vote: :environment do
+  videos = Video.where(approved: true)
+  videos.each{|v| v.calculate_ave_vote}
+end

@@ -5,9 +5,7 @@
      <ul id="watchVideos" class="nav nav-pills">
        <!--li class="winnersPill"><a href="#winners"></a></li-->
        <li class="allVideosPill active">
-         <a href="#" onclick="return false;">
-           <span class="count"><%= @videos_count > 0 ? @videos_count : '' %></span>
-         </a>
+         <a href="#" onclick="return false;"></a>
        </li>
        <li class="bestRatedPill">
 		 <%= link_to "", rated_path %>
@@ -27,7 +25,7 @@
      </ul>
      <div class="tab-content">
        <div class="tab-pane active" id="all">
-         <% if @videos.size > 0 %>
+         <% if @videos_count > 0 %>
          <%= render partial: 'shared/video_tile', collection: @videos, as: :f %>
          <div class="clearfix"></div>
          <%= will_paginate @videos, param_name: 'all_videos' %>

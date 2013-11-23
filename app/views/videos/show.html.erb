@@ -1,14 +1,15 @@
 <%= provide(:title, 'Watch') %>
 <div id="mainContent">
   <div id="videoSolo" data-video-id="<%= @video.id %>">
-    <video id="videoPlayer" width="720" height="405" class="video-js vjs-default-skin active"
+    <%= render 'videos/played' %>
+    <%= render 'videos/solo_share' %>
+    <%= render 'videos/solo_vote' %>
+	<div class="clearfix"></div>
+    <video id="videoPlayer" width="700" height="394" class="video-js vjs-default-skin active"
       controls preload="auto" data-setup='{}' poster="<%= @video.panda_video.encodings["thumbnail"].screenshots.first %>">
       <source src="<%= @video.panda_video.encodings["h264"].url %>" type="video/mp4" />
       <source src="<%= @video.panda_video.encodings["webm"].url %>" type="video/webm" />
     </video>
-    <%= render 'videos/played' %>
-    <%= render 'videos/solo_share' %>
-    <%= render 'videos/solo_vote' %>
     <div class="videoLegend">
       <div class="video-name">
         <h1><%= @video.title %></h1>
@@ -34,7 +35,11 @@
     </div>
   </div>
   <div class="clearfix"></div>
-  <br><br>
+  <div id="rotateNotice" style="display:none;">
+	  Please turn your device sideways to watch this video.
+  </div>
+  <br>
   <%= render 'instructions'%>
+  <div id="sponsorMobile"></div>
 </div>
 <div class="clearfix"></div>

@@ -19,11 +19,11 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="myVideos">
-	  <% if @videos.size > 0 && (signed_in? && (current_user == @user || current_user.admin?)) %>
+	  <% if @videos_count > 0 && (signed_in? && (current_user == @user || current_user.admin?)) %>
       <%= render partial: "shared/video_tile", collection: @videos, as: :f %>
       <div class="clearfix"></div>
       <%= will_paginate @videos, param_name: 'videos_page' %>
-      <% elsif @approved.size > 0 %>
+      <% elsif @approved_count > 0 %>
       <%= render partial: "shared/video_tile", collection: @approved, as: :f %>
       <div class="clearfix"></div>
       <%= will_paginate @approved, param_name: 'videos_page' %>
@@ -32,7 +32,7 @@
       <% end %>
     </div>
     <div class="tab-pane" id="voted">
-	    <% if @voted.size > 0 %>
+	  <% if @voted_count > 0 %>
       <%= render partial: "shared/video_tile", collection: @voted, as: :f %>
       <div class="clearfix"></div>
       <%= will_paginate @voted, param_name: 'voted_page' %>
@@ -41,7 +41,7 @@
       <% end %>
     </div>
     <div class="tab-pane" id="watched">
-	    <% if @watched.size > 0 %>
+	  <% if @watched_count > 0 %>
       <%= render partial: "shared/video_tile", collection: @watched, as: :f %>
       <div class="clearfix"></div>
       <%= will_paginate @watched, param_name: 'watched_page' %>
@@ -50,7 +50,7 @@
       <% end %>
     </div>
     <div class="tab-pane" id="shared">
-	    <% if @shared.size > 0 %>
+	  <% if @shared_count > 0 %>
       <%= render partial: "shared/video_tile", collection: @shared, as: :f %>
       <div class="clearfix"></div>
       <%= will_paginate @shared, param_name: 'shared_page' %>

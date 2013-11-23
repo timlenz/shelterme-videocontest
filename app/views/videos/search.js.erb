@@ -5,23 +5,26 @@ $('#searching').hide();
 $('[rel=tooltip]').tooltip({
 	container: 'body',
 	placement: function(tip, element){
-		if ( $(element).hasClass('star-rating') ) {
-			return "right";
-		}
 		return "top";
 	}
 });	
 
 // Target video tile
-$('a.video_link').click(function(){
+$('a.video_link, .video-tile a.videoTile').click(function(){
 
 	// Open video modal dialog
 	$('#videoModal').dialog('open');
 
 	// Get two sources for video, one each for mp4 and webm; stored in data-mp4 and data-webm tags
-	var $mp4_source = $.trim($(this).attr("data-mp4"));
-	var $webm_source = $.trim($(this).attr("data-webm"));
-	var $poster = $.trim($(this).find('img').attr("src")); // Get poster image from clicked tile
+	if ( $(this).hasClass('videoTile') ) {
+		var $mp4_source = $.trim($(this).parents('.video-tile').find('.video_link').attr("data-mp4"));
+		var $webm_source = $.trim($(this).parents('.video-tile').find('.video_link').attr("data-webm"));
+		var $poster = $.trim($(this).parents('.video-tile').find('.video_link').find('img').attr("src")); // Get poster image from clicked tile
+	} else {
+		var $mp4_source = $.trim($(this).attr("data-mp4"));
+		var $webm_source = $.trim($(this).attr("data-webm"));
+		var $poster = $.trim($(this).find('img').attr("src")); // Get poster image from clicked tile
+	};
 	var $vid_obj = _V_("videoPlayer");
 	var video_title = $(this).parents('.video-tile').find('.video-name h1').text();
 	var video_id = $(this).parents('.video-tile').attr('data-video-id');
@@ -121,26 +124,6 @@ $('a.video_link').click(function(){
 	
 	return false;
 });
-
-// ====================
-// == VIDEO CONTROLS == 
-// ====================
-
-// Show/hide sharing & voting controls
-$('#videoPlayer, #share, #vote, #vote_details, #vote_feedback').hover(
-	function(){
-		$('#share, #vote').show().removeClass('vjs-fade-out');
-	}, function(){
-		$('#share, #vote').hide().addClass('vjs-fade-out'); // add in delay
-	}
-);
-$('#vote, #vote_details, #vote_feedback').hover(
-	function(){
-		$('#vote_details, #vote_feedback').show().removeClass('vjs-fade-out');
-	}, function(){
-		$('#vote_details, #vote_feedback').hide().addClass('vjs-fade-out'); // add in delay
-	}
-);
 
 // ===================
 // ===== VOTING ====== 
