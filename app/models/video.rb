@@ -79,13 +79,14 @@ class Video < ActiveRecord::Base
   end
   
   def calculate_ave_vote
-    # Eliminate all votes with value 1 from calculation and subtract same number of top votes
+    # Eliminate skew introduced by ballot stuffing
+    
     # Check if value(1).count > value(2-4).count, & if so, reject value(1) votes & same # of top votes
     # Else, if value(5).count > value(1-4).count*4, reject # of value(5) votes equal to value(1-4).count
-    # av = Vote.where(video_id: id).map{|v| v.value}
-    # sav = av.sort
-    # sav_size = sav.count
-    # sav_cheat = sav.select{|v| v == 1}.count
+    # sav = Vote.where(video_id: id).map{|v| v.value}.sort
+    # sav_size = av.count
+    # sav_1 = sav.select{|v| v == 1}.count
+    # sav_5 = sav.select{|v| v == 5}.count
     # sav_cap = sav_size - sav_cheat
     # tav = sav[(sav_cheat + 1)..sav_cap].inject(:+).to_f / (sav_size - 2 * sav_cheat)
     
