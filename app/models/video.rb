@@ -87,6 +87,8 @@ class Video < ActiveRecord::Base
     # sav_size = av.count
     # sav_1 = sav.select{|v| v == 1}.count
     # sav_5 = sav.select{|v| v == 5}.count
+    # sav_1_4 = sav.select{|v| v < 5}.count
+    # sav_2_4 = sav.select{|v| v > 1}.count
     # sav_cap = sav_size - sav_cheat
     # tav = sav[(sav_cheat + 1)..sav_cap].inject(:+).to_f / (sav_size - 2 * sav_cheat)
     

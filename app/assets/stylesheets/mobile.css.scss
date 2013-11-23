@@ -413,10 +413,10 @@ ul.contributors {
 }
 
 .searchButton {
-	width:260px !important;
+	width:280px !important;
 	margin-top:10px;
 	#text_search {
-		width:260px !important;
+		width:280px !important;
 		margin:0 auto;
 	}
 	.btn {
@@ -575,7 +575,7 @@ ul.contributors {
 	margin:0 auto;
 	overflow:hidden;
 	.tab-pane {
-		width:90%;
+		width:100%;
 		margin:0 auto;
 	}
 }
@@ -698,12 +698,6 @@ footer {
 	}
 
 	.searchButton {
-		width:260px !important;
-		margin-top:10px;
-		#text_search {
-			width:260px !important;
-			margin:0 auto;
-		}
 		.btn {
 			margin-top: 10px;
 		}
