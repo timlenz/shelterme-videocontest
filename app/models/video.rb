@@ -88,7 +88,7 @@ class Video < ActiveRecord::Base
     sav_24 = sav.select{|v| v > 1 && v < 5}.count
     sav_25 = sav.select{|v| v > 1 }.count
     if sav_14 > 0
-      sf = (sav_5 / sav_14 * 0.5).round
+      sf = (sav_5 / sav_14 * 0.75).round
     else
       sf = 0
     end
