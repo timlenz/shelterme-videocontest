@@ -81,24 +81,25 @@ class Video < ActiveRecord::Base
   def calculate_ave_vote
     # Eliminate skew introduced by ballot stuffing
     sav = Vote.where(video_id: id).map{|v| v.value}.sort
-    sav_all = sav.count
+    sav_all = sav.count - 1
     sav_1 = sav.select{|v| v == 1}.count
     sav_5 = sav.select{|v| v == 5}.count
     sav_14 = sav.select{|v| v < 5}.count
     sav_24 = sav.select{|v| v > 1 && v < 5}.count
     sav_25 = sav.select{|v| v > 1 }.count
-    # Check if value(1).count > value(2-4).count (but not more than 2-5) & if so, reject value(1) votes & 24 # of top votes
-    if sav_1 > sav_24 && sav_1 < sav_25
-      sav_cap = sav_all - sav_24
-      sav_floor = sav_24
+    sf = (sav_5 / sav_14 * 0.5).round
+    # Check if 5 vote heavy, if so, reject portion of the 5 votes
+    if sf > 1
+      sav_cap = sav_all - sav_14 * sf
+      sav_floor = 0
     # Check if there are more 1 votes than all other votes combined, if so, eliminate as many 1 votes as other votes
     elsif sav_1 > sav_25
       sav_cap = sav_all
       sav_floor = sav_25
-    # Else, if value(5).count > value(1-4).count*3, reject # of value(5) votes equal to value(1-4).count
-    elsif sav_5 > sav_14 * 3
-      sav_cap = sav_all - sav_14 * 1.5
-      sav_floor = 0
+    # Check if value(1).count > value(2-4).count (but not more than 2-5) & if so, reject value(1) votes & 24 # of top votes
+    elsif sav_1 > sav_24 && sav_1 < sav_25
+      sav_cap = sav_all - sav_24
+      sav_floor = sav_24
     else
       sav_cap = sav_all
       sav_floor = 0
