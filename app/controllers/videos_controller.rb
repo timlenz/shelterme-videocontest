@@ -123,19 +123,22 @@ class VideosController < ApplicationController
   end
   
   def views
-    @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("plays_count DESC")
+    # @played_videos = Video.where(id: (Play.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("plays_count DESC")
+    @played_videos = Video.where('plays_count > 0', approved: true).includes(:category, :user).reorder("plays_count DESC")
     @played_videos_count = @played_videos.length
     @played_videos = @played_videos.paginate(page: params[:played_videos], per_page: 12)
   end
   
   def votes
-    @voted_videos = Video.where(id: (Vote.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("votes_count DESC")
+    # @voted_videos = Video.where(id: (Vote.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("votes_count DESC")
+    @voted_videos = Video.where('votes_count > 0', approved: true).includes(:category, :user).reorder("votes_count DESC")
     @voted_videos_count = @voted_videos.length
     @voted_videos = @voted_videos.paginate(page: params[:voted_videos], per_page: 12)
   end
   
   def shares
-    @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("shares_count DESC")
+    # @shared_videos = Video.where(id: (Share.all.map{|p| p.video_id}.uniq), approved: true).includes(:category, :user).reorder("shares_count DESC")
+    @shared_videos = Video.where('shares_count > 0', approved: true).includes(:category, :user).reorder("shares_count DESC")
     @shared_videos_count = @shared_videos.length
     @shared_videos = @shared_videos.paginate(page: params[:shared_videos], per_page: 12)
   end
