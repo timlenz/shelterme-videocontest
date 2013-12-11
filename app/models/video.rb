@@ -95,9 +95,10 @@ class Video < ActiveRecord::Base
     end
     # If 5 vote heavy, reject portion of the 5 votes
     if sf > 1 # this means there are at least twice as many 5 votes as 1-4 votes combined
-      sav_cap = (sav_all - sav_14 * sf).round
+      # sav_cap = (sav_all - sav_14 * sf).round
+      sav_cap = (sav_14 * sf).round
       # Now check if 1 vote heavy
-      if sav_1 > sav_24
+      if sf < 4 && sav_1 > sav_24
         sav_floor = sav_1 - sav_24
       else
         sav_floor = 0
