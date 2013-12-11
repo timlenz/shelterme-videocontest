@@ -88,12 +88,12 @@ class Video < ActiveRecord::Base
     sav_24 = sav.select{|v| v > 1 && v < 5}.count
     sav_25 = sav.select{|v| v > 1 }.count
     if sav_14 > 0
-      sf = (sav_5 / sav_14 * 0.75).round
+      sf = (sav_5 / sav_14 * 0.75).floor
     else
       sf = 0
     end
     # Check if 5 vote heavy, if so, reject portion of the 5 votes
-    if sf > 1
+    if sf > 2
       sav_cap = sav_all - sav_14 * sf
       # Now check if 1 vote heavy
       if sav_1 > sav_24
@@ -107,7 +107,7 @@ class Video < ActiveRecord::Base
       sav_floor = sav_1 - sav_25
     # Check if value(1).count > value(2-4).count (but not more than 2-5) & if so, reject value(1) votes & 24 # of top votes
     elsif sav_1 > sav_24 && sav_1 < sav_25
-      sav_cap = sav_all - sav_24
+      sav_cap = sav_all
       sav_floor = sav_1 - sav_24
     else
       sav_cap = sav_all
