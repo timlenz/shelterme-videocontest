@@ -80,35 +80,36 @@ class Video < ActiveRecord::Base
   
   def calculate_ave_vote
     # Eliminate skew introduced by ballot stuffing
+    debugger
     sav = Vote.where(video_id: id).map{|v| v.value}.sort
-    sav_all = sav.count
-    sav_1 = sav.select{|v| v == 1}.count
-    sav_2 = sav.select{|v| v == 2}.count
-    sav_5 = sav.select{|v| v == 5}.count
-    sav_12 = sav_1 + sav_2
-    sav_14 = sav.select{|v| v < 5}.count
-    sav_24 = sav.select{|v| v > 1 && v < 5}.count
+    sav_all = sav.count.to_f
+    sav_1 = sav.select{|v| v == 1}.count.to_f
+    sav_2 = sav.select{|v| v == 2}.count.to_f
+    sav_5 = sav.select{|v| v == 5}.count.to_f
+    sav_12 = (sav_1 + sav_2).to_f
+    sav_14 = sav.select{|v| v < 5}.count.to_f
+    sav_24 = sav.select{|v| v > 1 && v < 5}.count.to_f
     if sav_14 > 0
-      top_rest = sav_5 / sav_14
+      sf514 = sav_5 / sav_14
     else
-      top_rest = 0
+      sf514 = 0
     end
     if sav_12 > 0
-      top_low = sav_5 / sav_12
+      sf512 = sav_5 / sav_12
     else
-      top_low = 0
+      sf512 = 0
     end
-    if top_rest == 0
+    if sf514 == 0
       sav_cap = sav_all
       sav_floor = 0
-    elsif top_rest <= 2
+    elsif sf514 <= 2
       sav_cap = sav_all
-      if top_low < 1  # possibly bad video, include all votes
+      if sf512 < 1  # possibly bad video, include all votes
         sav_floor = 0
       else  # deflated video, exclude most low-end votes
-        sav_floor = sav_1 + (sav_2 / 2).round
+        sav_floor = (sav_1 + sav_2 / 2).round
       end
-    elsif top_rest <= 5
+    elsif sf514 <= 5
       sav_cap = sav_all - sav_24 # mixed inflation & deflation, slight trimming of top and bottom
       if sav_1 > sav_24
         sav_floor = sav_1 - sav_24
@@ -116,7 +117,7 @@ class Video < ActiveRecord::Base
         sav_floor = 0
       end
     else
-      sav_cap = sav_all - (sav_5 / 2).round # significantly inflated, discard half of top votes
+      sav_cap = (sav_all - sav_5 / 2).round # significantly inflated, discard half of top votes
       sav_floor = 0
     end
     
