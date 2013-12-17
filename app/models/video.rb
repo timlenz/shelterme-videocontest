@@ -83,43 +83,44 @@ class Video < ActiveRecord::Base
     sav = Vote.where(video_id: id).map{|v| v.value}.sort
     sav_all = sav.count
     sav_1 = sav.select{|v| v == 1}.count
+    sav_2 = sav.select{|v| v == 2}.count
     sav_5 = sav.select{|v| v == 5}.count
+    sav_12 = sav_1 + sav_2
     sav_14 = sav.select{|v| v < 5}.count
     sav_24 = sav.select{|v| v > 1 && v < 5}.count
-    sav_25 = sav.select{|v| v > 1 }.count
     if sav_14 > 0
-      sf = sav_5 / sav_14 * 0.5
-      # sf = (sav_5 / sav_14 * 0.5).floor
+      top_rest = sav_5 / sav_14
     else
-      sf = 0
+      top_rest = 0
     end
-    # If 5 vote heavy, reject portion of the 5 votes
-    if sf > 1 # this means there are at least twice as many 5 votes as 1-4 votes combined
-      # sav_cap = (sav_all - sav_14 * sf).round
-      sav_cap = (sav_14 * sf).round
-      # Now check if 1 vote heavy
-      if sf < 4 && sav_1 > sav_24
+    if sav_12 > 0
+      top_low = sav_5 / sav_12
+    else
+      top_low = 0
+    end
+    if top_rest == 0
+      sav_cap = sav_all
+      sav_floor = 0
+    elsif top_rest <= 2
+      sav_cap = sav_all
+      if top_low < 1  # possibly bad video, include all votes
+        sav_floor = 0
+      else  # deflated video, exclude most low-end votes
+        sav_floor = sav_1 + (sav_2 / 2).round
+      end
+    elsif top_rest <= 5
+      sav_cap = sav_all - sav_24 # mixed inflation & deflation, slight trimming of top and bottom
+      if sav_1 > sav_24
         sav_floor = sav_1 - sav_24
       else
         sav_floor = 0
       end
-    # If there are more 1 votes than all other votes combined, if so, keep only as many 1 votes as other votes
-    elsif sav_1 > sav_25
-      sav_cap = sav_all
-      sav_floor = sav_1 - sav_25
-    # If there are more 1 votes than middle (2-4) votes combined, if so, keep only as many 1 votes as 2-4 votes
-    elsif sav_1 > sav_24
-      sav_cap = sav_all
-      sav_floor = sav_1 - sav_24
     else
-      sav_cap = sav_all
+      sav_cap = sav_all - (sav_5 / 2).round # significantly inflated, discard half of top votes
       sav_floor = 0
     end
     
     tav = sav[sav_floor..sav_cap].inject(:+).to_f / (sav_cap - sav_floor)
-    
-    # average_vote = Vote.average(:value, conditions: ['video_id = ?', id]).to_f
-    # self.ave_vote = average_vote
     
     self.ave_vote = tav
     self.save
