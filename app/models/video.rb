@@ -80,7 +80,6 @@ class Video < ActiveRecord::Base
   
   def calculate_ave_vote
     # Eliminate skew introduced by ballot stuffing
-    debugger
     sav = Vote.where(video_id: id).map{|v| v.value}.sort
     sav_all = sav.count.to_f
     sav_1 = sav.select{|v| v == 1}.count.to_f
