@@ -1,7 +1,9 @@
 <div id="videoModal">
+  <% if DateTime.current < DateTime.new(2013,12,21,5,0,0)%>
   <%= render 'videos/played' %>
   <%= render 'videos/share' %>
   <%= render 'videos/vote' %>
+  <% end %>
   <div class="clearfix"></div>
   <video id="videoPlayer" width="720" height="405" class="video-js vjs-default-skin active"
     controls autoplay preload="auto" data-setup='{}'>

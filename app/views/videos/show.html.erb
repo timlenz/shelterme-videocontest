@@ -1,9 +1,11 @@
 <%= provide(:title, 'Watch') %>
 <div id="mainContent">
   <div id="videoSolo" data-video-id="<%= @video.id %>">
+	<% if DateTime.current < DateTime.new(2013,12,21,5,0,0)%>
     <%= render 'videos/played' %>
     <%= render 'videos/solo_share' %>
     <%= render 'videos/solo_vote' %>
+	<% end %>
 	<div class="clearfix"></div>
     <video id="videoPlayer" width="700" height="394" class="video-js vjs-default-skin active"
       controls preload="auto" data-setup='{}' poster="<%= @video.panda_video.encodings["thumbnail"].screenshots.first %>">

@@ -6,7 +6,7 @@
 	<h3>Closed to entries. Voting begins November 4<sup>th</sup></h3>
 	<% elsif DateTime.current < DateTime.new(2013,12,20,5,0,0) %>
 	<h3><%= (Date.new(2013,12,20) - Date.today).to_i %> Days left to vote for your favorite videos!</h3>
-	<% elsif DateTime.current > DateTime.new(2013,12,20,5,0,0)%>
+	<% elsif DateTime.current > DateTime.new(2013,12,21,5,0,0)%>
 	<h3>Voting is closed. Winners revealed in January.</h3>
 	<% end %>
   </div>
