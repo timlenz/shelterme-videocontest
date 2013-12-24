@@ -25,6 +25,11 @@
   <% if f.created_at >= 1.week.ago %>
     <div class="videoTile newIcon"></div>
   <% end %>
+  <% if [84,103,112,167,187,205,108,23,253,221].include?(f.id) %>
+  <div id="vote" style="position:absolute;top:5px;left:3px;width:35px;">
+    <div class="star-rating star-rating-on"></div>
+  </div>
+  <% end %>
   <% if params[:controller] == 'videos' and params[:action] == 'index' %>
     <div class="adminApproval">
     <% if f.approved == false %>
