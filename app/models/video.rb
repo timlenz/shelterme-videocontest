@@ -99,14 +99,14 @@ class Video < ActiveRecord::Base
     else
       sf512 = 0
     end
-    if sf514 <= 5
+    if sf514 <= 6
       sav_cap = sav_all
       if sf512 < 2  # possibly bad video, include all votes
         sav_floor = 0
       else  # deflated video, exclude most low-end votes
         sav_floor = (sav_1 + sav_2 / 2).round
       end
-    elsif sf514 <= 11
+    elsif sf514 <= 10
       sav_cap = sav_all
       if sf1214 > 0.7 # significant deflation
         sav_floor = sav_1
