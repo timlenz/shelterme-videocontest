@@ -1,5 +1,7 @@
 class SharesController < ApplicationController
 
+  before_filter :admin_user, only: [:create]  # Bot prevention after contest closure
+  
   respond_to :html, :js
   
   def create

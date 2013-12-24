@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
-  before_filter :signed_in_user, only: [:create]
+  # before_filter :signed_in_user, only: [:create]
+  before_filter :admin_user, only: [:create]  # Bot prevention after contest closure
   
   respond_to :html, :js
   

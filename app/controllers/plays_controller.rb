@@ -1,4 +1,6 @@
 class PlaysController < ApplicationController
+
+  before_filter :admin_user, only: [:create]  # Bot prevention after contest closure
   
   respond_to :js, only: [:create]
   

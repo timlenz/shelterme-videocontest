@@ -99,19 +99,16 @@ class Video < ActiveRecord::Base
     else
       sf512 = 0
     end
-    if sf514 == 0
+    if sf514 <= 5
       sav_cap = sav_all
-      sav_floor = 0
-    elsif sf514 <= 2
-      sav_cap = sav_all
-      if sf512 < 0.7  # possibly bad video, include all votes
+      if sf512 < 2  # possibly bad video, include all votes
         sav_floor = 0
       else  # deflated video, exclude most low-end votes
-        sav_floor = (sav_1 + sav_2 / 2).round
+        sav_floor = (sav_1 + sav_2 / 3).round
       end
-    elsif sf514 <= 5
-      sav_cap = sav_all - sav_24 # slight inflation, slight trimming of top
-      if sf1214 > 0.92 # significant deflation
+    elsif sf514 <= 11
+      sav_cap = sav_all
+      if sf1214 > 0.7 # significant deflation
         sav_floor = sav_1
       elsif sav_1 > sav_24  # slight deflation
         sav_floor = sav_1 - sav_24
@@ -119,12 +116,8 @@ class Video < ActiveRecord::Base
         sav_floor = 0
       end
     else
-      sav_cap = (sav_all - sav_5 / 2).round # significantly inflated, discard half of top votes
-      if sav_1 > sav_24
-        sav_floor = sav_24  # slight deflation
-      else
-        sav_floor = 0
-      end
+      sav_cap = (sav_all - sav_5 / 3).round # significantly inflated, discard third of top votes
+      sav_floor = 0
     end
     
     tav = sav[sav_floor..sav_cap].inject(:+).to_f / (sav_cap - sav_floor)
