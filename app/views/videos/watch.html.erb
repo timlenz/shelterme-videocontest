@@ -3,10 +3,12 @@
   <%= render 'instructions'%>
   <div class="tabbable">
      <ul id="watchVideos" class="nav nav-pills">
-       <!--li class="winnersPill"><a href="#winners"></a></li-->
-       <li class="allVideosPill active">
+       <li class="winnersPill active">
          <a href="#" onclick="return false;"></a>
-       </li>
+	   </li>
+       <!-- <li class="allVideosPill active">
+         <a href="#" onclick="return false;"></a>
+       </li> -->
        <li class="bestRatedPill">
 		 <%= link_to "", rated_path %>
        </li>
@@ -24,14 +26,9 @@
        </li>
      </ul>
      <div class="tab-content">
-       <div class="tab-pane active" id="all">
-         <% if @videos_count > 0 %>
-         <%= render partial: 'shared/video_tile', collection: @videos, as: :f %>
+       <div class="tab-pane active" id="winners">
+         <%= render partial: 'shared/video_tile', collection: @winners, as: :f %>
          <div class="clearfix"></div>
-         <%= will_paginate @videos, param_name: 'all_videos' %>
-         <% else %>
-         No videos have been approved yet.
-         <% end %>
        </div>
      </div>
    </div>

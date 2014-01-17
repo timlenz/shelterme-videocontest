@@ -106,6 +106,7 @@ class VideosController < ApplicationController
   end
   
   def watch
+    @winners = Video.where(id: 108) + Video.where(id: 253) + Video.where(id: 187)
     @videos = Video.where(approved: true).includes(:category, :user).reorder("title ASC")
     # @new_videos = Video.where(created_at: 7.days.ago.utc...Time.now.utc, approved: true).includes(:category, :user)
     @videos_count = @videos.length

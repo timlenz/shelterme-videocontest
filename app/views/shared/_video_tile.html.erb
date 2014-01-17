@@ -27,7 +27,15 @@
   <% end %>
   <% if [84,103,112,167,187,205,108,23,253,221].include?(f.id) %>
   <div id="vote" style="position:absolute;top:5px;left:3px;width:35px;">
-    <div class="star-rating star-rating-on"></div>
+    <div class="star-rating star-rating-on" style="color:#fdd01c;font-weight:bold;text-align:center;line-height:16px;font-size:18px;text-transform:uppercase;">
+    	<% if f.id == 108 %>
+		1<span style="vertical-align:super;font-size:11px;">st</span>
+		<% elsif f.id == 253 %>
+		2<span style="vertical-align:super;font-size:11px;">nd</span>
+		<% elsif f.id == 187 %>
+		3<span style="vertical-align:super;font-size:11px;">rd</span>
+		<% end %>
+    </div>
   </div>
   <% end %>
   <% if params[:controller] == 'videos' and params[:action] == 'index' %>
